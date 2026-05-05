@@ -97,6 +97,9 @@ ingress:
   - service: http_status:404
 ```
 
+```bash
+cp ~/Documents/code/quortol/docs/cloudflare.yaml /home/.cloudflared/config.yml
+```
 If you ran `cloudflared tunnel login` as a non-root user, either:
 - copy credentials to `/root/.cloudflared/`, or
 - adjust `credentials-file` to the correct user path and run the service under that user.
