@@ -1,17 +1,15 @@
 <template>
-  <footer class="footer">
-    <div class="footer-container">
-      <p>&copy; 2026 Quortol. All rights reserved.</p>
+  <footer class="app-footer py-3 mt-auto">
+    <div class="container-xl text-center small">
+      <p class="mb-0">&copy; 2026 Quortol. All rights reserved.</p>
     </div>
   </footer>
 </template>
 
-<style>
-.footer {
-  background-color: #2c3e50;
-  color: #fff;
-  padding: 1rem 2rem;
-  text-align: center;
-  margin-top: auto;
+<style scoped>
+.app-footer {
+  background: #f7f3ec;
+  color: #5e5549;
+  border-top: 1px solid var(--line);
 }
 </style>

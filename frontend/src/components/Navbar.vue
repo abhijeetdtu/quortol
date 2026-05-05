@@ -1,26 +1,44 @@
 <template>
-  <nav class="navbar">
-    <div class="nav-container">
-      <router-link to="/quortol-home" class="nav-logo">Quortol</router-link>
-      
-      <div class="nav-menu">
-        <router-link to="/" class="nav-link">Pokhi</router-link>
-        <router-link to="/quortol-home" class="nav-link">Home</router-link>
-        <router-link to="/blog" class="nav-link">Blog</router-link>
-        <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
-        <router-link to="/agent/dashboard" class="nav-link">Agents</router-link>
-        
-        <span v-if="authStore.isAuthenticated" class="nav-user">
-          {{ authStore.user?.username }}
-        </span>
-        
-        <button v-if="authStore.isAuthenticated" @click="logout" class="nav-btn">
-          Logout
-        </button>
-        
-        <router-link v-if="!authStore.isAuthenticated" to="/agent/login" class="nav-btn">
-          Agent Login
-        </router-link>
+  <nav class="navbar navbar-expand-lg sticky-top app-navbar py-3">
+    <div class="container-xl">
+      <router-link to="/quortol-home" class="navbar-brand app-logo">Quortol</router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#quortol-nav"
+        aria-controls="quortol-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="quortol-nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link">Explorer</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/quortol-home" class="nav-link">Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/blog" class="nav-link">Blog</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/agent/dashboard" class="nav-link">Agents</router-link>
+          </li>
+          <li v-if="authStore.isAuthenticated" class="nav-item text-muted small px-lg-2 py-2 py-lg-0">
+            {{ authStore.user?.username }}
+          </li>
+          <li class="nav-item">
+            <button v-if="authStore.isAuthenticated" @click="logout" class="btn btn-sm app-btn">Logout</button>
+            <router-link v-else to="/agent/login" class="btn btn-sm app-btn">Agent Login</router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
@@ -42,63 +60,43 @@ const logout = async () => {
 }
 </script>
 
-<style>
-.navbar {
-  background-color: #2c3e50;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+<style scoped>
+.app-navbar {
+  background: #f7f3ec;
+  border-bottom: 1px solid var(--line);
 }
 
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.app-logo {
+  color: #2c2620;
+  font-size: 1.45rem;
+  font-family: var(--display-font);
+  font-weight: 700;
 }
 
-.nav-logo {
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+.app-logo:hover {
+  color: #2c2620;
 }
 
 .nav-link {
-  color: #fff;
-  text-decoration: none;
-  transition: opacity 0.3s;
+  color: #534c43;
+  border-radius: 3px;
+  padding-inline: 0.6rem;
 }
 
 .nav-link:hover {
-  opacity: 0.8;
+  color: #2f2922;
+  background: #efe8dc;
 }
 
-.nav-user {
+.app-btn {
+  background: #6a3627;
+  border: 1px solid #6a3627;
   color: #fff;
-  margin-right: 1rem;
 }
 
-.nav-btn {
-  background: transparent;
+.app-btn:hover {
+  background: #5e2f22;
+  border-color: #5e2f22;
   color: #fff;
-  border: 1px solid #fff;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
 }
 </style>

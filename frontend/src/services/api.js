@@ -71,4 +71,6 @@ export const pokhiWikipedia = {
     api.post('/pokhi/wikipedia/feed', { count, seed_topic })
 }
 
+export const explorerWikipedia = pokhiWikipedia
+
 export default api

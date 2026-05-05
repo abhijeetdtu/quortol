@@ -1,19 +1,27 @@
 <template>
-  <div class="portfolio-list">
-    <h1>Portfolio</h1>
-    
-    <div v-if="loading" class="loading">Loading projects...</div>
-    <div v-else class="projects-container">
-      <div v-if="projects.length === 0" class="no-projects">No projects yet.</div>
-      <div v-else class="projects-grid">
-        <div v-for="project in projects" :key="project.id" class="project-card">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
-          <div v-if="project.techstacks?.length" class="techstacks">
-            <span v-for="tech in project.techstacks" :key="tech.id" class="tech-badge">{{ tech.name }}</span>
+  <div class="portfolio-list container-xl py-5">
+    <header class="mb-4">
+      <p class="kicker mb-2">Project Archive</p>
+      <h1 class="display-6 mb-2">Portfolio</h1>
+      <p class="intro mb-0">Selected builds, case studies, and implementation notes.</p>
+    </header>
+
+    <div v-if="loading" class="text-muted py-4">Loading projects...</div>
+    <div v-else-if="projects.length === 0" class="text-muted py-4">No projects yet.</div>
+    <div v-else class="row g-3">
+      <div v-for="project in projects" :key="project.id" class="col-12 col-md-6 col-xl-4">
+        <article class="card h-100 app-card">
+          <div class="card-body">
+            <h3 class="h4 card-title">{{ project.title }}</h3>
+            <p class="card-text text-secondary">{{ project.description }}</p>
+            <div v-if="project.techstacks?.length" class="d-flex flex-wrap gap-2 my-3">
+              <span v-for="tech in project.techstacks" :key="tech.id" class="badge rounded-pill app-badge">
+                {{ tech.name }}
+              </span>
+            </div>
+            <router-link :to="`/portfolio/${project.slug}`" class="app-link">View project &rarr;</router-link>
           </div>
-          <router-link :to="`/portfolio/${project.slug}`" class="view-project">View Project →</router-link>
-        </div>
+        </article>
       </div>
     </div>
   </div>
@@ -38,59 +46,39 @@ onMounted(async () => {
 })
 </script>
 
-<style>
-.portfolio-list {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+<style scoped>
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
 }
 
-.portfolio-list h1 {
-  margin-bottom: 2rem;
+.intro {
+  color: var(--ink-muted);
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.project-card {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-.project-card h3 {
-  margin-bottom: 0.5rem;
-}
-
-.techstacks {
-  margin: 1rem 0;
-}
-
-.tech-badge {
-  background: #9b59b6;
-  color: #fff;
-  padding: 0.3rem 0.8rem;
+.app-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 4px;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-  display: inline-block;
 }
 
-.view-project {
-  color: #9b59b6;
+.app-link {
+  color: #7f3a27;
   text-decoration: none;
+  font-weight: 600;
 }
 
-.view-project:hover {
+.app-link:hover {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.loading, .no-projects {
-  text-align: center;
-  color: #666;
-  padding: 2rem;
+.app-badge {
+  border: 1px solid #c6bcad;
+  color: #594f40;
+  background: transparent;
+  font-weight: 500;
 }
 </style>
