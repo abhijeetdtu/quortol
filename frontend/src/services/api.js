@@ -60,8 +60,15 @@ export const agents = {
 export const auth = {
   login: (username, password) => api.post('/auth/login', { username, password }),
   register: (username, email, password) => api.post('/auth/register', { username, email, password }),
+  getSettings: () => api.get('/auth/settings'),
   logout: () => api.post('/auth/logout'),
   getCurrentUser: () => api.get('/auth/me')
+}
+
+export const pokhiWikipedia = {
+  getPage: (topic) => api.post('/pokhi/wikipedia/page', { topic }),
+  getFeed: ({ count = 10, seed_topic = undefined } = {}) =>
+    api.post('/pokhi/wikipedia/feed', { count, seed_topic })
 }
 
 export default api

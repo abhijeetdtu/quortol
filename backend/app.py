@@ -12,16 +12,20 @@ def create_app(config_class=None):
     app.config.from_object(config_class)
     
     db.init_app(app)
+    from .auth import init_login_manager
+    init_login_manager(app)
     
     # Register blueprints
     from .routes.blog import blog_bp
     from .routes.portfolio import portfolio_bp
     from .routes.agent import agent_bp
     from .routes.auth import auth_bp
+    from .routes.pokhi_wikipedia import pokhi_wikipedia_bp
     app.register_blueprint(blog_bp, url_prefix='/api/blog')
     app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')
     app.register_blueprint(agent_bp, url_prefix='/api/agents')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(pokhi_wikipedia_bp, url_prefix='/api/pokhi/wikipedia')
     
     # Create database tables
     with app.app_context():

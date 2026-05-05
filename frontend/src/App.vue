@@ -1,20 +1,23 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Navbar v-if="!hideShell" />
     <main>
       <router-view />
     </main>
-    <Footer />
+    <Footer v-if="!hideShell" />
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { useAuthStore } from './stores/auth.js'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 
 const authStore = useAuthStore()
+const route = useRoute()
+const hideShell = computed(() => Boolean(route.meta?.hideShell))
 
 onMounted(() => {
   authStore.checkAuth()
@@ -29,7 +32,7 @@ onMounted(() => {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #fff;

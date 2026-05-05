@@ -34,12 +34,12 @@
           <span v-else>Login to Agents</span>
         </button>
         
-        <div class="register-link">
+        <div v-if="registrationEnabled" class="register-link">
           New here? <a href="#" @click.prevent="showRegister">Register</a>
         </div>
       </form>
       
-      <div v-if="showRegisterForm" class="register-form">
+      <div v-if="registrationEnabled && showRegisterForm" class="register-form">
         <h2>Register</h2>
         <form @submit.prevent="handleRegister" class="login-form">
           <div class="form-group">
@@ -92,7 +92,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { auth } from '../../services/api'
 import { useAuthStore } from '../../stores/auth.js'
@@ -106,6 +106,7 @@ const error = ref('')
 const loading = ref(false)
 
 const showRegisterForm = ref(false)
+const registrationEnabled = ref(false)
 const registerData = reactive({ username: '', email: '', password: '' })
 const registerError = ref('')
 const registerLoading = ref(false)
@@ -119,6 +120,15 @@ const showLogin = () => {
   showRegisterForm.value = false
   registerError.value = ''
 }
+
+onMounted(async () => {
+  try {
+    const response = await auth.getSettings()
+    registrationEnabled.value = Boolean(response.data?.registration_enabled)
+  } catch (err) {
+    registrationEnabled.value = false
+  }
+})
 
 const handleSubmit = async () => {
   loading.value = true
@@ -138,6 +148,11 @@ const handleSubmit = async () => {
 }
 
 const handleRegister = async () => {
+  if (!registrationEnabled.value) {
+    registerError.value = 'Registration is currently disabled.'
+    return
+  }
+
   registerLoading.value = true
   registerError.value = ''
   

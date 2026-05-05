@@ -1,8 +1,7 @@
-from flask import Blueprint, request, jsonify, session, redirect, url_for, render_template
+from flask import Blueprint, request, jsonify, render_template, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from ..models import User
 from ..app import db
-from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -36,8 +35,17 @@ def login():
     
     return jsonify({'error': 'Invalid credentials'}), 401
 
+@auth_bp.route('/settings', methods=['GET'])
+def auth_settings():
+    return jsonify({
+        'registration_enabled': bool(current_app.config.get('REGISTRATION_ENABLED', False))
+    })
+
 @auth_bp.route('/register', methods=['POST'])
 def register():
+    if not current_app.config.get('REGISTRATION_ENABLED', False):
+        return jsonify({'error': 'Registration is currently disabled'}), 403
+
     data = request.get_json()
     username = data.get('username')
     email = data.get('email')

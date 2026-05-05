@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import Home from '../views/Home.vue'
+import PokhiLanding from '../views/pokhi/PokhiLanding.vue'
 import BlogList from '../views/blog/BlogList.vue'
 import BlogDetail from '../views/blog/BlogDetail.vue'
 import PortfolioList from '../views/portfolio/PortfolioList.vue'
@@ -12,6 +13,12 @@ import AgentCapabilities from '../views/agents/AgentCapabilities.vue'
 const routes = [
   {
     path: '/',
+    name: 'pokhi-landing',
+    component: PokhiLanding,
+    meta: { requiresAuth: false, hideShell: true }
+  },
+  {
+    path: '/quortol-home',
     name: 'home',
     component: Home,
     meta: { requiresAuth: false }

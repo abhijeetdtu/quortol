@@ -1,9 +1,11 @@
 <template>
   <nav class="navbar">
     <div class="nav-container">
-      <router-link to="/" class="nav-logo">Quortol</router-link>
+      <router-link to="/quortol-home" class="nav-logo">Quortol</router-link>
       
       <div class="nav-menu">
+        <router-link to="/" class="nav-link">Pokhi</router-link>
+        <router-link to="/quortol-home" class="nav-link">Home</router-link>
         <router-link to="/blog" class="nav-link">Blog</router-link>
         <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
         <router-link to="/agent/dashboard" class="nav-link">Agents</router-link>

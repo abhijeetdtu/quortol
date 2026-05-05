@@ -1,9 +1,10 @@
 <template>
   <div class="home">
     <section class="hero">
-      <h1>Welcome to Quortol</h1>
+      <h1>Quortol Home</h1>
       <p>Blog, Portfolio, and Agent Access Platform</p>
       <div class="hero-actions">
+        <router-link to="/" class="btn btn-pokhi">Open Pokhi Landing</router-link>
         <router-link to="/blog" class="btn btn-primary">Read Blog</router-link>
         <router-link to="/portfolio" class="btn btn-secondary">View Portfolio</router-link>
         <router-link v-if="!authStore.isAuthenticated" to="/agent/login" class="btn btn-agent">Access Agents</router-link>
@@ -101,6 +102,11 @@ onMounted(async () => {
 .btn-primary {
   background-color: #3498db;
   color: #fff;
+}
+
+.btn-pokhi {
+  background-color: #f39c12;
+  color: #1f2d3d;
 }
 
 .btn-secondary {
