@@ -48,3 +48,7 @@ The frontend will run on `http://localhost:8050`
 - Start the backend first, then the frontend
 - Both must be running simultaneously for the application to work
 - The router fix (importing `useAuthStore`) resolves the navigation guard errors
+
+## Deployment
+
+- Cloudflare Tunnel dev-stack guide for `https://pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
