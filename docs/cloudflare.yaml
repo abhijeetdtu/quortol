@@ -1,6 +1,6 @@
 tunnel: 84d8e592-6a27-4d22-a35f-513d8efb02d8
 credentials-file: /home/pi/.cloudflared/84d8e592-6a27-4d22-a35f-513d8efb02d8.json
 ingress:
-    - hostname: pokhi.in
+    - hostname: quortol.pokhi.in
       service: http://localhost:8050
     - service: http_status:404
