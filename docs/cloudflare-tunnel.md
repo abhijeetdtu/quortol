@@ -16,6 +16,33 @@ This guide exposes the current Quortol dev stack through Cloudflare Tunnel at `h
 - Quortol backend running on `127.0.0.1:5000`.
 - Quortol frontend Vite dev server running on `127.0.0.1:8050`.
 
+## Install Node.js and npm (if missing)
+
+Install `nvm`:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
+
+Activate `nvm` in the current shell (or restart terminal):
+
+```bash
+source ~/.bashrc
+```
+
+Install Node.js LTS (includes `npm`):
+
+```bash
+nvm install --lts
+```
+
+Verify install:
+
+```bash
+node -v
+npm -v
+```
+
 Start Quortol first:
 
 ```bash
