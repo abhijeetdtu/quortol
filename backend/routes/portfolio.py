@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ..models import Project, TechStack, project_techstack
-from ..app import db
+from ..extensions import db
 
 portfolio_bp = Blueprint('portfolio', __name__)
 

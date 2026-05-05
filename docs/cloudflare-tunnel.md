@@ -134,6 +134,22 @@ Expected:
   ```
 - Verify `tunnel`, `credentials-file`, and ingress entries in `/etc/cloudflared/config.yml`.
 
+### Flask-SQLAlchemy "app is not registered" on Raspberry Pi
+
+If you see:
+
+`RuntimeError: The current Flask app is not registered with this 'SQLAlchemy' instance`
+
+- Start backend from the project root (not from inside `backend/`):
+  ```bash
+  cd /home/pi/path/to/quortol
+  python -m backend.app
+  ```
+- Avoid mixed startup/import patterns in the same environment (for example combining `python backend/app.py` and `flask run` with different `FLASK_APP` values).
+- If using systemd or gunicorn, keep one canonical import path:
+  - `backend.app:create_app()` (factory), or
+  - `python -m backend.app` for dev.
+
 ## Reboot Persistence Check
 
 After reboot:

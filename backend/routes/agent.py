@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, session, render_template
 from flask_login import current_user, login_required
 from ..models import Agent
-from ..app import db
+from ..extensions import db
 import requests
 
 agent_bp = Blueprint('agent', __name__)

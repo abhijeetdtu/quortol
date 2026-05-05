@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template
 from ..models import BlogPost, Tag, Category, post_tag
-from ..app import db
+from ..extensions import db
 
 blog_bp = Blueprint('blog', __name__)
 

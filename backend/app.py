@@ -1,7 +1,10 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 
-db = SQLAlchemy()
+try:
+    from .extensions import db
+except ImportError:
+    # Support direct script execution where relative imports are unavailable.
+    from backend.extensions import db
 
 def create_app(config_class=None):
     if config_class is None:
