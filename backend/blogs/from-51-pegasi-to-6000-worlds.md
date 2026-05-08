@@ -1,6 +1,6 @@
 ---
 title: From 51 Pegasi to 6,000 Worlds: The 30-Year Journey to Finding Life
-author: Opencode Research Team
+author: Quortol Editorial Team
 date: 2026-05-07
 category: astronomy, exoplanets, astrobiology, science
 tags: exoplanets, life detection, JWST, 51 Pegasi, K2-18b, TRAPPIST-1
@@ -11,7 +11,7 @@ excerpt: In 1995, we found one planet around a Sun-like star. Today, we've confi
 
 # From 51 Pegasi to 6,000 Worlds: The 30-Year Journey to Finding Life
 
-## REPORTED LEDE
+## The Discovery That Changed Everything
 
 On October 6, 1995, Swiss astronomers Michel Mayor and Didier Queloz stood before the world and announced something that would fundamentally alter humanity's place in the cosmos: they had found a planet orbiting a star like our Sun.
 
@@ -25,7 +25,7 @@ Three decades later, the answer to that question has become more profound. Scien
 
 ---
 
-## NUT GRAF
+## Why This 30-Year Arc Matters
 
 The discovery of 51 Pegasi b was more than an astronomical triumph; it was a paradigm shift. For centuries, humanity had speculated about planets around other stars, from Isaac Newton's theoretical musings to Gene Roddenberry's imaginative futures. But speculation is not discovery. That changed in 1995, and since then, exoplanet science has exploded with a velocity that no one could have predicted.
 

@@ -1,5 +1,5 @@
 
-## THE LEDE
+## The Week Agents Proved Their Limits and Power
 
 At 3:47 a.m., the agent rebooted the database cluster, cleared the cache, and rerouted traffic through three different services without waking a single human engineer. It worked. The incident was resolved. The agent had succeeded.
 
@@ -15,7 +15,7 @@ These are not the agents we were promised. They are the agents we got. They are 
 
 ---
 
-## THE NUT GRAF
+## What the Data Says About Work Disruption
 
 The question of whether AI will replace human workers has been answered, at least in the short term: it already has. Not at the scale that some alarmists predicted. Not at the speed that some optimists hoped. But at a rate that is visible in the data, visible in the layoffs, visible in the lives of the people who are now on the job market without a ladder to climb.
 

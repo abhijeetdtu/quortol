@@ -4,7 +4,7 @@
 
 ---
 
-## The Lede
+## A Small Trial That Rewrote the Rules
 
 In Reykjavík, Iceland, in 2015, Arna Hrönn Aradóttir, a public-health project manager with five children, volunteered for an experiment that seemed almost radical by contemporary standards: her employer offered to cut her work week from 40 hours to 36, without reducing her pay. At the time, the concept was ridiculed by some economists and business leaders as utopian fantasy. Today, more than a decade later, 90% of Iceland's workers either work reduced hours or have gained the contractual right to request them. The experiment that began as a small trial with 2,500 workers has quietly reshaped a national labor market, providing evidence that challenges nearly a century of economic orthodoxy about working time.
 
