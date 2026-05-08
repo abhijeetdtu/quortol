@@ -84,6 +84,81 @@ markdownParser.renderer.rules.link_open = (tokens, idx, options, env, self) => {
   return defaultLinkRenderer(tokens, idx, options, env, self)
 }
 
+const normalizeComparableText = (value = '') => {
+  return value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’"“”]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+const stripDuplicateLeadHeading = (content, title) => {
+  const lines = content.split(/\r?\n/)
+  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim().length > 0)
+  if (firstNonEmptyLineIndex === -1) return content
+
+  const headingMatch = lines[firstNonEmptyLineIndex].match(/^#\s+(.+?)\s*$/)
+  if (!headingMatch) return content
+
+  const headingText = normalizeComparableText(headingMatch[1] || '')
+  const titleText = normalizeComparableText(title || '')
+  if (!headingText || !titleText || headingText !== titleText) return content
+
+  lines.splice(firstNonEmptyLineIndex, 1)
+  while (firstNonEmptyLineIndex < lines.length && lines[firstNonEmptyLineIndex].trim() === '') {
+    lines.splice(firstNonEmptyLineIndex, 1)
+  }
+
+  return lines.join('\n')
+}
+
+const escapeForRegex = (value = '') => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+const stripDuplicateHeroImage = (content, heroUrl) => {
+  if (!heroUrl) return content
+
+  const escapedUrl = escapeForRegex(heroUrl)
+  const markdownPattern = new RegExp(
+    `!\\[[^\\]]*\\]\\((?:\\s*<)?${escapedUrl}(?:>)?(?:\\s+["'][^"']*["'])?\\)`,
+    'i'
+  )
+  if (markdownPattern.test(content)) {
+    return content.replace(markdownPattern, '').replace(/\n{3,}/g, '\n\n')
+  }
+
+  const htmlPattern = new RegExp(`<img[^>]+src=["']${escapedUrl}["'][^>]*>`, 'i')
+  if (htmlPattern.test(content)) {
+    return content.replace(htmlPattern, '').replace(/\n{3,}/g, '\n\n')
+  }
+
+  return content
+}
+
+const unwrapInlineEmphasis = (line = '') => {
+  const trimmed = line.trim()
+  const match = trimmed.match(/^(\*{1,3}|_{1,3})(.+)\1$/)
+  if (!match) return trimmed
+  return (match[2] || '').trim()
+}
+
+const stripDuplicateLeadByline = (content) => {
+  const lines = content.split(/\r?\n/)
+  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim().length > 0)
+  if (firstNonEmptyLineIndex === -1) return content
+
+  const candidate = unwrapInlineEmphasis(lines[firstNonEmptyLineIndex] || '')
+  if (!/^(by|byline:)\b/i.test(candidate)) return content
+
+  lines.splice(firstNonEmptyLineIndex, 1)
+  while (firstNonEmptyLineIndex < lines.length && lines[firstNonEmptyLineIndex].trim() === '') {
+    lines.splice(firstNonEmptyLineIndex, 1)
+  }
+
+  return lines.join('\n')
+}
+
 onMounted(async () => {
   try {
     const response = await blog.getPost(slug.value)
@@ -108,8 +183,10 @@ const formatDate = (date) => {
   })
 }
 
+const sourceContent = computed(() => post.value?.content || '')
+
 const plainTextContent = computed(() => {
-  const content = post.value?.content || ''
+  const content = displayContent.value
   return content
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/`[^`]*`/g, ' ')
@@ -138,7 +215,7 @@ const dek = computed(() => {
 })
 
 const heroImageUrl = computed(() => {
-  const content = post.value?.content || ''
+  const content = sourceContent.value
   const markdownImageMatch = content.match(/!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/)
   if (markdownImageMatch?.[1]) return markdownImageMatch[1]
 
@@ -148,10 +225,18 @@ const heroImageUrl = computed(() => {
   return ''
 })
 
-const renderedContent = computed(() => {
-  if (!post.value?.content) return ''
+const displayContent = computed(() => {
+  if (!sourceContent.value) return ''
 
-  return markdownParser.render(post.value.content).replace('<p>', '<p class="lead-paragraph">')
+  const withoutDuplicateHeading = stripDuplicateLeadHeading(sourceContent.value, post.value?.title || '')
+  const withoutDuplicateByline = stripDuplicateLeadByline(withoutDuplicateHeading)
+  return stripDuplicateHeroImage(withoutDuplicateByline, heroImageUrl.value).trim()
+})
+
+const renderedContent = computed(() => {
+  if (!displayContent.value) return ''
+
+  return markdownParser.render(displayContent.value).replace('<p>', '<p class="lead-paragraph">')
 })
 </script>
 

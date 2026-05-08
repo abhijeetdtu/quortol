@@ -1,6 +1,6 @@
 # Kalmykia: The Deportation That Stalin Never Forgiven
 
-**By [Author Name]**
+**By Quortol Editorial Team**
 
 ---
 
