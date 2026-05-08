@@ -176,13 +176,60 @@ onMounted(async () => {
 }
 
 .media-fallback {
+  --fallback-bg: radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.32), transparent 40%),
+    linear-gradient(140deg, #7a8c68 0%, #556d56 38%, #3f524a 100%);
   width: 100%;
   height: 100%;
   min-height: 160px;
   border-radius: 2px;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.32), transparent 40%),
-    linear-gradient(140deg, #7a8c68 0%, #556d56 38%, #3f524a 100%);
+  background: var(--fallback-bg);
+  background-size: 150% 150%;
+  animation: fallbackDrift 22s ease-in-out infinite alternate;
+}
+
+.featured .media-fallback {
+  --fallback-bg: radial-gradient(circle at 76% 18%, rgba(255, 255, 255, 0.32), transparent 42%),
+    linear-gradient(132deg, #7d5e42 0%, #654334 41%, #3f2d25 100%);
+}
+
+.latest .story-row:nth-of-type(6n + 1) .media-fallback {
+  --fallback-bg: radial-gradient(circle at 20% 76%, rgba(255, 255, 255, 0.3), transparent 44%),
+    linear-gradient(150deg, #3e6d85 0%, #2b5268 43%, #1b3347 100%);
+}
+
+.latest .story-row:nth-of-type(6n + 2) .media-fallback {
+  --fallback-bg: radial-gradient(circle at 84% 28%, rgba(255, 255, 255, 0.28), transparent 43%),
+    linear-gradient(138deg, #7f6aa2 0%, #5e4f87 42%, #3f3762 100%);
+}
+
+.latest .story-row:nth-of-type(6n + 3) .media-fallback {
+  --fallback-bg: radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.31), transparent 43%),
+    linear-gradient(146deg, #a07a47 0%, #7b5f3a 43%, #4d3c27 100%);
+}
+
+.latest .story-row:nth-of-type(6n + 4) .media-fallback {
+  --fallback-bg: radial-gradient(circle at 78% 80%, rgba(255, 255, 255, 0.28), transparent 45%),
+    linear-gradient(136deg, #658a56 0%, #476841 41%, #2c4933 100%);
+}
+
+.latest .story-row:nth-of-type(6n + 5) .media-fallback {
+  --fallback-bg: radial-gradient(circle at 30% 16%, rgba(255, 255, 255, 0.3), transparent 40%),
+    linear-gradient(144deg, #9b5e61 0%, #79464a 42%, #4b2e31 100%);
+}
+
+.latest .story-row:nth-of-type(6n + 6) .media-fallback {
+  --fallback-bg: radial-gradient(circle at 72% 18%, rgba(255, 255, 255, 0.3), transparent 43%),
+    linear-gradient(144deg, #5f758f 0%, #465a70 41%, #2a3647 100%);
+}
+
+@keyframes fallbackDrift {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 .featured-copy h2 {

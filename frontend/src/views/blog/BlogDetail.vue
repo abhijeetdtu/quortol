@@ -283,8 +283,11 @@ const renderedContent = computed(() => {
   margin-bottom: 1.5rem;
   border-radius: 3px;
   background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.32), transparent 40%),
-    linear-gradient(140deg, #7a8c68 0%, #556d56 38%, #3f524a 100%);
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.3), transparent 42%),
+    radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.18), transparent 38%),
+    linear-gradient(138deg, #7a8c68 0%, #4f6669 42%, #3d3a59 100%);
+  background-size: 160% 160%;
+  animation: heroFallbackDrift 26s ease-in-out infinite alternate;
 }
 
 .kicker {
@@ -477,6 +480,23 @@ const renderedContent = computed(() => {
   .content {
     font-size: 1.08rem;
     line-height: 1.74;
+  }
+}
+
+@keyframes heroFallbackDrift {
+  0% {
+    background-position: 0% 0%;
+    filter: hue-rotate(0deg) saturate(1);
+  }
+
+  50% {
+    background-position: 55% 35%;
+    filter: hue-rotate(18deg) saturate(1.06);
+  }
+
+  100% {
+    background-position: 100% 100%;
+    filter: hue-rotate(-12deg) saturate(0.98);
   }
 }
 </style>
