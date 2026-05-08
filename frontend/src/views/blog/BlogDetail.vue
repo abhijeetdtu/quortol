@@ -25,6 +25,12 @@
         </div>
       </header>
 
+      <BlogTTS
+        v-if="plainTextContent"
+        :content="plainTextContent"
+        :is-initialized="store.isInitialized"
+      />
+
       <section class="content" v-html="renderedContent"></section>
     </article>
     <div v-else class="not-found">Post not found</div>
@@ -32,16 +38,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
 import { blog } from '../../services/api'
+import BlogTTS from '../../components/blog/BlogTTS.vue'
+import { useTTSStore } from '../../stores/tts'
 
 const route = useRoute()
 const post = ref(null)
 const loading = ref(true)
+const store = useTTSStore()
 
 const slug = computed(() => route.params.slug)
 
@@ -84,6 +93,11 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
+})
+
+onUnmounted(() => {
+  store.stop()
+  store.cleanup()
 })
 
 const formatDate = (date) => {

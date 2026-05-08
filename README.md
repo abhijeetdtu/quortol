@@ -49,6 +49,32 @@ The frontend will run on `http://localhost:8050`
 - Both must be running simultaneously for the application to work
 - The router fix (importing `useAuthStore`) resolves the navigation guard errors
 
+## Quick Startup (Backend + Frontend + Tunnel)
+
+From the repo root, run these in 3 terminals:
+
+```bash
+# Terminal 1
+python -m backend.app
+```
+
+```bash
+# Terminal 2
+cd frontend
+npm run dev -- --host localhost --port 8050
+```
+
+```bash
+# Terminal 3 (named tunnel)
+cloudflared tunnel run quortol-dev
+```
+
+If your tunnel is installed as a system service, use this instead of Terminal 3:
+
+```bash
+sudo systemctl restart cloudflared
+```
+
 ## Deployment
 
 - Cloudflare Tunnel dev-stack guide for `https://pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
