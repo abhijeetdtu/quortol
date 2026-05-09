@@ -60,9 +60,10 @@ onMounted(async () => {
 }
 
 .dashboard-content {
-  background: #f8f9fa;
+  background: none;
   border-radius: 10px;
   padding: 2rem;
+  box-shadow: inset 0 0 0 1px rgba(115, 132, 159, 0.2);
 }
 
 .agents-grid {
@@ -72,7 +73,7 @@ onMounted(async () => {
 }
 
 .agent-card {
-  background: #fff;
+  background: none;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -101,18 +102,21 @@ onMounted(async () => {
 }
 
 .status-badge.active {
-  background: #27ae60;
-  color: #fff;
+  background: none;
+  color: #27ae60;
+  box-shadow: inset 0 0 0 1px rgba(39, 174, 96, 0.72);
 }
 
 .status-badge.inactive {
-  background: #95a5a6;
-  color: #fff;
+  background: none;
+  color: #6f7e80;
+  box-shadow: inset 0 0 0 1px rgba(111, 126, 128, 0.58);
 }
 
 .status-badge.maintenance {
-  background: #f39c12;
-  color: #fff;
+  background: none;
+  color: #b97914;
+  box-shadow: inset 0 0 0 1px rgba(185, 121, 20, 0.64);
 }
 
 .view-capabilities {

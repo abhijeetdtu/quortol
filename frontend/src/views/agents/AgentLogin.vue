@@ -183,12 +183,12 @@ const handleRegister = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: none;
   padding: 2rem;
 }
 
 .login-container {
-  background: #fff;
+  background: none;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   padding: 2rem;
@@ -226,14 +226,15 @@ const handleRegister = async () => {
 
 .form-group input {
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: none;
   border-radius: 5px;
   font-size: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(84, 101, 198, 0.28);
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
+  box-shadow: inset 0 0 0 2px rgba(84, 101, 198, 0.5);
 }
 
 .error {
@@ -243,7 +244,7 @@ const handleRegister = async () => {
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: none;
   color: #fff;
   padding: 1rem;
   border: none;
@@ -252,6 +253,7 @@ const handleRegister = async () => {
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.3s;
+  box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.65);
 }
 
 .submit-btn:hover:not(:disabled) {

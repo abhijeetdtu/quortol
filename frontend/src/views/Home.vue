@@ -1,8 +1,8 @@
 <template>
   <div class="home-page container-xl py-5">
     <section class="hero mb-5">
-      <p class="kicker mb-2">Quortol Platform</p>
-      <h1 class="display-5 mb-3">A calm workspace for essays, projects, and agent workflows</h1>
+      <p class="kicker mb-2">Curated</p>
+      <h1 class="display-5 mb-3">Come satisfy your curiosity</h1>
       <p class="intro mb-4">
         Browse longform writing, review portfolio builds, or jump into agent tooling with one coherent editorial UI.
       </p>
@@ -90,9 +90,10 @@ onMounted(async () => {
 }
 
 .app-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: none;
+  border: none;
   border-radius: 4px;
+  box-shadow: var(--soft-shadow);
 }
 
 .app-link {
@@ -107,24 +108,28 @@ onMounted(async () => {
 }
 
 .app-btn-soft {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: none;
+  border: none;
   color: #4e4438;
+  box-shadow: inset 0 0 0 1px rgba(146, 126, 95, 0.18);
 }
 
 .app-btn-soft:hover {
-  background: #ece4d6;
+  background: none;
   color: #4e4438;
+  box-shadow: inset 0 0 0 1px rgba(146, 126, 95, 0.36);
 }
 
 .app-btn-accent {
-  border-color: #b8842e;
-  background: #f3e3c6;
+  border: none;
+  background: none;
   color: #4a3314;
+  box-shadow: inset 0 0 0 1px rgba(184, 132, 46, 0.35);
 }
 
 .app-btn-accent:hover {
-  background: #ead6b2;
+  background: none;
   color: #4a3314;
+  box-shadow: inset 0 0 0 1px rgba(184, 132, 46, 0.55);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="essay-index container-xl py-4 py-md-5">
     <header class="masthead mb-4">
-      <p class="brand mb-2">Aeon-Inspired Index</p>
+      <p class="brand mb-2">Curated</p>
       <h1 class="display-4 mb-2">Essays</h1>
       <p class="deck mb-0">Longform writing on technology, work, and social futures.</p>
     </header>
@@ -158,7 +158,8 @@ onMounted(async () => {
 }
 
 .featured {
-  border-bottom: 1px solid var(--line);
+  border-bottom: none;
+  margin-bottom: 1.75rem;
 }
 
 .featured-media {
@@ -176,60 +177,37 @@ onMounted(async () => {
 }
 
 .media-fallback {
-  --fallback-bg: radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.32), transparent 40%),
-    linear-gradient(140deg, #7a8c68 0%, #556d56 38%, #3f524a 100%);
+  --deep-space-blue: #003049ff;
+  --flag-red: #d62828ff;
+  --vivid-tangerine: #f77f00ff;
+  --sunflower-gold: #fcbf49ff;
+  --vanilla-custard: #eae2b7ff;
   width: 100%;
   height: 100%;
   min-height: 160px;
   border-radius: 2px;
-  background: var(--fallback-bg);
-  background-size: 150% 150%;
-  animation: fallbackDrift 22s ease-in-out infinite alternate;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(234, 226, 183, 0.34), transparent 42%),
+    linear-gradient(142deg, var(--deep-space-blue) 0%, var(--flag-red) 52%, var(--vivid-tangerine) 100%);
+  box-shadow: inset 0 0 0 1px rgba(133, 121, 99, 0.28), 0 8px 18px rgba(54, 47, 36, 0.08);
 }
 
-.featured .media-fallback {
-  --fallback-bg: radial-gradient(circle at 76% 18%, rgba(255, 255, 255, 0.32), transparent 42%),
-    linear-gradient(132deg, #7d5e42 0%, #654334 41%, #3f2d25 100%);
+.latest .story-row:nth-of-type(3n + 1) .media-fallback {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(234, 226, 183, 0.28), transparent 43%),
+    linear-gradient(136deg, var(--flag-red) 0%, var(--vivid-tangerine) 58%, var(--sunflower-gold) 100%);
 }
 
-.latest .story-row:nth-of-type(6n + 1) .media-fallback {
-  --fallback-bg: radial-gradient(circle at 20% 76%, rgba(255, 255, 255, 0.3), transparent 44%),
-    linear-gradient(150deg, #3e6d85 0%, #2b5268 43%, #1b3347 100%);
+.latest .story-row:nth-of-type(3n + 2) .media-fallback {
+  background:
+    radial-gradient(circle at 22% 76%, rgba(234, 226, 183, 0.3), transparent 44%),
+    linear-gradient(148deg, var(--deep-space-blue) 0%, var(--flag-red) 55%, var(--vivid-tangerine) 100%);
 }
 
-.latest .story-row:nth-of-type(6n + 2) .media-fallback {
-  --fallback-bg: radial-gradient(circle at 84% 28%, rgba(255, 255, 255, 0.28), transparent 43%),
-    linear-gradient(138deg, #7f6aa2 0%, #5e4f87 42%, #3f3762 100%);
-}
-
-.latest .story-row:nth-of-type(6n + 3) .media-fallback {
-  --fallback-bg: radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.31), transparent 43%),
-    linear-gradient(146deg, #a07a47 0%, #7b5f3a 43%, #4d3c27 100%);
-}
-
-.latest .story-row:nth-of-type(6n + 4) .media-fallback {
-  --fallback-bg: radial-gradient(circle at 78% 80%, rgba(255, 255, 255, 0.28), transparent 45%),
-    linear-gradient(136deg, #658a56 0%, #476841 41%, #2c4933 100%);
-}
-
-.latest .story-row:nth-of-type(6n + 5) .media-fallback {
-  --fallback-bg: radial-gradient(circle at 30% 16%, rgba(255, 255, 255, 0.3), transparent 40%),
-    linear-gradient(144deg, #9b5e61 0%, #79464a 42%, #4b2e31 100%);
-}
-
-.latest .story-row:nth-of-type(6n + 6) .media-fallback {
-  --fallback-bg: radial-gradient(circle at 72% 18%, rgba(255, 255, 255, 0.3), transparent 43%),
-    linear-gradient(144deg, #5f758f 0%, #465a70 41%, #2a3647 100%);
-}
-
-@keyframes fallbackDrift {
-  0% {
-    background-position: 0% 0%;
-  }
-
-  100% {
-    background-position: 100% 100%;
-  }
+.latest .story-row:nth-of-type(3n + 3) .media-fallback {
+  background:
+    radial-gradient(circle at 76% 78%, rgba(234, 226, 183, 0.26), transparent 42%),
+    linear-gradient(140deg, var(--deep-space-blue) 0%, var(--vivid-tangerine) 52%, var(--sunflower-gold) 100%);
 }
 
 .featured-copy h2 {
@@ -238,7 +216,13 @@ onMounted(async () => {
 }
 
 .story-row {
-  border-top: 1px solid var(--line);
+  border-top: none;
+  background: none;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  box-shadow: var(--soft-shadow);
 }
 
 .type {

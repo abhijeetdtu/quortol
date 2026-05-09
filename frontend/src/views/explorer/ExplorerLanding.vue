@@ -221,9 +221,10 @@ onMounted(async () => {
 }
 
 .app-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: none;
+  border: none;
   border-radius: 4px;
+  box-shadow: var(--soft-shadow);
 }
 
 .app-label {
@@ -232,9 +233,14 @@ onMounted(async () => {
 }
 
 .app-control {
-  border-color: #cfc5b6;
-  background: #fcfaf6;
+  border: none;
+  background: none;
   color: #2f2a23;
+  box-shadow: inset 0 0 0 1px rgba(151, 131, 101, 0.22);
+}
+
+.app-control:focus {
+  box-shadow: inset 0 0 0 2px rgba(138, 60, 42, 0.34);
 }
 
 .app-control::placeholder {
@@ -242,38 +248,44 @@ onMounted(async () => {
 }
 
 .app-btn {
-  border: 1px solid #6a3627;
-  background: #6a3627;
-  color: #fff;
+  border: none;
+  background: none;
+  color: #6a3627;
+  box-shadow: inset 0 0 0 1px rgba(106, 54, 39, 0.48);
 }
 
 .app-btn:hover {
-  border-color: #5e2f22;
-  background: #5e2f22;
-  color: #fff;
+  background: none;
+  color: #5e2f22;
+  box-shadow: inset 0 0 0 1px rgba(94, 47, 34, 0.68);
 }
 
 .app-btn-outline {
-  border-color: #cabfae;
+  border: none;
+  background: none;
   color: #4d4438;
+  box-shadow: inset 0 0 0 1px rgba(151, 131, 101, 0.22);
 }
 
 .app-alert {
   color: #a3351f;
-  background: #f7e7de;
-  border: 1px solid #d5ab98;
+  background: none;
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(188, 108, 79, 0.35);
 }
 
 .feed-card {
-  border: 1px solid #d5cbba;
+  border: none;
   border-radius: 3px;
   padding: 0.85rem;
-  background: #f9f6ef;
+  background: none;
+  box-shadow: 0 8px 18px rgba(63, 49, 30, 0.07);
   cursor: pointer;
 }
 
 .feed-card:hover {
-  background: #f1eadf;
+  background: none;
+  box-shadow: 0 10px 22px rgba(63, 49, 30, 0.1);
 }
 
 .topic {
@@ -289,13 +301,15 @@ onMounted(async () => {
 
 .empty-state {
   min-height: 220px;
-  border: 1px dashed #d2c8b8;
+  border: none;
   border-radius: 4px;
   display: grid;
   place-items: center;
   color: var(--ink-soft);
   text-align: center;
   padding: 1rem;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(154, 137, 109, 0.25);
 }
 
 .summary {
@@ -313,23 +327,27 @@ onMounted(async () => {
   height: 160px;
   object-fit: cover;
   border-radius: 3px;
-  border: 1px solid #d7ccbc;
+  border: none;
+  box-shadow: 0 8px 18px rgba(63, 49, 30, 0.08);
 }
 
 .skeleton-card {
   height: 110px;
   border-radius: 3px;
-  background: linear-gradient(90deg, rgba(204, 196, 182, 0.25), rgba(204, 196, 182, 0.5), rgba(204, 196, 182, 0.25));
-  background-size: 220% 100%;
-  animation: shimmer 1.5s infinite linear;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(156, 140, 114, 0.22);
+  animation: shimmer 1.5s infinite ease-in-out;
 }
 
 @keyframes shimmer {
-  from {
-    background-position: 220% 0;
+  0% {
+    opacity: 0.45;
   }
-  to {
-    background-position: -220% 0;
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.45;
   }
 }
 </style>

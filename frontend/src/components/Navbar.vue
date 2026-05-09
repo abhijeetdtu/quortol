@@ -62,8 +62,8 @@ const logout = async () => {
 
 <style scoped>
 .app-navbar {
-  background: #f7f3ec;
-  border-bottom: 1px solid var(--line);
+  background: var(--bs-body-bg);
+  box-shadow: var(--bs-box-shadow-sm);
 }
 
 .app-logo {
@@ -85,18 +85,18 @@ const logout = async () => {
 
 .nav-link:hover {
   color: #2f2922;
-  background: #efe8dc;
+  box-shadow: inset 0 0 0 1px rgba(120, 100, 71, 0.22);
 }
 
 .app-btn {
-  background: #6a3627;
-  border: 1px solid #6a3627;
-  color: #fff;
+  background: none;
+  border: none;
+  color: #6a3627;
+  box-shadow: inset 0 0 0 1px rgba(106, 54, 39, 0.48);
 }
 
 .app-btn:hover {
-  background: #5e2f22;
-  border-color: #5e2f22;
-  color: #fff;
+  color: #5e2f22;
+  box-shadow: inset 0 0 0 1px rgba(94, 47, 34, 0.7);
 }
 </style>

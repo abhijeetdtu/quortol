@@ -266,9 +266,10 @@ const renderedContent = computed(() => {
 
 .hero-image {
   margin: 0 0 1.5rem;
-  background: #ddd;
+  background: none;
   border-radius: 3px;
   overflow: hidden;
+  box-shadow: var(--soft-shadow);
 }
 
 .hero-image img {
@@ -279,15 +280,19 @@ const renderedContent = computed(() => {
 }
 
 .hero-fallback {
+  --deep-space-blue: #003049ff;
+  --flag-red: #d62828ff;
+  --vivid-tangerine: #f77f00ff;
+  --sunflower-gold: #fcbf49ff;
+  --vanilla-custard: #eae2b7ff;
   height: clamp(220px, 38vw, 400px);
   margin-bottom: 1.5rem;
   border-radius: 3px;
   background:
-    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.3), transparent 42%),
-    radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.18), transparent 38%),
-    linear-gradient(138deg, #7a8c68 0%, #4f6669 42%, #3d3a59 100%);
-  background-size: 160% 160%;
-  animation: heroFallbackDrift 26s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 24%, rgba(234, 226, 183, 0.34), transparent 42%),
+    radial-gradient(circle at 78% 76%, rgba(252, 191, 73, 0.22), transparent 46%),
+    linear-gradient(140deg, var(--deep-space-blue) 0%, var(--flag-red) 45%, var(--vivid-tangerine) 100%);
+  box-shadow: inset 0 0 0 1px rgba(140, 124, 102, 0.3), var(--soft-shadow);
 }
 
 .kicker {
@@ -333,11 +338,13 @@ const renderedContent = computed(() => {
 }
 
 .tag {
-  border: 1px solid var(--line);
+  border: none;
   color: var(--ink-muted);
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
   font-size: 0.8rem;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(128, 110, 84, 0.28);
 }
 
 .content {
@@ -393,7 +400,7 @@ const renderedContent = computed(() => {
   font-size: 1.15em;
   line-height: 1.5;
   color: #3f372c;
-  background: transparent;
+  background: none;
 }
 
 .content :deep(hr) {
@@ -419,7 +426,8 @@ const renderedContent = computed(() => {
 }
 
 .content :deep(thead th) {
-  background: #f0ece4;
+  background: none;
+  box-shadow: inset 0 0 0 999px rgba(143, 125, 98, 0.1);
 }
 
 .content :deep(code) {
@@ -427,7 +435,8 @@ const renderedContent = computed(() => {
   border-radius: 3px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   font-size: 0.88em;
-  background: #ebe7de;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(135, 118, 91, 0.26);
 }
 
 .content :deep(pre) {
@@ -435,12 +444,13 @@ const renderedContent = computed(() => {
   padding: 1rem;
   border-radius: 6px;
   overflow-x: auto;
-  border: 1px solid #ddd3c2;
+  border: none;
+  box-shadow: inset 0 0 0 1px rgba(130, 109, 79, 0.2);
 }
 
 .content :deep(pre code) {
   padding: 0;
-  background: transparent;
+  background: none;
 }
 
 .content :deep(a) {
@@ -483,20 +493,4 @@ const renderedContent = computed(() => {
   }
 }
 
-@keyframes heroFallbackDrift {
-  0% {
-    background-position: 0% 0%;
-    filter: hue-rotate(0deg) saturate(1);
-  }
-
-  50% {
-    background-position: 55% 35%;
-    filter: hue-rotate(18deg) saturate(1.06);
-  }
-
-  100% {
-    background-position: 100% 100%;
-    filter: hue-rotate(-12deg) saturate(0.98);
-  }
-}
 </style>

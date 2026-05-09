@@ -335,12 +335,13 @@ watch(() => props.content, () => {
 
 <style scoped>
 .blog-tts-controls {
-  background: #f5f3ef;
-  border: 1px solid #d8d1c4;
+  background: none;
+  border: none;
   border-radius: 8px;
   padding: 1rem;
   margin-top: 1.5rem;
   font-size: 0.92rem;
+  box-shadow: var(--soft-shadow);
 }
 
 .blog-tts-controls.loading {
@@ -361,24 +362,27 @@ watch(() => props.content, () => {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: #7f3a27;
+  background: none;
   border: none;
   border-radius: 6px;
-  color: white;
+  color: #7f3a27;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(127, 58, 39, 0.55);
 }
 
 .play-button:hover:not(:disabled) {
-  background: #9c4a32;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(156, 74, 50, 0.75);
   transform: scale(1.05);
 }
 
 .play-button:disabled {
-  background: #d8d1c4;
+  background: none;
   cursor: not-allowed;
   opacity: 0.5;
+  box-shadow: inset 0 0 0 1px rgba(140, 127, 108, 0.35);
 }
 
 .play-button svg {
@@ -388,17 +392,18 @@ watch(() => props.content, () => {
 
 .voice-select select {
   padding: 0.5rem 1rem;
-  border: 1px solid #d8d1c4;
+  border: none;
   border-radius: 4px;
-  background: white;
+  background: none;
   color: #21201c;
   font-size: 0.9rem;
   min-width: 180px;
   cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(133, 112, 83, 0.22);
 }
 
 .voice-select select:disabled {
-  background: #f5f3ef;
+  background: none;
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -417,10 +422,11 @@ watch(() => props.content, () => {
   height: 6px;
   -webkit-appearance: none;
   appearance: none;
-  background: #d8d1c4;
+  background: none;
   border-radius: 3px;
   cursor: pointer;
   padding: 0;
+  box-shadow: inset 0 0 0 1px rgba(140, 127, 108, 0.32);
 }
 
 .speed-control input[type="range"]::-webkit-slider-thumb {
@@ -428,24 +434,26 @@ watch(() => props.content, () => {
   appearance: none;
   width: 14px;
   height: 14px;
-  background: #7f3a27;
+  background: none;
   border-radius: 50%;
   cursor: pointer;
   margin-top: -4px;
+  box-shadow: inset 0 0 0 1px rgba(127, 58, 39, 0.65);
 }
 
 .speed-control input[type="range"]::-moz-range-thumb {
   width: 14px;
   height: 14px;
-  background: #7f3a27;
+  background: none;
   border-radius: 50%;
   cursor: pointer;
-  border: none;
+  border: 1px solid rgba(127, 58, 39, 0.65);
 }
 
 .speed-control input[type="range"]:disabled {
-  background: #f5f3ef;
+  background: none;
   cursor: not-allowed;
+  box-shadow: inset 0 0 0 1px rgba(140, 127, 108, 0.2);
 }
 
 .speed-value {
@@ -484,17 +492,19 @@ watch(() => props.content, () => {
 
 .progress-bar {
   height: 4px;
-  background: #f5f3ef;
+  background: none;
   border-radius: 2px;
   overflow: hidden;
   margin-top: 0.5rem;
+  box-shadow: inset 0 0 0 1px rgba(140, 127, 108, 0.26);
 }
 
 .progress-fill {
   height: 100%;
-  background: #7f3a27;
+  background: none;
   transition: width 0.1s linear;
   border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(127, 58, 39, 0.68);
 }
 
 .sr-only {

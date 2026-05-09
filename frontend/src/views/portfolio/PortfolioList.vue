@@ -59,9 +59,10 @@ onMounted(async () => {
 }
 
 .app-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: none;
+  border: none;
   border-radius: 4px;
+  box-shadow: var(--soft-shadow);
 }
 
 .app-link {
@@ -76,9 +77,10 @@ onMounted(async () => {
 }
 
 .app-badge {
-  border: 1px solid #c6bcad;
+  border: none;
   color: #594f40;
-  background: transparent;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(126, 107, 79, 0.24);
   font-weight: 500;
 }
 </style>

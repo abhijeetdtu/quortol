@@ -125,10 +125,11 @@ const formatDate = (date) => {
 }
 
 .tech-badge {
-  background: #9b59b6;
+  background: none;
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  box-shadow: inset 0 0 0 1px rgba(155, 89, 182, 0.65);
 }
 
 .links {
@@ -145,13 +146,15 @@ const formatDate = (date) => {
 }
 
 .btn-live {
-  background: #27ae60;
+  background: none;
   color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(39, 174, 96, 0.68);
 }
 
 .btn-repo {
-  background: #333;
+  background: none;
   color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(51, 51, 51, 0.68);
 }
 
 .loading, .not-found {

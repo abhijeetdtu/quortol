@@ -78,3 +78,27 @@ sudo systemctl restart cloudflared
 ## Deployment
 
 - Cloudflare Tunnel dev-stack guide for `https://pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
+
+
+
+## LLama Server
+
+```bash
+llama-server `
+   -hf unsloth/Qwen3.5-35B-A3B-GGUF:IQ2_M `
+   --host 127.0.0.1 `
+   --port 8080 `
+   -ngl all `
+   -c 163840 `
+   -b 4096 `
+   -ub 512 `
+   --flash-attn on `
+   --cache-type-k q8_0 `
+   --cache-type-v q8_0 `
+   --cache-ram 0 `
+   --ctx-checkpoints 4 `
+   -np 1 `
+   --cont-batching `
+   --no-webui `
+   --jinja
+```

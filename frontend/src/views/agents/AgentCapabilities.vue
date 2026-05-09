@@ -173,9 +173,10 @@ const executeCapability = async () => {
 }
 
 .capability-item {
-  background: #f8f9fa;
+  background: none;
   padding: 0.8rem;
   border-radius: 5px;
+  box-shadow: inset 0 0 0 1px rgba(111, 132, 189, 0.22);
 }
 
 .capability-name {
@@ -201,15 +202,16 @@ const executeCapability = async () => {
 
 .form-group select, .form-group textarea {
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: none;
   border-radius: 5px;
   font-size: 1rem;
   font-family: inherit;
+  box-shadow: inset 0 0 0 1px rgba(84, 101, 198, 0.25);
 }
 
 .form-group select:focus, .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
+  box-shadow: inset 0 0 0 2px rgba(84, 101, 198, 0.45);
 }
 
 .error {
@@ -223,11 +225,12 @@ const executeCapability = async () => {
 }
 
 .response-preview {
-  background: #1e2a31;
+  background: none;
   color: #a9fffe;
   padding: 1rem;
   border-radius: 5px;
   overflow-x: auto;
+  box-shadow: inset 0 0 0 1px rgba(73, 93, 102, 0.65);
 }
 
 .response-preview pre {
@@ -237,7 +240,7 @@ const executeCapability = async () => {
 }
 
 .submit-btn {
-  background: #667eea;
+  background: none;
   color: #fff;
   padding: 0.8rem 1.5rem;
   border: none;
@@ -246,6 +249,7 @@ const executeCapability = async () => {
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.3s;
+  box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.65);
 }
 
 .submit-btn:hover:not(:disabled) {

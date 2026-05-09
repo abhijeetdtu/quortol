@@ -8,8 +8,8 @@
 
 <style scoped>
 .app-footer {
-  background: #f7f3ec;
+  background: none;
   color: #5e5549;
-  border-top: 1px solid var(--line);
+  box-shadow: var(--bs-box-shadow-sm);
 }
 </style>
