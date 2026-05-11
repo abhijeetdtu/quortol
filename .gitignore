@@ -33,3 +33,8 @@ frontend/package-lock.json
 # Logs
 *.log
 npm-debug.log*
+
+analysis/ds
+
+.specify
+.opencode

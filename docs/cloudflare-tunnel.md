@@ -9,40 +9,6 @@ This guide exposes the current Quortol dev stack through Cloudflare Tunnel at `h
   - Browser calls `https://pokhi.in/api/...`
   - Vite proxies `/api` to backend `http://127.0.0.1:5000`
 
-## Daily Startup (Simple)
-
-From the repo root, start everything with 3 terminals:
-
-```bash
-# Terminal 1
-python -m backend.app
-```
-
-```bash
-# Terminal 2
-cd frontend
-npm run dev -- --host 127.0.0.1 --port 8050
-```
-
-```bash
-# Terminal 3
-cloudflared tunnel run quortol-dev
-```
-
-One-command option (all three from one terminal):
-
-```bash
-python -m backend.app & \
-(cd frontend && npm run dev -- --host 127.0.0.1 --port 8050) & \
-cloudflared tunnel run quortol-dev
-```
-
-If tunnel is already installed as a system service, use this for the tunnel instead:
-
-```bash
-sudo systemctl restart cloudflared
-```
-
 ## Preconditions
 
 - Domain `pokhi.in` is active in your Cloudflare account and DNS is managed by Cloudflare.
@@ -132,7 +98,7 @@ ingress:
 ```
 
 ```bash
-cp ~/Documents/code/quortol/docs/cloudflare.yaml /home/.cloudflared/config.yml
+cp ~/Documents/code/quortol/docs/cloudflare.yaml /home/pi/.cloudflared/config.yml
 ```
 If you ran `cloudflared tunnel login` as a non-root user, either:
 - copy credentials to `/root/.cloudflared/`, or

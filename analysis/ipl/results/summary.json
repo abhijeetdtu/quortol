@@ -1,0 +1,65 @@
+{
+  "analysis_date": "2026-05-11T18:46:01.367396",
+  "data_summary": {
+    "total_records": 289914,
+    "total_matches": 1219,
+    "total_sixes": "15293",
+    "seasons_covered": [
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "era_comparison": {
+    "early_sr": 121.07,
+    "late_sr": 131.16,
+    "sr_change": 8.33,
+    "early_sixes": 10.09,
+    "late_sixes": 13.47,
+    "sixes_change": 33.6,
+    "early_economy": 7.69,
+    "late_economy": 8.26,
+    "economy_change": 7.4,
+    "early_dot": 41.28,
+    "late_dot": 38.54,
+    "dot_change": -6.7
+  },
+  "impact_player_effect": {
+    "pre_impact_sixes": 12.9,
+    "post_impact_sixes": 16.85,
+    "change": 3.95
+  },
+  "statistical_tests": {
+    "tests_passed": 4,
+    "tests_total": 4
+  },
+  "projections": {
+    "3_growth": {
+      "annual_growth_rate": 0.03,
+      "final_sixes_per_match": 19.2
+    },
+    "6_growth": {
+      "annual_growth_rate": 0.06,
+      "final_sixes_per_match": 21.0
+    },
+    "9_growth": {
+      "annual_growth_rate": 0.09,
+      "final_sixes_per_match": 22.8
+    }
+  }
+}
