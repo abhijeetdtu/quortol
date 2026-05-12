@@ -1,8 +1,11 @@
-from flask import Blueprint, request, jsonify, render_template
-from ..models import BlogPost, Tag, Category, post_tag
+from pathlib import Path
+
+from flask import Blueprint, request, jsonify, abort, send_from_directory
+from ..models import BlogPost, Tag, Category
 from ..extensions import db
 
 blog_bp = Blueprint('blog', __name__)
+BLOG_IMAGES_DIR = (Path(__file__).resolve().parent.parent / 'blogs' / 'images').resolve()
 
 @blog_bp.route('/', methods=['GET'])
 def get_posts():
@@ -63,6 +66,26 @@ def get_categories():
         }
         for category in categories
     ])
+
+@blog_bp.route('/images/<path:filename>', methods=['GET'])
+def get_blog_image(filename):
+    normalized = (filename or '').replace('\\', '/')
+    if not normalized or normalized.startswith('/'):
+        abort(404)
+
+    parts = [part for part in normalized.split('/') if part not in ('', '.')]
+    if not parts or any(part == '..' for part in parts):
+        abort(404)
+
+    candidate = (BLOG_IMAGES_DIR / Path(*parts)).resolve()
+    if BLOG_IMAGES_DIR not in candidate.parents:
+        abort(404)
+
+    if not candidate.is_file():
+        abort(404)
+
+    relative_path = candidate.relative_to(BLOG_IMAGES_DIR)
+    return send_from_directory(BLOG_IMAGES_DIR, str(relative_path).replace('\\', '/'))
 
 @blog_bp.route('/create', methods=['POST'])
 def create_post():

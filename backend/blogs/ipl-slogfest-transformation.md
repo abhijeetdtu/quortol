@@ -14,6 +14,9 @@ Over 17 seasons, batting strike rates climbed from an average of 102.15 in the e
 
 The question isn't whether the IPL has become more aggressive. The question is why it had to, and what the transformation tells us about the evolution of T20 cricket itself.
 
+![IPL strike rate trend from 2008 to 2024](/api/blog/images/ipl/figures/strike_rate_trend.png)
+*Figure: IPL strike rate trend chart used as the article hero image.*
+
 ---
 
 ## The Three Phases That Died
@@ -26,6 +29,9 @@ This redistribution explains why scoring feels more volatile now. In 2008, falli
 
 Top-order batters (positions 1-3) scored 8,947 runs in 2008 at a strike rate of 130.1, while finishers (positions 6-8) hit 129 sixes at 132.59 strike rate but faced only 17.5% of balls. In 2025, positions 6-8 still contributed 18% of runs but faced nearly 700 more deliveries, with six-hitting across the top eight more than doubling. The finishers have become permanent fixtures, not theoretical concepts.
 
+![Phase-wise IPL scoring rates across powerplay, middle, and death overs](/api/blog/images/ipl/figures/phase_scoring.png)
+*Figure: Phase scoring comparison showing the flattening gap between innings phases.*
+
 ### Visual Note: Strike Rate Trend with Volatility Band
 
 **What it shows:** Average strike rate trajectory from 2008-2024 with 10th-90th percentile range
@@ -33,6 +39,9 @@ Top-order batters (positions 1-3) scored 8,947 runs in 2008 at a strike rate of 
 **Key insight:** Steady upward climb with increasing volatility (ribbon widening)
 
 **Why it matters:** Demonstrates that strike rates aren't just increasing—they're becoming less predictable, with batters taking greater risks that may or may not pay off
+
+![IPL strike rate trend from 2008 to 2024 with volatility band](/api/blog/images/ipl/figures/strike_rate_trend.png)
+*Figure: Strike rate trend with widening volatility over time.*
 
 ### Visual Note: Batting Aggression Indexed to 2008
 
@@ -61,6 +70,9 @@ Counterfactual modeling estimates Gayle's presence alone indirectly generated ap
 Stadiums with square boundaries below 66 metres generate 50% more sixes than larger venues. The average IPL match at short-boundary venues produces 16.8 sixes compared to 11.2 at large venues.
 
 Lucknow's Ekana Stadium at 62m square boundaries is the most extreme example. Bangalore's M. Chinnaswamy Stadium (59.4% boundary percentage) has the highest average team boundary percentage at 63.8%. Traditional grounds like Chepauk in Chennai remain the hardest for power-hitting with only 49.2% boundary percentage, reflecting slow, low-bouncing surfaces that make boundary-hitting significantly harder.
+
+![Venue-wise sixes per match impact in the IPL](/api/blog/images/ipl/figures/venue_impact.png)
+*Figure: Venue impact on six-hitting, highlighting short-boundary advantage.*
 
 ### 3. Impact Player Rule (12% of variance, 2023 onwards)
 
@@ -96,6 +108,9 @@ The 2023 season saw an 11.8% jump in sixes per match, marking the beginning of t
 
 **Why it matters:** Quantifies the revolution in measurable terms, showing it wasn't linear but occurred in distinct phases driven by specific rule changes and player introductions
 
+![IPL sixes per match growth from 2008 to 2025](/api/blog/images/ipl/figures/sixes_growth.png)
+*Figure: Historical six-hitting growth across three IPL acceleration waves.*
+
 ---
 
 ## Bowling's Failed Response
@@ -105,6 +120,9 @@ Bowling hasn't kept pace. Economy rates increased from 7.96 in the early era to 
 The bowling trade-off frontier shows a clear pattern: higher economy rates correlate with similar wicket frequency, suggesting bowlers aren't finding better solutions—they're being out-executed. Dot-ball suppression has declined from 46.52% in the early era to 45.32% in the late era, a statistically significant improvement for batting.
 
 Bowlers are losing the battle against sustained aggression. The data suggests the ceiling for improvement in bowlers is much lower than the ceiling for batting. They need the help from conditions or sizes of boundaries, while batters are getting better at hitting for longer every day through dedicated training, sidearms, bowling machines, and support staff.
+
+![IPL bowling economy and dot-ball trends over time](/api/blog/images/ipl/figures/bowling_metrics.png)
+*Figure: Bowling metrics trend illustrating rising economy and reduced dot-ball control.*
 
 ---
 
@@ -124,6 +142,9 @@ The most predictive metric is Middle-Overs Strike Rate Against Quality Bowling (
 
 **Why it matters:** Provides quantitative evidence for the slogfest transformation across multiple dimensions of the game
 
+![Effect size summary across IPL transformation hypotheses](/api/blog/images/ipl/figures/statistical_tests.png)
+*Figure: Effect-size view of the core batting and bowling hypothesis shifts.*
+
 ### Visual Note: Corrected q-values Across All Statistical Tests
 
 **What it shows:** FDR-corrected significance levels for all eight hypothesis tests
@@ -131,6 +152,9 @@ The most predictive metric is Middle-Overs Strike Rate Against Quality Bowling (
 **Key insight:** Seven of eight tests show significant results after Benjamini-Hochberg correction
 
 **Why it matters:** Demonstrates robustness of findings despite multiple testing
+
+![FDR-corrected q-values for IPL statistical hypothesis tests](/api/blog/images/ipl/figures/q_values.png)
+*Figure: Corrected q-values confirming significance for most tested hypotheses.*
 
 ---
 
@@ -141,6 +165,9 @@ CricMind's projection model identifies three scenarios for six-hitting growth:
 - **Conservative** (boundary dimensions stabilize, no rule changes): 3-4% annual growth, reaching 16-17 sixes per match by 2028
 - **Moderate** (continued player development, venue adjustments): 6-7% annual growth, reaching 19-20 sixes per match by 2028
 - **Acceleration** (further rule changes, new overseas categories): 9-10% annual growth, reaching 22+ sixes per match by 2028
+
+![Projected IPL sixes-per-match scenarios through 2028](/api/blog/images/ipl/figures/projections.png)
+*Figure: Conservative, moderate, and acceleration six-hitting projections to 2028.*
 
 The ceiling isn't physical—it's strategic. At 22+ sixes per match (a six every 5.5 deliveries), the expected-value calculation for attempting boundaries versus rotating strike begins to reverse. The marginal value of additional six-hitting attempts approaches zero, creating a strategic equilibrium where further acceleration becomes counterproductive.
 
