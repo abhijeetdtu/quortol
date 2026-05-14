@@ -1,10 +1,41 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan:
-specs/002-data-storytelling-tab/plan.md
+specs/003-ipl-dashboard-enhancements/plan.md
 <!-- SPECKIT END -->
 
 ## Current Plan Reference
+
+### Feature: 003-ipl-dashboard-enhancements
+
+**Status**: ✅ IMPLEMENTATION COMPLETE  
+**Branch**: `003-ipl-dashboard-enhancements`  
+**Spec**: `specs/003-ipl-dashboard-enhancements/spec.md`  
+**Plan**: `specs/003-ipl-dashboard-enhancements/plan.md`  
+**Research**: `specs/003-ipl-dashboard-enhancements/research.md`  
+**Data Model**: `specs/003-ipl-dashboard-enhancements/data-model.md`  
+**Quickstart**: `specs/003-ipl-dashboard-enhancements/quickstart.md`  
+**Contracts**: `specs/003-ipl-dashboard-enhancements/contracts/api.md`  
+**Tasks**: `specs/003-ipl-dashboard-enhancements/tasks.md` (30/30 tasks complete)
+
+**Feature Summary**: Enhance the IPL Deep Dive dashboard with multi-select filtering (teams, seasons), a unified comparison component for overlaid series, and cross-segment team × phase analysis. Backward compatible — single-select behavior unchanged.
+
+**Technology Stack**: Dash (web app), Plotly (charts), Flask (backend), pandas (data), Python 3.11+, static CSV data store
+
+**Key Decisions**:
+- Multi-select via `dcc.Dropdown` with `multi=True`
+- Configurable `MAX_SERIES_CAP` (default 10) in `config.py`
+- Low-confidence flagging for metrics from < 3 matches
+- Server-side filter validation with inline error messages
+- Unified comparison component (single interface, not multiple views)
+- Desktop-first v1 (no mobile support)
+
+**Implementation Summary**:
+- T001-T005: Configuration and foundational infrastructure
+- T006-T013: Multi-select team comparison (all 6 figure builders refactored)
+- T014-T020: Unified comparison component (validation, series cap, summary panel)
+- T021-T026: Cross-segment analysis (grouped bars, low-confidence flagging, backward compatibility)
+- T027-T030: Polish (quickstart.md updated, manual testing verified, performance benchmarks documented)
 
 ### Feature: 002-data-storytelling-tab
 
