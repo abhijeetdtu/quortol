@@ -18,14 +18,8 @@ To understand what Ghibli was, what it became, and what it leaves behind, you ha
 
 ---
 
-### Visual: Hayao Miyazaki at the 2008 Venice Film Festival
-- **What it shows**: Ghibli co-founder Hayao Miyazaki, close-up portrait, white beard, smiling slightly
-- **Source**: Wikimedia Commons
-- **Credit**: detengase @ Flickr (CC BY-SA 2.0)
-- **Date**: August 31, 2008
-- **Rights**: Creative Commons Attribution-Share Alike 2.0 Generic
-- **Suggested caption**: *Hayao Miyazaki at the Venice Film Festival, 2008. He has announced his retirement four times; he has never stopped working.*
-- **Relevance**: The face of the studio — the visionary whose artistic identity *is* Ghibli for most of the world
+![Hayao Miyazaki at the Venice Film Festival, 2008](https://upload.wikimedia.org/wikipedia/commons/3/36/Hayao_Miyazaki.jpg)
+*Hayao Miyazaki at the Venice Film Festival, 2008. He has announced his retirement four times; he has never stopped working.*
 
 ---
 
@@ -61,13 +55,8 @@ But it was *Spirited Away* (2001) that turned the studio into a legend. The stor
 
 ---
 
-### Visual: Still from *Spirited Away* – Chihiro at the bathhouse
-- **What it shows**: Chihiro, the young protagonist, standing in the opulent, multi-level Bathhouse of the Spirits
-- **Source**: Ghibli official stills library [ghibli.jp](http://ghibli.jp/info/013344/)
-- **Credit**: (c) 2001 Studio Ghibli
-- **Rights**: Released by the studio for free use "within the scope of common sense"
-- **Suggested caption**: *A still from Spirited Away (2001), the film that turned Studio Ghibli into a global phenomenon and won the first of its two Oscars.*
-- **Relevance**: The film that broke Ghibli worldwide — its Oscar win validated animation as serious cinema for adult audiences
+![Chihiro standing in the opulent, multi-level Bathhouse of the Spirits in Spirited Away](https://www.ghibli.jp/gallery/chihiro003.jpg)
+*A still from Spirited Away (2001), the film that turned Studio Ghibli into a global phenomenon and won the first of its two Oscars.*
 
 ---
 
@@ -89,13 +78,8 @@ And it is the heroines. From **Nausicaa** — a princess who studies the toxic j
 
 ---
 
-### Visual: Still from *My Neighbor Totoro* – Satsuki and Mei at the bus stop
-- **What it shows**: Two young girls standing in the rain at a rural bus stop, a large furry spirit in a leaf hat beside them
-- **Source**: Ghibli official stills library
-- **Credit**: (c) 1988 Studio Ghibli
-- **Rights**: Free use "within the scope of common sense"
-- **Suggested caption**: *Satsuki and Mei, the heroines of My Neighbor Totoro (1988), waiting in the rain. The film has no villain, no conflict — only the texture of childhood.*
-- **Relevance**: Totoro has become Ghibli's mascot; the film epitomizes the studio's ability to find wonder in the ordinary
+![Satsuki and Mei waiting in the rain at a rural bus stop with Totoro beside them](https://www.ghibli.jp/gallery/totoro010.jpg)
+*Satsuki and Mei, the heroines of My Neighbor Totoro (1988), waiting in the rain. The film has no villain, no conflict — only the texture of childhood.*
 
 ---
 
@@ -115,14 +99,7 @@ The effect was immediate. A whole new generation discovered Ghibli. By 2025, Stu
 
 ---
 
-### Visual: Ghibli Park – Valley of Witches area
-- **What it shows**: Visitors walking through the newly opened "Valley of Witches" area, with Howl's Castle visible in the background
-- **Source**: The Mainichi / Koji Hyodo
-- **Credit**: Koji Hyodo / Mainichi ((c) 2024 Studio Ghibli)
-- **Date**: March 16, 2024
-- **Rights**: News agency photo — visual reference only
-- **Suggested caption**: *The Valley of Witches area at Ghibli Park in Nagakute, Aichi Prefecture, photographed at its opening in March 2024. The park expects ¥71 billion in annual economic impact.*
-- **Relevance**: Ghibli Park represents the studio's pivot toward physical, experiential brand extension — a reluctant empire
+*The Valley of Witches area at Ghibli Park in Nagakute, Aichi Prefecture — see [Kyodo News coverage](https://english.kyodonews.net/news/2024/02/bc7a3d9d80b9-ghibli-park-unveils-new-valley-of-witches-area-to-open-in-march.html) for reference images. The park expects ¥71 billion in annual economic impact.*
 
 ---
 
@@ -188,14 +165,8 @@ Work harder. At 83 and 76, respectively. It is either the most inspiring or the 
 
 ---
 
-### Visual: Hayao Miyazaki's personal studio, Nibariki
-- **What it shows**: The exterior of Miyazaki's personal office-studio, known as "Butaya" (Pig House), in Tokyo
-- **Source**: Wikimedia Commons
-- **Credit**: Qck24 (CC BY-SA 4.0)
-- **Date**: October 21, 2016
-- **Rights**: Creative Commons Attribution-Share Alike 4.0 International
-- **Suggested caption**: *Nibariki, Hayao Miyazaki's personal studio in Tokyo, also known as "Butaya." He continues to come into the office daily with new ideas.*
-- **Relevance**: A quiet image of the place where decades of Ghibli's stories were born — and where new ones may still be taking shape
+![Nibariki, Hayao Miyazaki's personal studio in Tokyo, also known as Butaya](https://upload.wikimedia.org/wikipedia/commons/d/da/Nibariki_%28Hayao_Miyazaki%27s_personal_studio%2C_Butaya%29.jpg)
+*Nibariki, Hayao Miyazaki's personal studio in Tokyo, also known as "Butaya." He continues to come into the office daily with new ideas.*
 
 ---
 
