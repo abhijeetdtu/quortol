@@ -64,6 +64,18 @@ const routes = [
     name: 'agent-capabilities',
     component: AgentCapabilities,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/data-storytelling',
+    name: 'data-storytelling',
+    component: () => import('@/views/DataStorytelling.vue'),
+    meta: { requiresAuth: false }
+  },
+  {
+    path: '/data-storytelling/:dashboard',
+    name: 'dashboard-view',
+    component: () => import('@/views/DataStorytelling.vue'),
+    meta: { requiresAuth: false }
   }
 ]
 

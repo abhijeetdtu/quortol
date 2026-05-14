@@ -1,11 +1,60 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
-shell commands, and other important information, read the current plan
+shell commands, and other important information, read the current plan:
+specs/002-data-storytelling-tab/plan.md
 <!-- SPECKIT END -->
 
 ## Current Plan Reference
 
-### Feature: 001-fix-ipl-visualization-bug
+### Feature: 002-data-storytelling-tab
+
+**Status**: Planning Complete  
+**Branch**: `002-data-storytelling-tab`  
+**Spec**: `specs/002-data-storytelling-tab/spec.md`  
+**Plan**: `specs/002-data-storytelling-tab/plan.md`  
+**Research**: `specs/002-data-storytelling-tab/research.md`  
+**Data Model**: `specs/002-data-storytelling-tab/data-model.md`  
+**Quickstart**: `specs/002-data-storytelling-tab/quickstart.md`  
+**Contracts**: `specs/002-data-storytelling-tab/contracts/api.md`
+
+**Feature Summary**: Data storytelling tab with Dash/Plotly-based dashboards. Users can explore interactive visualizations across multiple dashboard pages. Developers add new dashboards as code pages. Features include filtering, comparison views, and extensible page-based architecture.
+
+**Technology Stack**: Dash (web app framework), Plotly (interactive charts), Flask (backend), Python 3.8+, static JSON data store
+
+**Key Decisions**:
+- Page-based architecture for each dashboard (clear separation)
+- Code-first approach (dashboards defined as Python files)
+- Dash/Plotly instead of lets-plot (interactive web apps vs static PNGs)
+- Multiple page navigation via Dash routing
+- Desktop-first v1 (no mobile support)
+
+**Next Phase**: `/speckit.tasks` - Generate implementation tasks and test plan
+
+### Feature: 001-derivative-art-analysis
+
+**Status**: Planning Phase 1 Complete  
+**Branch**: `001-derivative-art-analysis`  
+**Spec**: `specs/001-derivative-art-analysis/spec.md`  
+**Plan**: `specs/001-derivative-art-analysis/plan.md`  
+**Research**: `specs/001-derivative-art-analysis/research.md`  
+**Data Model**: `specs/001-derivative-art-analysis/data-model.md`  
+**Quickstart**: `specs/001-derivative-art-analysis/quickstart.md`  
+**Contracts**: `specs/001-derivative-art-analysis/contracts/api.md`
+
+**Feature Summary**: Data-driven visualization dashboard analyzing derivative patterns and influence chains in human art history. Users can explore artwork influence networks, filter by movement/period/medium, and compare originality scores across artists and movements.
+
+**Technology Stack**: Vue 3 (frontend), Python/Flask (backend), lets-plot 4.9.0+ (visualizations), static JSON data store
+
+**Key Decisions**:
+- Privacy-first approach (no user tracking)
+- Static historical data from Wikipedia/WikiArt.org + web sources
+- Desktop-first v1 (no mobile support)
+- Backend-first development workflow
+- pytest (backend) + Jest (frontend) testing
+
+**Next Phase**: `/speckit.tasks` - Generate implementation tasks and test plan
+
+### Previous Feature: 001-fix-ipl-visualization-bug
 
 **Status:** ✅ RESOLVED
 
