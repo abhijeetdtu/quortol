@@ -132,14 +132,15 @@ def _parse_markdown_file(path):
     slug = metadata.get("slug") or _slugify(path.stem)
     excerpt = metadata.get("excerpt") or _derive_excerpt(body)
     tags = _parse_tags(metadata.get("tags", ""))
-    parsed_published_at = (
+    explicit_published_at = (
         _parse_datetime(metadata.get("published_at"))
         or _parse_datetime(metadata.get("date"))
         or _extract_date_from_body(body)
     )
     file_mtime = _parse_file_mtime(path)
-    published_at = parsed_published_at or file_mtime or datetime.utcnow()
-    updated_at = _parse_datetime(metadata.get("updated_at")) or published_at
+    published_at = explicit_published_at or file_mtime or datetime.utcnow()
+    explicit_updated_at = _parse_datetime(metadata.get("updated_at"))
+    updated_at = explicit_updated_at or published_at
 
     return {
         "title": title,
@@ -149,6 +150,8 @@ def _parse_markdown_file(path):
         "tags": tags,
         "published_at": published_at,
         "updated_at": updated_at,
+        "has_explicit_published_at": explicit_published_at is not None,
+        "has_explicit_updated_at": explicit_updated_at is not None,
     }
 
 
@@ -179,8 +182,11 @@ def seed_blog_posts_from_markdown(db):
         post.title = parsed["title"]
         post.content = parsed["content"]
         post.excerpt = parsed["excerpt"]
-        post.published_at = parsed["published_at"]
-        post.updated_at = parsed["updated_at"]
+        # Keep existing timestamps unless the markdown has explicit datetime metadata.
+        if post.published_at is None or parsed["has_explicit_published_at"]:
+            post.published_at = parsed["published_at"]
+        if post.updated_at is None or parsed["has_explicit_updated_at"]:
+            post.updated_at = parsed["updated_at"]
 
         post.tags.clear()
         for tag_name in parsed["tags"]:
