@@ -32,6 +32,9 @@
             <router-link to="/data-storytelling" class="nav-link">Data Storytelling</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/data-storytelling/ball-by-ball-simulation" class="nav-link">Simulation</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/agent/dashboard" class="nav-link">Agents</router-link>
           </li>
           <li v-if="authStore.isAuthenticated" class="nav-item text-muted small px-lg-2 py-2 py-lg-0">

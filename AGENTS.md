@@ -1,7 +1,7 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan:
-specs/003-ipl-dashboard-enhancements/plan.md
+specs/004-ball-by-ball-simulation/plan.md
 <!-- SPECKIT END -->
 
 ## Current Plan Reference
@@ -106,3 +106,47 @@ specs/003-ipl-dashboard-enhancements/plan.md
 - All chart files generated: strike_rate_trend.png, sixes_growth.png, phase_scoring.png, bowling_metrics.png, venue_impact.png, statistical_tests.png, q_values.png, projections.png ✓
 
 **Outcome:** No code changes required. The issue was environmental setup rather than code bugs.
+
+### Feature: 004-ball-by-ball-simulation
+
+**Status**: Analysis Complete — Remediation Applied  
+**Branch**: `004-ball-by-ball-simulation`  
+**Spec**: `specs/004-ball-by-ball-simulation/spec.md`  
+**Plan**: `specs/004-ball-by-ball-simulation/plan.md`  
+**Research**: `specs/004-ball-by-ball-simulation/research.md`  
+**Data Model**: `specs/004-ball-by-ball-simulation/data-model.md`  
+**Quickstart**: `specs/004-ball-by-ball-simulation/quickstart.md`  
+**Contracts**: `specs/004-ball-by-ball-simulation/contracts/api.md`  
+**Tasks**: `specs/004-ball-by-ball-simulation/tasks.md` (48 tasks: 34 implementation + 8 test + 6 polish/edge case)
+
+**Feature Summary**: Standalone Ball-by-Ball Match Simulation dashboard. Users select two IPL teams and run a probabilistic ball-by-ball simulation using Bayesian inference with uniform priors updated from weighted historical delivery data. Features recency bias control (season-level linear decay), loading states, error handling, and ball-by-ball replay. Single-user, single-simulation model.
+
+**Technology Stack**: Dash (web app), Plotly (charts), Flask (backend), pandas (data), scipy.stats (Bayesian inference), Python 3.11+, static CSV data store (IPL.csv)
+
+**Key Decisions**:
+- Bayesian model with uniform priors (not frequency distributions or ML)
+- Data-agnostic CSV handling (implementation adapts to actual schema)
+- Loading spinner with progress indication during simulation
+- Clear error handling for IPL.csv missing/corrupted
+- Single-user, single-simulation (new runs cancel previous)
+- Standalone dashboard (not embedded in feature 002)
+- Constitution deviation: Dash instead of Vue 3 (justified by existing Dash infrastructure in feature 002)
+
+**Implementation Plan**:
+- Phase 1: Setup (T001-T003b) — project structure, dependencies, linting/formatting/type-checking
+- Phase 2: Foundational (T004-T008) — data loader, models, API routes, error handling
+- Phase 3: User Story 1 (T009-T019) — ball-by-ball simulation MVP
+- Phase 4: User Story 2 (T020-T023) — recency bias configuration
+- Phase 5: User Story 3 (T024-T027) — replay and exploration
+- Phase 6: Polish & Cross-Cutting (T028-T034f) — loading states, error handling, tie detection, all-out handling, statistical fidelity validation, usability validation, accessibility
+- Tests: T035-T048 — unit, integration, and contract tests for all phases (Constitution Principle II)
+
+**Remediation Applied (2026-05-14)**:
+- C1: Replaced "Tests are OPTIONAL" with mandatory test tasks (T035-T048)
+- C2: Added type-checking (mypy) as T003b
+- C3: Added SC-002 usability validation task (T034e)
+- C4: Added SC-008 statistical fidelity validation task (T034d)
+- C5: Standardized terminology to "Ball-by-Ball Match Simulation" across all artifacts
+- C6: Moved random seed input from ReplayPlayer to main dashboard page (T031)
+- C7: Clarified API architecture (Dash callbacks call Flask REST endpoints)
+- C8: Documented Dash vs. Vue 3 deviation in plan.md Constitution Check table

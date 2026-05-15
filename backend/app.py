@@ -50,7 +50,10 @@ def create_app(config_class=None):
                 use_pages=True,
                 pages_folder="",
                 assets_folder=str(dash_assets_path),
-                suppress_callback_exceptions=True
+                suppress_callback_exceptions=True,
+                external_stylesheets=[
+                    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+                ],
             )
             register_dashboards(dash_app)
             dash_enabled = True

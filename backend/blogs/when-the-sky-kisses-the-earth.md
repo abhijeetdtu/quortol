@@ -22,7 +22,7 @@ The *I Ching* encoded this union in its most auspicious hexagram: Tai, the union
 
 The most explicit linguistic link between precipitation and sex comes from ancient China. The idiom *wushan yunyu* (巫山云雨) — "Mount Wu clouds and rain" — has served as a euphemism for sexual intercourse in Chinese literature for more than two thousand years [Baiduwiki, "Wushan Clouds and Rain"]. No weather report has ever recovered.
 
-![Wang Hui - Mountains after Rain (1695), Metropolitan Museum of Art, CC0](https://upload.wikimedia.org/wikipedia/commons/3/3b/MET_DP153889.jpg)
+![Wang Hui - Mountains after Rain (1695), Metropolitan Museum of Art, CC0](https://upload.wikimedia.org/wikipedia/commons/2/2b/MET_DP153889.jpg)
 
 *Mountains after Rain, a folding fan painting by the Qing dynasty master Wang Hui (1695). In Chinese tradition, the landscape after rain was never merely scenery — it was charged with the erotic energy of cosmic union. (Metropolitan Museum of Art, CC0)*
 
@@ -46,9 +46,9 @@ The yaksha asks the cloud to carry a message to his wife in the Himalayan city o
 
 The rest of the poem is a breathtaking description of the journey the cloud must make — over rivers and mountains, past cities and temples — each landmark described with such tenderness that the geography of India becomes a love letter. The yaksha imagines his wife's condition: "She will be sitting alone, her hair unbound, her body thin from longing, her eyes fixed on the path where you, O cloud, will arrive" [Academia.edu, "Kalidasa's Meghadutam"].
 
-![The Megha dūta or cloud messenger — an 1813 English translation with illustrations, from the Wellcome Collection (Public Domain)](https://iiif.wellcomecollection.org/image/v2/b12147331_0001.jp2/full/800,/0/default.jpg)
+![Megh Dutam Illustration — public-domain depiction related to Kalidasa's Meghaduta](https://upload.wikimedia.org/wikipedia/commons/e/e3/Megh_Dutam_Illustration.jpg)
 
-*Title page of Horace Hayman Wilson's 1813 English translation of Kalidasa's Meghaduta. The poem, composed in the 5th century CE, is the first and most influential work in the "messenger poem" (Sandesha Kavya) genre of Sanskrit literature. (Wellcome Collection, Public Domain)*
+*Public-domain illustration associated with Kalidasa's Meghaduta tradition. The poem, composed in the 5th century CE, is the first and most influential work in the "messenger poem" (Sandesha Kavya) genre of Sanskrit literature. (Wikimedia Commons, Public Domain)*
 
 In this poem, the monsoon cloud is not a backdrop. It is a sentient being, a confidant, a postman, a friend. The yaksha speaks to it as a lover might speak to a mutual friend: "O cloud, you are the lifebreath of all that lives. You are the refuge of lovers in separation." The Indian critic Arthur Berriedale Keith called the poem "difficult to praise too highly" for "the pathos of the picture of the wife sorrowful and alone" [Wikipedia, "Meghaduta"].
 
@@ -80,13 +80,13 @@ And from the same anthology:
 
 The rain-drenched sleeve is one of the great recurring images of waka poetry — soaking in tears that the lover cannot shed openly. "Late at night, / From my eaves the droplets I number up, but / Still much more drenching / Is the rainfall on my sleeves" [Waka Poetry, "Love and the Rain"].
 
-![Suzuki Harunobu — Couple under umbrella in the snow (Crow and Heron), ca. 1770. Public domain, Library of Congress.](https://upload.wikimedia.org/wikipedia/commons/f/f8/Couple_under_umbrella_in_snow.jpg)
+![Suzuki Harunobu — Couple under umbrella in the snow (Crow and Heron), ca. 1770. Public domain, Library of Congress.](https://upload.wikimedia.org/wikipedia/commons/1/18/Couple_under_umbrella_in_snow.jpg)
 
 *Suzuki Harunobu's "Couple under Umbrella in the Snow" (ca. 1770). The shared umbrella — ai ai gasa in Japanese — was a recurring motif in ukiyo-e prints, symbolizing the intimacy and isolation of lovers against the elements. (Library of Congress, Public Domain)*
 
 This aesthetic — in which rain deepens rather than dilutes romantic feeling — would find its way into the spare, luminous cinema of Yasujiro Ozu, where a train arrives in the rain and a marriage begins or ends, and into the animated worlds of Hayao Miyazaki, whose romances are often negotiated under shared umbrellas or in rain-soaked gardens.
 
-![Utagawa Hiroshige — Sudden Shower over Shin-Ohashi Bridge and Atake, 1857. Metropolitan Museum of Art, CC0.](https://upload.wikimedia.org/wikipedia/commons/9/94/%E5%90%8D%E6%89%80%E6%B1%9F%E6%88%B6%E7%99%BE%E6%99%AF_%E5%A4%A7%E3%81%AF%E3%81%97%E3%81%82%E3%81%9F%E3%81%91%E3%81%AE%E5%A4%95%E7%AB%8B-Sudden_Shower_over_Shin-%C5%8Chashi_Bridge_and_Atake_%28%C5%8Chashi_Atake_no_y%C5%ABdachi%29%2C_from_the_series_One_Hundred_Famous_Views_of_Edo_%28Meisho_Edo_hyakkei%29_MET_DP121526.jpg)
+![Utagawa Hiroshige — Sudden Shower over Shin-Ohashi Bridge and Atake, 1857. Metropolitan Museum of Art, CC0.](https://upload.wikimedia.org/wikipedia/commons/3/33/%E5%90%8D%E6%89%80%E6%B1%9F%E6%88%B6%E7%99%BE%E6%99%AF_%E5%A4%A7%E3%81%AF%E3%81%97%E3%81%82%E3%81%9F%E3%81%91%E3%81%AE%E5%A4%95%E7%AB%8B-Sudden_Shower_over_Shin-%C5%8Chashi_Bridge_and_Atake_%28%C5%8Chashi_Atake_no_y%C5%ABdachi%29%2C_from_the_series_One_Hundred_Famous_Views_of_Edo_%28Meisho_Edo_hyakkei%29_MET_DP121526.jpg)
 
 *Hiroshige's "Sudden Shower Over Shin-Ohashi Bridge" (1857), considered the masterpiece of his "One Hundred Famous Views of Edo" series. The diagonal streaks of rain — rendered with parallel woodcut lines — were so admired that Van Gogh painted his own oil copy. (Metropolitan Museum of Art, CC0)*
 
@@ -136,7 +136,7 @@ All this poetry and cinema may rest on a biological foundation. In the last fift
 
 The smell of rain, *petrichor*, was named in 1964 by Australian scientists Isabel Bear and Richard Thomas, who identified the source as a blend of oils secreted by plants during dry periods and a compound called *geosmin* produced by soil-dwelling *Streptomyces* bacteria [BBC, "Petrichor: why does rain smell so good?"; Smithsonian, "What Makes Rain Smell So Good?"]. Humans are exquisitely sensitive to geosmin — we can detect it at concentrations as low as five parts per trillion [Discover Magazine, "The Smell of Rain Is Called Petrichor"].
 
-![Water drop splash — high-speed photograph by José Manuel Suárez (CC BY 2.0)](https://upload.wikimedia.org/wikipedia/commons/0/0a/Water_drop_001.jpg)
+![Water drop splash — high-speed photograph by José Manuel Suárez (CC BY 2.0)](https://upload.wikimedia.org/wikipedia/commons/5/5e/Water_drop_001.jpg)
 
 *A raindrop rebounding after impact. When raindrops hit dry soil, they trap tiny air bubbles that burst upward, releasing aerosols of geosmin and plant oils — the molecular mechanism of petrichor. (José Manuel Suárez, CC BY 2.0)*
 
@@ -175,11 +175,11 @@ The rain is the permission. The romance is what humans do with it.
 | Image | Source & License |
 |-------|-----------------|
 | Wang Hui, *Mountains after Rain* (1695) | [Metropolitan Museum of Art](https://www.metmuseum.org/art/collection/search/49154) — CC0 Public Domain |
-| Kalidasa, *The Megha dūta* (1813 translation) | [Wellcome Collection](https://wellcomecollection.org/works/zu6mt2vw) — Public Domain Mark |
+| Megh Dutam illustration | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Megh_Dutam_Illustration.jpg) — Public Domain |
 | Suzuki Harunobu, *Couple under umbrella in snow* (ca. 1770) | [Library of Congress via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Couple_under_umbrella_in_snow.jpg) — Public Domain |
 | Utagawa Hiroshige, *Sudden Shower over Shin-Ohashi Bridge* (1857) | [Metropolitan Museum of Art via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:%E5%90%8D%E6%89%80%E6%B1%9F%E6%88%B6%E7%99%BE%E6%99%AF_%E5%A4%A7%E3%81%AF%E3%81%97%E3%81%82%E3%81%9F%E3%81%91%E3%81%AE%E5%A4%95%E7%AB%8B-Sudden_Shower_over_Shin-%C5%8Chashi_Bridge_and_Atake_(%C5%8Chashi_Atake_no_y%C5%ABdachi),_from_the_series_One_Hundred_Famous_Views_of_Edo_(Meisho_Edo_hyakkei)_MET_DP121526.jpg) — CC0 |
 | José Manuel Suárez, *Water drop 001* | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Water_drop_001.jpg) — CC BY 2.0 |
 
 ---
 
-*Words: ~3,200. All citations inline. Sources verified as noted. Meghaduta image displayed via IIIF from Wellcome Collection's public-domain holdings; if the IIIF endpoint is unavailable, a JPEG reproduction from the same source is accessible through the Wellcome Collection catalog page.*
+*Words: ~3,200. All citations inline. Sources verified as noted. Meghaduta image now uses a Wikimedia Commons public-domain file for stable rendering.*
