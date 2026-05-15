@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 from .feature_store import WeightedFeatureStore
+from .calibration import CalibrationProfile
 
 OUTCOME_LABELS = ["0", "1", "2", "3", "4", "6", "W", "X"]
 CHANNEL_LABELS = ["legal", "wide", "no_ball"]
@@ -67,10 +68,24 @@ class ProbabilityModel:
         last_n_matches: Optional[int] = None,
         teams: Optional[List[str]] = None,
         stadium: Optional[str] = None,
+        calibration_profile: Optional[CalibrationProfile] = None,
     ) -> None:
         self.feature_store = feature_store
         self.recency_bias = recency_bias
         self.max_fallback_level = max(0, min(6, int(max_fallback_level)))
+        self.calibration = calibration_profile or CalibrationProfile(
+            historical_chase_rate=0.5,
+            historical_rr_first=8.0,
+            historical_rr_second=8.0,
+            target_bucket_chase_rates={},
+            boundary_pressure_coeff=0.18,
+            wicket_pressure_coeff=0.13,
+            wicket_boundary_elasticity=1.0,
+            first_innings_pressure_scale=1.0,
+            second_innings_pressure_scale=1.0,
+            sample_matches=0,
+            source="default",
+        )
 
         self.frame = self.feature_store.weighted_features(
             recency_bias,
@@ -256,46 +271,52 @@ class ProbabilityModel:
         cols = self.lookup_defs[level][1]
         return tuple(str(values[c]) for c in cols)
 
-    @staticmethod
-    def _apply_pressure_to_bat_runs(probs: np.ndarray, context: SamplingContext) -> np.ndarray:
-        if context.innings_number != 2:
-            return probs
-        adjusted = probs.copy()
+    def _pressure_signal(self, context: SamplingContext) -> float:
         rr_delta = context.required_run_rate - context.baseline_rr
-        aggression = np.clip(rr_delta / 4.0, -0.6, 1.1)
+        scale = (
+            self.calibration.second_innings_pressure_scale
+            if context.innings_number == 2
+            else self.calibration.first_innings_pressure_scale
+        )
+        return float(np.clip((rr_delta / 4.0) * scale, -0.9, 1.2))
+
+    def _apply_pressure_to_bat_runs(self, probs: np.ndarray, context: SamplingContext) -> np.ndarray:
+        adjusted = probs.copy()
+        aggression = self._pressure_signal(context)
+        boundary_coeff = self.calibration.boundary_pressure_coeff
         idx_0, idx_1, idx_4, idx_6 = 0, 1, 4, 5
 
         if aggression > 0:
-            adjusted[idx_4] *= 1.0 + aggression * 0.35
-            adjusted[idx_6] *= 1.0 + aggression * 0.55
-            adjusted[idx_0] *= 1.0 - aggression * 0.28
-            adjusted[idx_1] *= 1.0 + aggression * 0.10
+            adjusted[idx_4] *= 1.0 + aggression * boundary_coeff
+            adjusted[idx_6] *= 1.0 + aggression * (boundary_coeff * 1.35)
+            adjusted[idx_0] *= 1.0 - aggression * (boundary_coeff * 0.55)
+            adjusted[idx_1] *= 1.0 + aggression * (boundary_coeff * 0.20)
         else:
             cool = abs(aggression)
-            adjusted[idx_0] *= 1.0 + cool * 0.22
-            adjusted[idx_1] *= 1.0 + cool * 0.10
-            adjusted[idx_6] *= 1.0 - cool * 0.20
+            adjusted[idx_0] *= 1.0 + cool * 0.30
+            adjusted[idx_1] *= 1.0 + cool * 0.12
+            adjusted[idx_6] *= 1.0 - cool * 0.24
 
         adjusted = np.clip(adjusted, 1e-12, None)
         adjusted /= adjusted.sum()
         return adjusted
 
-    @staticmethod
-    def _apply_pressure_to_wicket_binary(probs: np.ndarray, context: SamplingContext) -> np.ndarray:
-        if context.innings_number != 2:
-            return probs
+    def _apply_pressure_to_wicket_binary(self, probs: np.ndarray, context: SamplingContext) -> np.ndarray:
         adjusted = probs.copy()
-        rr_delta = context.required_run_rate - context.baseline_rr
-        aggression = np.clip(rr_delta / 4.0, -0.6, 1.1)
+        aggression = self._pressure_signal(context)
         wicket_risk = np.clip((6 - context.wickets_in_hand) / 6.0, 0.0, 1.0)
 
         if aggression > 0:
-            adjusted[1] *= 1.0 + aggression * (0.16 + 0.10 * wicket_risk)
-            adjusted[0] *= 1.0 - aggression * 0.06
+            risk_boost = aggression * (
+                self.calibration.boundary_pressure_coeff * self.calibration.wicket_boundary_elasticity
+            )
+            risk_boost = min(0.95, max(0.0, risk_boost))
+            adjusted[1] *= 1.0 + risk_boost * (1.0 + 0.35 * wicket_risk)
+            adjusted[0] *= 1.0 - risk_boost * 0.45
         else:
             cool = abs(aggression)
-            adjusted[1] *= 1.0 - cool * 0.10
-            adjusted[0] *= 1.0 + cool * 0.04
+            adjusted[1] *= 1.0 - cool * 0.16
+            adjusted[0] *= 1.0 + cool * 0.08
 
         adjusted = np.clip(adjusted, 1e-12, None)
         adjusted /= adjusted.sum()

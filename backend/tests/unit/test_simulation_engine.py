@@ -29,6 +29,12 @@ def test_simulation_outputs_enriched_timeline_fields():
     assert match.status == "completed"
     assert len(match.innings) == 2
     assert "diagnostics" in match.metadata
+    assert "calibration" in match.metadata
+    calibration = match.metadata["calibration"]
+    assert "historical_chase_rate" in calibration
+    assert "historical_rr_first" in calibration
+    assert "historical_rr_second" in calibration
+    assert "pressure_coefficients_version" in calibration
 
     sample_ball = match.innings[0].balls[0].to_dict()
     assert "batter" in sample_ball

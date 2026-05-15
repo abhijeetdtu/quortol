@@ -1070,6 +1070,10 @@ def layout():
             dcc.Slider(id="bbs-replay-slider", min=0, max=0, value=0, step=1, marks={}),
             html.Div(id="bbs-replay-event", className="my-2"),
             dcc.Graph(id="bbs-replay-chart", figure=_empty_figure("Replay", "Move the slider after running a simulation.")),
+            dcc.Graph(
+                id="bbs-replay-run-rate-chart",
+                figure=_empty_figure("Run Rate Timeline", "Run rate appears after legal deliveries."),
+            ),
             html.H3("N-Run Simulation", className="mt-4"),
             html.P(
                 "Run multiple simulations with incrementing seeds from the base Random Seed to see outcome spread.",
@@ -1506,16 +1510,25 @@ def render_simulation(sim_data):
 @callback(
     Output("bbs-replay-event", "children"),
     Output("bbs-replay-chart", "figure"),
+    Output("bbs-replay-run-rate-chart", "figure"),
     Input("bbs-replay-slider", "value"),
     Input("bbs-simulation-data", "data"),
 )
 def render_replay(ball_index, sim_data):
     if not sim_data:
-        return html.Div("Run a simulation to begin replay.", className="text-muted"), _empty_figure("Replay", "Run a simulation to begin replay.")
+        return (
+            html.Div("Run a simulation to begin replay.", className="text-muted"),
+            _empty_figure("Replay", "Run a simulation to begin replay."),
+            _empty_figure("Run Rate Timeline", "Run a simulation to begin replay."),
+        )
 
     deliveries = _flatten_deliveries(sim_data)
     if not deliveries:
-        return html.Div("No deliveries available.", className="text-muted"), _empty_figure("Replay", "No replay data available.")
+        return (
+            html.Div("No deliveries available.", className="text-muted"),
+            _empty_figure("Replay", "No replay data available."),
+            _empty_figure("Run Rate Timeline", "No replay data available."),
+        )
 
     idx = int(ball_index or 0)
     idx = max(0, min(idx, len(deliveries) - 1))
@@ -1528,10 +1541,15 @@ def render_replay(ball_index, sim_data):
     event_text = _broadcast_replay_banner(event, idx + 1, len(deliveries), chase_target=chase_target)
 
     fig = go.Figure()
+    run_rate_fig = go.Figure()
 
     selected_x = int(event.get("ball_number", 0))
     selected_x = int(event.get("ball_number", selected_x))
     selected_score = event.get("cumulative_score", 0)
+    selected_rr = 0.0
+    selected_legal_ball = int(event.get("legal_ball_number", 0) or 0)
+    if selected_legal_ball > 0:
+        selected_rr = (float(selected_score) * 6.0) / float(selected_legal_ball)
     colors = [PRUSSIAN_BLUE, DEEP_TEAL]
 
     # Reveal only what has been "played" up to current replay position.
@@ -1572,6 +1590,40 @@ def render_replay(ball_index, sim_data):
             )
             _add_wicket_trace(fig=fig, balls=visible_balls, team=str(team_name), line_color=color)
 
+        run_rate_points = []
+        for ball in visible_balls:
+            legal_ball_no = int(ball.get("legal_ball_number", 0) or 0)
+            if legal_ball_no <= 0:
+                continue
+            run_rate_points.append(
+                (
+                    int(ball.get("ball_number", 0)),
+                    (float(ball.get("cumulative_score", 0)) * 6.0) / float(legal_ball_no),
+                    legal_ball_no,
+                )
+            )
+        if run_rate_points:
+            rr_x = [point[0] for point in run_rate_points]
+            rr_y = [point[1] for point in run_rate_points]
+            rr_legal = [point[2] for point in run_rate_points]
+            run_rate_fig.add_trace(
+                go.Scatter(
+                    x=rr_x,
+                    y=rr_y,
+                    mode="lines+markers",
+                    name=team_code,
+                    line={"color": color, "width": 2},
+                    marker={"size": 5},
+                    customdata=rr_legal,
+                    hovertemplate=(
+                        f"<b>{team_name}</b><br>"
+                        "Event %{x}<br>"
+                        "Run Rate %{y:.2f}<br>"
+                        "Legal Ball %{customdata}<extra></extra>"
+                    ),
+                )
+            )
+
     fig.add_trace(
         go.Scatter(
             x=[selected_x],
@@ -1581,6 +1633,16 @@ def render_replay(ball_index, sim_data):
             marker={"size": 12, "color": BRICK_EMBER, "symbol": "diamond"},
         )
     )
+    if selected_legal_ball > 0:
+        run_rate_fig.add_trace(
+            go.Scatter(
+                x=[selected_x],
+                y=[selected_rr],
+                mode="markers",
+                name="Current Ball",
+                marker={"size": 12, "color": BRICK_EMBER, "symbol": "diamond"},
+            )
+        )
     apply_chart_theme(
         fig,
         title="Replay: Both Innings (Event Timeline)",
@@ -1588,9 +1650,18 @@ def render_replay(ball_index, sim_data):
         yaxis_title="Cumulative Score",
         height=420,
     )
+    apply_chart_theme(
+        run_rate_fig,
+        title="Replay: Run Rate Timeline",
+        xaxis_title="Event Number",
+        yaxis_title="Run Rate",
+        height=360,
+    )
     max_event = max((len(inn.get("balls", [])) for inn in innings_list), default=120)
     fig.update_xaxes(range=[0, max(120, max_event)])
-    return event_text, fig
+    run_rate_fig.update_xaxes(range=[0, max(120, max_event)])
+    run_rate_fig.update_layout(hovermode="x unified")
+    return event_text, fig, run_rate_fig
 
 
 dash.register_page(

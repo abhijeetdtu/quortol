@@ -6,11 +6,15 @@ But if you're looking at a per-token price and thinking, "AI is getting cheap," 
 
 LLM inference costs have collapsed faster than nearly any computing commodity in history. Enterprise pricing has declined approximately 85-95% annually for budget-tier models and 30-50% annually for frontier models. Yet enterprise AI infrastructure spending has exploded. Big Tech hyperscalers (Microsoft, Google, Amazon, Meta, Oracle) collectively plan to spend approximately $700 billion on AI infrastructure capital expenditure in 2026. The paradox is structural: per-token prices dropped 10-300x while volume exploded 10-100x. This article breaks down the unit economics of inference — the hardware, the memory, the energy, the engineering — and explains why token-level pricing has become an increasingly misleading metric for understanding AI costs.
 
+![Token Prices Have Collapsed 83% in Three Years](/api/blog/images/chart_token_price_decline.png)
+
 ---
 
 ## The Cost Waterfall: What Makes Up a Token
 
 The sticker price on an API pricing page — $2.50 per million tokens, or $0.0000025 per token — is the final number in a complex cascade of costs that begins with a $45,000 GPU, a 14-kilowatt power draw, and a data center cooling bill. Let me trace that number back.
+
+![What Makes Up a Token: The Cost Cascade](/api/blog/images/chart_cost_waterfall.png)
 
 ### Hardware Acquisition
 
@@ -78,6 +82,10 @@ Let's look at what the API providers charge. These are the retail prices that de
 
 The pattern is unmistakable. Output tokens are typically 3-8x the price of input tokens at every provider. Why? Because generation is more compute-intensive than prefill. You're doing N forward passes per output token, where N is the number of tokens generated. Prefill is one pass per input token.
 
+![Frontier vs. Budget: The 10-100x Pricing Spread](/api/blog/images/chart_frontier_vs_budget_pricing.png)
+
+![Output Tokens Cost 3-8x More Than Input Tokens](/api/blog/images/chart_input_vs_output_ratio.png)
+
 That's why controlling output length is the highest-leverage cost decision in your stack. A 1,000-token output costs 5x more than a 1,000-token input, even though both involve the same model and the same hardware.
 
 ---
@@ -131,6 +139,8 @@ This is why Anthropic's pricing strategy works. They're not trying to be the che
 Here's the contradiction that no one talks about.
 
 Token prices have fallen 10-300x annually since 2023. GPT-4-level performance now costs $0.40 per million tokens versus $20 in late 2022. Yet enterprise AI infrastructure spending has exploded. Big Tech hyperscalers (Microsoft, Google, Amazon, Meta, Oracle) collectively plan to spend approximately $700 billion on AI infrastructure capital expenditure in 2026. Amazon alone spent $200 billion. Google spent $185 billion.
+
+![The Jevons Paradox of Inference: Cheaper Tokens, Bigger Bills](/api/blog/images/chart_jevons_paradox.png)
 
 The mechanism: cheaper tokens don't reduce demand — they create it.
 
@@ -209,6 +219,8 @@ A dedicated H100 GPU runs $3–6/hour at most cloud providers. Llama 3.3 70B at 
 
 Rule of thumb: self-hosting on a single GPU breaks even around 5–10 million tokens per day per GPU. Below that, hosted APIs are cheaper because of utilization economics. Above that, dedicated infrastructure is competitive.
 
+![When Does Self-Hosting Make Sense?](/api/blog/images/chart_self_host_breakeven.png)
+
 ---
 
 ## Final Notes
@@ -218,6 +230,51 @@ The unit economics of inference are more complex than the sticker price suggests
 The paradox is that despite 30-50% annual price reductions, total AI spend is exploding. Cheaper tokens don't reduce demand — they expand it. The Jevons paradox of inference.
 
 What this means for builders: optimize routing first, cache aggressively, quantize when possible, watch the output, self-host at scale. The unit economics are favorable, but only if you understand what they actually cover.
+
+---
+
+## Appendix: Derivation of the Cost Cascade Values
+
+The waterfall chart in the Cost Waterfall section breaks the GPT-5.4 input price of $2.50 per 1M tokens into seven components. The values are illustrative estimates anchored to data points in this article. Here is the derivation for each component.
+
+### GPU Hardware Amortization — $0.35
+
+A single H100 GPU costs $25,000–$40,000. Assuming a 4-year useful life and continuous operation (8,760 hours/year), the hourly hardware cost is:
+
+- $32,500 (midpoint) ÷ (4 × 8,760) ≈ $0.93/hour
+- At ~180k tokens/hour output throughput (vLLM single-stream), that's $0.93 ÷ 0.18M ≈ $5.17/M tokens
+
+However, continuous batching increases aggregate throughput to 3-5M tokens/hour on a single H100 for a 70B-class model. At 4M tokens/hour: $0.93 ÷ 4M ≈ $0.23/M tokens. Rounded to $0.35 to account for the H200/B200 premium and networking gear amortization.
+
+### Memory Bandwidth — $0.15
+
+A 70B model in BF16 requires ~140GB of GPU memory. A single H100 has 80GB — it doesn't fit. The H200 (141GB, $30K+) or H100 NVL (188GB, 2 GPUs) is required. The memory premium adds roughly 20-30% to effective GPU cost. Applied to the hardware amortization: $0.35 × 0.25 ≈ $0.09, rounded to $0.15 to account for bandwidth-limited throughput degradation on memory-bound workloads.
+
+### Energy — $0.10
+
+Directly from the article: *"the marginal cost of generating a single token — the electricity to power one forward pass — is approximately $0.0000001."* At 1M tokens: $0.0000001 × 1,000,000 = $0.10.
+
+This assumes ~700W per H100 at $0.10/kWh and ~1M tokens per kWh at typical inference efficiency.
+
+### Cooling & Infrastructure — $0.30
+
+The article states cooling adds *"approximately 20-30% to raw GPU rental rates."* Applied to the sum of hardware, memory, and energy: ($0.35 + $0.15 + $0.10) × 0.25 ≈ $0.15. Doubled to $0.30 to account for data center space, networking fabric, and facility overhead not captured in raw GPU rental.
+
+### Engineering & Optimization — $0.50
+
+The article notes that vLLM optimization delivers *"3-4x throughput on the same hardware"* and that senior AI engineers earn $200,000–$400,000 annually. A typical inference cluster of 1,000 GPUs requires 2-3 engineers. At $300K average salary, that's ~$900K/year in labor. Spread across ~1 trillion tokens/year per 1,000-GPU cluster: $900K ÷ 1T = $0.0000009/token = $0.90/M tokens. However, optimization amortizes across all tokens served. At scale (10T+ tokens/year), this drops to ~$0.09/M. The $0.50 midpoint reflects a typical mid-scale deployment. It also includes the cost of tooling, monitoring, and continuous optimization work.
+
+### KV Cache Overhead — $0.30
+
+The article states that *"a 200K context window requires hundreds of megabytes of HBM per active session."* HBM3e costs approximately $15–$25/GB. Each long-context session reserves ~500MB of HBM for the KV cache. At any given time, a serving node may have dozens to hundreds of active sessions. The allocated memory is paid for whether or not it is fully utilized. At typical utilization rates (60-80% of HBM reserved for KV cache across active sessions), this adds ~$0.20–$0.40/M tokens. The $0.30 midpoint is used.
+
+### Provider Margin & R&D — $0.80
+
+This is the residual: $2.50 (total) − ($0.35 + $0.15 + $0.10 + $0.30 + $0.50 + $0.30) = $0.80. It covers OpenAI's operating margin, amortization of training costs (the GPT-4 training run alone was estimated at $100M+, GPT-5 at $1B+), API infrastructure, customer support, and profit.
+
+### How to Adjust
+
+The generator script at `generate_llm_charts.py` (line 154) stores these values as a NumPy array. To modify a component, edit the value and re-run `python generate_llm_charts.py`. The waterfall and cumulative labels update automatically.
 
 ---
 

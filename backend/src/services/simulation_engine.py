@@ -14,6 +14,7 @@ from ..models.delivery import DeliveryOutcome
 from ..models.innings import Innings
 from ..models.match_simulation import SimulatedMatch
 from ..models.team_profile import TeamProfile
+from .calibration import CalibrationProfile, CalibrationService
 from .feature_store import WeightedFeatureStore
 from .probability_model import ProbabilityModel, SamplingContext
 
@@ -24,6 +25,7 @@ class SimulationEngine:
     def __init__(self) -> None:
         self.lock = threading.Lock()
         self.feature_store = WeightedFeatureStore()
+        self.calibration_service = CalibrationService()
 
     @staticmethod
     def _phase_from_legal_ball(legal_ball_number: int) -> str:
@@ -324,7 +326,9 @@ class SimulationEngine:
             last_n_matches=last_n_matches,
             teams=teams_scope,
             stadium=selected_stadium,
+            calibration_profile=self.calibration_service.calibrate_for_matchup(weighted_df, team_a, team_b),
         )
+        calibration = model.calibration
 
         baseline_rr = (
             weighted_df.groupby("batting_team", as_index=False)["TotalRun"].mean()
@@ -371,6 +375,7 @@ class SimulationEngine:
             innings_number=1,
             target=None,
             baseline_rr=baseline_rr.get(team_a, max(team_a_profile.avg_run_rate, 1.0)),
+            calibration=calibration,
         )
         match.add_innings(innings_1)
 
@@ -386,6 +391,7 @@ class SimulationEngine:
             innings_number=2,
             target=target,
             baseline_rr=baseline_rr.get(team_b, max(team_b_profile.avg_run_rate, 1.0)),
+            calibration=calibration,
         )
         match.add_innings(innings_2)
 
@@ -407,6 +413,7 @@ class SimulationEngine:
             "stadium": selected_stadium,
             "venue_filter_applied": venue_filter_applied,
             "realism_version": realism_version,
+            "calibration": calibration.to_metadata(max_fallback_level),
             "diagnostics": {
                 "context_usage": combined_context_usage,
                 "effective_sample_size_avg": float(
@@ -447,6 +454,7 @@ class SimulationEngine:
         innings_number: int,
         baseline_rr: float,
         target: Optional[int] = None,
+        calibration: Optional[CalibrationProfile] = None,
     ) -> Tuple[Innings, Dict[str, List[float]]]:
         innings = Innings(innings_number=innings_number, batting_team=batting_team)
 
@@ -473,6 +481,20 @@ class SimulationEngine:
 
         extras_runs_total = 0
         boundaries = 0
+        calibration = calibration or CalibrationProfile(
+            historical_chase_rate=0.5,
+            historical_rr_first=8.0,
+            historical_rr_second=8.0,
+            target_bucket_chase_rates={},
+            boundary_pressure_coeff=0.18,
+            wicket_pressure_coeff=0.13,
+            wicket_boundary_elasticity=1.0,
+            first_innings_pressure_scale=1.0,
+            second_innings_pressure_scale=1.0,
+            sample_matches=0,
+            source="default",
+        )
+        par_target_runs = max(80, int(round(calibration.historical_rr_first * 20.0)))
 
         while legal_balls < 120 and wickets < 10:
             if target is not None and score >= target:
@@ -500,7 +522,11 @@ class SimulationEngine:
             if target is not None:
                 required_runs = max(0, target - score)
                 required_rr = (required_runs * 6.0) / balls_remaining
-            pressure_band = self._pressure_band(required_rr, baseline_rr) if innings_number == 2 else "medium"
+                pressure_band = self._pressure_band(required_rr, baseline_rr)
+            else:
+                required_runs = max(0, par_target_runs - score)
+                required_rr = (required_runs * 6.0) / balls_remaining
+                pressure_band = self._pressure_band(required_rr, baseline_rr)
 
             sampling_context = SamplingContext(
                 batting_team=batting_team,
