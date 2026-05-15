@@ -99,8 +99,7 @@ The real question — the one that investors, analysts, and consumers all circle
 
 ---
 
-## Source Notes
-
+## Sources
 This article draws on the following primary and authoritative sources:
 
 1. **Netflix Q1 2026 Shareholder Letter** (April 16, 2026) — Direct source for Q1 2026 revenue, operating margin, FCF, ad revenue projections, and management commentary. [SEC Filing via Last10K](https://last10k.com/sec-filings/nflx/0001065280-26-000138.htm)
@@ -118,3 +117,5 @@ This article draws on the following primary and authoritative sources:
 13. **Looper Insights** — Executive survey on streaming consolidation expectations (76.5% expect mid-tier M&A). [Looper Insights](https://looperinsights.com/resources/reports-resources/the-big-reset-10-trends-reshaping-streaming-in-2026/)
 14. **Netflix Content Asset Data** — $32.8B capitalized content assets, split produced/licensed. [BusinessStats](https://businesstats.com/netflix-content-assets/)
 15. **Pricing History** — [Keeping Up With Inflation](https://keepingupwithinflation.com/tracker/netflix/), [PriceTimeline](https://pricetimeline.com/data/streaming/netflix-price-history.php), [Dexerto](https://www.dexerto.com/tv-movies/netflix-price-hike-timeline-3038310/)
+
+

@@ -104,8 +104,7 @@ Bors left at what he considers the "right moment." He might dip into political c
 
 ---
 
-## **Source Notes**
-
+## Sources
 - **Herb Block Foundation** - Authoritative report on editorial cartoonist decline (2,000 → fewer than 40 staff positions)
 - **Columbia Journalism Review** - Matt Bors oral history and career trajectory
 - **The Washington Post** - Michael Cavna on three Pulitzer winners fired in 2023
@@ -115,8 +114,7 @@ Bors left at what he considers the "right moment." He might dip into political c
 
 ---
 
-## **Fact-Check Notes**
-
+## Fact Check
 - 2,000 editorial cartoonists at start of 20th century → fewer than 40 staff positions today: Verified by Herb Block Foundation report (December 2011) and AAEC estimates (2021)
 - Three Pulitzer winners fired on July 10, 2023: Verified by multiple sources including Washington Post, Boston Globe, and Axios Charlotte
 - Graphic novels generated $1.28 billion in sales in North America in 2025: Verified by Columbia Journalism Review
@@ -135,3 +133,5 @@ But the institution that once employed 2,000 people, that could reach millions o
 And somewhere in Washington, the Library of Congress preserves the drawings of a man named Herbert Block, who spent 72 years drawing them, who once said he'd rather "be a critic than a cheerleader." His collection of 14,000 original ink and graphite drawings—spanning from 1929 to 2001—now sits in the Prints & Photographs Division, preserved for posterity, a monument to a profession that's disappearing even as it speaks. [Library of Congress]
 
 The cartoonists are gone. The laughter is faint. And the country is poorer for it.
+
+

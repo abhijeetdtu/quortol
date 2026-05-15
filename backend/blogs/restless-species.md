@@ -133,8 +133,7 @@ The circumstances are no longer stupendous. The maps are complete. The blank spa
 
 ---
 
-## Source Notes
-
+## Sources
 **Neuroscience & Dopamine**
 - Zald et al. (2008), *J. Neuroscience* — Inverse association between midbrain D2 receptor availability and novelty-seeking. [Source](https://www.jneurosci.org/content/28/53/14372)
 - Norbury et al. (2015) — D2 antagonist haloperidol reduces sensation-seeking in high-SS individuals. [Source](https://ncbi.nlm.nih.gov/pmc/articles/PMC4648156/)
@@ -183,3 +182,5 @@ The circumstances are no longer stupendous. The maps are complete. The blank spa
 | 5 | Adventure sport photograph | Unsplash (representative) | "Extreme sports may be the most visible manifestation of a drive that operates in all of us." |
 | 6 | Micro-adventure scene | Unsplash (representative) | "A micro-adventure: the drive is the same whether the destination is Everest or the next block." |
 | 7 | Exploration-exploitation chart | Author-created or Chen et al. (2024) | "The fundamental trade-off: when to stay, when to go." |
+
+

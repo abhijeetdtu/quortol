@@ -265,16 +265,6 @@ He told the Assembly: "Great as this man of God was in his life, he has been gre
 
 ---
 
-## Narrative Angle: The Language of Hearts
-
-The strongest literary-journalistic framing for this story is what India Seminar's Rudrangshu Mukherjee called "love and difference." The relationship between Gandhi and Nehru defied the simple categorization of "master and disciple" or "equals." It was a complex interweaving of ideological differences, generational divides, and profound personal affection.
-
-As Gandhi wrote in 1946, "language is no bar to a union of hearts" [Source: India Seminar]. This phrase captures the essence of the relationship—two men who spoke different languages (metaphorically and literally), yet shared a union of hearts.
-
-The story is not one of a disciple following his guru, but of two men who, despite their differences, made India free. It is a story of "love and difference"—affection tempered by conflict, mutual dependence forged through political disagreement.
-
----
-
 ## Visuals Found
 
 1. **Nehru, Gandhi and Patel (1946)**
@@ -301,8 +291,7 @@ The story is not one of a disciple following his guru, but of two men who, despi
 
 ---
 
-## Source Notes
-
+## Sources
 1. **India Seminar article** (Rudrangshu Mukherjee, 2018) - Comprehensive scholarly treatment of the relationship; primary source for ideological differences and personal correspondence
 2. **Nehru's Autobiography** (*Toward Freedom*, 1936) - Primary source from Nehru on his feelings about Gandhi
 3. **TIME Magazine** (Shashi Tharoor, 2006) - Overview of their partnership and legacy
@@ -316,6 +305,6 @@ The story is not one of a disciple following his guru, but of two men who, despi
 
 ---
 
-## Final Note
-
+## Conclusion
 The relationship between Gandhi and Nehru remains one of the most consequential political partnerships of the 20th century. It was neither simple harmony nor bitter conflict, but a complex interweaving of ideological differences and deep personal affection that shaped the destiny of a nation. As Nehru wrote after Gandhi's assassination, "We have failed to protect the greatest treasure we possessed" [Source: SACW]. Yet the light that shone through their partnership will, he said, "illumine this country for many more years, and a thousand years later, that light will be seen" [Source: National Herald].
+

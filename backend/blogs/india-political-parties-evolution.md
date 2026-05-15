@@ -620,8 +620,7 @@ The 2024 election saw the INDIA alliance (formerly UPA) emerge as the main oppos
 
 ---
 
-## **Part 10: Narrative Angle and Conclusion**
-
+## **Part 10: Conclusion**
 The evolution of India's political parties reflects a broader story of how a young democracy navigates complexity: regional identities, caste dynamics, religious pluralism, and the tension between centralized and decentralized power. The pattern is clear: no party can hold power indefinitely. The Congress system collapsed; coalition politics emerged; single-party dominance returned. But each phase brings new fractures and new alliances.
 
 The most striking theme is the role of splits. India's parties are not static institutions but fluid entities that fracture, reform, and recombine. From 1969 to 2023, splits have reshaped the political landscape more than mergers have consolidated it. This reflects India's diversity: no single ideology can hold the country together. Coalitions are not just pragmatic necessities; they are democratic imperatives.
@@ -644,4 +643,3 @@ All sources verified from:
 
 ---
 
-**Article complete.** This comprehensive piece traces India's political party evolution from 1885 to 2026, covering all major parties, splits, alliances, key figures, ideologies, and election history.

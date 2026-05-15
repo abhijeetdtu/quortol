@@ -15,10 +15,6 @@ excerpt: "The Southern Cone does not merely contain natural resources. It is con
 
 ---
 
-**Byline** — *Quortol*
-
----
-
 **Prologue: The Wind and the Salt and the Grass**
 
 In the far south of the American continent, the planet still announces itself in the first person. The wind arrives from the Southern Ocean unbroken and hits the Patagonian steppe with a force that can knock a man sideways — a nuisance to the sheep ranchers who have worked this land for five generations, and a treasure to the engineers now planting 120-meter turbines in the same soil. It blows 270 days a year. One man's inconvenience is another man's endowment. In the high salt flats of Jujuy, 4,000 meters above sea level, the Kolla people have harvested salt from the white crust of Salinas Grandes for 40,000 years. Now the same brine pools contain lithium — the silvery metal upon which the world's electric future depends. The irony sits undisturbed on the surface, as quiet as the salt. In the Pampas, the deep topsoil that made Argentina one of the wealthiest nations on earth a century ago still produces grass for 12 million cattle in Uruguay alone. And in the Gran Chaco of Paraguay, the soy frontier pushes westward through dry forest, displacing Indigenous communities who have no land titles and no recourse — because the law, like the forest, parts more easily for capital than for tradition.
@@ -186,8 +182,7 @@ The question, in the Southern Cone as everywhere else, is whether the future she
 
 ---
 
-## Source Notes
-
+## Sources
 - **Argentina inflation & poverty data**: INDEC (Argentina's National Statistics Institute); Trading Economics; Buenos Aires Times; El País; UPI. The 2026 inflation print of 32.6% YoY (March) is from INDEC, reported via multiple outlets.
 - **Vaca Muerta production figures**: IPS interview with researcher Agustín González (National University of Comahue) and official data from Argentina's Energy Secretariat. 446,900 bpd figure is December 2024.
 - **Green hydrogen projects in Chile**: NACLA (2024) and The Guardian (Nov 2025) provide the best on-the-ground reporting. Haru Oni details from Porsche/HIF Global documentation.
@@ -206,3 +201,4 @@ The question, in the Southern Cone as everywhere else, is whether the future she
 This story was researched using original source documents, government statistics, institutional reports, and interview-based journalism from the region. The human voices are real — every quote attributed to a named individual was published in a source listed above. The piece does not use AI-generated images, invented scenes, or unattributed claims. Place names and geographic descriptions have been verified against physical and political maps of the region.
 
 The geographic framing — dividing the Southern Cone into the Pampas, Patagonia, the Lithium Triangle, and the Chaco — is analytical rather than absolute. Real economies and ecologies blur at the edges. But the four zones capture the dominant resource relationships that define each subregion's integration into the global economy.
+

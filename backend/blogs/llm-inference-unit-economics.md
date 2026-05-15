@@ -223,8 +223,7 @@ Rule of thumb: self-hosting on a single GPU breaks even around 5–10 million to
 
 ---
 
-## Final Notes
-
+## Conclusion
 The unit economics of inference are more complex than the sticker price suggests. They begin with a $45,000 GPU and cascade through memory bandwidth, energy consumption, engineering labor, and optimization complexity. The per-token price you pay is the final number in that cascade.
 
 The paradox is that despite 30-50% annual price reductions, total AI spend is exploding. Cheaper tokens don't reduce demand — they expand it. The Jevons paradox of inference.
@@ -308,3 +307,5 @@ The generator script at `generate_llm_charts.py` (line 154) stores these values 
 - Architectural innovation in LLMs, arXiv 2603.228576
 - LLM inference optimization, DigitalOcean
 - Gartner 2030 predictions on inference costs
+
+

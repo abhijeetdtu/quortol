@@ -11,5 +11,8 @@ DASHBOARD_CONFIG = {
     "nav_order": 2,
     "is_visible": True,
     "n_runs_default": 20,
-    "n_runs_max": 200,
+    "n_runs_max": 500,
+    "winprob_rollouts_per_state": 32,
+    "winprob_max_states_per_ball": 8,
+    "winprob_max_total_states": 240,
 }

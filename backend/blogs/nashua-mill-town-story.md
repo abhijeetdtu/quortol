@@ -167,20 +167,6 @@ Several minor contradictions appear in sources:
 
 ---
 
-## Narrative Angle
-
-The mill town story is strongest when framed around water power as both the engine and the limitation of Nashua's industrial era. The Nashua River's flow powered mills for 125 years, but when the mills closed, the river remained—now a park, a historic landmark, and a symbol of rebirth. The 1948 closure was not merely an economic event but a civic trauma that reshaped the city's identity.
-
-The narrative arc follows:
-1. **Water power as opportunity** (1823-1830s)
-2. **Mill town at peak** (1860s-1930s)
-3. **Closure and crisis** (1945-1948)
-4. **Rebirth and reinvention** (1950s-present)
-
-This framing emphasizes both the triumphs and limitations of industrial New England, showing how Nashua's identity emerged from the tension between water power and economic diversification.
-
----
-
 ## Visuals Found (Complete List)
 
 ### 1. Bailey Brothers' Bird's-Eye Views (1875 & 1883)
@@ -251,54 +237,3 @@ This framing emphasizes both the triumphs and limitations of industrial New Engl
 
 ---
 
-## Source Notes
-
-**Primary Sources:**
-- **NPS.gov (National Register of Historic Places):** Detailed architectural history of Nashua Manufacturing Company Historic District, including mill buildings, power canal, and production process. [NPS.gov]
-- **Cornell University Library (Kheel Center):** Guide to Nashua Manufacturing Company Records (1823-1824), including act of incorporation and water power rights. [Cornell.edu]
-- **1911 Britannica:** Early industrial development and railroad expansion documentation. [1911 Britannica]
-- **SNAC (Social Networks and Archival Context):** Nashua Manufacturing Company acquisition dates (Jackson Company 1916, Indian Head Mills 1924, Tremont and Suffolk Mills 1926). [SNAC]
-
-**Secondary Sources:**
-- **Britannica:** Foundational timeline and political history. [Britannica]
-- **Wikipedia:** Comprehensive industrial and demographic history. [Wikipedia]
-- **Rootsweb:** Detailed account of 1673 charter, division, and naming. [Rootsweb]
-- **Nashua.gov (city website):** Official history and Millyard district information. [Nashua.gov]
-- **City-data.com:** Industrial development and worker demographics. [City-data.com]
-- **UnionLeader.com:** Post-industrial rebirth and foundation efforts. [UnionLeader.com]
-- **New Hampshire Historical Society:** Visual collections and photographic documentation. [NHHS]
-- **Leventhal Map Center (Boston):** Public domain bird's-eye views and historical maps. [Leventhal]
-- **N Magazine (Greater Nashua 2024):** Timeline and historical society founding date. [N Magazine]
-
-**Archival Collections:**
-- **Nashua Historical Society:** Frank M. Ingalls Collection, 1938 hurricane photos, stereograph collection.
-- **New Hampshire Historical Society:** 1893-1997 photographic collection, stereographs.
-- **Library of Congress:** Detroit Publishing Co. collection (1903-1908).
-- **Digital Commonwealth (Massachusetts):** Fire insurance maps and railroad survey maps.
-- **Norman B. Leventhal Map Center:** Bird's-eye views (1875, 1883) and historical maps.
-
----
-
-## Fact Check Notes
-
-1. **Nashua Manufacturing Company incorporation date:** June 18, 1823 (Cornell Kheel Center records). [Cornell.edu]
-2. **Dunstable to Nashua name change:** December 31, 1836, effective January 1, 1837 (Wikipedia, Rootsweb). [Wikipedia, Rootsweb]
-3. **Town split:** 1842-1853, 11 years (Britannica, Wikipedia). [Britannica, Wikipedia]
-4. **Daniel Abbott:** "Father of Nashua," incorporated Nashua Manufacturing Company on June 18, 1823. [Wikipedia, NPS.gov]
-5. **James F. Baldwin:** Chief engineer for mills and power canal. NPS.gov. [NPS.gov]
-6. **Asher Benjamin:** Designed churches, not mills. NPS.gov. [NPS.gov]
-7. **Power canal:** Three-mile-long, granite-faced, dug and in operation by 1830 (NPS.gov). [NPS.gov]
-8. **1916:** Jackson Company acquired (not 1824). SNAC, Wikipedia. [SNAC, Wikipedia]
-9. **1924:** Indian Head Mills acquired. SNAC. [SNAC]
-10. **1926:** Tremont and Suffolk Mills acquired. SNAC. [SNAC]
-11. **1945:** Textron acquired Nashua Manufacturing Company (Nashua.gov). [Nashua.gov]
-12. **1947-1948:** Mills closed, 2,000 workers unemployed (Wikipedia, Nashua.gov). [Wikipedia, Nashua.gov]
-13. **1941:** Nashua New Hampshire Foundation established and office built (NPS.gov). [NPS.gov]
-14. **1870:** Nashua Historical Society founded (N Magazine). [N Magazine]
-15. **1987:** Clocktower Place renovated into apartments (ApartmentHomeLiving.com). [ApartmentHomeLiving.com]
-16. **1851:** Indian Head National Bank established (FDIC records). [FDIC]
-17. **1893-1997:** NHHS photographic collection date range (NHHS catalog). [NHHS]
-
----
-
-**Final revision:** Article has passed two rounds of fact-checking. **Reliability rating: HIGH (8.5-9/10).** Ready for publication.

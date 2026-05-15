@@ -225,8 +225,7 @@ The most important AI competition in the world right now is not between the Unit
 
 ---
 
-## Source Notes
-
+## Sources
 All sources referenced in this article are drawn from publicly available primary and secondary materials, fetched and verified in the course of reporting. Key source documents include:
 
 - **OpenAI Funding Announcements**: [openai.com/index/accelerating-the-next-phase-ai](https://openai.com/index/accelerating-the-next-phase-ai/) and [openai.com/index/scaling-ai-for-everyone](https://openai.com/index/scaling-ai-for-everyone/)
@@ -265,3 +264,5 @@ Chart image files referenced relative to this article:
 - `/api/blog/images/chart_talent_geography.png`
 - `/api/blog/images/chart_sovereign_ai_investment.png`
 - `/api/blog/images/chart_us_china_scorecard.png`
+
+

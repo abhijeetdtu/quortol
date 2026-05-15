@@ -240,20 +240,7 @@ The destruction had paradoxical effects on preservation. Land owned by wealthy f
 - Records of earlier keeper families incomplete
 - Post-1930 keeper records may be incomplete
 
-## 9. NARRATIVE ANGLE
-
-This story is framed through a literary-journalistic lens that emphasizes the convergence of multiple historical traditions rather than a linear progression of events. The narrative approach centers on the idea of summer as a season of convergence—where Indigenous seasonal knowledge, Gilded Age preservation consciousness, and institutional conservation intersect to create contemporary ecological character.
-
-The literary framing draws on the sensory experience of summer in Maine while embedding historical facts within that experience. This approach allows the reader to understand how physical landscape and ecological patterns emerged from historical processes. The narrative emphasizes continuity rather than rupture, showing how contemporary summer experience represents the accumulation of multiple historical layers.
-
-This framing respects Indigenous histories by centering Wabanaki seasonal knowledge as foundational rather than peripheral. The narrative treats Wabanaki ecological understanding as sophisticated and systematic, drawing on US EPA Wabanaki Exposure Scenario documentation [US EPA Wabanaki Exposure Scenario]. This approach avoids the common error of treating Indigenous knowledge as primitive or unsystematic.
-
-The narrative also acknowledges the paradoxes of Gilded Age transformation—how wealthy land ownership both threatened and protected landscapes. This nuanced approach draws on National Park Service - History documentation of this period [National Park Service - History]. The narrative does not romanticize wealthy landowners but recognizes their complex role in conservation history.
-
-The literary approach allows for integration of multiple sources while maintaining narrative coherence. Facts from National Park Service archives, Maine Natural Areas Program, and other sources are woven into the narrative rather than presented as separate documentation. This approach creates a more engaging reading experience while maintaining accuracy.
-
-## 10. VISUALS FOUND
-
+## 9. VISUALS FOUND
 ### Historical Photographs Available
 
 **Kilburn Brothers Collection:**
@@ -286,14 +273,7 @@ The literary approach allows for integration of multiple sources while maintaini
 - Early colonial documentation of seasonal activities
 - Resource use visual records
 
-### Photograph Availability Notes
-
-Many photographs are accessible through Maine Memory Network and National Park Service archives. The Kilburn Brothers collection provides extensive documentation of coastal communities during the 1880s. Bar Harbor Historical Society maintains photographs from the Gilded Age period showing estate development and infrastructure.
-
-National Park Service archives contain botanical and biological survey photographs that document species presence and landscape conditions. The 1947 fire photographs provide visual evidence of destruction and subsequent recovery.
-
-## 11. PRACTICAL VISITOR GUIDANCE
-
+## 10. PRACTICAL VISITOR GUIDANCE
 ### How to Experience Historical Summer Heritage
 
 **Botanical Exploration:**
@@ -348,3 +328,4 @@ The physical landscape bears witness to this layered history. Native plant speci
 The convergence of these traditions reveals how a place can maintain ecological integrity while accommodating human activity across centuries. Wabanaki seasonal patterns inform contemporary understanding [US EPA Wabanaki Exposure Scenario]. Gilded Age wealthy ownership protected landscapes from development [National Park Service - History]. Institutional conservation created frameworks for public use and protection [National Park Service - Founding].
 
 Summer in Maine represents this convergence made visible—the seasons, the plants, the birds, the lighthouses, and the preserved landscapes that continue to bear witness to multiple histories. The serenity of the season emerges not from absence of human activity but from successful accommodation of diverse traditions across time. The coastal landscape, shaped by Wabanaki knowledge, Gilded Age preservation, and institutional conservation, continues to support ecological diversity and cultural understanding. This layered history, documented through botanical surveys, bird lists, lighthouse keeper records, and Indigenous seasonal knowledge, creates a summer experience that is richer and more complex than simple recreation. The convergence is visible in the native plants, the preserved estates, the protected lands, and the continued seasonal rhythms that have shaped this extraordinary coastline across millennia of adaptation and change.
+
