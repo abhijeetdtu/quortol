@@ -6,7 +6,7 @@
 
 Here, then, is the paradox at the heart of the streaming age — and it is a paradox only if one expects rational behavior from a species that has never shown much aptitude for it. Netflix's Standard ad-free plan has risen from $7.99 a month in 2011 to $19.99 in March 2026 — a 150 percent increase. The Premium tier now costs $26.99. Even the ad-supported "budget" option is $8.99. [Keeping Up With Inflation Netflix Index](https://keepingupwithinflation.com/tracker/netflix/) Yet the company adds subscribers, generates record profits, and faces no serious existential threat from customer discontent. The question is not whether people are angry. It is why their anger has all the practical force of a staredown with the weather.
 
-![Netflix Pricing Arc](../../figures/netflix_pricing_arc.png)
+![Netflix Pricing Arc](/api/blog/images/netflix_pricing_arc.png)
 *The Standard Netflix plan has more than doubled since 2011, rising from $7.99 to $19.99 — a 150 percent increase. (Source: Netflix pricing history, PriceTimeline, Keeping Up With Inflation)*
 
 ## I. The Engine
@@ -21,7 +21,7 @@ The logic is brutal but internally consistent, like most things that are designe
 
 In Netflix's Q1 2026 earnings call, co-CEO Ted Sarandos put it plainly: "Looking ahead to '26 we're focused on improving the core business by increasing the variety and quality of our series and films." [CNBC / Netflix Q4 2025 Earnings](https://www.cnbc.com/2026/01/20/netflix-nflx-earnings-q4-2025.html) What goes unspoken is that "variety and quality" carry a price tag, and that price tag — like all bills in the modern economy — finds its way to the person least able to refuse it.
 
-![Content Spend Comparison](../../figures/content_spend_comparison.png)
+![Content Spend Comparison](/api/blog/images/content_spend_comparison.png)
 *Major studio content spending, 2024–2026. Note: definitions vary — Netflix = cash content spend; Amazon = video + music combined; Disney = total programming & production costs including sports rights and linear. (Source: Netflix shareholder letters, Amazon 10-K, Disney annual reports)*
 
 ## II. The Addiction
@@ -60,7 +60,7 @@ Still, the scale gap is cavernous. Physical media generates roughly $1 billion i
 
 Industry analysts have explicitly linked the piracy resurgence to streaming price increases and content fragmentation. This should surprise exactly no one. A single pirate aggregator offers one search bar, one interface, and no subscription fees — the unified experience that streaming has fragmented across a dozen paywalls, each demanding its own monthly tribute. As one 2026 industry survey noted, the biggest attraction of pirate services is "the convenience of finding all of the content you want in one place" (73 percent of respondents). [decodeTV 2026 Industry Survey via Piracy Monitor](https://piracymonitor.org/2026-industry-survey-operators-split-on-value-of-anti-piracy-consumers-dismissive-of-threats/) What the industry calls piracy, the consumer calls a better user experience.
 
-![Piracy Trends](../../figures/piracy_trends.png)
+![Piracy Trends](/api/blog/images/piracy_trends.png)
 *Global piracy site visits rose sharply from 182 billion in 2021 to a peak of 229 billion in 2023, before declining to 216 billion in 2024. (Source: MUSO Piracy by Industry reports; Piracy Monitor)*
 
 ## IV. The Future: Re-bundling
@@ -77,7 +77,7 @@ Advertising will play an increasingly central role. The global AVOD market is pr
 
 Netflix itself is at the center of this transformation. Its attempted $27.75-per-share acquisition of Warner Bros. Discovery's studio and streaming assets — a deal currently under antitrust review by the US Department of Justice — would give it one of the richest film and TV libraries in the world, along with HBO, CNN, and a vast production infrastructure. If completed, it would create a media conglomerate that rivals the old studio system, which is to say it would succeed by acquiring what it could not build and dominating what it could not join. [Netflix SEC 8-K, Jan 20 2026](https://www.sec.gov/Archives/edgar/data/1065280/000106528026000033/nflx-20260120.htm)
 
-![Bundling Growth](../../figures/bundling_growth.png)
+![Bundling Growth](/api/blog/images/bundling_growth.png)
 *After years of fragmentation, streaming is re-bundling. Bundle subscribers grew 40% in 2025 and now represent 27% of all streaming subscriptions. (Source: Antenna State of Subscriptions Q1 2026; Parks Associates)*
 
 ## V. The Question Nobody Wants to Answer
@@ -94,7 +94,7 @@ Netflix's co-founder Reed Hastings, who is set to retire in 2026, once said the 
 
 The real question — the one that investors, analysts, and consumers all circle but never quite answer — is whether there is any price at which the habit breaks. The data so far suggests: not yet. But the margin for error is shrinking. Every price increase adds a few more rotators, a few more pirates, a few more people rediscovering the pleasure of a shelf full of Blu-rays — that small, tactile rebellion against a world in which nothing is permanent and everything costs a monthly fee. The streaming industry has built a magnificent machine. The question is how hard it can run before the parts start to wear, and whether, in the end, we will notice the difference between a machine that has broken and a machine we have simply stopped caring about.
 
-![Netflix Financial Profile](../../figures/netflix_financial_profile.png)
+![Netflix Financial Profile](/api/blog/images/netflix_financial_profile.png)
 *Netflix's financial profile in early 2026: a cash-generating machine with pricing power that most media companies can only dream of. (Source: Netflix Q1 2026 Shareholder Letter, SEC Filings, Antenna)*
 
 ---

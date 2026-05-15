@@ -14,7 +14,7 @@ But there is a data point that keeps surfacing, like a fault line running beneat
 
 That is the contradiction at the heart of everything. The spending is oceanic. The returns are narrowing. And the question no one can quite answer is whether $700 billion a year purchases a durable advantage — or merely a very expensive head start.
 
-![Hyperscaler CapEx Arms Race](../../figures/chart_hyperscaler_capex.png)
+![Hyperscaler CapEx Arms Race](/api/blog/images/chart_hyperscaler_capex.png)
 
 ---
 
@@ -83,7 +83,7 @@ The output of all this spending — the reason any of it exists — can be measu
 
 *Sources: [BenchLM.ai, March 2026](https://benchlm.ai/blog/posts/state-of-llm-benchmarks-2026); [Awesome Agents, April 2026](https://awesomeagents.ai/leaderboards/overall-llm-rankings-apr-2026/); [Cost Efficiency Leaderboard, May 2026](https://awesomeagents.ai/leaderboards/cost-efficiency-leaderboard/)*
 
-![Frontier AI Models: Performance vs. Inference Cost](../../figures/chart_model_performance_cost.png)
+![Frontier AI Models: Performance vs. Inference Cost](/api/blog/images/chart_model_performance_cost.png)
 
 Two things stand out. First, the proprietary frontier is no longer a single-player game. Claude Mythos Preview leads the overall table, but Gemini 3.1 Pro leads on reasoning (94.3% on GPQA Diamond) at one-tenth the price of Opus. GPT-5.4 Pro leads on mathematical reasoning. Grok 4.1 offers the fastest inference speeds. The cluster at the top has tightened to the point where use-case, not raw capability, decides the winner. [Attainment Labs, Feb 2026](https://www.attainmentlabs.com/frontier-ai-report-feb-2026)
 
@@ -108,7 +108,7 @@ If model performance is tightening, compute remains stubbornly, starkly asymmetr
 
 The United States alone accounted for 77% of global AI infrastructure spending in Q4 2025 — $69.2 billion out of $89.9 billion worldwide. [IDC](https://www.idc.com/resource-center/blog/ai-infrastructure-spending-caps-historic-year-at-90-billion-in-q4-2025-2029-spending-to-eclipse-1-trillion/) China, the second-largest market, spent $8.4 billion — a figure that actually declined 8.1% year-over-year as US export controls continued to bite. The Middle East & Africa region grew by more than 500% year-over-year, reaching $1.8 billion in Q4 2025 alone, driven by Gulf sovereign AI initiatives.
 
-![Global AI Infrastructure Spend by Region (Q4 2025)](../../figures/chart_ai_infra_by_region.png)
+![Global AI Infrastructure Spend by Region (Q4 2025)](/api/blog/images/chart_ai_infra_by_region.png)
 
 But the public numbers tell only part of the story. China operates what analysts call a vast "dark compute" pool — an estimated 230 exaflops of national capacity across more than 8 million data center racks, a figure 1,000 times larger than the 0.28 exaflops China reports to the Top500 list. [Sanchez GeoCoded, 2025](https://www.sanchez.vc/geocoded-publications/00l845z1utd55wu0uvzedre1rf923c) The gap in reported compute is enormous. The gap in effective compute — constrained by efficiency differences between Nvidia Blackwell and Huawei Ascend chips — is less clear. But the DeepSeek V3 and V4 models demonstrated that frontier-class performance can be achieved with substantially less compute than US labs use, through architectural innovations in mixture-of-experts, efficient attention mechanisms, and synthetic data. [Abhishek Gautam, China AI Export Controls, March 2026](https://www.abhs.in/blog/china-ai-manhattan-project-export-control-gaps-chip-supply-2026)
 
@@ -124,7 +124,7 @@ The number of AI researchers and developers moving to the United States has drop
 
 More critically, China is retaining its talent. In 2019, roughly a third of Chinese-educated NeurIPS authors remained in China. By 2025, 68% stayed. None of the core contributors to DeepSeek R1 — the model that stunned Silicon Valley in January 2025 — held degrees from outside China. [The Economist, 2026](https://www.economist.com/interactive/science-and-technology/2026/03/25/china-is-winning-the-ai-talent-race)
 
-![The Great AI Talent Rebalancing](../../figures/chart_talent_geography.png)
+![The Great AI Talent Rebalancing](/api/blog/images/chart_talent_geography.png)
 
 Using NeurIPS authorship as a proxy for elite AI research, the distribution looks like this:
 
@@ -157,7 +157,7 @@ The private sector dominates the headlines, but a parallel story is unfolding at
 
 *Sources: [Sovereign AI Guide, DataToBrief](https://www.datatobrief.com/blog/sovereign-ai-geopolitical-investing-2026); [CNAS Sovereign AI Index](https://interactives.cnas.org/reports/sovereign-ai-index/); [Nextomoro, China State Stack](https://nextomoro.com/sovereign-ai/); [EU InvestAI Press Release](https://ec.europa.eu/commission/presscorner/api/files/document/print/en/ip_25_467/IP_25_467_EN.pdf)*
 
-![Sovereign AI Investment Commitments by Country](../../figures/chart_sovereign_ai_investment.png)
+![Sovereign AI Investment Commitments by Country](/api/blog/images/chart_sovereign_ai_investment.png)
 
 The CNAS Sovereign AI Index finds that the United States and China together control 90% of the computing power needed to develop frontier AI, and own all 50 of the top-ranked AI foundation models. [CNAS Sovereign AI Index](https://interactives.cnas.org/reports/sovereign-ai-index/) Yet roughly 70% of tracked sovereign AI projects globally involve at least one foreign partner, and four-fifths of these involve a US company. NVIDIA alone supplies GPUs for 52% of all tracked infrastructure projects. [CNAS](https://interactives.cnas.org/reports/sovereign-ai-index/)
 
@@ -177,7 +177,7 @@ Marginal efficiency of capital — the improvement in frontier model performance
 2. **Open-weight leverage**: Chinese labs can build on open-weight releases (including DeepSeek's own MIT-licensed models), compressing the iterative cycle.
 3. **Talent abundance**: China now produces more AI researchers, retains a higher share of them, and fields a younger, larger STEM pipeline. The US advantage in this domain is almost entirely imported. [MacroPolo Global AI Talent Tracker 3.0](https://archivemacropolo.org/interactive/digital-projects/the-global-ai-talent-tracker)
 
-![US vs China: The Asymmetric AI Competition](../../figures/chart_us_china_scorecard.png)
+![US vs China: The Asymmetric AI Competition](/api/blog/images/chart_us_china_scorecard.png)
 
 ### The Compute Constraint Reversal
 
@@ -259,9 +259,9 @@ All financial figures in USD unless otherwise specified. All data as of publicly
 
 Chart image files referenced relative to this article:
 
-- `figures/chart_hyperscaler_capex.png`
-- `figures/chart_model_performance_cost.png`
-- `figures/chart_ai_infra_by_region.png`
-- `figures/chart_talent_geography.png`
-- `figures/chart_sovereign_ai_investment.png`
-- `figures/chart_us_china_scorecard.png`
+- `/api/blog/images/chart_hyperscaler_capex.png`
+- `/api/blog/images/chart_model_performance_cost.png`
+- `/api/blog/images/chart_ai_infra_by_region.png`
+- `/api/blog/images/chart_talent_geography.png`
+- `/api/blog/images/chart_sovereign_ai_investment.png`
+- `/api/blog/images/chart_us_china_scorecard.png`
