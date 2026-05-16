@@ -14,7 +14,7 @@ from ..theme import BRICK_EMBER, DEEP_TEAL, PRUSSIAN_BLUE, apply_chart_theme
 from ...src.models.team_profile import TeamProfile
 from ...src.services.data_loader import DataLoadError, get_available_teams, load_ipl_data
 from ...src.services.feature_store import WeightedFeatureStore
-from ...src.services.simulation_engine import ChaseStateSnapshot, PreparedSimulationContext, SimulationEngine
+from ...src.services.simulation_engine import PreparedSimulationContext, SimulationEngine
 
 logger = logging.getLogger(__name__)
 
@@ -634,7 +634,6 @@ def _simulate_match_payload(
     last_n_matches: int,
     stadium: str | None,
     prepared_context: PreparedSimulationContext | None = None,
-    collect_chase_snapshots: bool = False,
 ):
     match = engine.simulate_match(
         team_a=team_a,
@@ -650,7 +649,6 @@ def _simulate_match_payload(
         realism_version="enhanced_v1",
         stadium=stadium,
         prepared_context=prepared_context,
-        collect_chase_snapshots=collect_chase_snapshots,
     )
     payload = match.to_dict()
     low_confidence = team_a_profile.total_matches < 3 or team_b_profile.total_matches < 3
@@ -826,143 +824,45 @@ def _extract_wicket_fall_points(sim_payload: dict, team_a: str, team_b: str):
     return points
 
 
-def _extract_chase_snapshots(sim_payload: dict, run_id: int):
-    metadata = sim_payload.get("metadata", {}) if sim_payload else {}
-    counterfactual = metadata.get("counterfactual", {}) if isinstance(metadata, dict) else {}
-    snapshots = counterfactual.get("chase_snapshots", []) if isinstance(counterfactual, dict) else []
-    rows = []
-    for raw in snapshots:
-        if not isinstance(raw, dict):
-            continue
-        row = dict(raw)
-        row["run_id"] = int(run_id)
-        rows.append(row)
-    return rows
+def _extract_chase_state_points(sim_payload: dict, run_id: int):
+    innings = sim_payload.get("innings", [])
+    if len(innings) < 2:
+        return []
 
+    innings_a = innings[0]
+    innings_b = innings[1]
+    target = int(innings_a.get("total_runs", 0)) + 1
+    team_b_runs = int(innings_b.get("total_runs", 0))
+    team_b_win_flag = 1 if team_b_runs >= target else 0
 
-def _state_cluster_key(snapshot: dict):
-    legal_ball = int(snapshot.get("legal_ball", snapshot.get("ball", 0)))
-    runs_needed = max(0, int(snapshot.get("runs_needed", 0)))
-    wickets_in_hand = max(0, int(snapshot.get("wickets_in_hand", 0)))
-    balls_in_over = max(0, int(snapshot.get("balls_in_over", 0)))
-    # "Near-identical" clustering: small runs-needed bucket + wickets + within-over position.
-    return (
-        legal_ball,
-        runs_needed // 2,
-        wickets_in_hand,
-        balls_in_over,
-    )
-
-
-def _stable_state_hash(snapshot: dict) -> int:
-    parts = [
-        str(int(snapshot.get("legal_ball", snapshot.get("ball", 0)))),
-        str(int(snapshot.get("score", 0))),
-        str(int(snapshot.get("wickets_lost", 0))),
-        str(int(snapshot.get("runs_needed", 0))),
-        str(int(snapshot.get("balls_left", 0))),
-        str(int(snapshot.get("wickets_in_hand", 0))),
-        str(int(snapshot.get("striker_idx", 0))),
-        str(int(snapshot.get("non_striker_idx", 1))),
-        str(int(snapshot.get("next_batter_idx", 2))),
-        str(int(snapshot.get("balls_in_over", 0))),
-        str(snapshot.get("current_bowler", "")),
-    ]
-    text = "|".join(parts)
-    value = 0
-    for ch in text:
-        value = (value * 131 + ord(ch)) % 2_147_483_647
-    return int(value)
-
-
-def _select_counterfactual_snapshots(chase_snapshots: list[dict], max_states_per_ball: int, max_total_states: int):
-    grouped: dict[int, dict[tuple, dict]] = {}
-    for snapshot in chase_snapshots:
-        legal_ball = int(snapshot.get("legal_ball", snapshot.get("ball", 0)))
-        if legal_ball < 1:
-            continue
-        cluster_key = _state_cluster_key(snapshot)
-        per_ball = grouped.setdefault(legal_ball, {})
-        if cluster_key in per_ball:
-            continue
-        per_ball[cluster_key] = snapshot
-
-    total_unique_states = sum(len(per_ball) for per_ball in grouped.values())
-    if total_unique_states == 0:
-        return [], {"total_unique_states": 0, "selected_states": 0, "truncated_states": 0}
-
-    selected: list[dict] = []
-    # First pass: ensure breadth across legal balls, prioritizing later balls.
-    for legal_ball in sorted(grouped.keys(), reverse=True):
-        states = list(grouped[legal_ball].values())
-        states.sort(key=lambda row: (int(row.get("run_id", 0)), _stable_state_hash(row)))
-        if not states:
-            continue
-        selected.append(states[0])
-        if len(selected) >= max_total_states:
-            break
-
-    # Second pass: fill remaining budget up to per-ball cap (still late-ball first).
-    if len(selected) < max_total_states:
-        selected_keys = {(_state_cluster_key(row), int(row.get("run_id", 0))) for row in selected}
-        for legal_ball in sorted(grouped.keys(), reverse=True):
-            states = list(grouped[legal_ball].values())
-            states.sort(key=lambda row: (int(row.get("run_id", 0)), _stable_state_hash(row)))
-            added_for_ball = 1 if states else 0
-            for row in states[1:]:
-                if added_for_ball >= max_states_per_ball:
-                    break
-                state_key = (_state_cluster_key(row), int(row.get("run_id", 0)))
-                if state_key in selected_keys:
-                    continue
-                selected.append(row)
-                selected_keys.add(state_key)
-                added_for_ball += 1
-                if len(selected) >= max_total_states:
-                    break
-            if len(selected) >= max_total_states:
-                break
-
-    truncated = max(0, total_unique_states - len(selected))
-    return selected, {
-        "total_unique_states": total_unique_states,
-        "selected_states": len(selected),
-        "truncated_states": truncated,
-    }
-
-
-def _estimate_counterfactual_winprob_points(
-    *,
-    chase_snapshots: list[dict],
-    engine: SimulationEngine,
-    prepared_context: PreparedSimulationContext,
-    base_seed: int,
-    rollouts_per_state: int,
-    max_states_per_ball: int,
-    max_total_states: int,
-):
-    selected_snapshots, selection_meta = _select_counterfactual_snapshots(
-        chase_snapshots=chase_snapshots,
-        max_states_per_ball=max_states_per_ball,
-        max_total_states=max_total_states,
-    )
     points = []
-    for row in selected_snapshots:
-        legal_ball = int(row.get("legal_ball", row.get("ball", 0)))
+    for ball in innings_b.get("balls", []):
+        if not bool(ball.get("is_legal_delivery", True)):
+            continue
+        legal_ball = int(ball.get("legal_ball_number", 0))
         if legal_ball < 1:
             continue
-        run_id = int(row.get("run_id", 0))
-        state_hash = _stable_state_hash(row)
-        seed = int(base_seed) + (run_id * 1009) + (state_hash % 1_000_000)
-        snapshot = ChaseStateSnapshot.from_dict(row)
-        win_prob = engine.estimate_chase_win_probability_from_snapshot(
-            snapshot,
-            context=prepared_context,
-            rollouts=rollouts_per_state,
-            random_seed=seed,
+        balls_left = max(0, 120 - legal_ball)
+        points.append(
+            {
+                "run_id": int(run_id),
+                "score": int(ball.get("cumulative_score", 0)),
+                "wickets_lost": int(ball.get("cumulative_wickets", 0)),
+                "balls_left": int(balls_left),
+                "target": target,
+                "team_b_win": team_b_win_flag,
+            }
         )
-        points.append({"ball": legal_ball, "win_prob": float(win_prob)})
-    return points, selection_meta
+    return points
+
+
+def _filter_chase_states_by_target_min(chase_state_points: list[dict], target_input):
+    try:
+        min_target = int(target_input if target_input is not None else 180)
+    except (TypeError, ValueError):
+        min_target = 180
+    filtered = [point for point in chase_state_points if int(point.get("target", 0)) >= int(min_target)]
+    return filtered, int(min_target)
 
 
 def _multi_run_density_figure(rows: list[dict], team_a: str, team_b: str):
@@ -1117,89 +1017,130 @@ def _multi_run_cumulative_box_figure(cumulative_points: list[dict], team_a: str,
     return fig
 
 
-def _multi_run_chase_win_prob_figure(chase_points: list[dict], team_b: str, rollouts_per_state: int, truncated_states: int):
-    if not chase_points:
-        return _empty_figure("Chase Win Probability by Ball", "No counterfactual state points available across simulations.")
+def _multi_run_empirical_win_prob_by_score_figure(rows: list[dict], team_a: str, team_b: str):
+    if not rows:
+        return _empty_figure("Win Probability by First-Innings Score", "No complete simulations available.")
 
-    grouped: dict[int, list[float]] = {}
-    for point in chase_points:
-        legal_ball = int(point.get("ball", 0))
-        win_prob = float(point.get("win_prob", 0.0))
-        if legal_ball < 1:
+    grouped: dict[int, list[int]] = {}
+    for row in rows:
+        if row.get("team_a_runs") is None:
             continue
-        grouped.setdefault(legal_ball, []).append(win_prob)
+        score = int(row.get("team_a_runs", 0))
+        team_b_win = 1 if str(row.get("winner", "")) == str(team_b) else 0
+        if score < 0:
+            continue
+        grouped.setdefault(score, []).append(1 if team_b_win else 0)
 
     if not grouped:
-        return _empty_figure("Chase Win Probability by Ball", "No legal-ball counterfactual state points available.")
+        return _empty_figure("Win Probability by First-Innings Score", "No valid first-innings scores available.")
 
-    legal_balls = sorted(grouped.keys())
+    score_values = sorted(grouped.keys())
     means = []
     ci_lowers = []
     ci_uppers = []
     sample_sizes = []
-    for legal_ball in legal_balls:
-        samples = grouped[legal_ball]
+    win_counts = []
+    for score in score_values:
+        samples = grouped[score]
         n = len(samples)
+        wins = int(sum(samples))
         sample_sizes.append(n)
-        mean_prob = sum(samples) / n
+        win_counts.append(wins)
+        mean_prob = float(wins) / float(n)
         means.append(mean_prob)
         if n > 1:
-            variance = sum((value - mean_prob) ** 2 for value in samples) / (n - 1)
-            sem = math.sqrt(variance / n)
+            sem = math.sqrt((mean_prob * max(0.0, 1.0 - mean_prob)) / n)
             ci_half_width = 1.96 * sem
         else:
             ci_half_width = 0.0
         ci_lowers.append(max(0.0, mean_prob - ci_half_width))
         ci_uppers.append(min(1.0, mean_prob + ci_half_width))
 
+    bandwidth = float(DASHBOARD_CONFIG.get("score_winprob_smoothing_bandwidth", 8.0))
+    bandwidth = max(1.0, bandwidth)
+    smoothed_means = []
+    for x in score_values:
+        weighted_sum = 0.0
+        total_weight = 0.0
+        for idx, xj in enumerate(score_values):
+            distance = float(x - xj)
+            kernel_weight = math.exp(-0.5 * (distance / bandwidth) ** 2)
+            weight = kernel_weight * float(sample_sizes[idx])
+            weighted_sum += weight * float(means[idx])
+            total_weight += weight
+        if total_weight > 0.0:
+            smoothed_means.append(max(0.0, min(1.0, weighted_sum / total_weight)))
+        else:
+            smoothed_means.append(float(means[score_values.index(x)]))
+
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
-            x=legal_balls,
+            x=score_values,
             y=ci_lowers,
             mode="lines",
-            line={"color": DEEP_TEAL, "width": 1, "dash": "dot"},
+            line={"color": PRUSSIAN_BLUE, "width": 1, "dash": "dot"},
             name="95% CI",
-            legendgroup="chase-win-prob",
+            legendgroup="score-win-prob",
             showlegend=True,
             hovertemplate=(
                 f"<b>{team_b}</b><br>"
-                "Ball %{x}<br>"
+                f"{team_a} final score %{{x}}<br>"
                 "Lower 95% CI %{y:.3f}<extra></extra>"
             ),
         )
     )
     fig.add_trace(
         go.Scatter(
-            x=legal_balls,
+            x=score_values,
             y=means,
-            mode="lines",
-            line={"color": BRICK_EMBER, "width": 2.5},
-            name=f"{_team_short_code(team_b)} Win Prob (Mean)",
-            legendgroup="chase-win-prob",
+            mode="markers",
+            marker={"size": 6, "color": BRICK_EMBER, "opacity": 0.45},
+            name="Empirical Points",
+            legendgroup="score-win-prob",
             showlegend=True,
-            customdata=sample_sizes,
+            customdata=[[sample_sizes[idx], win_counts[idx]] for idx in range(len(score_values))],
             hovertemplate=(
                 f"<b>{team_b}</b><br>"
-                "Ball %{x}<br>"
-                "Counterfactual Win Prob %{y:.3f}<br>"
-                "States %{customdata}<br>"
-                f"Rollouts/state {int(rollouts_per_state)}<extra></extra>"
+                f"{team_a} final score %{{x}}<br>"
+                "Empirical Win Prob %{y:.3f}<br>"
+                "Samples %{customdata[0]}<br>"
+                "Wins %{customdata[1]}<extra></extra>"
             ),
         )
     )
     fig.add_trace(
         go.Scatter(
-            x=legal_balls,
+            x=score_values,
+            y=smoothed_means,
+            mode="lines+markers",
+            line={"color": BRICK_EMBER, "width": 3.0},
+            marker={"size": 6},
+            name=f"Smoothed P({_team_short_code(team_b)} Win)",
+            legendgroup="score-win-prob",
+            showlegend=True,
+            customdata=[[sample_sizes[idx], win_counts[idx]] for idx in range(len(score_values))],
+            hovertemplate=(
+                f"<b>{team_b}</b><br>"
+                f"{team_a} final score %{{x}}<br>"
+                "Smoothed Win Prob %{y:.3f}<br>"
+                "Samples %{customdata[0]}<br>"
+                "Wins %{customdata[1]}<extra></extra>"
+            ),
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=score_values,
             y=ci_uppers,
             mode="lines",
-            line={"color": DEEP_TEAL, "width": 1, "dash": "dot"},
+            line={"color": PRUSSIAN_BLUE, "width": 1, "dash": "dot"},
             name="95% CI",
-            legendgroup="chase-win-prob",
+            legendgroup="score-win-prob",
             showlegend=False,
             hovertemplate=(
                 f"<b>{team_b}</b><br>"
-                "Ball %{x}<br>"
+                f"{team_a} final score %{{x}}<br>"
                 "Upper 95% CI %{y:.3f}<extra></extra>"
             ),
         )
@@ -1207,24 +1148,308 @@ def _multi_run_chase_win_prob_figure(chase_points: list[dict], team_b: str, roll
 
     apply_chart_theme(
         fig,
-        title=f"{_team_short_code(team_b)} Counterfactual From-State Win Probability by Legal Ball",
-        xaxis_title="Legal Ball Number (Innings 2)",
+        title=f"{_team_short_code(team_b)} Win Probability by {_team_short_code(team_a)} Final Score",
+        xaxis_title=f"{team_a} Final Score (Innings 1)",
         yaxis_title=f"P({_team_short_code(team_b)} Win)",
         height=380,
     )
     fig.update_yaxes(range=[0.0, 1.0], tickformat=".0%")
-    fig.add_hline(y=0.5, line_width=1.5, line_dash="dash", line_color=PRUSSIAN_BLUE)
-    if truncated_states > 0:
-        fig.add_annotation(
-            xref="paper",
-            yref="paper",
-            x=0.99,
-            y=1.12,
-            showarrow=False,
-            align="right",
-            text=f"State cap applied: {int(truncated_states)} states skipped",
-            font={"size": 12, "color": PRUSSIAN_BLUE},
+    fig.add_hline(y=0.5, line_width=1.5, line_dash="dash", line_color=DEEP_TEAL)
+    return fig
+
+
+def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict], team_b: str, target_input):
+    if not chase_state_points:
+        return _empty_figure(
+            "Decision Boundary Map by Wickets",
+            "Run N simulations to view P(team win | current score, wickets, target).",
         )
+
+    filtered_points, min_target = _filter_chase_states_by_target_min(chase_state_points, target_input)
+    if not filtered_points:
+        return _empty_figure(
+            "Decision Boundary Map by Wickets",
+            f"No states found for target >= {int(min_target)}. Try a lower threshold.",
+        )
+
+    # Aggregate to binned grid cells so the decision boundary is stable.
+    score_bin_size = 5
+    target_bin_size = 5
+    cell_stats: dict[tuple[int, int, int], dict[str, int]] = {}
+    available_targets = set()
+    for point in filtered_points:
+        score = int(point.get("score", 0))
+        target = int(point.get("target", 0))
+        wickets = int(point.get("wickets_lost", 0))
+        win = int(point.get("team_b_win", 0))
+        binned_score = int(score // score_bin_size) * score_bin_size
+        binned_target = int(target // target_bin_size) * target_bin_size
+        available_targets.add(binned_target)
+        key = (binned_target, wickets, binned_score)
+        if key not in cell_stats:
+            cell_stats[key] = {"wins": 0, "samples": 0}
+        cell_stats[key]["wins"] += (1 if win else 0)
+        cell_stats[key]["samples"] += 1
+
+    if not cell_stats or not available_targets:
+        return _empty_figure(
+            "Decision Boundary Map by Wickets",
+            "No valid score/wicket/target cells available.",
+        )
+
+    selected_target_bins = sorted([int(t) for t in available_targets if int(t) >= int(min_target)])
+    if not selected_target_bins:
+        return _empty_figure(
+            "Decision Boundary Map by Wickets",
+            f"No states found for target >= {int(min_target)}. Try a lower threshold.",
+        )
+
+    # Collapse all qualifying targets into one map at (wickets, score).
+    sliced_stats: dict[tuple[int, int], dict[str, int]] = {}
+    for (target_bin, wickets, score), stats in cell_stats.items():
+        if int(target_bin) < int(min_target):
+            continue
+        key = (int(wickets), int(score))
+        if key not in sliced_stats:
+            sliced_stats[key] = {"wins": 0, "samples": 0}
+        sliced_stats[key]["wins"] += int(stats["wins"])
+        sliced_stats[key]["samples"] += int(stats["samples"])
+
+    min_cell_samples = 3
+    score_values = sorted({score for (_wickets, score) in sliced_stats.keys()})
+    wicket_values = list(range(0, 11))
+
+    if not score_values:
+        return _empty_figure(
+            "Decision Boundary Map by Wickets",
+            "No score cells available for selected target.",
+        )
+
+    z_matrix = []
+    text_matrix = []
+    boundary_scores = []
+    boundary_wickets = []
+
+    for wickets in wicket_values:
+        z_row = []
+        text_row = []
+        for score in score_values:
+            stats = sliced_stats.get((wickets, score))
+            if not stats or int(stats["samples"]) < min_cell_samples:
+                z_row.append(None)
+                text_row.append("Insufficient samples")
+                continue
+            samples = int(stats["samples"])
+            wins = int(stats["wins"])
+            prob = float(wins) / float(samples)
+            z_row.append(prob)
+            text_row.append(
+                f"Target >= {int(min_target)}<br>"
+                f"Score {score}<br>"
+                f"Wickets {wickets}<br>"
+                f"Samples {samples}<br>"
+                f"Wins {wins}<br>"
+                f"P(win) {prob:.3f}"
+            )
+        z_matrix.append(z_row)
+        text_matrix.append(text_row)
+
+        # Boundary for this wicket: first score where smoothed P(win) >= 0.5
+        row_probs = [value for value in z_row]
+        observed = [(score_values[idx], p) for idx, p in enumerate(row_probs) if p is not None]
+        if len(observed) < 2:
+            continue
+        mono_probs = []
+        running_max = 0.0
+        for (_score, prob) in observed:
+            running_max = max(running_max, float(prob))
+            mono_probs.append(running_max)
+        cross_idx = None
+        for idx, prob in enumerate(mono_probs):
+            if prob >= 0.5:
+                cross_idx = idx
+                break
+        if cross_idx is None:
+            continue
+        if cross_idx == 0:
+            boundary_score = float(observed[0][0])
+        else:
+            x0 = float(observed[cross_idx - 1][0])
+            x1 = float(observed[cross_idx][0])
+            p0 = float(mono_probs[cross_idx - 1])
+            p1 = float(mono_probs[cross_idx])
+            if p1 <= p0:
+                boundary_score = x1
+            else:
+                t = (0.5 - p0) / (p1 - p0)
+                boundary_score = x0 + (x1 - x0) * max(0.0, min(1.0, t))
+        boundary_scores.append(boundary_score)
+        boundary_wickets.append(wickets)
+
+    fig = go.Figure()
+    fig.add_trace(
+        go.Heatmap(
+            x=score_values,
+            y=wicket_values,
+            z=z_matrix,
+            text=text_matrix,
+            hoverinfo="text",
+            colorscale="RdYlGn",
+            zmin=0.0,
+            zmax=1.0,
+            colorbar={
+                "title": f"P({_team_short_code(team_b)} Win)",
+                "tickformat": ".0%",
+            },
+            connectgaps=False,
+        )
+    )
+    if boundary_scores:
+        fig.add_trace(
+            go.Scatter(
+                x=boundary_scores,
+                y=boundary_wickets,
+                mode="lines+markers",
+                line={"color": PRUSSIAN_BLUE, "width": 3},
+                marker={"size": 7},
+                name="P(win)=50% boundary",
+                hovertemplate=(
+                    "Boundary score %{x:.1f}<br>"
+                    "Wickets %{y}<br>"
+                    "Target >= " + str(int(min_target)) + "<extra></extra>"
+                ),
+            )
+        )
+
+    target_range_label = f"{selected_target_bins[0]}-{selected_target_bins[-1]}"
+    apply_chart_theme(
+        fig,
+        title=f"{_team_short_code(team_b)} Decision Boundary Map (Target >= {int(min_target)}, bins {target_range_label})",
+        xaxis_title="Current Score",
+        yaxis_title="Wickets Lost",
+        height=520,
+    )
+    fig.update_xaxes(rangemode="tozero")
+    fig.update_yaxes(range=[-0.5, 10.5], dtick=1)
+    fig.update_layout(margin={"l": 0, "r": 0, "t": 72, "b": 0})
+    return fig
+
+
+def _multi_run_rr_wickets_winprob_figure(chase_state_points: list[dict], team_b: str, target_input):
+    filtered_points, min_target = _filter_chase_states_by_target_min(chase_state_points, target_input)
+    if not filtered_points:
+        return _empty_figure(
+            "Win Probability by Required Run Rate and Wickets Left",
+            f"No states found for target >= {int(min_target)}.",
+        )
+
+    rrr_bin_size = 0.5
+    cell_stats: dict[tuple[int, float], dict[str, int]] = {}
+    rrr_values = set()
+    wickets_left_values = set()
+    raw_rrr_values = []
+
+    # First pass: collect raw RRR values for percentile capping.
+    for point in filtered_points:
+        target = int(point.get("target", 0))
+        score = int(point.get("score", 0))
+        balls_left = int(point.get("balls_left", 0))
+        if balls_left <= 0:
+            continue
+        runs_needed = max(0, target - score)
+        raw_rrr_values.append((float(runs_needed) * 6.0) / float(balls_left))
+
+    if not raw_rrr_values:
+        return _empty_figure(
+            "Win Probability by Required Run Rate and Wickets Left",
+            "No valid chase states with balls remaining.",
+        )
+
+    sorted_rrr = sorted(raw_rrr_values)
+    p99_idx = max(0, min(len(sorted_rrr) - 1, int(math.ceil(0.99 * len(sorted_rrr))) - 1))
+    rrr_cap = float(sorted_rrr[p99_idx])
+
+    for point in filtered_points:
+        target = int(point.get("target", 0))
+        score = int(point.get("score", 0))
+        wickets_lost = int(point.get("wickets_lost", 0))
+        balls_left = int(point.get("balls_left", 0))
+        if balls_left <= 0:
+            continue
+        runs_needed = max(0, target - score)
+        rrr = (float(runs_needed) * 6.0) / float(balls_left)
+        rrr = min(rrr, rrr_cap)
+        rrr_bin = math.floor(rrr / rrr_bin_size) * rrr_bin_size
+        wickets_left = max(0, 10 - wickets_lost)
+        key = (wickets_left, rrr_bin)
+        if key not in cell_stats:
+            cell_stats[key] = {"wins": 0, "samples": 0}
+        cell_stats[key]["wins"] += int(point.get("team_b_win", 0))
+        cell_stats[key]["samples"] += 1
+        rrr_values.add(rrr_bin)
+        wickets_left_values.add(wickets_left)
+
+    if not cell_stats:
+        return _empty_figure(
+            "Win Probability by Required Run Rate and Wickets Left",
+            "No valid chase states with balls remaining.",
+        )
+
+    min_cell_samples = 3
+    x_rrr = sorted(rrr_values)
+    y_wkts_left = sorted(wickets_left_values, reverse=True)
+
+    z_matrix = []
+    text_matrix = []
+    for wk_left in y_wkts_left:
+        z_row = []
+        t_row = []
+        for rrr_bin in x_rrr:
+            stats = cell_stats.get((wk_left, rrr_bin))
+            if not stats or int(stats["samples"]) < min_cell_samples:
+                z_row.append(None)
+                t_row.append("Insufficient samples")
+                continue
+            n = int(stats["samples"])
+            w = int(stats["wins"])
+            p = float(w) / float(n)
+            z_row.append(p)
+            t_row.append(
+                f"Wickets left {wk_left}<br>"
+                f"RRR bin [{rrr_bin:.1f}, {rrr_bin + rrr_bin_size:.1f})<br>"
+                f"Samples {n}<br>"
+                f"Wins {w}<br>"
+                f"P(win) {p:.3f}"
+            )
+        z_matrix.append(z_row)
+        text_matrix.append(t_row)
+
+    fig = go.Figure()
+    fig.add_trace(
+        go.Heatmap(
+            x=x_rrr,
+            y=y_wkts_left,
+            z=z_matrix,
+            text=text_matrix,
+            hoverinfo="text",
+            colorscale="RdYlGn",
+            zmin=0.0,
+            zmax=1.0,
+            colorbar={"title": f"P({_team_short_code(team_b)} Win)", "tickformat": ".0%"},
+            connectgaps=False,
+        )
+    )
+
+    apply_chart_theme(
+        fig,
+        title=f"{_team_short_code(team_b)} P(Win | Required Run Rate, Wickets Left) (Target >= {int(min_target)})",
+        xaxis_title="Required Run Rate (Runs per Over)",
+        yaxis_title="Wickets Left",
+        height=520,
+    )
+    fig.update_xaxes(range=[0.0, float(rrr_cap + rrr_bin_size)])
+    fig.update_yaxes(dtick=1)
+    fig.update_layout(margin={"l": 0, "r": 0, "t": 72, "b": 0})
     return fig
 
 
@@ -1469,6 +1694,7 @@ def layout():
                 ],
             ),
             dcc.Store(id="bbs-simulation-data"),
+            dcc.Store(id="bbs-nruns-state-data"),
             html.Div(
                 [
                     html.Button("Simulate Match", id="bbs-simulate", n_clicks=0, className="btn btn-primary"),
@@ -1542,36 +1768,6 @@ def layout():
                             ),
                             html.Div(
                                 [
-                                    
-                                    dcc.Checklist(
-                                        id="bbs-enable-counterfactual",
-                                        options=[
-                                            {
-                                                "label": "Enable from-state Monte Carlo",
-                                                "value": "on",
-                                            }
-                                        ],
-                                        value=[],
-                                        inputStyle={"marginRight": "10px"},
-                                        labelStyle={
-                                            "display": "flex",
-                                            "alignItems": "center",
-                                            "marginBottom": "0",
-                                            "whiteSpace": "nowrap",
-                                            "fontSize": "16px",
-                                        },
-                                        style={
-                                            "border": "1px solid #d0d7de",
-                                            "borderRadius": "8px",
-                                            "padding": "10px 12px",
-                                            "backgroundColor": "#f8fafc",
-                                        },
-                                    ),
-                                ],
-                                className="col-12 col-md-5 d-flex align-items-end",
-                            ),
-                            html.Div(
-                                [
                                     html.Label(" "),
                                     dcc.Loading(
                                         type="default",
@@ -1589,7 +1785,7 @@ def layout():
                                         ),
                                     ),
                                 ],
-                                className="col-12 col-md-3 d-flex align-items-end",
+                                className="col-12 col-md-4 d-flex align-items-end",
                             ),
                         ],
                         className="row g-3 mb-2",
@@ -1624,14 +1820,45 @@ def layout():
                             html.Div(
                                 [
                                     dcc.Graph(
-                                        id="bbs-nruns-winprob-chart",
+                                        id="bbs-nruns-score-winprob-chart",
                                         figure=_empty_figure(
-                                            "Chase Win Probability by Ball",
-                                            "Run N simulations to view counterfactual from-state win probability over legal balls.",
+                                            "Win Probability by First-Innings Score",
+                                            "Run N simulations to view P(team B win | team A final score = s).",
                                         ),
                                     )
                                 ],
                                 className="mt-2",
+                            ),
+                            html.Div(
+                                [
+                                    html.Div(
+                                        [
+                                            html.Label("Target >="),
+                                            dcc.Input(
+                                                id="bbs-state-target-min",
+                                                type="number",
+                                                min=1,
+                                                step=1,
+                                                value=180,
+                                                className="form-control",
+                                            ),
+                                        ],
+                                        className="col-12 col-md-4",
+                                    ),
+                                ],
+                                className="row g-2 mt-2",
+                            ),
+                            html.Div(
+                                [
+                                    dcc.Graph(
+                                        id="bbs-nruns-state-projection-chart",
+                                        figure=_empty_figure(
+                                            "Win Probability by Required Run Rate and Wickets Left",
+                                            "Run N simulations to view P(win | required run rate, wickets left).",
+                                        ),
+                                    )
+                                ],
+                                className="mt-1",
                             ),
                             html.Div(
                                 [
@@ -1786,7 +2013,8 @@ def run_simulation(n_clicks, team_a, team_b, stadium, recency_bias, last_n_match
     Output("bbs-nruns-table", "children"),
     Output("bbs-nruns-density-chart", "figure"),
     Output("bbs-nruns-cumulative-box-chart", "figure"),
-    Output("bbs-nruns-winprob-chart", "figure"),
+    Output("bbs-nruns-score-winprob-chart", "figure"),
+    Output("bbs-nruns-state-data", "data"),
     Output("bbs-nruns-outcome-chart", "figure"),
     Output("bbs-nruns-margin-chart", "figure"),
     Output("bbs-nruns-wicket-timing-chart", "figure"),
@@ -1802,7 +2030,6 @@ def run_simulation(n_clicks, team_a, team_b, stadium, recency_bias, last_n_match
     State("bbs-random-seed", "value"),
     State("bbs-max-fallback", "value"),
     State("bbs-n-runs", "value"),
-    State("bbs-enable-counterfactual", "value"),
 )
 def run_n_simulations(
     n_clicks,
@@ -1814,10 +2041,22 @@ def run_n_simulations(
     random_seed,
     max_fallback,
     n_runs,
-    enable_counterfactual_value,
 ):
     if not n_clicks:
-        return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update
+        return (
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+        )
 
     error_style, hidden_error_style = _simulation_error_styles()
 
@@ -1831,17 +2070,57 @@ def run_n_simulations(
             max_fallback=max_fallback,
         )
         if parsed is None:
-            return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, "Validation failed.", validation_error, error_style
+            return (
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                "Validation failed.",
+                validation_error,
+                error_style,
+            )
 
         try:
             n_runs_value = int(n_runs if n_runs is not None else DASHBOARD_CONFIG["n_runs_default"])
         except (TypeError, ValueError):
-            return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, "Validation failed.", "Number of runs (N) must be a positive integer.", error_style
+            return (
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                "Validation failed.",
+                "Number of runs (N) must be a positive integer.",
+                error_style,
+            )
 
         if n_runs_value < 1:
-            return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, "Validation failed.", "Number of runs (N) must be a positive integer.", error_style
+            return (
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                no_update,
+                "Validation failed.",
+                "Number of runs (N) must be a positive integer.",
+                error_style,
+            )
         if n_runs_value > int(DASHBOARD_CONFIG["n_runs_max"]):
             return (
+                no_update,
                 no_update,
                 no_update,
                 no_update,
@@ -1864,10 +2143,6 @@ def run_n_simulations(
         recency_bias_value = float(parsed["recency_bias_value"])
         fallback_level = int(parsed["fallback_level"])
         selected_stadium = str(stadium).strip() if stadium else None
-        enable_counterfactual = bool(enable_counterfactual_value and "on" in enable_counterfactual_value)
-        rollouts_per_state = max(1, int(DASHBOARD_CONFIG.get("winprob_rollouts_per_state", 32)))
-        max_states_per_ball = max(1, int(DASHBOARD_CONFIG.get("winprob_max_states_per_ball", 8)))
-        max_total_states = max(1, int(DASHBOARD_CONFIG.get("winprob_max_total_states", 240)))
 
         engine = SimulationEngine()
         prepared_context = engine.prepare_match_context(
@@ -1880,7 +2155,7 @@ def run_n_simulations(
         )
         rows = []
         cumulative_points = []
-        chase_snapshots = []
+        chase_state_points = []
         wicket_points = []
         for run_index in range(n_runs_value):
             seed = base_seed + run_index
@@ -1896,67 +2171,94 @@ def run_n_simulations(
                 last_n_matches=window,
                 stadium=selected_stadium,
                 prepared_context=prepared_context,
-                collect_chase_snapshots=enable_counterfactual,
             )
             row = _multi_run_result_row(run_index + 1, seed, payload)
             rows.append(row)
             cumulative_points.extend(_extract_cumulative_points(payload, team_a=team_a, team_b=team_b, run_id=run_index + 1))
-            if enable_counterfactual:
-                chase_snapshots.extend(_extract_chase_snapshots(payload, run_id=run_index + 1))
+            chase_state_points.extend(_extract_chase_state_points(payload, run_id=run_index + 1))
             wicket_points.extend(_extract_wicket_fall_points(payload, team_a=team_a, team_b=team_b))
-
-        if enable_counterfactual:
-            chase_winprob_points, chase_winprob_meta = _estimate_counterfactual_winprob_points(
-                chase_snapshots=chase_snapshots,
-                engine=engine,
-                prepared_context=prepared_context,
-                base_seed=base_seed,
-                rollouts_per_state=rollouts_per_state,
-                max_states_per_ball=max_states_per_ball,
-                max_total_states=max_total_states,
-            )
-        else:
-            chase_winprob_points, chase_winprob_meta = [], {"truncated_states": 0, "selected_states": 0, "total_unique_states": 0}
 
         summary = _multi_run_summary_component(rows, team_a=team_a, team_b=team_b)
         table = _multi_run_table_component(rows, team_a=team_a, team_b=team_b)
         density_fig = _multi_run_density_figure(rows, team_a=team_a, team_b=team_b)
         cumulative_box_fig = _multi_run_cumulative_box_figure(cumulative_points, team_a=team_a, team_b=team_b)
-        if enable_counterfactual:
-            chase_win_prob_fig = _multi_run_chase_win_prob_figure(
-                chase_winprob_points,
-                team_b=team_b,
-                rollouts_per_state=rollouts_per_state,
-                truncated_states=int(chase_winprob_meta.get("truncated_states", 0)),
-            )
-        else:
-            chase_win_prob_fig = _empty_figure(
-                "Chase Win Probability by Ball",
-                "Counterfactual is disabled. Enable the checkbox near Number of Runs (N) to compute this chart.",
-            )
+        empirical_score_winprob_fig = _multi_run_empirical_win_prob_by_score_figure(rows, team_a=team_a, team_b=team_b)
+        state_data = {"points": chase_state_points, "team_b": team_b}
         outcome_fig = _multi_run_outcome_figure(rows, team_a=team_a, team_b=team_b)
         margin_fig = _multi_run_margin_figure(rows, team_a=team_a)
         wicket_timing_fig = _multi_run_wicket_timing_figure(wicket_points, team_a=team_a, team_b=team_b)
         venue_label = selected_stadium or "All Stadiums"
-        truncated_states = int(chase_winprob_meta.get("truncated_states", 0))
-        selected_states = int(chase_winprob_meta.get("selected_states", 0))
-        total_unique_states = int(chase_winprob_meta.get("total_unique_states", 0))
-        counterfactual_note = ""
-        if truncated_states > 0:
-            counterfactual_note = f" | WinProb states used {selected_states}/{total_unique_states} (late-ball priority cap)"
         status = (
             f"Completed {n_runs_value} simulations. Seeds {base_seed} to {base_seed + n_runs_value - 1} | "
             f"Window: last {window} matches | Recency: {recency_bias_value:.2f} | Stadium: {venue_label}"
-            f"{counterfactual_note}"
         )
-        if not enable_counterfactual:
-            status = f"{status} | Counterfactual: off"
-        return summary, table, density_fig, cumulative_box_fig, chase_win_prob_fig, outcome_fig, margin_fig, wicket_timing_fig, status, "", hidden_error_style
+        return (
+            summary,
+            table,
+            density_fig,
+            cumulative_box_fig,
+            empirical_score_winprob_fig,
+            state_data,
+            outcome_fig,
+            margin_fig,
+            wicket_timing_fig,
+            status,
+            "",
+            hidden_error_style,
+        )
     except DataLoadError as exc:
-        return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, "Data load failed.", str(exc), error_style
+        return (
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            "Data load failed.",
+            str(exc),
+            error_style,
+        )
     except Exception as exc:
         logger.exception("N-run simulation callback failed")
-        return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, "Simulation failed.", str(exc), error_style
+        return (
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            no_update,
+            "Simulation failed.",
+            str(exc),
+            error_style,
+        )
+
+
+@callback(
+    Output("bbs-nruns-state-projection-chart", "figure"),
+    Input("bbs-nruns-state-data", "data"),
+    Input("bbs-state-target-min", "value"),
+    State("bbs-team-b", "value"),
+)
+def render_state_winprob_heatmap(state_data, target_min, team_b):
+    if not state_data:
+        return _empty_figure(
+            "Win Probability by Required Run Rate and Wickets Left",
+            "Run N simulations to view P(win | required run rate, wickets left).",
+        )
+
+    points = state_data.get("points", []) if isinstance(state_data, dict) else []
+    team_b_label = (
+        str(state_data.get("team_b"))
+        if isinstance(state_data, dict) and state_data.get("team_b")
+        else str(team_b or "Team B")
+    )
+    return _multi_run_rr_wickets_winprob_figure(points, team_b=team_b_label, target_input=target_min)
 
 
 @callback(
@@ -2272,5 +2574,3 @@ dash.register_page(
     dashboard_visible=DASHBOARD_CONFIG.get("is_visible", True),
     layout=layout,
 )
-
-

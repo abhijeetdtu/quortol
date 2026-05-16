@@ -12,7 +12,5 @@ DASHBOARD_CONFIG = {
     "is_visible": True,
     "n_runs_default": 20,
     "n_runs_max": 500,
-    "winprob_rollouts_per_state": 32,
-    "winprob_max_states_per_ball": 8,
-    "winprob_max_total_states": 240,
+    "score_winprob_smoothing_bandwidth": 8.0,
 }
