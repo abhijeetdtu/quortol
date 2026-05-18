@@ -24,9 +24,36 @@ def _load_dataset():
     return load_ipl_data()
 
 
+def _apply_sim_chart_theme(
+    fig: go.Figure,
+    *,
+    title: str,
+    xaxis_title: str | None = None,
+    yaxis_title: str | None = None,
+    height: int = 420,
+):
+    apply_chart_theme(
+        fig,
+        title=title,
+        xaxis_title=xaxis_title,
+        yaxis_title=yaxis_title,
+        height=height,
+    )
+    fig.update_layout(
+        legend={
+            "orientation": "h",
+            "yanchor": "top",
+            "y": -0.22,
+            "xanchor": "center",
+            "x": 0.5,
+        }
+    )
+    return fig
+
+
 def _empty_figure(title: str, message: str):
     fig = go.Figure()
-    apply_chart_theme(fig, title=title, height=460)
+    _apply_sim_chart_theme(fig, title=title, height=460)
     fig.update_xaxes(visible=False)
     fig.update_yaxes(visible=False)
     fig.update_layout(
@@ -893,7 +920,7 @@ def _multi_run_density_figure(rows: list[dict], team_a: str, team_b: str):
             marker={"color": DEEP_TEAL},
         )
     )
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Total Runs Density Across Simulations",
         xaxis_title="Total Runs",
@@ -1006,7 +1033,7 @@ def _multi_run_cumulative_box_figure(cumulative_points: list[dict], team_a: str,
         )
     )
 
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Cumulative Score Difference Mean and 95% CI by Legal Ball",
         xaxis_title="Legal Ball Number",
@@ -1146,7 +1173,7 @@ def _multi_run_empirical_win_prob_by_score_figure(rows: list[dict], team_a: str,
         )
     )
 
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title=f"{_team_short_code(team_b)} Win Probability by {_team_short_code(team_a)} Final Score",
         xaxis_title=f"{team_a} Final Score (Innings 1)",
@@ -1322,7 +1349,7 @@ def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict],
         )
 
     target_range_label = f"{selected_target_bins[0]}-{selected_target_bins[-1]}"
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title=f"{_team_short_code(team_b)} Decision Boundary Map (Target >= {int(min_target)}, bins {target_range_label})",
         xaxis_title="Current Score",
@@ -1440,7 +1467,7 @@ def _multi_run_rr_wickets_winprob_figure(chase_state_points: list[dict], team_b:
         )
     )
 
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title=f"{_team_short_code(team_b)} P(Win | Required Run Rate, Wickets Left) (Target >= {int(min_target)})",
         xaxis_title="Required Run Rate (Runs per Over)",
@@ -1473,7 +1500,7 @@ def _multi_run_outcome_figure(rows: list[dict], team_a: str, team_b: str):
             )
         ]
     )
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Win Outcomes Across N Simulations",
         xaxis_title="Outcome",
@@ -1500,7 +1527,7 @@ def _multi_run_margin_figure(rows: list[dict], team_a: str):
         )
     )
     fig.add_vline(x=0, line_width=2, line_dash="dash", line_color=BRICK_EMBER)
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Run Differential Distribution",
         xaxis_title=f"Run Differential ({_team_short_code(team_a)} minus Opponent)",
@@ -1573,7 +1600,7 @@ def _multi_run_wicket_timing_figure(wicket_points: list[dict], team_a: str, team
     if not has_trace:
         return _empty_figure("Wicket Timing (Mean ± 95% CI)", "No legal-delivery wicket events available.")
 
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Mean Ball for Each Wicket (95% CI)",
         xaxis_title="Wicket Number",
@@ -2369,7 +2396,7 @@ def render_simulation(sim_data):
             )
         )
 
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Ball-by-Ball Score Progression",
         xaxis_title="Event Number",
@@ -2541,14 +2568,14 @@ def render_replay(ball_index, sim_data):
                 marker={"size": 12, "color": BRICK_EMBER, "symbol": "diamond"},
             )
         )
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         fig,
         title="Replay: Both Innings (Event Timeline)",
         xaxis_title="Event Number",
         yaxis_title="Cumulative Score",
         height=420,
     )
-    apply_chart_theme(
+    _apply_sim_chart_theme(
         run_rate_fig,
         title="Replay: Run Rate Timeline",
         xaxis_title="Event Number",
