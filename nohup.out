@@ -755,3 +755,36 @@ Port 5000 is in use by another program. Either identify and stop that program, o
 127.0.0.1 - - [21/May/2026 00:37:52] "GET /api/blog/images/trinket_sectoral_output.png HTTP/1.1" 200 -
 127.0.0.1 - - [21/May/2026 00:37:52] "GET /api/blog/images/trinket_nps_spending.png HTTP/1.1" 200 -
 127.0.0.1 - - [21/May/2026 00:37:52] "GET /api/blog/images/trinket_employment.png HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 199-748-978
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/readme HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/trinket-shop-nostalgia-economy HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/ai-is-the-new-space-race HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/trinket_sectoral_output.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/chart1_spending_escalation.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/chart_yugoslav_gdp_disparity_1989.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/southern_cone/vaca_muerta_production.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/ipl/figures/strike_rate_trend.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/chart_token_price_decline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:40:48] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
