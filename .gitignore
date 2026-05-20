@@ -39,3 +39,6 @@ exclude
 
 .specify
 .opencode
+
+# Binaries
+*.exe

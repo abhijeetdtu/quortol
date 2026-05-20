@@ -1,0 +1,722 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:36] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:29:36] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:29:36] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:29:36] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:29:36] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:29:36] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:29:36] "GET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/mit_eeg_brain_comparison.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/samsung_galaxy_s26_ai.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/chart_enterprise_adoption.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/chart_industry_adoption.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/android_halo_agent.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/chart_psychological_impact.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:29:45] "GET /api/blog/images/chart_time_savings.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:30:06] "POST /api/pokhi/wikipedia/feed HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:32:07] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:32:07] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:32:07] "[36mGET /api/blog/images/mit_eeg_brain_comparison.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:32:07] "[36mGET /api/blog/images/samsung_galaxy_s26_ai.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:32:07] "[36mGET /api/blog/images/android_halo_agent.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:32:07] "GET /api/blog/images/chart_enterprise_adoption.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:32:07] "GET /api/blog/images/chart_psychological_impact.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:32:07] "GET /api/blog/images/chart_industry_adoption.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:32:07] "GET /api/blog/images/chart_time_savings.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:15] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:41:15] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:41:15] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:41:15] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:41:15] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:41:15] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:41:17] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:36] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:41:37] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:19] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:43:20] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:45:36] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:48:17] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:18] "GET /api/portfolio/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:23] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:48:28] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/memorial-day-new-england-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:10] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:11] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:44] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:45] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:45] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:45] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:45] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:45] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:45] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/llm-inference-unit-economics HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/images/chart_self_host_breakeven.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/images/chart_token_price_decline.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/images/chart_input_vs_output_ratio.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/images/chart_jevons_paradox.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/images/chart_cost_waterfall.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:53] "GET /api/blog/images/chart_frontier_vs_budget_pricing.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:57] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:49:58] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:09] "GET /api/blog/india-political-parties-evolution HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:13] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:18] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:18] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:18] "[36mGET /api/blog/images/content_spend_comparison.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:18] "GET /api/blog/images/bundling_growth.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:18] "GET /api/blog/images/piracy_trends.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:18] "GET /api/blog/images/netflix_financial_profile.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:19] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:20] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:30] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:30] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:30] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:30] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:30] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:30] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:35] "GET /api/blog/netflix-paradox HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:35] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:35] "[36mGET /api/blog/images/content_spend_comparison.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:35] "[36mGET /api/blog/images/bundling_growth.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:35] "[36mGET /api/blog/images/netflix_financial_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:35] "[36mGET /api/blog/images/piracy_trends.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:38] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:44] "GET /api/blog/maine-summers-history-nature-peace HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:50:48] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:03] "GET /api/blog/studio-ghibli-the-wind-that-shook-the-world HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:51:12] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:32] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:32] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:32] "[36mGET /api/blog/images/restless_drd4_migration.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:32] "[36mGET /api/blog/images/restless_exploration_model.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:32] "[36mGET /api/blog/images/restless_daily_vs_major.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:32] "[36mGET /api/blog/images/restless_micro_adventures.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:34] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:38] "GET /api/blog/restless-species HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:40] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:52:55] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:55] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:55] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:55] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:55] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:52:55] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:55:05] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:55:11] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/chart_token_price_decline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/ipl/figures/strike_rate_trend.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "[36mGET /api/blog/images/southern_cone/vaca_muerta_production.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 11:59:38] "GET /api/blog/images/chart_yugoslav_gdp_disparity_1989.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:55] "GET /api/blog/yugoslavia-reckoning HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:56] "GET /api/blog/images/chart_refugee_displacement.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:56] "GET /api/blog/images/chart_bosnian_casualties_ethnicity.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:56] "GET /api/blog/images/chart_successor_gdp_2023.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 11:59:56] "GET /api/blog/images/chart_sarajevo_siege.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:07] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:48] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:00:48] "[36mGET /api/blog/images/meditation_blood_pressure.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:00:48] "[36mGET /api/blog/images/meditation_brain_networks.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:00:48] "[36mGET /api/blog/images/meditation_multisystem.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:00:48] "[36mGET /api/blog/images/meditation_evidence_spectrum.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:05] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:07] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:08] "[36mGET /api/blog/images/caribbean_harbor_colorful.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:08] "[36mGET /api/blog/images/caribbean_remote_worker_cuba.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:08] "[36mGET /api/blog/images/caribbean_market_jamaica.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:08] "[36mGET /api/blog/images/caribbean_street_kingston.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:08] "[36mGET /api/blog/images/caribbean_grenada_harbor.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:14] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:15] "GET /api/blog/yugoslavia-reckoning HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:16] "GET /api/portfolio/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:16] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:23] "GET /api/portfolio/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:24] "GET /data-storytelling-app/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:24] "[36mGET /data-storytelling-app/assets/typography.css?m=1778725045.9376338 HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:01:24] "GET /data-storytelling-app/_dash-layout HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:24] "GET /data-storytelling-app/_dash-dependencies HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:25] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:28] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+/home/pi/Documents/code/quortol/backend/dashboards/ipl_deep/page.py:860: FutureWarning:
+
+The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+
+127.0.0.1 - - [20/May/2026 12:01:30] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:32] "GET /data-storytelling-app/ball-by-ball-simulation HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:33] "GET /data-storytelling-app/_dash-dependencies HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:33] "GET /data-storytelling-app/_dash-layout HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "[35m[1mPOST /data-storytelling-app/_dash-update-component HTTP/1.1[0m" 204 -
+127.0.0.1 - - [20/May/2026 12:01:39] "[35m[1mPOST /data-storytelling-app/_dash-update-component HTTP/1.1[0m" 204 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:44] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:52] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:01:56] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:02:05] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:02:11] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:02:13] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:02:39] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:02:42] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:03:44] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:03:52] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:04:19] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:04:21] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:48] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:49] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:49] "[36mGET /api/blog/images/chart_token_price_decline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:49] "[36mGET /api/blog/images/chart_yugoslav_gdp_disparity_1989.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:49] "[36mGET /api/blog/images/southern_cone/vaca_muerta_production.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:49] "[36mGET /api/blog/images/ipl/figures/strike_rate_trend.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/mit_eeg_brain_comparison.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/samsung_galaxy_s26_ai.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/chart_time_savings.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/chart_enterprise_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/chart_psychological_impact.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/android_halo_agent.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:07:51] "[36mGET /api/blog/images/chart_industry_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:02] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/samsung_galaxy_s26_ai.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/chart_psychological_impact.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/chart_enterprise_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/chart_time_savings.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/mit_eeg_brain_comparison.jpg HTTP/1.1[0m" 304 -
+/home/pi/Documents/code/ds/lib/python3.11/site-packages/wikipedia/wikipedia.py:389: GuessedAtParserWarning:
+
+No parser was explicitly specified, so I'm using the best available HTML parser for this system ("html.parser"). This usually isn't a problem, but if you run this code on another system, or in a different virtual environment, it may use a different parser and behave differently.
+
+The code that caused this warning is on line 389 of the file /home/pi/Documents/code/ds/lib/python3.11/site-packages/wikipedia/wikipedia.py. To get rid of this warning, pass the additional argument 'features="html.parser"' to the BeautifulSoup constructor.
+
+
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/android_halo_agent.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:03] "[36mGET /api/blog/images/chart_industry_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 12:08:23] "POST /api/pokhi/wikipedia/feed HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:11] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:16] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:35:17] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 12:37:33] "GET /api/blog/gandhi-nehru-relationship HTTP/1.1" 200 -
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 14:46:30] "GET /data-storytelling-app/ball-by-ball-simulation HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:30] "GET /data-storytelling-app/_dash-layout HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:30] "GET /data-storytelling-app/_dash-dependencies HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:38] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:38] "[36mGET /data-storytelling-app/_dash-component-suites/dash/dcc/async-dropdown.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 14:46:38] "[36mGET /data-storytelling-app/_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 14:46:38] "[36mGET /data-storytelling-app/_dash-component-suites/dash/dcc/async-slider.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 14:46:38] "[36mGET /data-storytelling-app/_dash-component-suites/plotly/package_data/plotly.min.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 14:46:38] "[35m[1mPOST /data-storytelling-app/_dash-update-component HTTP/1.1[0m" 204 -
+127.0.0.1 - - [20/May/2026 14:46:38] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:38] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:38] "[35m[1mPOST /data-storytelling-app/_dash-update-component HTTP/1.1[0m" 204 -
+127.0.0.1 - - [20/May/2026 14:46:38] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:38] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:38] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:41] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:51] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:46:57] "POST /api/pokhi/wikipedia/feed HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:47:06] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:47:52] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:47:54] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:00] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:06] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:09] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:13] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:14] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:15] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:17] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:18] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:19] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:20] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:20] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:20] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:49] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 14:48:53] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+ * Detected change in '/home/pi/Documents/code/quortol/ai_race_charts.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 979-291-906
+127.0.0.1 - - [20/May/2026 17:05:52] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 17:05:55] "POST /data-storytelling-app/_dash-update-component HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 568-129-751
+127.0.0.1 - - [20/May/2026 19:08:27] "GET /api/portfolio/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/ai-is-the-new-space-race HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/ipl/figures/strike_rate_trend.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/chart_yugoslav_gdp_disparity_1989.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/southern_cone/vaca_muerta_production.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/chart_token_price_decline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:08:28] "GET /api/blog/images/chart1_spending_escalation.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:36] "GET /api/blog/ai-is-the-new-space-race HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:36] "GET /api/blog/images/chart2_us_china_paradox.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:36] "GET /api/blog/images/chart3_training_cost_explosion.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:36] "GET /api/blog/images/chart4_great_rebalancing.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:08:37] "POST /api/pokhi/wikipedia/feed HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/ai-is-the-new-space-race HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:12] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:15] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/chart_psychological_impact.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/chart_enterprise_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/mit_eeg_brain_comparison.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/chart_industry_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/samsung_galaxy_s26_ai.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/android_halo_agent.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:15] "[36mGET /api/blog/images/chart_time_savings.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [20/May/2026 19:11:23] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/ai-race-700-billion-question HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/ai-is-the-new-space-race HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2026 19:11:24] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.8:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 199-748-978
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/portfolio/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/ HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/trinket-shop-nostalgia-economy HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/ai-is-the-new-space-race HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/ai-agents-in-your-pocket-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/caribbean-life-data-driven HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/the-last-laugh-editorial-cartoonists HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/appalachian-trail-spine-of-the-east HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/meditation-science-wilde HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:21] "GET /api/blog/marvel-science-pipeline HTTP/1.1" 200 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/meditation_adoption.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/chart1_spending_escalation.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/gemini_spark_ui.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/marvel_patent_timeline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/appalachian_elevation_profile.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/caribbean_beach_dominican.jpg HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/chart_hyperscaler_capex.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/chart_token_price_decline.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/ipl/figures/strike_rate_trend.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/southern_cone/vaca_muerta_production.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/netflix_pricing_arc.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/restless_niche_expansion.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:22] "[36mGET /api/blog/images/chart_yugoslav_gdp_disparity_1989.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/May/2026 00:33:25] "GET /api/blog/trinket-shop-nostalgia-economy HTTP/1.1" 200 -
