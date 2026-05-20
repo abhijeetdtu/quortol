@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 from flask import Blueprint, request, jsonify, abort, send_from_directory
 from ..models import BlogPost, Tag, Category
@@ -6,6 +7,95 @@ from ..extensions import db
 
 blog_bp = Blueprint('blog', __name__)
 BLOG_IMAGES_DIR = (Path(__file__).resolve().parent.parent / 'blogs' / 'images').resolve()
+BLOGS_DIR = (Path(__file__).resolve().parent.parent / 'blogs').resolve()
+_FEATURED_IMAGE_CACHE = {
+    'signature': None,
+    'by_slug': {}
+}
+
+
+def _slugify(value):
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", (value or '').strip().lower())
+    return slug.strip("-")
+
+
+def _blog_files_signature():
+    files = sorted(BLOGS_DIR.glob("*.md"))
+    return tuple(
+        (path.name, path.stat().st_mtime_ns, path.stat().st_size)
+        for path in files
+    )
+
+
+def _parse_frontmatter(path):
+    try:
+        text = path.read_text(encoding='utf-8')
+    except OSError:
+        return {}
+
+    frontmatter_match = re.match(r"^---\s*\r?\n(.*?)\r?\n---\s*\r?\n?", text, flags=re.DOTALL)
+    if not frontmatter_match:
+        return {}
+
+    metadata = {}
+    for raw_line in frontmatter_match.group(1).splitlines():
+        if ":" not in raw_line:
+            continue
+        key, value = raw_line.split(":", 1)
+        metadata[key.strip().lower()] = value.strip().strip('"').strip("'")
+
+    return metadata
+
+
+def _featured_image_index():
+    signature = _blog_files_signature()
+    if _FEATURED_IMAGE_CACHE['signature'] == signature:
+        return _FEATURED_IMAGE_CACHE['by_slug']
+
+    by_slug = {}
+    for md_file in BLOGS_DIR.glob("*.md"):
+        metadata = _parse_frontmatter(md_file)
+        slug = metadata.get('slug') or _slugify(md_file.stem)
+        if not slug:
+            continue
+        by_slug[slug] = {
+            'featured_image': metadata.get('featured_image', ''),
+            'featured_image_caption': metadata.get('featured_image_caption', ''),
+        }
+
+    _FEATURED_IMAGE_CACHE['signature'] = signature
+    _FEATURED_IMAGE_CACHE['by_slug'] = by_slug
+    return by_slug
+
+
+def _featured_fields_for_slug(slug):
+    data = _featured_image_index().get(slug, {})
+    return {
+        'featured_image': data.get('featured_image', ''),
+        'featured_image_caption': data.get('featured_image_caption', ''),
+    }
+
+
+def _extract_first_image_url(content):
+    if not content:
+        return ''
+
+    markdown_match = re.search(r"!\[[^\]]*]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)", content)
+    if markdown_match and markdown_match.group(1):
+        return markdown_match.group(1)
+
+    html_match = re.search(r"<img[^>]+src=[\"']([^\"']+)[\"']", content, flags=re.IGNORECASE)
+    if html_match and html_match.group(1):
+        return html_match.group(1)
+
+    return ''
+
+
+def _image_fields_for_post(post):
+    image_fields = _featured_fields_for_slug(post.slug)
+    if not image_fields['featured_image']:
+        image_fields['featured_image'] = _extract_first_image_url(post.content)
+    return image_fields
 
 @blog_bp.route('/', methods=['GET'])
 def get_posts():
@@ -17,7 +107,8 @@ def get_posts():
             'slug': post.slug,
             'excerpt': post.excerpt,
             'published_at': post.published_at.isoformat(),
-            'tags': [tag.name for tag in post.tags]
+            'tags': [tag.name for tag in post.tags],
+            **_image_fields_for_post(post),
         }
         for post in posts
     ])
@@ -40,7 +131,8 @@ def get_post(slug):
                 'slug': tag.slug
             }
             for tag in post.tags
-        ]
+        ],
+        **_image_fields_for_post(post),
     })
 
 @blog_bp.route('/tags', methods=['GET'])
