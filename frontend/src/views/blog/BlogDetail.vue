@@ -215,6 +215,8 @@ const dek = computed(() => {
 })
 
 const heroImageUrl = computed(() => {
+  if (post.value?.featured_image) return post.value.featured_image
+
   const content = sourceContent.value
   const markdownImageMatch = content.match(/!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/)
   if (markdownImageMatch?.[1]) return markdownImageMatch[1]

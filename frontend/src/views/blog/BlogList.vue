@@ -110,6 +110,8 @@ const primaryTag = (post) => {
 
 const storyImage = (post) => {
   const detail = detailsBySlug.value[post.slug]
+  if (detail?.featured_image) return detail.featured_image
+  if (post?.featured_image) return post.featured_image
   return extractImageFromContent(detail?.content || '')
 }
 
