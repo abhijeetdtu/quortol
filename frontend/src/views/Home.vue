@@ -7,7 +7,7 @@
         Browse longform writing, review portfolio builds, or jump into agent tooling with one coherent editorial UI.
       </p>
       <div class="d-flex flex-wrap gap-2">
-        <router-link to="/" class="btn btn-sm app-btn-accent">Open Explorer</router-link>
+        <router-link to="/explorer" class="btn btn-sm app-btn-accent">Open Explorer</router-link>
         <router-link to="/blog" class="btn btn-sm app-btn-soft">Read Blog</router-link>
         <router-link to="/portfolio" class="btn btn-sm app-btn-soft">View Portfolio</router-link>
         <router-link v-if="!authStore.isAuthenticated" to="/agent/login" class="btn btn-sm app-btn-soft">

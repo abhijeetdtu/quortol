@@ -78,6 +78,17 @@ sudo systemctl restart cloudflared
 ## Deployment
 
 - Cloudflare Tunnel dev-stack guide for `https://pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
+- SEO indexing checklist: [docs/seo-indexing-checklist.md](docs/seo-indexing-checklist.md)
+
+## SEO Utilities
+
+From `frontend/`, regenerate sitemap entries (including blog slugs from `backend/blogs/*.md`):
+
+```bash
+npm run seo:generate-sitemap
+```
+
+`npm run build` now runs sitemap generation automatically before Vite build.
 
 
 
@@ -101,4 +112,29 @@ llama-server `
    --cont-batching `
    --no-webui `
    --jinja
+```
+
+
+# blog removal
+
+```bash
+slug="readme" \
+&& rm -f "backend/blogs/${slug}.md" \
+&& SLUG="$slug" python3 - <<'PY'
+import os
+from backend.app import create_app
+from backend.extensions import db
+from backend.models import BlogPost
+
+slug = os.environ["SLUG"]
+app = create_app()
+with app.app_context():
+    post = BlogPost.query.filter_by(slug=slug).first()
+    if post:
+        db.session.delete(post)
+        db.session.commit()
+        print(f"Deleted: {slug}")
+    else:
+        print(f"Not found in DB: {slug}")
+PY
 ```
