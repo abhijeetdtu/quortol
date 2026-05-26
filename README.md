@@ -58,6 +58,13 @@ From the repo root, run these in 3 terminals:
 python -m backend.app
 ```
 
+restarting
+```bash
+pkill -f "backend.app" || true
+source ~/Documents/code/ds/bin/activate
+cd ~/Documents/code/quortol
+nohup python -m backend.app > backend.log 2>&1 &
+```
 ```bash
 # Terminal 2
 cd frontend
@@ -138,3 +145,5 @@ with app.app_context():
         print(f"Not found in DB: {slug}")
 PY
 ```
+
+

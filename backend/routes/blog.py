@@ -8,6 +8,7 @@ from ..extensions import db
 blog_bp = Blueprint('blog', __name__)
 BLOG_IMAGES_DIR = (Path(__file__).resolve().parent.parent / 'blogs' / 'images').resolve()
 BLOGS_DIR = (Path(__file__).resolve().parent.parent / 'blogs').resolve()
+SERIES_DIR = BLOGS_DIR / 'series'
 _FEATURED_IMAGE_CACHE = {
     'signature': None,
     'by_slug': {}
@@ -19,8 +20,22 @@ def _slugify(value):
     return slug.strip("-")
 
 
+def _iter_blog_markdown_files():
+    top_level = BLOGS_DIR.glob("*.md")
+    series_posts = SERIES_DIR.rglob("*.md") if SERIES_DIR.exists() else []
+    return sorted([*top_level, *series_posts])
+
+
+def _default_slug_for_path(path):
+    relative = path.relative_to(BLOGS_DIR)
+    if relative.parent == Path('.'):
+        return _slugify(path.stem)
+    without_suffix = relative.with_suffix('')
+    return _slugify(str(without_suffix).replace('\\', '/'))
+
+
 def _blog_files_signature():
-    files = sorted(BLOGS_DIR.glob("*.md"))
+    files = _iter_blog_markdown_files()
     return tuple(
         (path.name, path.stat().st_mtime_ns, path.stat().st_size)
         for path in files
@@ -53,9 +68,9 @@ def _featured_image_index():
         return _FEATURED_IMAGE_CACHE['by_slug']
 
     by_slug = {}
-    for md_file in BLOGS_DIR.glob("*.md"):
+    for md_file in _iter_blog_markdown_files():
         metadata = _parse_frontmatter(md_file)
-        slug = metadata.get('slug') or _slugify(md_file.stem)
+        slug = metadata.get('slug') or _default_slug_for_path(md_file)
         if not slug:
             continue
         by_slug[slug] = {

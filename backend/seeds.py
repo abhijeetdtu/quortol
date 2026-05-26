@@ -5,11 +5,26 @@ import re
 from .models import BlogPost, Tag
 
 BLOGS_DIR = Path(__file__).resolve().parent / "blogs"
+SERIES_DIR = BLOGS_DIR / "series"
 
 
 def _slugify(value):
     slug = re.sub(r"[^a-zA-Z0-9]+", "-", value.strip().lower())
     return slug.strip("-")
+
+
+def _iter_blog_markdown_files():
+    top_level = BLOGS_DIR.glob("*.md")
+    series_posts = SERIES_DIR.rglob("*.md") if SERIES_DIR.exists() else []
+    return sorted([*top_level, *series_posts])
+
+
+def _default_slug_for_path(path):
+    relative = path.relative_to(BLOGS_DIR)
+    if relative.parent == Path("."):
+        return _slugify(path.stem)
+    without_suffix = relative.with_suffix("")
+    return _slugify(str(without_suffix).replace("\\", "/"))
 
 
 def _derive_excerpt(content, max_len=220):
@@ -129,7 +144,7 @@ def _parse_markdown_file(path):
     if not title:
         title = path.stem.replace("-", " ").replace("_", " ").title()
 
-    slug = metadata.get("slug") or _slugify(path.stem)
+    slug = metadata.get("slug") or _default_slug_for_path(path)
     excerpt = metadata.get("excerpt") or _derive_excerpt(body)
     tags = _parse_tags(metadata.get("tags", ""))
     explicit_published_at = (
@@ -157,7 +172,7 @@ def _parse_markdown_file(path):
 
 def seed_blog_posts_from_markdown(db):
     """
-    Upsert blog posts from markdown files in backend/blogs.
+    Upsert blog posts from markdown files in backend/blogs and backend/blogs/series.
 
     Supports simple frontmatter:
     ---
@@ -171,7 +186,7 @@ def seed_blog_posts_from_markdown(db):
     """
     BLOGS_DIR.mkdir(parents=True, exist_ok=True)
 
-    markdown_files = sorted(BLOGS_DIR.glob("*.md"))
+    markdown_files = _iter_blog_markdown_files()
     for md_file in markdown_files:
         parsed = _parse_markdown_file(md_file)
         post = BlogPost.query.filter_by(slug=parsed["slug"]).first()
