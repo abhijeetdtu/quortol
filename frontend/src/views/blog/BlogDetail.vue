@@ -6,7 +6,16 @@
     <article v-else-if="post" class="essay">
       <header class="hero">
         <figure v-if="heroImageUrl" class="hero-image">
-          <img :src="heroImageUrl" :alt="post.title" />
+          <img
+            :src="heroImageUrl"
+            :alt="post.title"
+            class="clickable-image"
+            tabindex="0"
+            role="button"
+            @click="openImageViewer(heroImageUrl, post.title)"
+            @keydown.enter.prevent="openImageViewer(heroImageUrl, post.title)"
+            @keydown.space.prevent="openImageViewer(heroImageUrl, post.title)"
+          />
         </figure>
         <div v-else class="hero-fallback"></div>
 
@@ -31,14 +40,34 @@
         :is-initialized="store.isInitialized"
       />
 
-      <section class="content" v-html="renderedContent"></section>
+      <section
+        ref="contentRef"
+        class="content"
+        v-html="renderedContent"
+        @click="handleContentClick"
+        @keydown="handleContentKeydown"
+      ></section>
     </article>
     <div v-else class="not-found">Post not found</div>
+
+    <div
+      v-if="fullscreenImage"
+      class="image-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+      @click="closeImageViewer"
+    >
+      <button class="lightbox-close" type="button" aria-label="Close image viewer" @click.stop="closeImageViewer">
+        Close
+      </button>
+      <img :src="fullscreenImage.src" :alt="fullscreenImage.alt" class="lightbox-image" @click.stop />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onUnmounted, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, computed, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
@@ -52,6 +81,8 @@ const route = useRoute()
 const post = ref(null)
 const loading = ref(true)
 const store = useTTSStore()
+const contentRef = ref(null)
+const fullscreenImage = ref(null)
 
 const slug = computed(() => route.params.slug)
 
@@ -211,6 +242,52 @@ const loadPost = async (targetSlug) => {
   }
 }
 
+const openImageViewer = (src, alt = '') => {
+  if (!src) return
+  fullscreenImage.value = { src, alt }
+}
+
+const closeImageViewer = () => {
+  fullscreenImage.value = null
+}
+
+const handleContentClick = (event) => {
+  const image = event.target?.closest('img')
+  if (!image || !contentRef.value?.contains(image)) return
+  event.preventDefault()
+  openImageViewer(image.getAttribute('src') || '', image.getAttribute('alt') || post.value?.title || '')
+}
+
+const handleContentKeydown = (event) => {
+  if (event.key !== 'Enter' && event.key !== ' ') return
+  const image = event.target
+  if (!(image instanceof HTMLImageElement)) return
+  if (!contentRef.value?.contains(image)) return
+  event.preventDefault()
+  openImageViewer(image.getAttribute('src') || '', image.getAttribute('alt') || post.value?.title || '')
+}
+
+const decorateInlineImages = async () => {
+  await nextTick()
+  if (!contentRef.value) return
+  const images = contentRef.value.querySelectorAll('img')
+  images.forEach((image) => {
+    image.classList.add('clickable-image')
+    image.setAttribute('tabindex', '0')
+    image.setAttribute('role', 'button')
+    if (!image.getAttribute('aria-label')) {
+      const alt = image.getAttribute('alt') || post.value?.title || 'Open image in fullscreen'
+      image.setAttribute('aria-label', `Open image: ${alt}`)
+    }
+  })
+}
+
+const handleGlobalKeydown = (event) => {
+  if (event.key === 'Escape' && fullscreenImage.value) {
+    closeImageViewer()
+  }
+}
+
 watch(
   () => slug.value,
   (nextSlug) => {
@@ -224,6 +301,12 @@ watch(
 onUnmounted(() => {
   store.stop()
   store.cleanup()
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', handleGlobalKeydown)
+})
+
+onMounted(() => {
+  window.addEventListener('keydown', handleGlobalKeydown)
 })
 
 const formatDate = (date) => {
@@ -283,6 +366,14 @@ const renderedContent = computed(() => {
 
   return markdownParser.render(displayContent.value).replace('<p>', '<p class="lead-paragraph">')
 })
+
+watch(renderedContent, () => {
+  decorateInlineImages()
+})
+
+watch(fullscreenImage, (imageState) => {
+  document.body.style.overflow = imageState ? 'hidden' : ''
+})
 </script>
 
 <style scoped>
@@ -322,6 +413,10 @@ const renderedContent = computed(() => {
   max-height: 60vh;
   object-fit: cover;
   display: block;
+}
+
+.clickable-image {
+  cursor: zoom-in;
 }
 
 .hero-fallback {
@@ -510,6 +605,44 @@ const renderedContent = computed(() => {
   border-radius: 3px;
   display: block;
   margin: 2rem auto 0.65rem;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.lightbox-image {
+  max-width: min(96vw, 1400px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.92rem;
+  line-height: 1.1;
+}
+
+.lightbox-close:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .loading,
