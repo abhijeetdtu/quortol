@@ -17,7 +17,7 @@
       <div id="quortol-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Explorer</router-link>
+            <router-link to="/explorer" class="nav-link">Explorer</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/quortol-home" class="nav-link">Home</router-link>

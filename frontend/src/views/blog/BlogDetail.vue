@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onUnmounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
@@ -46,6 +46,7 @@ import 'highlight.js/styles/github.css'
 import { blog } from '../../services/api'
 import BlogTTS from '../../components/blog/BlogTTS.vue'
 import { useTTSStore } from '../../stores/tts'
+import { applySEOMetadata } from '../../utils/seo'
 
 const route = useRoute()
 const post = ref(null)
@@ -159,16 +160,66 @@ const stripDuplicateLeadByline = (content) => {
   return lines.join('\n')
 }
 
-onMounted(async () => {
+const extractTextFromMarkdown = (value = '') => {
+  return value
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
+    .replace(/\[[^\]]*]\([^)]+\)/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[>*_~#-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const buildDescription = (value = '') => {
+  const clean = extractTextFromMarkdown(value)
+  if (!clean) return 'Read longform essays from Quortol.'
+  if (clean.length <= 160) return clean
+  return `${clean.slice(0, 157).trim()}...`
+}
+
+const applyPostSEO = (postData) => {
+  if (!postData) return
+
+  applySEOMetadata({
+    title: `${postData.title} | Quortol`,
+    description: buildDescription(postData.excerpt || postData.content || ''),
+    path: `/blog/${postData.slug}`,
+    ogType: 'article',
+    ogImage: postData.featured_image || ''
+  })
+}
+
+const loadPost = async (targetSlug) => {
+  loading.value = true
   try {
-    const response = await blog.getPost(slug.value)
+    const response = await blog.getPost(targetSlug)
     post.value = response.data
+    applyPostSEO(post.value)
   } catch (error) {
     console.error('Error loading post:', error)
+    post.value = null
+    applySEOMetadata({
+      title: 'Post Not Found | Quortol',
+      description: 'The requested blog post could not be found.',
+      path: `/blog/${targetSlug}`,
+      robots: 'index,follow'
+    })
   } finally {
     loading.value = false
   }
-})
+}
+
+watch(
+  () => slug.value,
+  (nextSlug) => {
+    if (nextSlug) {
+      loadPost(nextSlug)
+    }
+  },
+  { immediate: true }
+)
 
 onUnmounted(() => {
   store.stop()
@@ -187,15 +238,7 @@ const sourceContent = computed(() => post.value?.content || '')
 
 const plainTextContent = computed(() => {
   const content = displayContent.value
-  return content
-    .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/`[^`]*`/g, ' ')
-    .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
-    .replace(/\[[^\]]*]\([^)]+\)/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/[>*_~#-]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
+  return extractTextFromMarkdown(content)
 })
 
 const wordCount = computed(() => {
