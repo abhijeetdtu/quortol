@@ -43,24 +43,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pokhi.in/blog/ai-agents-in-your-pocket-wilde</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pokhi.in/blog/ai-is-the-new-space-race</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pokhi.in/blog/ai-race-700-billion-question</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://pokhi.in/blog/ai-agents-liberating-humans</loc>
     <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
@@ -79,6 +61,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pokhi.in/blog/ai-agents-in-your-pocket-wilde</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/ai-is-the-new-space-race</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/ai-race-700-billion-question</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pokhi.in/blog/appalachian-trail-spine-of-the-east</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
@@ -92,7 +92,7 @@
   </url>
   <url>
     <loc>https://pokhi.in/blog/caribbean-life-data-driven</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -105,6 +105,12 @@
   <url>
     <loc>https://pokhi.in/blog/cracks-in-standard-cosmological-model</loc>
     <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/emerson-to-ecomyth</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -127,8 +133,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pokhi.in/blog/hidden-world-underneath-oceans</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pokhi.in/blog/india-political-parties-evolution</loc>
     <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/ipl-bench-economy</loc>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -158,13 +176,13 @@
   </url>
   <url>
     <loc>https://pokhi.in/blog/marvel-science-pipeline</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pokhi.in/blog/meditation-science-wilde</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -181,8 +199,32 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pokhi.in/blog/new-england-hiking-150-years</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/new-hampshire-bed-and-breakfasts</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/north-conway-economy</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pokhi.in/blog/restless-species</loc>
     <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pokhi.in/blog/sleep-necessity-puzzle</loc>
+    <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -218,13 +260,13 @@
   </url>
   <url>
     <loc>https://pokhi.in/blog/when-the-sky-kisses-the-earth</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pokhi.in/blog/yugoslavia-reckoning</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
