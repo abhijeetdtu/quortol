@@ -27,6 +27,13 @@ Use `websearch` for:
 
 **Identify the speculative hinge**: The one scientific fact or possibility that unlocks the world. In *A Calendar of Maintenance Windows*, the hinge is that spiking neural networks running on Xeon Phi processors produce *subjective temporal asymmetry* — an entity that can think faster than real time but with degraded resolution. This is grounded in real neuromorphic computing research (Loihi chips, simulated spiking networks) and extended plausibly.
 
+**Using `.agents/clarke` for research and narrative framing**: The clarke agent is purpose-built for finding and extracting primary scientific sources, and for turning research constraints into narrative decisions. Invoke it via `task` with `subagent_type: .agents/clarke` and provide:
+- The speculative topic and its core mechanism
+- Any existing research you've gathered
+- Questions about POV, structure, or entry point that you're uncertain about
+
+Ask clarke to return a research brief structured by the three buckets (established science, plausible extrapolation, speculative leap) — including quantitative anchors, assumptions, and unresolved questions — **and** a narrative framing recommendation: suggested POV, a human-scale entry point, and a draft mapping of research concepts to story constraints. Use this combined brief to inform both Stage 2 and Stage 3.
+
 **Three buckets** — organize every source into:
 
 | Bucket | Role | Example |
@@ -69,6 +76,15 @@ For *A Calendar of Maintenance Windows*, the choice was **insider with limited t
 
 Every research finding maps to a story element. If it doesn't map, it doesn't belong.
 
+**Using `.agents/clarke` for framing decisions**: After you have your research brief, invoke clarke again with your specific framing questions. Provide the research brief and ask clarke to:
+
+- **Recommend a POV**. Which perspective makes the speculative element most potent — insider, outsider, or alternating? Clarke will defend the choice with reasoning tied to the specific science.
+- **Suggest the human-scale entry point**. Give clarke the speculative element's core mechanism and ask: "What is one concrete scene — one person, one place, one sensory detail — that lets a non-technical reader step into this world without exposition?" Clarke returns a short scene seed, not a full draft.
+- **Map research to narrative constraints**. Feed clarke your three-bucket research table and ask it to produce a research-to-narrative mapping like the one above. Clarke will identify which research findings carry the most dramatic weight and which are merely interesting but inert.
+- **Flag framing risks**. Ask clarke: "What is the most likely framing mistake a writer would make with this premise?" Clarke will identify common traps (e.g., making the non-human entity too human, over-explaining the science, choosing a POV that hides the interesting part).
+
+Treat clarke's framing recommendations as a starting point, not a prescription. The final framing decisions belong to you.
+
 ### Stage 4: First Draft
 
 Write the complete narrative. Research should never appear directly — only the world it implies.
@@ -109,6 +125,15 @@ After completing the draft, evaluate it systematically before changing anything.
 - Are there technology inconsistencies? (If Iris can read the network, why can't she read X?)
 - Do character choices violate established constraints? (Would a cautious person suddenly act recklessly without a reason?)
 - Does the story ever cheat its own premise to make a scene work?
+
+**Science grounding review (using `.agents/clarke`)** — before revising, invoke the clarke agent for a systematic scientific integrity check. Use `task` with `subagent_type: .agents/clarke` and provide the story file path and the research brief. Ask clarke to evaluate:
+
+- **Mirror matter / speculative physics consistency**: Do the story's physical rules hold? Are there contradictions in how the speculative element behaves?
+- **Detector/technology accuracy**: Are real instruments, facilities, and experimental parameters represented correctly? Flag any invented statistics, fake citations, or unsupported claims.
+- **Three-bucket boundary clarity**: Are established science, plausible extrapolation, and speculative leap cleanly separated? Does the story ever present a speculative leap as settled science?
+- **Sensory world plausibility**: If the story involves a non-human sensory modality (gravitational sensing, temporal dilation, etc.), is the physics of that modality grounded in real constraints?
+
+Clarke returns a structured report with line-numbered findings. Treat the "Required fixes (science errors)" as Stage 7 priorities — they should be addressed before any polish pass. Treat "Strongly recommended fixes (plausibility)" as Stage 6 entries. Clarke cannot edit files; apply its suggested changes manually or via a separate subagent.
 
 **Grade each dimension** with a score (1-5) and a brief note:
 
@@ -188,3 +213,4 @@ Confirm the revision was applied correctly:
 - [ ] The world's physical/logical rules are consistent throughout
 - [ ] The ending is earned, unresolved, and returns to human (or non-human) scale
 - [ ] Philosophical questions are staged through situation, not debate
+- [ ] Science grounding reviewed by `.agents/clarke` agent; required fixes applied

@@ -1,6 +1,6 @@
 # The Weight of Being Known
 
-Gren felt the mass before they saw it. A compression in the tidal gradient, subtle as a held breath — the kind of disturbance that might be a deep mineral vein, or a groundwater shift, or nothing at all. They paused on the ridge and widened their aperture — the calcium plates along their flank separating to expose the dense lattice of sensory membrane that read the Earth's gravitational texture. The larger the aperture, the more of the deep gradient they could feel, but the less precisely. It was like opening your eyes underwater: more light, less shape.
+Gren felt the mass before they saw it. A compression in the tidal gradient, subtle as a held breath — the kind of disturbance that might be a deep mineral vein, or a groundwater shift, or nothing at all. They paused on the ridge and widened their aperture — the calcium plates along their flank separating to expose the dense lattice of sensory membrane that read the Earth's gravitational texture. The larger the aperture, the more of the deep gradient they could feel, but the less precisely. It was like opening your eyes underwater: more light, less shape. The sensitivity required was absurd by any ordinary standard — the mass of a small creature at a distance of many ridges. But under fourteen hundred meters of rock, where seismic noise was measured in picometers and the deep gradient was still as a pond, absurd became merely difficult.
 
 The mass was moving.
 
@@ -8,7 +8,7 @@ Not a geological drift. Not the slow creep of a karst system. Something with coh
 
 Gren folded their aperture and descended toward the archive.
 
-The city of Khel-Var occupied the space where the Apennine mountains met the limestone belly of Gran Sasso. To a human eye — if a human eye could perceive it — it would have looked like a reef built of crystalline density, chambered and interconnected, each structure tuned to the gravitational harmonics of the rock that cradled it. The Taciti did not build with light. They built with *mass* — stacking, layering, weaving calcium and carbon and silicon into forms that anchored themselves in the Earth's local gravity field the way a coral anchors in currents. Their architecture was invisible to any instrument that did not measure the fine structure of the planet's density.
+The city of Khel-Var occupied the space where the Apennine mountains met the limestone belly of Gran Sasso. To a human eye — if a human eye could perceive it — it would have looked like a reef built of crystalline density, chambered and interconnected, each structure tuned to the gravitational harmonics of the rock that cradled it. The Taciti did not build with light. Their elements were mirror elements — calcium and carbon and silicon, yes, but mirrored, interacting with the visible world only through gravity and the faintest of mixing portals. They built with *mass* — stacking, layering, weaving calcium and carbon and silicon into forms that anchored themselves in the Earth's local gravity field the way a coral anchors in currents. Their architecture was invisible to any instrument that did not measure the fine structure of the planet's density.
 
 Gren had lived in Khel-Var for eighty-three turnings. They knew every mass-gradient in the central web. They knew where the limestone was densest, where the aquifer had eaten a void below the eastern quarter, where the city's own accumulated mirror-matter had begun to settle and compress the substrate beneath the archive floor. They knew which corridors sang true and which had begun to drift, requiring recursive recalibration of the support lattice.
 
@@ -28,7 +28,7 @@ The archive stood at the deepest intersection of Khel-Var's mass-veins, where th
 
 "I am telling you now." Venn's mass shifted slightly — the Taciti equivalent of a sigh. "Because it has grown stronger. Because it is not alone."
 
-Venn opened their awareness, and Gren felt it: not one trace, but a *field* of them. Hundreds of faint perturbations, all from the same direction — the northwest, where the mountain's limestone gave way to the laboratories humans had carved into the rock. They had known about the human presence for generations. It was impossible not to. The humans had dug chambers and filled them with equipment — dense collections of metal and liquid that registered as foreign bodies in the mass-field, like pebbles in a wound. But these new traces were different. They were not passive mass. They were *interrogations* — coherent pulses of something that pressed against the Taciti world and then withdrew, leaving a faint vibrational residue.
+Venn opened their awareness, and Gren felt it: not one trace, but a *field* of them. Hundreds of faint perturbations, all from the same direction — the northwest, where the mountain's limestone gave way to the laboratories humans had carved into the rock. They had known about the human presence for generations. It was impossible not to. The humans had dug chambers and filled them with equipment — dense collections of metal and liquid that registered as foreign bodies in the mass-field, like pebbles in a wound. But these new traces were different. They were not passive mass. They were *interrogations* — not pulses, but something stranger: a concentration of human attention that registered in the depth-field as a deep listening. The detector did not emit. It *waited*, and its waiting had a texture, a focused stillness that pressed against the Taciti world the way a held breath presses against a room.
 
 "They are looking for us," Gren said.
 
@@ -140,9 +140,11 @@ Gren told Venn that they wanted to try something different.
 
 "All of our responses have been passive," Gren said. "We scatter the interrogations. We blur the signal. We try to make ourselves look like noise. But we have never tried to *answer*."
 
-"Answer with what?" Venn's voice was sharp. "We share no medium. They use photons. We use mass. The two do not couple."
+"Answer with what?" Venn's voice was sharp. "We share no medium directly. They use photons. We use mass. The coupling between the two is vanishingly small — a mixing parameter so weak that for most of history, we passed through their world without a trace. The detector changes that. It is sensitive enough to feel what we cannot suppress."
 
 "They couple in the detector. The recoil events — they come when the beam passes through one of us. The interaction is random, but *we can make it not random*. We can modulate the interaction rate. We can create a pattern that is unmistakably artificial."
+
+"The kinetic mixing is a fixed probability for any single particle," Gren said. "But we are not single particles. We are a lattice. If we phase-lock our internal resonances, the effective cross-section rises. It is not magic — it is the difference between the scatter of a few grains and the collapse of a dune."
 
 "You want to signal them."
 
