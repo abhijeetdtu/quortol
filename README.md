@@ -121,6 +121,35 @@ llama-server `
    --jinja
 ```
 
+```bash
+llama-server `
+  -hf unsloth/Qwen3.5-35B-A3B-GGUF:IQ2_M `
+  --host 127.0.0.1 `
+  --port 8080 `
+  -ngl all `
+  -c 32768 `
+  -b 4096 `
+  -ub 512 `
+  -np 1 `
+  --cont-batching `
+  --flash-attn on `
+  --cache-type-k q8_0 `
+  --cache-type-v q8_0 `
+  --cache-ram 0 `
+  --ctx-checkpoints 4 `
+  --fit on `
+  --fit-ctx 32000 `
+  --jinja `
+  --no-webui `
+  --temp 0.6 `
+  --top-p 0.95 `
+  --top-k 20 `
+  --min-p 0.0 `
+  --presence-penalty 1.5 `
+  --repeat-penalty 1.0 `
+  --chat-template-kwargs '{\"preserve_thinking\":true}' `
+  --log-verbosity 4
+```
 
 # blog removal
 
