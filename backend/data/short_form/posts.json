@@ -1,0 +1,62 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "text": "Amazing match highlights from yesterday's IPL game! #cricket #ipl #match",
+    "media_url": "/static/short_form/images/post_001.jpg",
+    "video_url": null,
+    "author": "Sports Desk",
+    "timestamp": "2026-05-30T14:30:00Z",
+    "tags": ["#cricket", "#ipl", "#match"],
+    "created_at": "2026-05-30T14:25:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "text": "Best sixes of the season compilation! #cricket #sixes #highlights",
+    "media_url": null,
+    "video_url": "/static/short_form/videos/post_002.mp4",
+    "author": "Cricket Highlights",
+    "timestamp": "2026-05-30T12:15:00Z",
+    "tags": ["#cricket", "#sixes", "#highlights"],
+    "created_at": "2026-05-30T12:10:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "text": "Player of the match award ceremony #ipl #awards #cricket",
+    "media_url": "/static/short_form/images/post_003.jpg",
+    "video_url": null,
+    "author": "IPL Official",
+    "timestamp": "2026-05-30T10:00:00Z",
+    "tags": ["#ipl", "#awards", "#cricket"],
+    "created_at": "2026-05-30T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "text": "Behind the scenes at the stadium! #ipl #stadium #cricket",
+    "media_url": null,
+    "video_url": "/static/short_form/videos/post_004.mp4",
+    "author": "IPL Insider",
+    "timestamp": "2026-05-30T08:30:00Z",
+    "tags": ["#ipl", "#stadium", "#cricket"],
+    "created_at": "2026-05-30T08:25:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "text": "Fan reactions during the final over! #cricket #fans #ipl",
+    "media_url": "/static/short_form/images/post_005.jpg",
+    "video_url": null,
+    "author": "Fan Zone",
+    "timestamp": "2026-05-30T06:45:00Z",
+    "tags": ["#cricket", "#fans", "#ipl"],
+    "created_at": "2026-05-30T06:40:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440006",
+    "text": "Test post: short-form feed wiring is live. This is a text-only test entry for filtering and search.",
+    "media_url": null,
+    "video_url": null,
+    "author": "Quortol QA",
+    "timestamp": "2026-05-30T16:05:00Z",
+    "tags": ["#test", "#shorts", "#qa"],
+    "created_at": "2026-05-30T16:00:00Z"
+  }
+]

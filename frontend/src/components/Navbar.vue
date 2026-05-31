@@ -26,6 +26,9 @@
             <router-link to="/blog" class="nav-link">Blog</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/shorts" class="nav-link">Shorts</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
           </li>
           <li class="nav-item">

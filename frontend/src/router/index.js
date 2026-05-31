@@ -10,6 +10,7 @@ import PortfolioDetail from '../views/portfolio/PortfolioDetail.vue'
 import AgentLogin from '../views/agents/AgentLogin.vue'
 import AgentDashboard from '../views/agents/AgentDashboard.vue'
 import AgentCapabilities from '../views/agents/AgentCapabilities.vue'
+import ShortFormFeedPage from '../features/short-form/pages/ShortFormFeedPage.vue'
 
 const routes = [
   {
@@ -152,6 +153,18 @@ const routes = [
       seo: {
         title: 'Dashboard View | Quortol',
         description: 'Explore interactive dashboard views on Quortol data storytelling.'
+      }
+    }
+  },
+  {
+    path: '/shorts',
+    name: 'short-form-feed',
+    component: ShortFormFeedPage,
+    meta: {
+      requiresAuth: false,
+      seo: {
+        title: 'Short-Form Content Feed | Quortol',
+        description: 'Browse short-form content posts with images, videos, and tags.'
       }
     }
   }

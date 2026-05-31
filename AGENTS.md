@@ -1,7 +1,7 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan:
-specs/004-ball-by-ball-simulation/plan.md
+specs/005-short-form-feed/plan.md
 <!-- SPECKIT END -->
 
 ## Current Plan Reference

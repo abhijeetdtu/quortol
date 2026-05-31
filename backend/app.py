@@ -31,6 +31,12 @@ def create_app(config_class=None):
     from .routes.agent import agent_bp
     from .routes.auth import auth_bp
     from .routes.pokhi_wikipedia import pokhi_wikipedia_bp
+    
+    # Register short-form feed API blueprint
+    from .features.short_form import create_short_form_blueprint
+    short_form_bp = create_short_form_blueprint()
+    app.register_blueprint(short_form_bp, url_prefix='/api')
+    
     app.register_blueprint(blog_bp, url_prefix='/api/blog')
     app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')
     app.register_blueprint(agent_bp, url_prefix='/api/agents')
