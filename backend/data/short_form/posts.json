@@ -58,5 +58,215 @@
     "timestamp": "2026-05-30T16:05:00Z",
     "tags": ["#test", "#shorts", "#qa"],
     "created_at": "2026-05-30T16:00:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440101",
+    "text": "A 2,000-year-old philosophy just passed a randomized controlled trial.\n\nIn 2021, 45 high-worriers completed 8 days of Stoic exercises — reading Epictetus, examining their judgments, practicing negative visualization. The results, published in Cognitive Therapy and Research:\n\n• 18% reduction in rumination (a top predictor of depression)\n• 15% increase in self-efficacy\n• Measurably less anxious language in daily journals\n\nThe philosopher whose exercises they followed? A former slave named Epictetus. He'd been dead 1,900 years.\n\nFull article: /blog/stoicism-science",
+    "media_url": "/static/short_form/images/stoicism-science_effect_sizes.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-05T10:00:00Z",
+    "tags": ["#stoicism", "#science", "#mentalhealth", "#ancientwisdom", "#clinicaltrials"],
+    "created_at": "2026-06-05T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440102",
+    "text": "There are two kinds of 'stoic' — and they are opposites.\n\nThe colloquial kind: stiff upper lip, gritted teeth, emotional suppression.\n\nThe philosophical kind: recognizing what is within your power, examining your judgments, practicing compassion.\n\nIn 2025, the Stoic Attitudes and Behaviours Scale (SABS) was validated on 8,000+ participants across 116 countries. The results were unambiguous:\n\n• Authentic Stoicism → greater life satisfaction, resilience, lower anxiety\n• 'Stiff upper lip' stoicism → poorer outcomes across every measure\n• The two were negatively correlated — the more genuinely Stoic you are, the less you suppress your feelings.\n\nThe science has caught up to a distinction the Stoics made two millennia ago.",
+    "media_url": "/static/short_form/images/stoicism-science_sabs_dimensions.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-05T12:00:00Z",
+    "tags": ["#stoicism", "#psychology", "#science", "#mentalhealth"],
+    "created_at": "2026-06-05T11:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440103",
+    "text": "In 1991, two hikers found a body emerging from an Alpine glacier — 5,300 years old, preserved by ice.\n\nAmong Ötzi the Iceman's possessions: two pieces of birch polypore fungus mounted on leather thongs. It wasn't food (too bitter). It wasn't tinder (burns poorly). A man of the mountains does not carry useless weight.\n\nModern chemical analysis confirms: Fomitopsis betulina contains antibiotic, anti-inflammatory, and anti-parasitic compounds — piptamine, polyporenic acids, triterpenoids — that inhibit pathogenic bacteria and reduce inflammation.\n\nA man who died 53 centuries ago carried medicine whose chemistry science is only now confirming. He didn't know why it worked. He just knew it did.",
+    "media_url": null,
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-06T10:00:00Z",
+    "tags": ["#fungi", "#archaeology", "#ancientwisdom", "#medicine", "#science"],
+    "created_at": "2026-06-06T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440104",
+    "text": "Why does a major chord sound 'happy' and a minor chord sound 'sad'? The answer reduces to four digits.\n\nA C major chord (C-E-G) vibrates at frequencies in the ratio 4:5:6 — the 4th, 5th, and 6th overtones that nature embeds in every vibrating string. The waves align frequently. The ear registers stability.\n\nA C minor chord (C-E♭-G) vibrates at 10:12:15. Larger numbers. Fewer wave coincidences. The ear registers tension.\n\nA major chord is not something a composer invented. It was already there — embedded in the physics of every vibrating string, waiting to be discovered.\n\nPythagoras figured this out 2,500 years ago by listening to blacksmiths' hammers.",
+    "media_url": "/static/short_form/images/hidden-math-in-what-you-hear_chord_ratios.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-06T14:00:00Z",
+    "tags": ["#music", "#math", "#physics", "#pythagoras", "#ancientwisdom"],
+    "created_at": "2026-06-06T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440105",
+    "text": "The ancient Greeks believed the cosmos was built on perfect musical ratios.\n\nPythagoras discovered that a string cut in half produces an octave (ratio 2:1), and two-thirds produces a perfect fifth (3:2). Twelve perfect fifths should equal seven octaves.\n\nThey don't.\n\n(3/2)¹² does not equal 2⁷.\n\nThe difference is a ratio of 531,441 to 524,288 — the Pythagorean comma: about a quarter of a semitone. Small enough to ignore, large enough to break every keyboard.\n\nIt took two thousand years to find a workaround: equal temperament, where every interval except the octave is slightly out of tune. Nothing is perfect, but everything is equally imperfect.\n\nThe universe has a rounding error. We learned to live with it.",
+    "media_url": "/static/short_form/images/hidden-math-in-what-you-hear_tetraktys.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-07T10:00:00Z",
+    "tags": ["#math", "#music", "#pythagoras", "#history", "#science"],
+    "created_at": "2026-06-07T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440106",
+    "text": "Cognitive Behavioral Therapy is the most scientifically validated psychotherapy in existence.\n\nA 2023 meta-analysis of 409 randomized controlled trials involving 52,702 patients confirmed: CBT reduces depression with moderate-to-large effects (g = 0.79), as effective as medication in the short term, more effective at 6-12 months.\n\nIts founding fathers — Albert Ellis and Aaron Beck — explicitly credited Epictetus, a philosopher who was born a slave in the first century CE.\n\nEpictetus's core idea: 'Men are disturbed not by things, but by the views which they take of them.'\n\nThat sentence became the foundation of CBT. The ancient philosophy did not merely inspire the modern therapy. It anticipated its central insight so precisely that, as one researcher noted, a first-century slave could have walked into a twenty-first-century therapist's office and recognized the entire framework.",
+    "media_url": "/static/short_form/images/stoicism-science_cbt_efficacy.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-07T14:00:00Z",
+    "tags": ["#stoicism", "#cbt", "#psychology", "#mentalhealth", "#epictetus"],
+    "created_at": "2026-06-07T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440107",
+    "text": "In the Tassili n'Ajjer plateau of the Sahara, rock paintings from 6000-4500 BC depict human figures holding mushroom-shaped objects, with dotted lines connecting the fungi to their heads.\n\nArchaeologists and mycologists interpret this as the oldest known depiction of psychedelic ritual. These were painted when the Sahara was a green savanna — before the desert, before writing, before almost everything.\n\nFast forward to February 2026: COMPASS Pathways announced its second Phase 3 trial of synthetic psilocybin for treatment-resistant depression. The result: highly statistically significant (p < 0.001). The effect was rapid — measurable the day after administration — and durable through at least 26 weeks.\n\nThe molecule is the same one painted on those Saharan cave walls. The context has changed completely. But the fundamental insight — that the fungal compound can open a door in the mind that conventional treatments cannot reach — has remained stable for eight thousand years.",
+    "media_url": "/static/short_form/images/human-fungi-relationship_psilocybin_trials.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-08T10:00:00Z",
+    "tags": ["#psychedelics", "#ancientwisdom", "#science", "#mentalhealth", "#fungi"],
+    "created_at": "2026-06-08T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440201",
+    "text": "America's 22,000 souvenir shops were supposed to die. Amazon was supposed to kill them. E-commerce was supposed to make them irrelevant.\n\nInstead, they generated $21.55 billion in sectoral output in 2024 — up 54% from the pandemic trough, and up 10% from 2021.\n\nThe industry everyone declared dead is very much alive. It employs 120,000 people. It fills the storefronts that pharmacies abandoned. It sells things no one needs, which is precisely why they matter.\n\nFull article: /blog/trinket-shop-nostalgia-economy",
+    "media_url": "/static/short_form/images/trinket_sectoral_output.png",
+    "video_url": null,
+    "author": "Quortol Economy Desk",
+    "timestamp": "2026-06-09T10:00:00Z",
+    "tags": ["#economy", "#retail", "#america", "#smallbusiness", "#tourism"],
+    "created_at": "2026-06-09T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440202",
+    "text": "Why do people pay $12 for a refrigerator magnet in a small town when they could order one online for $4?\n\nThe answer, proven experimentally in the Journal of Consumer Research: nostalgia weakens the desire for money.\n\nIn six experiments, participants primed with nostalgia were willing to pay more for products, gave more to charity, and valued money less. The mechanism is social connectedness — nostalgia makes you feel connected, and that feeling quietly erodes the psychological importance of money.\n\nThe trinket shop is a physical engine for this effect. The wooden floorboards, the handwritten price tags, the vintage signage — every element is a nostalgia trigger.",
+    "media_url": "/static/short_form/images/trinket_main_street.png",
+    "video_url": null,
+    "author": "Quortol Economy Desk",
+    "timestamp": "2026-06-09T14:00:00Z",
+    "tags": ["#psychology", "#economics", "#retail", "#nostalgia", "#consumerbehavior"],
+    "created_at": "2026-06-09T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440203",
+    "text": "Netflix's Standard plan: $7.99/month in 2011. $19.99/month in 2026. A 150% increase.\n\nNetflix's subscribers: 325 million. Record profits. Operating margins of 32%.\n\nDeloitte's 2026 survey: 47% of customers feel overcharged. 60% say they'd cancel after a $5 increase.\n\nAlmost nobody cancels.\n\nNetflix's churn rate is 2% per month — the best in the industry. The personalized algorithm, the Continue Watching row, the My List — these create switching costs that are not financial but cognitive. Leaving means rebuilding your queue. The product has engineered the endowment effect.\n\nFull article: /blog/netflix-paradox",
+    "media_url": "/static/short_form/images/netflix_pricing_arc.png",
+    "video_url": null,
+    "author": "Quortol Economy Desk",
+    "timestamp": "2026-06-10T10:00:00Z",
+    "tags": ["#netflix", "#streaming", "#economics", "#media", "#consumer"],
+    "created_at": "2026-06-10T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440204",
+    "text": "The Blue Ridge Parkway draws more visitors than Yellowstone, Yosemite, and the Grand Canyon combined — nearly 17 million a year. It generates $1.52 billion in visitor spending. It supports 15,679 jobs.\n\nIt is one of 184 roads in 48 states designated under the National Scenic Byways Program. Most Americans have never heard of this program.\n\nThe Harriet Tubman Underground Railroad Byway. The Beartooth Highway (open only 4 months, generates $50M). Utah's Scenic Byway 12 (red rock canyons, alpine forests, the Grand Staircase). Route 66 (the only one anyone knows).\n\n184 roads, hidden in plain sight. They are waiting.\n\nFull article: /blog/american-byways",
+    "media_url": "/static/short_form/images/byways_blueridge_construction.jpg",
+    "video_url": null,
+    "author": "Quortol Travel Desk",
+    "timestamp": "2026-06-10T14:00:00Z",
+    "tags": ["#travel", "#roadtrip", "#america", "#nationalparks", "#byways"],
+    "created_at": "2026-06-10T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440205",
+    "text": "Maine produces 99% of America's wild blueberries. In 2025, a flash drought hit just as the berries were ripening.\n\nLisa Hanscom walked onto her family's blueberry barren and watched the fruit shrivel on the bush. She could only harvest 4 of her 32 acres.\n\nAcross the state: 54.9 million pounds harvested, down from 85 million the year before. Estimated losses: $30 million for blueberries. Another $10 million in apples. $15.9 million in Vermont.\n\nTotal for one growing season in northern New England: roughly $56 million in agricultural damage. And that's just the crops. Groundwater levels across the region hit record lows. Hundreds of wells ran dry.\n\nFull article: /blog/the-53-million-dollar-summer",
+    "media_url": "/static/short_form/images/the-53-million-dollar-summer_agricultural_losses.png",
+    "video_url": null,
+    "author": "Quortol Climate Desk",
+    "timestamp": "2026-06-11T10:00:00Z",
+    "tags": ["#climate", "#agriculture", "#drought", "#maine", "#vermont", "#food"],
+    "created_at": "2026-06-11T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440206",
+    "text": "A 2026 national survey of American adults found that 88% feel proud after completing one or more one-hour 'micro-adventures' in a given week.\n\nNearly half (45%) travel no more than 1-3 miles from home for these outings. 72% prefer walks or easy hikes. Among those earning under $50K, the primary motivation is mental health.\n\nSeparate research in the Journal of Happiness Studies (2025) found that daily events like a walk in nature predict life satisfaction MORE than major life events — 12% of variance vs 7.2%.\n\nThe biological drive for adventure is ancient. The expression doesn't require Everest. It requires stepping outside for an hour.\n\nFull article: /blog/restless-species",
+    "media_url": "/static/short_form/images/restless_micro_adventures.png",
+    "video_url": null,
+    "author": "Quortol Science Desk",
+    "timestamp": "2026-06-11T14:00:00Z",
+    "tags": ["#adventure", "#psychology", "#nature", "#wellbeing", "#microadventure"],
+    "created_at": "2026-06-11T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440207",
+    "text": "Physical media was supposed to be dead. Instead, it's having its vinyl moment.\n\nSales of DVDs and Blu-rays declined for years, but the drop slowed to just 9% in 2025 — the smallest decline since 2010.\n\nPremium 4K UHD format: up 12% year over year.\n\nThe Criterion Collection: 'significant year-over-year increases.'\n\nBarnes & Noble: DVD/Blu-ray sales up by mid-double digits, driven disproportionately by young shoppers.\n\nWhy? Ownership — streaming content disappears when licenses expire. California passed a law in 2025 to stop digital storefronts from using 'buy' unless the purchase is truly permanent.\n\nFull article: /blog/netflix-paradox",
+    "media_url": "/static/short_form/images/netflix_financial_profile.png",
+    "video_url": null,
+    "author": "Quortol Economy Desk",
+    "timestamp": "2026-06-12T10:00:00Z",
+    "tags": ["#media", "#physicalmedia", "#dvd", "#streaming", "#retro"],
+    "created_at": "2026-06-12T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440301",
+    "text": "The universe is expanding 8% faster than it should be — and the James Webb Space Telescope just confirmed it.\n\nTwo different measurements of the Hubble constant refuse to agree:\n\n• Early universe (Planck CMB): 67.4 km/s/Mpc\n• Late universe (SH0ES distance ladder): 73.0 km/s/Mpc\n\nThe difference: ~5 sigma — less than a 1-in-a-million chance it's random.\n\nWhen SH0ES used JWST to cross-check their Cepheid measurements, isolating individual stars without the blending that plagued Hubble, the results agreed with the faster rate. One of the last possible error sources was ruled out.\n\nThe crisis in cosmology is real. Our best model of the universe may be wrong.\n\nFull article: /blog/cracks-in-standard-cosmological-model",
+    "media_url": null,
+    "video_url": null,
+    "author": "Quortol Cosmology Desk",
+    "timestamp": "2026-06-13T10:00:00Z",
+    "tags": ["#cosmology", "#hubbletension", "#universe", "#physics", "#jwst"],
+    "created_at": "2026-06-13T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440302",
+    "text": "The universe is less clumpy than it should be — and no one knows why.\n\nThe S8 parameter measures how matter clusters on cosmic scales. Planck's early-universe data predicts S8 ~0.83. But gravitational lensing surveys — KiDS, DES, HSC — consistently find values of 0.76 to 0.78.\n\nIt's not as famous as the Hubble tension, but it may be more fundamental. Two discrepancies, both about 8%, potentially the same origin — or a coincidence that's rewriting cosmology.\n\nSome solutions that ease the Hubble tension make the S8 crisis worse, and vice versa. As one cosmologist put it: 'If you try to tweak it on one side, it falls apart on the other side.'\n\nFull article: /blog/cracks-in-standard-cosmological-model",
+    "media_url": null,
+    "video_url": null,
+    "author": "Quortol Cosmology Desk",
+    "timestamp": "2026-06-13T14:00:00Z",
+    "tags": ["#cosmology", "#darkmatter", "#universe", "#physics", "#s8tension"],
+    "created_at": "2026-06-13T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440303",
+    "text": "On October 6, 1995, Swiss astronomers Michel Mayor and Didier Queloz announced something that fundamentally altered humanity's place in the cosmos.\n\nThey had found a planet orbiting 51 Pegasi, a Sun-like star 50 light-years away. Half the mass of Jupiter. Orbiting every 4.2 days. Hugging its star at a distance 100 times closer than Mercury orbits our Sun.\n\nBy all known rules, it should not exist. Gas giants belong at the cold outer reaches of planetary systems, not broiling at 1,000°C. When the astronomers first saw the signal, their reaction was 'panic.'\n\nToday, the 'hot Jupiter' is one of the most common exoplanet types known. Our solar system — orderly, flat, circular — is the oddball.\n\nFull article: /blog/from-51-pegasi-to-6000-worlds",
+    "media_url": "/static/short_form/images/cosmic_51pegasi_b.jpg",
+    "video_url": null,
+    "author": "Quortol Space Desk",
+    "timestamp": "2026-06-14T10:00:00Z",
+    "tags": ["#exoplanets", "#51pegasi", "#astronomy", "#space", "#discovery"],
+    "created_at": "2026-06-14T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440304",
+    "text": "In 1995, we knew of exactly one planetary system — our own.\n\nToday, science has confirmed over 6,000 exoplanets. Super-Earths, mini-Neptunes, hot Jupiters, water worlds, lava planets, and worlds orbiting dead stars. The Kepler telescope alone found 2,600+.\n\nEvery star in the night sky likely hosts at least one planet. The question has shifted from 'Are there other worlds?' to 'Are there other lives?'\n\nWe went from counting planets to sniffing their atmospheres in a single generation. The Habitable Worlds Observatory, NASA's next flagship, aims to image Earth-like planets directly and look for signs of life.\n\nFull article: /blog/from-51-pegasi-to-6000-worlds",
+    "media_url": null,
+    "video_url": null,
+    "author": "Quortol Space Desk",
+    "timestamp": "2026-06-14T14:00:00Z",
+    "tags": ["#exoplanets", "#astronomy", "#space", "#science", "#discovery"],
+    "created_at": "2026-06-14T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440305",
+    "text": "In 2025, a Cambridge-led team announced what they called 'the strongest evidence yet' for biosignature gases in the atmosphere of K2-18b, a sub-Neptune 115 light-years away.\n\nUsing JWST data, they detected spectral features consistent with dimethyl sulfide (DMS) — a gas on Earth produced almost exclusively by marine life. If confirmed, it would be the first molecule potentially produced by alien biology ever detected.\n\nBut science did what science does: independent analyses showed that non-biological gases like propyne could reproduce the same spectral features. The statistical significance was 2.4-3 sigma — tantalizing, not definitive.\n\nK2-18b is the closest we've ever come to finding alien life. And it ended in honest disagreement — which is exactly how science is supposed to work.\n\nFull article: /blog/from-51-pegasi-to-6000-worlds",
+    "media_url": "/static/short_form/images/cosmic_k2-18b.png",
+    "video_url": null,
+    "author": "Quortol Space Desk",
+    "timestamp": "2026-06-15T10:00:00Z",
+    "tags": ["#exoplanets", "#biosignature", "#alienlife", "#jwst", "#astronomy"],
+    "created_at": "2026-06-15T09:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440306",
+    "text": "Forty light-years away, seven Earth-sized planets orbit a dim red star called TRAPPIST-1. Three sit in the habitable zone — the region where liquid water could exist. The entire system fits within the orbit of Mercury.\n\nWhen astronomers discovered it in 2017, it made headlines as the most promising place to look for life beyond Earth. Seven rocky worlds, three in the Goldilocks zone, just 40 light-years away.\n\nThe catch: TRAPPIST-1 is an ultra-cool dwarf star prone to violent flares that could strip atmospheres. All seven planets are likely tidally locked — one side eternal day, the other eternal night.\n\nSeven worlds like Earth in a system utterly unlike our own.\n\nFull article: /blog/from-51-pegasi-to-6000-worlds",
+    "media_url": "/static/short_form/images/cosmic_trappist1.jpg",
+    "video_url": null,
+    "author": "Quortol Space Desk",
+    "timestamp": "2026-06-15T14:00:00Z",
+    "tags": ["#exoplanets", "#trappist1", "#habitablezone", "#astronomy", "#space"],
+    "created_at": "2026-06-15T13:55:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440307",
+    "text": "As of April 2026, exactly 28.7% of the global seafloor has been mapped to modern high-resolution standards.\n\nThe remaining 71.3% — 260 million square kilometers — exists on maps derived from satellite altimetry, which infers topography from subtle variations in ocean surface height. It misses everything smaller than a few kilometers. Seamounts 1,000 meters tall go undetected.\n\nWe have better maps of the surface of Mars than we do of our own ocean floor. Fewer than 1/10th of 1% of seamounts have ever been explored. The ocean covers 70% of the planet and 90% of its living space.\n\nThe greatest age of discovery is not behind us. It is beneath us.\n\nFull article: /blog/hidden-world-underneath-oceans",
+    "media_url": "/static/short_form/images/cosmic_ocean_mapping.png",
+    "video_url": null,
+    "author": "Quortol Ocean Desk",
+    "timestamp": "2026-06-16T10:00:00Z",
+    "tags": ["#ocean", "#exploration", "#mapping", "#science", "#earth"],
+    "created_at": "2026-06-16T09:55:00Z"
   }
 ]

@@ -18,6 +18,7 @@ from ..theme import (
     BRICK_EMBER,
     BLOOD_RED,
     CHART_COLORWAY,
+    DASH_STYLES,
     apply_chart_theme,
 )
 
@@ -158,6 +159,9 @@ def _entity_deliveries(deliveries, mode, entities):
 def _series_colors(n):
     return [CHART_COLORWAY[i % len(CHART_COLORWAY)] for i in range(max(1, n))]
 
+def _series_dashes(n):
+    return [DASH_STYLES[i % len(DASH_STYLES)] for i in range(max(1, n))]
+
 
 def _apply_horizontal_legend(fig):
     fig.update_layout(
@@ -174,6 +178,7 @@ def _apply_horizontal_legend(fig):
 def _build_over_run_rate_multi_figure(entity_deliveries, entity_names):
     fig = go.Figure()
     colors = _series_colors(len(entity_names))
+    dashes = _series_dashes(len(entity_names))
     for i, (name, frame) in enumerate(zip(entity_names, entity_deliveries)):
         if frame.empty:
             continue
@@ -188,10 +193,9 @@ def _build_over_run_rate_multi_figure(entity_deliveries, entity_names):
         fig.add_trace(go.Scatter(
             x=grouped['Overs'],
             y=grouped['run_rate'],
-            mode='lines+markers',
+            mode='lines',
             name=name,
-            line={'color': colors[i]},
-            marker={'color': colors[i]}
+            line={'color': colors[i], 'width': 2, 'dash': dashes[i]},
         ))
     if not fig.data:
         return _empty_figure('Run Rate By Over', 'No deliveries for selected filters.')
@@ -258,10 +262,9 @@ def _build_cumulative_runs_figure(deliveries):
     fig.add_trace(go.Scatter(
         x=stats['Overs'],
         y=stats['mean_cum_runs'],
-        mode='lines+markers',
+        mode='lines',
         name='Mean Cumulative Runs',
-        line={'color': DEEP_TEAL},
-        marker={'color': DEEP_TEAL},
+        line={'width': 2, 'color': DEEP_TEAL},
         hovertemplate='Over: %{x}<br>Mean Cum Runs: %{y:.1f}<extra></extra>'
     ))
     apply_chart_theme(
@@ -278,6 +281,7 @@ def _build_cumulative_runs_figure(deliveries):
 def _build_cumulative_runs_multi_figure(entity_deliveries, entity_names):
     fig = go.Figure()
     colors = _series_colors(len(entity_names))
+    dashes = _series_dashes(len(entity_names))
 
     for i, (name, frame) in enumerate(zip(entity_names, entity_deliveries)):
         stats = _cumulative_runs_stats(frame)
@@ -299,7 +303,7 @@ def _build_cumulative_runs_multi_figure(entity_deliveries, entity_names):
             mode='lines',
             line={'width': 0},
             fill='tonexty',
-            fillcolor='rgba(112,141,129,0.12)',
+            fillcolor='rgba(112,141,129,0.06)',
             name=f'{name} 95% CI',
             showlegend=False,
             hoverinfo='skip'
@@ -307,10 +311,9 @@ def _build_cumulative_runs_multi_figure(entity_deliveries, entity_names):
         fig.add_trace(go.Scatter(
             x=stats['Overs'],
             y=stats['mean_cum_runs'],
-            mode='lines+markers',
+            mode='lines',
             name=name,
-            line={'color': color},
-            marker={'color': color}
+            line={'color': color, 'width': 2, 'dash': dashes[i]},
         ))
 
     if not fig.data:
@@ -345,7 +348,7 @@ def _build_top_batters_multi_figure(entity_deliveries, entity_names):
             x=grouped['Batter'],
             y=grouped['runs'],
             name=name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
     if not fig.data:
@@ -374,7 +377,7 @@ def _build_top_bowlers_multi_figure(entity_deliveries, entity_names):
             x=grouped['Bowler'],
             y=grouped['wickets'],
             name=name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
     if not fig.data:
@@ -411,7 +414,7 @@ def _build_team_bowlers_multi_figure(scope_deliveries, team_names):
             x=grouped['Bowler'],
             y=grouped['wickets'],
             name=team_name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
 
@@ -451,7 +454,7 @@ def _build_venue_innings_multi_figure(entity_deliveries, entity_names):
             x=grouped['venue'],
             y=grouped['avg_runs'],
             name=name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
     if not fig.data:
@@ -483,7 +486,7 @@ def _build_toss_impact_multi_figure(match_df, entity_deliveries, entity_names):
             x=grouped['toss_decision'].str.title(),
             y=grouped['win_rate'],
             name=name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
     if not fig.data:
@@ -496,6 +499,7 @@ def _build_toss_impact_multi_figure(match_df, entity_deliveries, entity_names):
 def _build_season_trend_multi_figure(entity_deliveries, entity_names):
     fig = go.Figure()
     colors = _series_colors(len(entity_names))
+    dashes = _series_dashes(len(entity_names))
     for i, (name, frame) in enumerate(zip(entity_names, entity_deliveries)):
         if frame.empty:
             continue
@@ -510,10 +514,9 @@ def _build_season_trend_multi_figure(entity_deliveries, entity_names):
         fig.add_trace(go.Scatter(
             x=grouped['Overs'],
             y=grouped['run_rate'],
-            mode='lines+markers',
+            mode='lines',
             name=name,
-            line={'color': colors[i]},
-            marker={'color': colors[i]}
+            line={'color': colors[i], 'width': 2, 'dash': dashes[i]},
         ))
     if not fig.data:
         return _empty_figure('Season Trend: Scoring And Wickets', 'No season trend data for selected filters.')
@@ -543,7 +546,7 @@ def _build_phase_breakdown_multi_figure(entity_deliveries, entity_names):
             x=grouped['phase'],
             y=grouped['run_rate'],
             name=name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
     if not fig.data:
@@ -572,7 +575,7 @@ def _build_team_breakdown_multi_figure(entity_deliveries, entity_names):
             x=grouped['BattingTeam'],
             y=grouped['run_rate'],
             name=name,
-            marker={'color': colors[i]},
+            marker={'color': colors[i], 'line': {'width': 0}},
             opacity=0.8
         ))
     if not fig.data:
@@ -597,10 +600,9 @@ def _build_over_run_rate_figure(deliveries):
     fig.add_trace(go.Scatter(
         x=grouped['Overs'],
         y=grouped['run_rate'],
-        mode='lines+markers',
+        mode='lines',
         name='Run Rate',
-        line={'color': DEEP_TEAL},
-        marker={'color': DEEP_TEAL}
+        line={'width': 2.5, 'color': DEEP_TEAL},
     ))
     apply_chart_theme(
         fig,
@@ -631,7 +633,7 @@ def _build_top_batters_figure(deliveries):
         x=grouped['runs'],
         y=grouped['Batter'],
         orientation='h',
-        marker={'color': PRUSSIAN_BLUE},
+        marker={'color': PRUSSIAN_BLUE, 'line': {'width': 0}},
         customdata=grouped['balls'],
         hovertemplate='Batter: %{y}<br>Runs: %{x}<br>Balls: %{customdata}<extra></extra>'
     ))
@@ -665,7 +667,7 @@ def _build_top_bowlers_figure(deliveries):
         x=grouped['wickets'],
         y=grouped['Bowler'],
         orientation='h',
-        marker={'color': BRICK_EMBER},
+        marker={'color': BRICK_EMBER, 'line': {'width': 0}},
         hovertemplate='Bowler: %{y}<br>Wickets: %{x}<extra></extra>'
     ))
     apply_chart_theme(
@@ -710,7 +712,7 @@ def _build_team_bowlers_figure(scope_deliveries, team_selection=None):
         x=grouped['wickets'],
         y=grouped['Bowler'],
         orientation='h',
-        marker={'color': DEEP_TEAL},
+        marker={'color': DEEP_TEAL, 'line': {'width': 0}},
         hovertemplate='Bowler: %{y}<br>Wickets: %{x}<extra></extra>'
     ))
     apply_chart_theme(
@@ -746,7 +748,7 @@ def _build_venue_innings_figure(deliveries):
         x=venue_stats['avg_runs'],
         y=venue_stats['venue'],
         orientation='h',
-        marker={'color': JASMINE},
+        marker={'color': JASMINE, 'line': {'width': 0}},
         customdata=venue_stats['innings'],
         hovertemplate='Venue: %{y}<br>Avg Innings Runs: %{x:.1f}<br>Innings: %{customdata}<extra></extra>'
     ))
@@ -781,7 +783,7 @@ def _build_toss_impact_figure(match_df):
     fig.add_trace(go.Bar(
         x=grouped['toss_decision'].str.title(),
         y=grouped['win_rate'],
-        marker={'color': BLOOD_RED},
+        marker={'color': BLOOD_RED, 'line': {'width': 0}},
         customdata=grouped['matches'],
         hovertemplate='Decision: %{x}<br>Toss-Winner Win Rate: %{y:.1f}%<br>Matches: %{customdata}<extra></extra>'
     ))
@@ -816,10 +818,9 @@ def _build_season_trend_figure(deliveries):
         go.Scatter(
             x=grouped['season'],
             y=grouped['run_rate'],
-            mode='lines+markers',
+            mode='lines',
             name='Run Rate',
-            line={'color': DEEP_TEAL},
-            marker={'color': DEEP_TEAL}
+            line={'width': 2, 'color': DEEP_TEAL},
         ),
         secondary_y=False
     )
@@ -827,10 +828,9 @@ def _build_season_trend_figure(deliveries):
         go.Scatter(
             x=grouped['season'],
             y=grouped['wickets_per_over'],
-            mode='lines+markers',
+            mode='lines',
             name='Wickets / Over',
-            line={'color': BRICK_EMBER},
-            marker={'color': BRICK_EMBER}
+            line={'width': 2, 'color': BRICK_EMBER},
         ),
         secondary_y=True
     )
@@ -876,7 +876,7 @@ def _build_phase_breakdown_figure(deliveries):
             x=grouped['phase'],
             y=grouped['run_rate'],
             name='Run Rate',
-            marker={'color': DEEP_TEAL}
+            marker={'color': DEEP_TEAL, 'line': {'width': 0}}
         ),
         secondary_y=False
     )
@@ -884,10 +884,9 @@ def _build_phase_breakdown_figure(deliveries):
         go.Scatter(
             x=grouped['phase'],
             y=grouped['wickets_per_over'],
-            mode='lines+markers',
+            mode='lines',
             name='Wickets / Over',
-            line={'color': BLOOD_RED},
-            marker={'color': BLOOD_RED}
+            line={'width': 2, 'color': BLOOD_RED},
         ),
         secondary_y=True
     )
@@ -923,7 +922,7 @@ def _build_team_breakdown_figure(deliveries):
         x=grouped['run_rate'],
         y=grouped['BattingTeam'],
         orientation='h',
-        marker={'color': PRUSSIAN_BLUE},
+        marker={'color': PRUSSIAN_BLUE, 'line': {'width': 0}},
         customdata=grouped['runs'],
         hovertemplate='Team: %{y}<br>Run Rate: %{x:.2f}<br>Total Runs: %{customdata}<extra></extra>'
     ))
@@ -1058,9 +1057,8 @@ def _build_metric_trend_chart(metrics_df, metric_key, title, y_label, color):
     fig.add_trace(go.Scatter(
         x=metrics_df['segment'],
         y=metrics_df[metric_key],
-        mode='lines+markers',
-        marker={'color': color},
-        line={'color': color},
+        mode='lines',
+        line={'width': 2, 'color': color},
         name=y_label
     ))
     apply_chart_theme(
@@ -1076,6 +1074,7 @@ def _build_metric_trend_chart(metrics_df, metric_key, title, y_label, color):
 def _build_metric_trend_multi_chart(entity_deliveries, entity_names, segment_by, metric_key, title, y_label, compare_mode=None, scope_deliveries=None):
     fig = go.Figure()
     colors = _series_colors(len(entity_names))
+    dashes = _series_dashes(len(entity_names))
     all_segments = []
 
     for i, (name, frame) in enumerate(zip(entity_names, entity_deliveries)):
@@ -1091,10 +1090,9 @@ def _build_metric_trend_multi_chart(entity_deliveries, entity_names, segment_by,
         fig.add_trace(go.Scatter(
             x=metrics_df['segment'].astype(str),
             y=metrics_df[metric_key],
-            mode='lines+markers',
+            mode='lines',
             name=name,
-            line={'color': colors[i]},
-            marker={'color': colors[i]}
+            line={'color': colors[i], 'width': 2, 'dash': dashes[i]},
         ))
 
     if not fig.data:

@@ -1,6 +1,5 @@
-"""Shared chart theme for Data Storytelling dashboards."""
+"""Shared chart theme for Data Storytelling dashboards — minimal, quiet styling."""
 
-# SCSS HEX
 PRUSSIAN_BLUE = '#001427'
 DEEP_TEAL = '#708D81'
 JASMINE = '#F4D58D'
@@ -15,23 +14,44 @@ CHART_COLORWAY = [
     BLOOD_RED,
 ]
 
+DASH_STYLES = ['solid', 'dash', 'dot', 'dashdot', 'longdash']
+
 DISPLAY_FONT = "'Fraunces', Georgia, 'Times New Roman', serif"
 BODY_FONT = "'Source Sans 3', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
 
 
 def apply_chart_theme(fig, *, title, xaxis_title=None, yaxis_title=None, height=420):
-    """Apply the shared dashboard chart styling to a Plotly figure."""
+    """Apply clean, low-noise chart theme. No template, no border, no ticks."""
     fig.update_layout(
         title=title,
-        template='plotly_white',
         colorway=CHART_COLORWAY,
         paper_bgcolor='white',
         plot_bgcolor='white',
-        font={'color': PRUSSIAN_BLUE, 'family': BODY_FONT},
-        title_font={'family': DISPLAY_FONT, 'size': 24},
-        xaxis={'gridcolor': '#E8ECEF'},
-        yaxis={'gridcolor': '#E8ECEF'},
-        height=height
+        font={'color': PRUSSIAN_BLUE, 'family': BODY_FONT, 'size': 12},
+        title_font={'family': DISPLAY_FONT, 'size': 18},
+        height=height,
+        margin={'l': 50, 'r': 20, 't': 50, 'b': 50},
+        hovermode='x unified',
+        hoverlabel={
+            'font': {'family': BODY_FONT, 'size': 11},
+            'namelength': -1,
+        },
+    )
+    fig.update_xaxes(
+        showgrid=False,
+        showline=False,
+        showticklabels=True,
+        tickfont={'size': 11},
+        title_font={'size': 12},
+    )
+    fig.update_yaxes(
+        showgrid=True,
+        gridcolor='#EDF0F2',
+        gridwidth=1,
+        showline=False,
+        showticklabels=True,
+        tickfont={'size': 11},
+        title_font={'size': 12},
     )
     if xaxis_title:
         fig.update_xaxes(title_text=xaxis_title)
