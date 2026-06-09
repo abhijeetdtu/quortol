@@ -25,6 +25,8 @@ Write the magazine-style article into a `.md` file under `backend/blogs/`. Use t
 
 Every factual claim must link directly to its primary source. No endnotes — inline Markdown links.
 
+**File:** `backend/blogs/{slug}.md` (working draft)
+
 ### 4. Custom charts (data_guy)
 
 Use the `data_guy` subagent to create accompanying data visualizations. The prompt must include:
@@ -37,13 +39,15 @@ Use the `data_guy` subagent to create accompanying data visualizations. The prom
 
 ### 5. Prose polish (oscar_wilde)
 
-Use the `oscar_wilde` subagent to rewrite the article. The prompt must instruct:
+Use the `oscar_wilde` subagent to rewrite the article. The agent should write the polished version to a **separate file** — do not overwrite the working draft. The prompt must instruct:
 
 - Preserve all facts, numbers, dates, names, URLs, citations exactly
 - Preserve all section headings
 - Preserve the `---` divider and source disclaimer
 - Apply the Wildean voice: epigrammatic, paradoxical, elegant, amused
 - Embed images at the correct relative path (see step 6)
+
+**File:** `backend/blogs/{slug}-polished.md`
 
 ### 6. Image paths
 
@@ -55,13 +59,28 @@ After chart generation and Wilde rewrite, verify image paths match the repo conv
 
 NOT `](images/...` or `](./images/...`. Run `grep` on a known-good blog to confirm the pattern before finalizing.
 
-### 7. File locations
+### 7. Clean up
+
+Remove the working draft (`backend/blogs/{slug}.md`) and rename the polished version (`backend/blogs/{slug}-polished.md`) to take its place:
+
+```
+rm backend/blogs/{slug}.md
+mv backend/blogs/{slug}-polished.md backend/blogs/{slug}.md
+```
+
+The final directory should contain only one `.md` file per article.
+
+### 8. File locations
 
 | Asset | Path |
 |-------|------|
-| Article | `backend/blogs/{slug}.md` |
+| Working draft | `backend/blogs/{slug}.md` |
+| Polished draft (intermediate) | `backend/blogs/{slug}-polished.md` |
+| Final article | `backend/blogs/{slug}.md` (after Stage 7 cleanup) |
 | Chart PNGs | `backend/blogs/images/{slug}_{name}.png` |
 | Chart scripts | `backend/blogs/scripts/chart{N}_{slug}_{name}.py` |
+
+**Note:** After Stage 7 cleanup, only the final article `.md` file remains. The intermediate working and polished drafts are consolidated into a single file.
 
 ### Source integrity checklist
 
