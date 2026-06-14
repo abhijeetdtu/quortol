@@ -1,15 +1,23 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
+const sessionStore = typeof window !== 'undefined'
+  ? window.sessionStorage
+  : {
+      getItem: () => null,
+      setItem: () => {},
+      removeItem: () => {},
+    }
+
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
   const user = ref(null)
   
   const checkAuth = () => {
-    const token = sessionStorage.getItem('auth_token')
+    const token = sessionStore.getItem('auth_token')
     if (token) {
       isAuthenticated.value = true
-      const userData = JSON.parse(sessionStorage.getItem('user_data'))
+      const userData = JSON.parse(sessionStore.getItem('user_data'))
       user.value = userData
     }
   }
@@ -17,15 +25,15 @@ export const useAuthStore = defineStore('auth', () => {
   const login = (userData) => {
     isAuthenticated.value = true
     user.value = userData
-    sessionStorage.setItem('auth_token', 'auth_token_placeholder')
-    sessionStorage.setItem('user_data', JSON.stringify(userData))
+    sessionStore.setItem('auth_token', 'auth_token_placeholder')
+    sessionStore.setItem('user_data', JSON.stringify(userData))
   }
   
   const logout = () => {
     isAuthenticated.value = false
     user.value = null
-    sessionStorage.removeItem('auth_token')
-    sessionStorage.removeItem('user_data')
+    sessionStore.removeItem('auth_token')
+    sessionStore.removeItem('user_data')
   }
   
   return {

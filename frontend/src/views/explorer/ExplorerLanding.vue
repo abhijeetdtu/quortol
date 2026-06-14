@@ -62,7 +62,7 @@
               <div class="skeleton-card" v-for="n in 4" :key="n"></div>
             </div>
 
-            <div v-else class="d-grid gap-2">
+            <div v-else-if="feedItems.length > 0" class="d-grid gap-2">
               <article
                 v-for="(item, index) in feedItems"
                 :key="`${item.title}-${index}`"
@@ -73,6 +73,9 @@
                 <h3 class="h6 mb-1">{{ item.title }}</h3>
                 <p class="mb-0">{{ clipped(item.summary, 200) }}</p>
               </article>
+            </div>
+            <div v-else class="empty-state">
+              Refresh the feed to pull fresh Wikipedia cards, or search directly for a topic.
             </div>
 
             <button class="btn app-btn w-100 mt-3" :disabled="feedLoading" @click="loadMoreFeed">

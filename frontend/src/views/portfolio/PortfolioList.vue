@@ -29,12 +29,19 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { usePrerenderRouteData } from '../../prerender/context'
 import { portfolio } from '../../services/api'
 
-const projects = ref([])
-const loading = ref(true)
+const prerenderRouteData = usePrerenderRouteData()
+const projects = ref(prerenderRouteData.value?.projects || [])
+const loading = ref(projects.value.length === 0)
 
 onMounted(async () => {
+  if (projects.value.length > 0) {
+    loading.value = false
+    return
+  }
+
   try {
     const response = await portfolio.getProjects()
     projects.value = response.data

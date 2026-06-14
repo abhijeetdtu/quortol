@@ -13,4 +13,5 @@ DASHBOARD_CONFIG = {
     "n_runs_default": 20,
     "n_runs_max": 500,
     "score_winprob_smoothing_bandwidth": 8.0,
+    "wicket_winprob_min_samples": 3,
 }

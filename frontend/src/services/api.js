@@ -1,6 +1,12 @@
 import axios from 'axios'
 import { useAuthStore } from '../stores/auth'
 
+const sessionStore = typeof window !== 'undefined'
+  ? window.sessionStorage
+  : {
+      getItem: () => null,
+    }
+
 const api = axios.create({
   baseURL: '/api',
   timeout: 30000,
@@ -12,7 +18,7 @@ const api = axios.create({
 // Request interceptor for authentication
 api.interceptors.request.use(config => {
   const authStore = useAuthStore()
-  const token = sessionStorage.getItem('auth_token')
+  const token = sessionStore.getItem('auth_token')
   
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
@@ -25,7 +31,7 @@ api.interceptors.request.use(config => {
 api.interceptors.response.use(
   response => response,
   error => {
-    if (error.response?.status === 401) {
+    if (typeof window !== 'undefined' && error.response?.status === 401) {
       const authStore = useAuthStore()
       authStore.logout()
       window.location.href = '/agent/login'

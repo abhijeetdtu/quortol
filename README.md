@@ -43,6 +43,32 @@ The backend will run on `http://localhost:5000`
 
 The frontend will run on `http://localhost:8050`
 
+## Kokoro CLI
+
+For local agent-friendly text-to-speech on Windows, install the Kokoro CLI dependencies:
+
+```bash
+pip install -r scripts/requirements-kokoro.txt
+```
+
+You also need `espeak-ng` installed for the Python Kokoro stack on Windows.
+
+Quick usage:
+
+```bash
+python scripts/kokoro_cli.py --help
+python scripts/kokoro_cli.py play "hello world" --wait
+python scripts/kokoro_cli.py play "hello world" --speed 1.15 --volume 0.8 --wait
+```
+
+Windows launcher:
+
+```bash
+.\scripts\kokoro-cli.cmd --help
+.\scripts\kokoro-cli.cmd play "hello world" --wait
+.\scripts\kokoro-cli.cmd play "hello world" --speed 1.15 --volume 0.8 --wait
+```
+
 ## Notes
 
 - Start the backend first, then the frontend
@@ -72,8 +98,12 @@ npm run dev -- --host localhost --port 8050
 ```
 
 ```bash
+nohup npm run dev > frontend.log 2>&1 &
+```
+
+```bash
 # Terminal 3 (named tunnel)
-cloudflared tunnel run quortol-dev
+nohup cloudflared tunnel run quortol-dev
 ```
 
 If your tunnel is installed as a system service, use this instead of Terminal 3:
@@ -151,6 +181,65 @@ llama-server `
   --log-verbosity 4
 ```
 
+```bash
+.\llama-server `
+    -hf unsloth/GLM-4.7-Flash-GGUF:Q3_K_XL `
+    --host 127.0.0.1 `
+    --port 8080 `
+    -ngl all `
+    -c 40000 `
+    -b 4096 `
+    -ub 1024 `
+    -np 1 `
+    --cont-batching `
+    --flash-attn on `
+    --cache-type-k q4_0 `
+    --cache-type-v q4_0 `
+    --ctx-checkpoints 12 `
+    --fit on `
+    --fit-ctx 50000 `
+    --jinja `
+    --no-webui `
+    --temp 0.6 `
+    --top-p 0.95 `
+    --top-k 20 `
+    --min-p 0.0 `
+    --presence-penalty 1.5 `
+    --repeat-penalty 1.0 `
+    --chat-template-kwargs '{\"preserve_thinking\":true}' `
+    --log-verbosity 4
+```
+
+
+```bash
+ .\llama-server `
+     -hf unsloth/Qwen3.5-9B-GGUF:Q8_0 `
+     --host 127.0.0.1 `
+     --port 8080 `
+     -ngl all `
+     -np 1 `
+     --cont-batching `
+     --flash-attn on `
+     --cache-type-k q4_0 `
+     --cache-type-v q4_0 `
+     --ctx-checkpoints 12 `
+     --fit on `
+     --fit-ctx 50000 `
+     --jinja `
+     --no-webui `
+     --temp 0.75 `
+     --top-p 1 `
+     --top-k 20 `
+     --min-p 0.0 `
+     --presence-penalty 1.5 `
+     --repeat-penalty 1 `
+     --repeat-last-n 128 `
+     --dry-multiplier 0.4 `
+     --dry-base 1.75 `
+     --dry-allowed-length 4 `
+     --dry-penalty-last-n 512 `
+     --log-verbosity 4
+```
 # blog removal
 
 ```bash

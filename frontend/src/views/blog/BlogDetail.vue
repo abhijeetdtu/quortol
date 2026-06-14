@@ -72,14 +72,17 @@ import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
+import { usePrerenderRouteData } from '../../prerender/context'
 import { blog } from '../../services/api'
 import BlogTTS from '../../components/blog/BlogTTS.vue'
 import { useTTSStore } from '../../stores/tts'
 import { applySEOMetadata } from '../../utils/seo'
+import { buildBlogPostingStructuredData, buildDescription } from '../../utils/seoContent'
 
 const route = useRoute()
-const post = ref(null)
-const loading = ref(true)
+const prerenderRouteData = usePrerenderRouteData()
+const post = ref(prerenderRouteData.value?.post || null)
+const loading = ref(!post.value)
 const store = useTTSStore()
 const contentRef = ref(null)
 const fullscreenImage = ref(null)
@@ -191,8 +194,8 @@ const stripDuplicateLeadByline = (content) => {
   return lines.join('\n')
 }
 
-const extractTextFromMarkdown = (value = '') => {
-  return value
+const extractTextFromMarkdown = (value = '') =>
+  value
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/`[^`]*`/g, ' ')
     .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
@@ -201,14 +204,6 @@ const extractTextFromMarkdown = (value = '') => {
     .replace(/[>*_~#-]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-}
-
-const buildDescription = (value = '') => {
-  const clean = extractTextFromMarkdown(value)
-  if (!clean) return 'Read longform essays from Quortol.'
-  if (clean.length <= 160) return clean
-  return `${clean.slice(0, 157).trim()}...`
-}
 
 const applyPostSEO = (postData) => {
   if (!postData) return
@@ -218,11 +213,20 @@ const applyPostSEO = (postData) => {
     description: buildDescription(postData.excerpt || postData.content || ''),
     path: `/blog/${postData.slug}`,
     ogType: 'article',
-    ogImage: postData.featured_image || ''
+    ogImage: postData.featured_image || '',
+    structuredData: [buildBlogPostingStructuredData(postData)],
   })
 }
 
 const loadPost = async (targetSlug) => {
+  if (post.value?.slug === targetSlug) {
+    loading.value = false
+    if (typeof document !== 'undefined') {
+      applyPostSEO(post.value)
+    }
+    return
+  }
+
   loading.value = true
   try {
     const response = await blog.getPost(targetSlug)
@@ -296,6 +300,16 @@ watch(
     }
   },
   { immediate: true }
+)
+
+watch(
+  () => post.value,
+  (nextPost) => {
+    if (nextPost && typeof document !== 'undefined') {
+      applyPostSEO(nextPost)
+    }
+  },
+  { immediate: true },
 )
 
 onUnmounted(() => {

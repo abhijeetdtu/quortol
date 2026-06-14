@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app-shell">
     <Navbar v-if="!hideShell" />
     <main>
       <router-view />
@@ -67,7 +67,7 @@ h6 {
   letter-spacing: -0.01em;
 }
 
-#app {
+.app-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;

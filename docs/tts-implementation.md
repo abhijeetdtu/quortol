@@ -4,6 +4,33 @@
 
 This document describes the browser-based text-to-speech integration using **Kokoro-Web**, powered by the `kokoro-js` package. The TTS feature allows users to listen to blog posts with natural-sounding AI-generated voices directly in the browser.
 
+For local agent workflows on Windows, the repo also includes a separate Python Kokoro CLI wrapper at `scripts/kokoro_cli.py`.
+
+## Local Kokoro CLI
+
+### Setup
+
+```bash
+pip install -r scripts/requirements-kokoro.txt
+```
+
+On Windows, install `espeak-ng` before first use of the Python Kokoro stack.
+
+### Usage
+
+```bash
+python scripts/kokoro_cli.py --help
+python scripts/kokoro_cli.py play "hello world" --wait
+python scripts/kokoro_cli.py play "hello world" --speed 1.15 --volume 0.8 --wait
+python scripts/kokoro_cli.py play "save this audio" --output hello.wav --no-play
+```
+
+If you prefer the Windows launcher:
+
+```bash
+.\scripts\kokoro-cli.cmd play "hello world" --wait
+```
+
 ## Technical Stack
 
 ### Dependencies

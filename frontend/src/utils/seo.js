@@ -1,17 +1,20 @@
-const CANONICAL_ORIGIN = 'https://pokhi.in'
+import { CANONICAL_ORIGIN, ensureAbsoluteUrl } from './seoContent'
 
-const ensureAbsoluteUrl = (value = '/') => {
-  if (!value) return CANONICAL_ORIGIN
-  if (/^https?:\/\//i.test(value)) return value
-
-  const normalizedPath = value.startsWith('/') ? value : `/${value}`
-  return `${CANONICAL_ORIGIN}${normalizedPath}`
+const removeElement = (selector) => {
+  const element = document.head.querySelector(selector)
+  if (element) {
+    element.remove()
+  }
 }
 
 const upsertMetaTag = ({ name, property, content }) => {
-  if (!content) return
-
   const selector = name ? `meta[name="${name}"]` : `meta[property="${property}"]`
+
+  if (!content) {
+    removeElement(selector)
+    return
+  }
+
   let element = document.head.querySelector(selector)
 
   if (!element) {
@@ -35,6 +38,26 @@ const upsertCanonicalLink = (href) => {
   element.setAttribute('href', href)
 }
 
+const upsertStructuredData = (structuredData) => {
+  document.head
+    .querySelectorAll('script[data-quortol-seo="structured-data"]')
+    .forEach((element) => element.remove())
+
+  const entries = Array.isArray(structuredData)
+    ? structuredData.filter(Boolean)
+    : structuredData
+      ? [structuredData]
+      : []
+
+  for (const entry of entries) {
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.dataset.quortolSeo = 'structured-data'
+    script.textContent = JSON.stringify(entry)
+    document.head.appendChild(script)
+  }
+}
+
 export const applySEOMetadata = ({
   title = 'Quortol',
   description = 'Quortol publishes essays, portfolio work, and data storytelling projects.',
@@ -43,8 +66,13 @@ export const applySEOMetadata = ({
   robots = 'index,follow',
   ogType = 'website',
   ogImage = '',
-  twitterCard = 'summary_large_image'
+  twitterCard = 'summary_large_image',
+  structuredData = [],
 } = {}) => {
+  if (typeof document === 'undefined') {
+    return
+  }
+
   const canonicalUrl = ensureAbsoluteUrl(canonical || path || '/')
   const imageUrl = ogImage ? ensureAbsoluteUrl(ogImage) : ''
 
@@ -58,15 +86,14 @@ export const applySEOMetadata = ({
   upsertMetaTag({ property: 'og:description', content: description })
   upsertMetaTag({ property: 'og:type', content: ogType })
   upsertMetaTag({ property: 'og:url', content: canonicalUrl })
+  upsertMetaTag({ property: 'og:image', content: imageUrl })
 
   upsertMetaTag({ name: 'twitter:card', content: twitterCard })
   upsertMetaTag({ name: 'twitter:title', content: title })
   upsertMetaTag({ name: 'twitter:description', content: description })
+  upsertMetaTag({ name: 'twitter:image', content: imageUrl })
 
-  if (imageUrl) {
-    upsertMetaTag({ property: 'og:image', content: imageUrl })
-    upsertMetaTag({ name: 'twitter:image', content: imageUrl })
-  }
+  upsertStructuredData(structuredData)
 }
 
 export { CANONICAL_ORIGIN, ensureAbsoluteUrl }

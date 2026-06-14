@@ -13,7 +13,7 @@ try:
 except ImportError:
     Dash = None
 
-def create_app(config_class=None):
+def create_app(config_class=None, enable_dash=True):
     if config_class is None:
         from .config import Config
         config_class = Config
@@ -45,7 +45,7 @@ def create_app(config_class=None):
     
     # Register Dash application
     dash_enabled = False
-    if Dash is not None:
+    if enable_dash and Dash is not None:
         try:
             from .dashboards import register_dashboards
             dash_assets_path = Path(__file__).resolve().parent / 'dashboards' / 'assets'
@@ -65,7 +65,7 @@ def create_app(config_class=None):
             dash_enabled = True
         except Exception:
             app.logger.exception('Failed to initialize data storytelling Dash app')
-    else:
+    elif enable_dash:
         app.logger.warning('Dash is not installed; data storytelling app was not initialized.')
 
     if not dash_enabled:

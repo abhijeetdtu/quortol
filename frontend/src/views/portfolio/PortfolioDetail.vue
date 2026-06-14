@@ -46,17 +46,44 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { usePrerenderRouteData } from '../../prerender/context'
 import { portfolio } from '../../services/api'
+import { applySEOMetadata } from '../../utils/seo'
+import { buildCreativeWorkStructuredData, buildDescription } from '../../utils/seoContent'
 
 const route = useRoute()
-const project = ref(null)
-const loading = ref(true)
+const prerenderRouteData = usePrerenderRouteData()
+const project = ref(prerenderRouteData.value?.project || null)
+const loading = ref(!project.value)
 
 const slug = computed(() => route.params.slug)
 
+const applyProjectSEO = (projectData) => {
+  if (!projectData) return
+
+  applySEOMetadata({
+    title: `${projectData.title} | Quortol`,
+    description: buildDescription(
+      projectData.long_description || projectData.description || '',
+      'Project details from the Quortol portfolio.',
+    ),
+    path: `/portfolio/${projectData.slug}`,
+    ogImage: projectData.image_url || '',
+    structuredData: [buildCreativeWorkStructuredData(projectData)],
+  })
+}
+
 onMounted(async () => {
+  if (project.value?.slug === slug.value) {
+    loading.value = false
+    if (typeof document !== 'undefined') {
+      applyProjectSEO(project.value)
+    }
+    return
+  }
+
   try {
     const response = await portfolio.getProject(slug.value)
     project.value = response.data
@@ -66,6 +93,16 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+watch(
+  () => project.value,
+  (nextProject) => {
+    if (nextProject && typeof document !== 'undefined') {
+      applyProjectSEO(nextProject)
+    }
+  },
+  { immediate: true },
+)
 
 const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-US', {

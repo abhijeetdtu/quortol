@@ -299,8 +299,8 @@ const cleanupTTS = () => {
 // Lifecycle
 onMounted(async () => {
   // Restore preferences
-  const savedVoice = localStorage.getItem('tts_voice')
-  const savedSpeed = localStorage.getItem('tts_speed')
+  const savedVoice = typeof window !== 'undefined' ? localStorage.getItem('tts_voice') : null
+  const savedSpeed = typeof window !== 'undefined' ? localStorage.getItem('tts_speed') : null
   
   if (savedVoice && availableVoices.value.some((v) => v.id === savedVoice)) {
     selectedVoice.value = savedVoice

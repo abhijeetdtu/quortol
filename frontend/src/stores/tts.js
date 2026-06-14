@@ -8,6 +8,16 @@ import {
   AVAILABLE_VOICES
 } from '../services/tts'
 
+const noopStorage = {
+  getItem() {
+    return null
+  },
+  setItem() {},
+  removeItem() {},
+}
+
+const browserStorage = typeof window !== 'undefined' ? window.localStorage : noopStorage
+
 export const useTTSStore = defineStore('tts', {
   state: () => ({
     isInitialized: false,
@@ -62,12 +72,12 @@ export const useTTSStore = defineStore('tts', {
 
     setVoice(voiceId) {
       this.selectedVoice = voiceId
-      localStorage.setItem('tts_voice', voiceId)
+      browserStorage.setItem('tts_voice', voiceId)
     },
 
     setSpeed(speed) {
       this.playbackSpeed = Math.max(0.5, Math.min(2.0, speed))
-      localStorage.setItem('tts_speed', speed)
+      browserStorage.setItem('tts_speed', speed)
     },
 
     setAudioDuration(duration) {
@@ -97,7 +107,7 @@ export const useTTSStore = defineStore('tts', {
   // Restore state on page refresh
   persist: {
     key: 'quortol-tts-store',
-    storage: localStorage,
+    storage: browserStorage,
     paths: ['selectedVoice', 'playbackSpeed']
   }
 })

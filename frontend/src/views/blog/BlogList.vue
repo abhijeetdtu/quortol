@@ -53,10 +53,12 @@
 
 <script setup>
 import { computed, onMounted, ref } from 'vue'
+import { usePrerenderRouteData } from '../../prerender/context'
 import { blog } from '../../services/api'
 
-const posts = ref([])
-const loading = ref(true)
+const prerenderRouteData = usePrerenderRouteData()
+const posts = ref(prerenderRouteData.value?.posts || [])
+const loading = ref(posts.value.length === 0)
 const detailsBySlug = ref({})
 
 const featuredPost = computed(() => posts.value[0] || null)
@@ -121,6 +123,11 @@ const featuredImage = computed(() => {
 })
 
 onMounted(async () => {
+  if (posts.value.length > 0) {
+    loading.value = false
+    return
+  }
+
   try {
     const response = await blog.getPosts()
     posts.value = response.data

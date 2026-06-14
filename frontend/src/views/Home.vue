@@ -53,14 +53,20 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { usePrerenderRouteData } from '../prerender/context'
 import { useAuthStore } from '../stores/auth.js'
 import { blog, portfolio } from '../services/api'
 
 const authStore = useAuthStore()
-const posts = ref([])
-const projects = ref([])
+const prerenderRouteData = usePrerenderRouteData()
+const posts = ref(prerenderRouteData.value?.posts || [])
+const projects = ref(prerenderRouteData.value?.projects || [])
 
 onMounted(async () => {
+  if (posts.value.length > 0 && projects.value.length > 0) {
+    return
+  }
+
   try {
     const [postsRes, projectsRes] = await Promise.all([blog.getPosts(), portfolio.getProjects()])
     posts.value = postsRes.data

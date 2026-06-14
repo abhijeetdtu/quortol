@@ -8,6 +8,7 @@ import math
 import dash
 from dash import Input, Output, State, callback, dcc, html, no_update
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 from .config import DASHBOARD_CONFIG
 from ..theme import BRICK_EMBER, DEEP_TEAL, PRUSSIAN_BLUE, apply_chart_theme
@@ -823,11 +824,24 @@ def _extract_cumulative_points(sim_payload: dict, team_a: str, team_b: str, run_
     return points
 
 
-def _extract_wicket_fall_points(sim_payload: dict, team_a: str, team_b: str):
+def _extract_wicket_fall_points(sim_payload: dict, team_a: str, team_b: str, run_id: int):
     innings = sim_payload.get("innings", [])
     points = []
     if len(innings) < 2:
         return points
+
+    team_a_runs = int(innings[0].get("total_runs", 0))
+    team_b_runs = int(innings[1].get("total_runs", 0))
+    if team_a_runs > team_b_runs:
+        winner_team = team_a
+    elif team_b_runs > team_a_runs:
+        winner_team = team_b
+    else:
+        winner_team = "Tie"
+    team_win_map = {
+        team_a: 1 if winner_team == team_a else 0,
+        team_b: 1 if winner_team == team_b else 0,
+    }
 
     innings_map = [(team_a, innings[0]), (team_b, innings[1])]
     for team_label, innings_data in innings_map:
@@ -841,11 +855,16 @@ def _extract_wicket_fall_points(sim_payload: dict, team_a: str, team_b: str):
             if legal_ball < 1:
                 continue
             wicket_count += 1
+            over_bucket = int(((legal_ball - 1) // 6) + 1)
             points.append(
                 {
+                    "run_id": int(run_id),
                     "team": team_label,
                     "wicket_number": wicket_count,
                     "ball": legal_ball,
+                    "legal_ball": legal_ball,
+                    "over_bucket": over_bucket,
+                    "team_win": int(team_win_map.get(team_label, 0)),
                 }
             )
     return points
@@ -883,13 +902,69 @@ def _extract_chase_state_points(sim_payload: dict, run_id: int):
     return points
 
 
-def _filter_chase_states_by_target_min(chase_state_points: list[dict], target_input):
+def _extract_crr_wickets_state_points(sim_payload: dict, team_a: str, team_b: str, run_id: int):
+    innings = sim_payload.get("innings", [])
+    if len(innings) < 2:
+        return []
+
+    innings_a = innings[0]
+    innings_b = innings[1]
+    target = int(innings_a.get("total_runs", 0)) + 1
+    team_a_runs = int(innings_a.get("total_runs", 0))
+    team_b_runs = int(innings_b.get("total_runs", 0))
+
+    if team_a_runs > team_b_runs:
+        winner_team = team_a
+    elif team_b_runs > team_a_runs:
+        winner_team = team_b
+    else:
+        winner_team = "Tie"
+    team_win_map = {
+        team_a: 1 if winner_team == team_a else 0,
+        team_b: 1 if winner_team == team_b else 0,
+    }
+
+    points = []
+    innings_map = [(team_a, innings_a), (team_b, innings_b)]
+    for team_label, innings_data in innings_map:
+        for ball in innings_data.get("balls", []):
+            if not bool(ball.get("is_legal_delivery", True)):
+                continue
+            legal_ball = int(ball.get("legal_ball_number", 0))
+            if legal_ball < 1:
+                continue
+
+            score = int(ball.get("cumulative_score", 0))
+            wickets_lost = int(ball.get("cumulative_wickets", 0))
+            crr = (float(score) * 6.0) / float(legal_ball)
+            points.append(
+                {
+                    "run_id": int(run_id),
+                    "team": team_label,
+                    "target": target,
+                    "wickets_left": max(0, 10 - wickets_lost),
+                    "current_run_rate": crr,
+                    "team_win": int(team_win_map.get(team_label, 0)),
+                }
+            )
+    return points
+
+
+def _filter_chase_states_by_target(chase_state_points: list[dict], target_input, target_mode):
     try:
-        min_target = int(target_input if target_input is not None else 180)
+        target_threshold = int(target_input if target_input is not None else 180)
     except (TypeError, ValueError):
-        min_target = 180
-    filtered = [point for point in chase_state_points if int(point.get("target", 0)) >= int(min_target)]
-    return filtered, int(min_target)
+        target_threshold = 180
+
+    mode = str(target_mode or ">=").strip()
+    if mode not in {">=", "<="}:
+        mode = ">="
+
+    if mode == "<=":
+        filtered = [point for point in chase_state_points if int(point.get("target", 0)) <= int(target_threshold)]
+    else:
+        filtered = [point for point in chase_state_points if int(point.get("target", 0)) >= int(target_threshold)]
+    return filtered, int(target_threshold), mode
 
 
 def _multi_run_density_figure(rows: list[dict], team_a: str, team_b: str):
@@ -1185,18 +1260,22 @@ def _multi_run_empirical_win_prob_by_score_figure(rows: list[dict], team_a: str,
     return fig
 
 
-def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict], team_b: str, target_input):
+def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict], team_b: str, target_input, target_mode):
     if not chase_state_points:
         return _empty_figure(
             "Decision Boundary Map by Wickets",
             "Run N simulations to view P(team win | current score, wickets, target).",
         )
 
-    filtered_points, min_target = _filter_chase_states_by_target_min(chase_state_points, target_input)
+    filtered_points, target_threshold, target_mode_value = _filter_chase_states_by_target(
+        chase_state_points,
+        target_input,
+        target_mode,
+    )
     if not filtered_points:
         return _empty_figure(
             "Decision Boundary Map by Wickets",
-            f"No states found for target >= {int(min_target)}. Try a lower threshold.",
+            f"No states found for target {target_mode_value} {int(target_threshold)}.",
         )
 
     # Aggregate to binned grid cells so the decision boundary is stable.
@@ -1224,18 +1303,25 @@ def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict],
             "No valid score/wicket/target cells available.",
         )
 
-    selected_target_bins = sorted([int(t) for t in available_targets if int(t) >= int(min_target)])
+    if target_mode_value == "<=":
+        selected_target_bins = sorted([int(t) for t in available_targets if int(t) <= int(target_threshold)])
+    else:
+        selected_target_bins = sorted([int(t) for t in available_targets if int(t) >= int(target_threshold)])
     if not selected_target_bins:
         return _empty_figure(
             "Decision Boundary Map by Wickets",
-            f"No states found for target >= {int(min_target)}. Try a lower threshold.",
+            f"No states found for target {target_mode_value} {int(target_threshold)}.",
         )
 
     # Collapse all qualifying targets into one map at (wickets, score).
     sliced_stats: dict[tuple[int, int], dict[str, int]] = {}
     for (target_bin, wickets, score), stats in cell_stats.items():
-        if int(target_bin) < int(min_target):
-            continue
+        if target_mode_value == "<=":
+            if int(target_bin) > int(target_threshold):
+                continue
+        else:
+            if int(target_bin) < int(target_threshold):
+                continue
         key = (int(wickets), int(score))
         if key not in sliced_stats:
             sliced_stats[key] = {"wins": 0, "samples": 0}
@@ -1271,7 +1357,7 @@ def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict],
             prob = float(wins) / float(samples)
             z_row.append(prob)
             text_row.append(
-                f"Target >= {int(min_target)}<br>"
+                f"Target {target_mode_value} {int(target_threshold)}<br>"
                 f"Score {score}<br>"
                 f"Wickets {wickets}<br>"
                 f"Samples {samples}<br>"
@@ -1343,7 +1429,7 @@ def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict],
                 hovertemplate=(
                     "Boundary score %{x:.1f}<br>"
                     "Wickets %{y}<br>"
-                    "Target >= " + str(int(min_target)) + "<extra></extra>"
+                    "Target " + target_mode_value + " " + str(int(target_threshold)) + "<extra></extra>"
                 ),
             )
         )
@@ -1351,7 +1437,7 @@ def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict],
     target_range_label = f"{selected_target_bins[0]}-{selected_target_bins[-1]}"
     _apply_sim_chart_theme(
         fig,
-        title=f"{_team_short_code(team_b)} Decision Boundary Map (Target >= {int(min_target)}, bins {target_range_label})",
+        title=f"{_team_short_code(team_b)} Decision Boundary Map (Target {target_mode_value} {int(target_threshold)}, bins {target_range_label})",
         xaxis_title="Current Score",
         yaxis_title="Wickets Lost",
         height=520,
@@ -1362,12 +1448,16 @@ def _multi_run_state_conditioned_win_prob_figure(chase_state_points: list[dict],
     return fig
 
 
-def _multi_run_rr_wickets_winprob_figure(chase_state_points: list[dict], team_b: str, target_input):
-    filtered_points, min_target = _filter_chase_states_by_target_min(chase_state_points, target_input)
+def _multi_run_rr_wickets_winprob_figure(chase_state_points: list[dict], team_b: str, target_input, target_mode):
+    filtered_points, target_threshold, target_mode_value = _filter_chase_states_by_target(
+        chase_state_points,
+        target_input,
+        target_mode,
+    )
     if not filtered_points:
         return _empty_figure(
             "Win Probability by Required Run Rate and Wickets Left",
-            f"No states found for target >= {int(min_target)}.",
+            f"No states found for target {target_mode_value} {int(target_threshold)}.",
         )
 
     rrr_bin_size = 0.5
@@ -1469,7 +1559,7 @@ def _multi_run_rr_wickets_winprob_figure(chase_state_points: list[dict], team_b:
 
     _apply_sim_chart_theme(
         fig,
-        title=f"{_team_short_code(team_b)} P(Win | Required Run Rate, Wickets Left) (Target >= {int(min_target)})",
+        title=f"{_team_short_code(team_b)} P(Win | Required Run Rate, Wickets Left) (Target {target_mode_value} {int(target_threshold)})",
         xaxis_title="Required Run Rate (Runs per Over)",
         yaxis_title="Wickets Left",
         height=520,
@@ -1477,6 +1567,145 @@ def _multi_run_rr_wickets_winprob_figure(chase_state_points: list[dict], team_b:
     fig.update_xaxes(range=[0.0, float(rrr_cap + rrr_bin_size)])
     fig.update_yaxes(dtick=1)
     fig.update_layout(margin={"l": 0, "r": 0, "t": 72, "b": 0})
+    return fig
+
+
+def _multi_run_crr_wickets_winprob_figure(state_points: list[dict], team_a: str, team_b: str, target_input, target_mode):
+    filtered_points, target_threshold, target_mode_value = _filter_chase_states_by_target(
+        state_points,
+        target_input,
+        target_mode,
+    )
+    if not filtered_points:
+        return _empty_figure(
+            "Win Probability by Current Run Rate and Wickets Left",
+            f"No states found for target {target_mode_value} {int(target_threshold)}.",
+        )
+
+    min_cell_samples = int(DASHBOARD_CONFIG.get("wicket_winprob_min_samples", 3))
+    min_cell_samples = max(1, min_cell_samples)
+    crr_bin_size = 0.5
+    teams = [team_a, team_b]
+    crr_caps: dict[str, float] = {}
+
+    for team_label in teams:
+        team_crr = [float(point.get("current_run_rate", 0.0)) for point in filtered_points if point.get("team") == team_label]
+        if not team_crr:
+            continue
+        sorted_crr = sorted(team_crr)
+        p99_idx = max(0, min(len(sorted_crr) - 1, int(math.ceil(0.99 * len(sorted_crr))) - 1))
+        crr_caps[team_label] = float(sorted_crr[p99_idx])
+
+    if not crr_caps:
+        return _empty_figure(
+            "Win Probability by Current Run Rate and Wickets Left",
+            "No valid current run-rate states for either team.",
+        )
+
+    fig = make_subplots(
+        rows=1,
+        cols=2,
+        shared_yaxes=True,
+        horizontal_spacing=0.08,
+        subplot_titles=[_team_short_code(team_a), _team_short_code(team_b)],
+    )
+
+    any_trace = False
+    for idx, team_label in enumerate(teams, start=1):
+        if team_label not in crr_caps:
+            continue
+        crr_cap = crr_caps[team_label]
+        team_points = [point for point in filtered_points if point.get("team") == team_label]
+
+        cell_stats: dict[tuple[int, float], dict[str, int]] = {}
+        crr_values = set()
+        wickets_left_values = set()
+        for point in team_points:
+            wickets_left = int(point.get("wickets_left", -1))
+            crr_raw = float(point.get("current_run_rate", 0.0))
+            if wickets_left < 0 or wickets_left > 10:
+                continue
+            crr = min(crr_raw, crr_cap)
+            crr_bin = math.floor(crr / crr_bin_size) * crr_bin_size
+            key = (wickets_left, crr_bin)
+            if key not in cell_stats:
+                cell_stats[key] = {"wins": 0, "samples": 0}
+            cell_stats[key]["wins"] += int(point.get("team_win", 0))
+            cell_stats[key]["samples"] += 1
+            crr_values.add(crr_bin)
+            wickets_left_values.add(wickets_left)
+
+        if not cell_stats:
+            continue
+
+        x_crr = sorted(crr_values)
+        y_wkts_left = sorted(wickets_left_values, reverse=True)
+        z_matrix = []
+        text_matrix = []
+        for wk_left in y_wkts_left:
+            z_row = []
+            t_row = []
+            for crr_bin in x_crr:
+                stats = cell_stats.get((wk_left, crr_bin))
+                if not stats or int(stats["samples"]) < min_cell_samples:
+                    z_row.append(None)
+                    t_row.append("Insufficient samples")
+                    continue
+                n = int(stats["samples"])
+                w = int(stats["wins"])
+                p = float(w) / float(n)
+                z_row.append(p)
+                t_row.append(
+                    f"{team_label}<br>"
+                    f"Wickets left {wk_left}<br>"
+                    f"Current RR bin [{crr_bin:.1f}, {crr_bin + crr_bin_size:.1f})<br>"
+                    f"Samples {n}<br>"
+                    f"Wins {w}<br>"
+                    f"P(win) {p:.3f}"
+                )
+            z_matrix.append(z_row)
+            text_matrix.append(t_row)
+
+        fig.add_trace(
+            go.Heatmap(
+                x=x_crr,
+                y=y_wkts_left,
+                z=z_matrix,
+                text=text_matrix,
+                hoverinfo="text",
+                colorscale="RdYlGn",
+                zmin=0.0,
+                zmax=1.0,
+                colorbar={
+                    "title": "P(Win)",
+                    "tickformat": ".0%",
+                    "x": 1.02 if idx == 2 else 0.46,
+                    "len": 0.78,
+                },
+                connectgaps=False,
+                showscale=True,
+            ),
+            row=1,
+            col=idx,
+        )
+        fig.update_xaxes(range=[0.0, float(crr_cap + crr_bin_size)], row=1, col=idx)
+        any_trace = True
+
+    if not any_trace:
+        return _empty_figure(
+            "Win Probability by Current Run Rate and Wickets Left",
+            "Insufficient samples to render team heatmaps.",
+        )
+
+    _apply_sim_chart_theme(
+        fig,
+        title=f"P(Win | Current Run Rate, Wickets Left) by Team (Target {target_mode_value} {int(target_threshold)})",
+        xaxis_title="Current Run Rate (Runs per Over)",
+        yaxis_title="Wickets Left",
+        height=560,
+    )
+    fig.update_yaxes(dtick=1)
+    fig.update_layout(margin={"l": 0, "r": 0, "t": 90, "b": 0})
     return fig
 
 
@@ -1860,7 +2089,23 @@ def layout():
                                 [
                                     html.Div(
                                         [
-                                            html.Label("Target >="),
+                                            html.Label("Target Filter"),
+                                            dcc.Dropdown(
+                                                id="bbs-state-target-mode",
+                                                options=[
+                                                    {"label": "Target >=", "value": ">="},
+                                                    {"label": "Target <=", "value": "<="},
+                                                ],
+                                                value=">=",
+                                                clearable=False,
+                                                className="form-control",
+                                            ),
+                                        ],
+                                        className="col-12 col-md-4",
+                                    ),
+                                    html.Div(
+                                        [
+                                            html.Label("Target Value"),
                                             dcc.Input(
                                                 id="bbs-state-target-min",
                                                 type="number",
@@ -1878,10 +2123,10 @@ def layout():
                             html.Div(
                                 [
                                     dcc.Graph(
-                                        id="bbs-nruns-state-projection-chart",
+                                        id="bbs-nruns-current-rr-chart",
                                         figure=_empty_figure(
-                                            "Win Probability by Required Run Rate and Wickets Left",
-                                            "Run N simulations to view P(win | required run rate, wickets left).",
+                                            "Win Probability by Current Run Rate and Wickets Left",
+                                            "Run N simulations to view P(win | current run rate, wickets left).",
                                         ),
                                     )
                                 ],
@@ -1913,6 +2158,18 @@ def layout():
                                         figure=_empty_figure(
                                             "Wicket Timing (Mean ± 95% CI)",
                                             "Run N simulations to view wicket timing confidence intervals.",
+                                        ),
+                                    )
+                                ],
+                                className="mt-2",
+                            ),
+                            html.Div(
+                                [
+                                    dcc.Graph(
+                                        id="bbs-nruns-state-projection-chart",
+                                        figure=_empty_figure(
+                                            "Win Probability by Required Run Rate and Wickets Left",
+                                            "Run N simulations to view P(win | required run rate, wickets left).",
                                         ),
                                     )
                                 ],
@@ -2183,6 +2440,7 @@ def run_n_simulations(
         rows = []
         cumulative_points = []
         chase_state_points = []
+        crr_wickets_state_points = []
         wicket_points = []
         for run_index in range(n_runs_value):
             seed = base_seed + run_index
@@ -2203,14 +2461,22 @@ def run_n_simulations(
             rows.append(row)
             cumulative_points.extend(_extract_cumulative_points(payload, team_a=team_a, team_b=team_b, run_id=run_index + 1))
             chase_state_points.extend(_extract_chase_state_points(payload, run_id=run_index + 1))
-            wicket_points.extend(_extract_wicket_fall_points(payload, team_a=team_a, team_b=team_b))
+            crr_wickets_state_points.extend(
+                _extract_crr_wickets_state_points(payload, team_a=team_a, team_b=team_b, run_id=run_index + 1)
+            )
+            wicket_points.extend(_extract_wicket_fall_points(payload, team_a=team_a, team_b=team_b, run_id=run_index + 1))
 
         summary = _multi_run_summary_component(rows, team_a=team_a, team_b=team_b)
         table = _multi_run_table_component(rows, team_a=team_a, team_b=team_b)
         density_fig = _multi_run_density_figure(rows, team_a=team_a, team_b=team_b)
         cumulative_box_fig = _multi_run_cumulative_box_figure(cumulative_points, team_a=team_a, team_b=team_b)
         empirical_score_winprob_fig = _multi_run_empirical_win_prob_by_score_figure(rows, team_a=team_a, team_b=team_b)
-        state_data = {"points": chase_state_points, "team_b": team_b}
+        state_data = {
+            "points": chase_state_points,
+            "crr_points": crr_wickets_state_points,
+            "team_a": team_a,
+            "team_b": team_b,
+        }
         outcome_fig = _multi_run_outcome_figure(rows, team_a=team_a, team_b=team_b)
         margin_fig = _multi_run_margin_figure(rows, team_a=team_a)
         wicket_timing_fig = _multi_run_wicket_timing_figure(wicket_points, team_a=team_a, team_b=team_b)
@@ -2267,12 +2533,47 @@ def run_n_simulations(
 
 
 @callback(
-    Output("bbs-nruns-state-projection-chart", "figure"),
+    Output("bbs-nruns-current-rr-chart", "figure"),
     Input("bbs-nruns-state-data", "data"),
+    Input("bbs-state-target-mode", "value"),
     Input("bbs-state-target-min", "value"),
     State("bbs-team-b", "value"),
 )
-def render_state_winprob_heatmap(state_data, target_min, team_b):
+def render_current_rr_winprob_heatmap(state_data, target_mode, target_min, team_b):
+    if not state_data:
+        return _empty_figure(
+            "Win Probability by Current Run Rate and Wickets Left",
+            "Run N simulations to view P(win | current run rate, wickets left).",
+        )
+
+    points = state_data.get("crr_points", []) if isinstance(state_data, dict) else []
+    team_a_label = (
+        str(state_data.get("team_a"))
+        if isinstance(state_data, dict) and state_data.get("team_a")
+        else "Team A"
+    )
+    team_b_label = (
+        str(state_data.get("team_b"))
+        if isinstance(state_data, dict) and state_data.get("team_b")
+        else str(team_b or "Team B")
+    )
+    return _multi_run_crr_wickets_winprob_figure(
+        points,
+        team_a=team_a_label,
+        team_b=team_b_label,
+        target_input=target_min,
+        target_mode=target_mode,
+    )
+
+
+@callback(
+    Output("bbs-nruns-state-projection-chart", "figure"),
+    Input("bbs-nruns-state-data", "data"),
+    Input("bbs-state-target-mode", "value"),
+    Input("bbs-state-target-min", "value"),
+    State("bbs-team-b", "value"),
+)
+def render_state_winprob_heatmap(state_data, target_mode, target_min, team_b):
     if not state_data:
         return _empty_figure(
             "Win Probability by Required Run Rate and Wickets Left",
@@ -2285,7 +2586,12 @@ def render_state_winprob_heatmap(state_data, target_min, team_b):
         if isinstance(state_data, dict) and state_data.get("team_b")
         else str(team_b or "Team B")
     )
-    return _multi_run_rr_wickets_winprob_figure(points, team_b=team_b_label, target_input=target_min)
+    return _multi_run_rr_wickets_winprob_figure(
+        points,
+        team_b=team_b_label,
+        target_input=target_min,
+        target_mode=target_mode,
+    )
 
 
 @callback(

@@ -1,5 +1,12 @@
 <template>
   <section class="container-xl py-4">
+    <header class="mb-3">
+      <p class="kicker mb-2">Data Storytelling</p>
+      <h1 class="h2 mb-2">Interactive dashboards and visual deep dives</h1>
+      <p class="intro mb-0">
+        Explore Quortol dashboards in an embedded workspace built for exploratory analysis and longform visual explanation.
+      </p>
+    </header>
     <div class="card app-card">
       <div class="card-body p-0">
         <iframe
@@ -29,6 +36,18 @@ const iframeSrc = computed(() => {
 </script>
 
 <style scoped>
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.intro {
+  color: var(--ink-muted);
+  max-width: 68ch;
+}
+
 .app-card {
   background: none;
   border: none;
