@@ -1,0 +1,27 @@
+{
+  "status": "generated",
+  "generated_at": "2026-06-15T22:51:22.115263+00:00",
+  "source": {
+    "slug": "india-political-parties-evolution",
+    "title": "The Fractured Mandate: How India's Political Parties Evolved from Independence to Coalition to Dominance",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\india-political-parties-evolution.md",
+    "published_at": "2026-05-15T12:53:13.796148",
+    "updated_at": "2026-05-15T12:53:13.796148",
+    "tags": []
+  },
+  "episode": {
+    "episode_title": "The Fractured Mandate: How India's Political Parties Evolved from Independence to Coalition to Dominance",
+    "episode_summary": "A conversation exploring the four evolutionary phases of India's political party system since 1885, tracing the rise and fall of Congress dominance, the emergence of regional parties, the coalition era, and the recent return of single-party dominance under the BJP, highlighting how splits and alliances define modern Indian democracy.",
+    "segment_count": 85,
+    "sample_rate": 24000,
+    "voices": {
+      "host_a": "af_heart",
+      "host_b": "am_fenrir"
+    }
+  },
+  "files": {
+    "script": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\india-political-parties-evolution\\script.md",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\india-political-parties-evolution\\manifest.json",
+    "episode": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\india-political-parties-evolution\\episode.wav"
+  }
+}

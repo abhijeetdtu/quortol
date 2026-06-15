@@ -10,20 +10,79 @@ Examples:
 from __future__ import annotations
 
 import argparse
+import importlib
+import importlib.util
 import io
 import os
+import shutil
 import sys
 import tempfile
 from pathlib import Path
 from typing import Any, Callable, Sequence
 
 
-DEFAULT_LANG = "a"
 DEFAULT_SPEED = 1.0
 DEFAULT_VOLUME = 1.0
 DEFAULT_VOICE = "af_heart"
 DEFAULT_SAMPLE_RATE = 24_000
 HELP_PROG = "kokoro-cli"
+VOICE_LANG_CODES = {
+    "af_heart": "a",
+    "af_alloy": "a",
+    "af_aoede": "a",
+    "af_bella": "a",
+    "af_jessica": "a",
+    "af_kore": "a",
+    "af_nicole": "a",
+    "af_nova": "a",
+    "af_river": "a",
+    "af_sarah": "a",
+    "af_sky": "a",
+    "am_adam": "a",
+    "am_echo": "a",
+    "am_eric": "a",
+    "am_fenrir": "a",
+    "am_liam": "a",
+    "am_michael": "a",
+    "am_onyx": "a",
+    "am_puck": "a",
+    "am_santa": "a",
+    "bf_alice": "b",
+    "bf_emma": "b",
+    "bf_isabella": "b",
+    "bf_lily": "b",
+    "bm_daniel": "b",
+    "bm_fable": "b",
+    "bm_george": "b",
+    "bm_lewis": "b",
+    "jf_alpha": "j",
+    "jf_gongitsune": "j",
+    "jf_nezumi": "j",
+    "jf_tebukuro": "j",
+    "jm_kumo": "j",
+    "zf_xiaobei": "z",
+    "zf_xiaoni": "z",
+    "zf_xiaoxiao": "z",
+    "zf_xiaoyi": "z",
+    "zm_yunjian": "z",
+    "zm_yunxi": "z",
+    "zm_yunxia": "z",
+    "zm_yunyang": "z",
+    "ef_dora": "e",
+    "em_alex": "e",
+    "em_santa": "e",
+    "ff_siwis": "f",
+    "hf_alpha": "h",
+    "hf_beta": "h",
+    "hm_omega": "h",
+    "hm_psi": "h",
+    "if_sara": "i",
+    "im_nicola": "i",
+    "pf_dora": "p",
+    "pm_alex": "p",
+    "pm_santa": "p",
+}
+DEFAULT_LANG = VOICE_LANG_CODES[DEFAULT_VOICE]
 
 
 class KokoroCLIError(Exception):
@@ -106,8 +165,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     play_parser.add_argument(
         "--lang",
-        default=DEFAULT_LANG,
-        help=f"Kokoro language code. Default: {DEFAULT_LANG}.",
+        default=None,
+        help="Optional Kokoro language code. Defaults to the selected voice's language.",
     )
     play_parser.add_argument(
         "--volume",
@@ -131,7 +190,123 @@ def build_parser() -> argparse.ArgumentParser:
         help="Block until playback completes.",
     )
 
+    subparsers.add_parser(
+        "doctor",
+        help="Inspect the local Kokoro runtime and device support.",
+        description=(
+            "Report whether Kokoro dependencies are installed and whether the "
+            "current Python environment appears to have CUDA available."
+        ),
+    )
+
     return parser
+
+
+def get_supported_voices() -> set[str]:
+    """Return the set of supported Kokoro voices."""
+    return set(VOICE_LANG_CODES)
+
+
+def infer_lang_code(voice: str, explicit_lang: str | None = None) -> str:
+    """Return the appropriate Kokoro language code for a voice."""
+    if explicit_lang:
+        return explicit_lang
+    if voice in VOICE_LANG_CODES:
+        return VOICE_LANG_CODES[voice]
+    raise InputResolutionError(
+        f"Unsupported Kokoro voice '{voice}'. Supported voices: {', '.join(sorted(VOICE_LANG_CODES))}."
+    )
+
+
+def gather_doctor_info(
+    *,
+    python_executable: str | None = None,
+    module_finder: Callable[[str], Any] | None = None,
+    module_importer: Callable[[str], Any] | None = None,
+    espeak_finder: Callable[[str], str | None] | None = None,
+) -> dict[str, Any]:
+    """Collect environment diagnostics for the Kokoro runtime."""
+    module_finder = module_finder or importlib.util.find_spec
+    module_importer = module_importer or importlib.import_module
+    espeak_finder = espeak_finder or shutil.which
+
+    info: dict[str, Any] = {
+        "python_executable": python_executable or sys.executable,
+        "kokoro_installed": module_finder("kokoro") is not None,
+        "torch_installed": module_finder("torch") is not None,
+        "soundfile_installed": module_finder("soundfile") is not None,
+        "espeak_ng_path": espeak_finder("espeak-ng"),
+        "espeak_ng_exe_path": espeak_finder("espeak-ng.exe"),
+    }
+
+    try:
+        torch_module = module_importer("torch") if info["torch_installed"] else None
+    except Exception as exc:
+        info["torch_import_error"] = repr(exc)
+        torch_module = None
+
+    if torch_module is not None:
+        info["torch_version"] = getattr(torch_module, "__version__", "unknown")
+        try:
+            cuda = torch_module.cuda
+            info["cuda_available"] = bool(cuda.is_available())
+            info["cuda_device_count"] = int(cuda.device_count())
+            if info["cuda_available"]:
+                info["cuda_devices"] = [
+                    str(cuda.get_device_name(index))
+                    for index in range(info["cuda_device_count"])
+                ]
+            else:
+                info["cuda_devices"] = []
+        except Exception as exc:
+            info["cuda_check_error"] = repr(exc)
+
+    try:
+        if info["kokoro_installed"]:
+            module_importer("kokoro")
+            info["kokoro_import"] = "ok"
+        else:
+            info["kokoro_import"] = "missing"
+    except Exception as exc:
+        info["kokoro_import_error"] = repr(exc)
+
+    cuda_available = bool(info.get("cuda_available"))
+    kokoro_ready = info.get("kokoro_import") == "ok"
+    info["likely_device"] = "cuda" if cuda_available else "cpu"
+    info["kokoro_gpu_ready"] = bool(kokoro_ready and cuda_available)
+    return info
+
+
+def format_doctor_report(info: dict[str, Any]) -> list[str]:
+    """Render collected diagnostics as readable CLI lines."""
+    espeak_path = info.get("espeak_ng_path") or info.get("espeak_ng_exe_path") or "missing"
+    lines = [
+        f"python_executable: {info.get('python_executable', 'unknown')}",
+        f"kokoro_installed: {info.get('kokoro_installed', False)}",
+        f"torch_installed: {info.get('torch_installed', False)}",
+        f"soundfile_installed: {info.get('soundfile_installed', False)}",
+        f"espeak_ng: {espeak_path}",
+    ]
+
+    if "torch_version" in info:
+        lines.append(f"torch_version: {info['torch_version']}")
+    if "torch_import_error" in info:
+        lines.append(f"torch_import_error: {info['torch_import_error']}")
+    if "cuda_available" in info:
+        lines.append(f"cuda_available: {info['cuda_available']}")
+        lines.append(f"cuda_device_count: {info.get('cuda_device_count', 0)}")
+    if info.get("cuda_devices"):
+        lines.append("cuda_devices: " + ", ".join(info["cuda_devices"]))
+    if "cuda_check_error" in info:
+        lines.append(f"cuda_check_error: {info['cuda_check_error']}")
+    if "kokoro_import" in info:
+        lines.append(f"kokoro_import: {info['kokoro_import']}")
+    if "kokoro_import_error" in info:
+        lines.append(f"kokoro_import_error: {info['kokoro_import_error']}")
+
+    lines.append(f"likely_device: {info.get('likely_device', 'unknown')}")
+    lines.append(f"kokoro_gpu_ready: {info.get('kokoro_gpu_ready', False)}")
+    return lines
 
 
 def read_text_argument(text_arg: str | None, stdin: io.TextIOBase | None = None) -> str:
@@ -296,8 +471,9 @@ def run_play_command(
         ensure_valid_speed(args.speed)
         ensure_valid_volume(args.volume)
         text = read_text_argument(args.text, stdin=stdin)
+        lang_code = infer_lang_code(args.voice, args.lang)
         output_path, should_cleanup = resolve_output_path(args.output)
-        sample_rate, audio_data = synthesizer(text, args.voice, args.speed, args.lang)
+        sample_rate, audio_data = synthesizer(text, args.voice, args.speed, lang_code)
         audio_data = apply_volume(audio_data, args.volume)
         writer(output_path, audio_data, sample_rate)
 
@@ -314,6 +490,27 @@ def run_play_command(
                 output_path.unlink(missing_ok=True)
             except OSError:
                 pass
+
+
+def run_doctor_command(
+    *,
+    stdout: io.TextIOBase | None = None,
+    python_executable: str | None = None,
+    module_finder: Callable[[str], Any] | None = None,
+    module_importer: Callable[[str], Any] | None = None,
+    espeak_finder: Callable[[str], str | None] | None = None,
+) -> int:
+    """Inspect the local runtime and print Kokoro diagnostics."""
+    stdout = stdout or sys.stdout
+    info = gather_doctor_info(
+        python_executable=python_executable,
+        module_finder=module_finder,
+        module_importer=module_importer,
+        espeak_finder=espeak_finder,
+    )
+    for line in format_doctor_report(info):
+        print(line, file=stdout)
+    return 0
 
 
 def run_cli(
@@ -344,6 +541,8 @@ def run_cli(
             writer=writer,
             player=player,
         )
+    if args.command == "doctor":
+        return run_doctor_command()
 
     parser.print_help()
     return 0

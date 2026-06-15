@@ -58,17 +58,23 @@ const buildSitemap = async () => {
       changefreq:
         routePath === '/blog'
           ? 'daily'
+          : routePath === '/podcasts'
+            ? 'weekly'
           : routePath.startsWith('/blog/')
             ? 'monthly'
+            : routePath.startsWith('/podcasts/')
+              ? 'monthly'
             : routePath.startsWith('/portfolio/')
               ? 'monthly'
               : 'weekly',
       priority:
         routePath === '/blog'
           ? '1.0'
+          : routePath === '/podcasts'
+            ? '0.95'
           : routePath === '/portfolio'
             ? '0.9'
-            : routePath.startsWith('/blog/') || routePath.startsWith('/portfolio/')
+            : routePath.startsWith('/blog/') || routePath.startsWith('/portfolio/') || routePath.startsWith('/podcasts/')
               ? '0.8'
               : '0.7',
     })

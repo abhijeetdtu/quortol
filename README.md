@@ -57,6 +57,7 @@ Quick usage:
 
 ```bash
 python scripts/kokoro_cli.py --help
+python scripts/kokoro_cli.py doctor
 python scripts/kokoro_cli.py play "hello world" --wait
 python scripts/kokoro_cli.py play "hello world" --speed 1.15 --volume 0.8 --wait
 ```
@@ -65,9 +66,42 @@ Windows launcher:
 
 ```bash
 .\scripts\kokoro-cli.cmd --help
+.\scripts\kokoro-cli.cmd doctor
 .\scripts\kokoro-cli.cmd play "hello world" --wait
 .\scripts\kokoro-cli.cmd play "hello world" --speed 1.15 --volume 0.8 --wait
 ```
+
+## Batch Blog-to-Podcast
+
+This repo also includes an offline batch generator that:
+
+- reads blog markdown from `backend/blogs`
+- asks a local `llama-server` to convert each post into a two-host podcast script
+- synthesizes each speaker turn with Kokoro
+- writes `script.md`, `manifest.json`, and `episode.wav` per blog under `backend/static/podcasts`
+
+Quick usage:
+
+```bash
+python scripts/generate_blog_podcasts.py --slug india-political-parties-evolution
+python scripts/generate_blog_podcasts.py --file backend/blogs/india-political-parties-evolution.md
+python scripts/generate_blog_podcasts.py --all --dry-run
+python scripts/generate_blog_podcasts.py --all --force --keep-segments
+```
+
+Windows launcher:
+
+```bash
+.\scripts\generate-blog-podcasts.cmd --slug india-political-parties-evolution
+```
+
+Useful flags:
+
+- `--endpoint http://127.0.0.1:8080/v1/chat/completions`
+- `--model <optional-model-name>`
+- `--output-dir <custom-output-root>`
+- `--host-a-voice af_heart`
+- `--host-b-voice am_fenrir`
 
 ## Notes
 

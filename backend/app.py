@@ -35,7 +35,12 @@ def create_app(config_class=None, enable_dash=True):
     # Register short-form feed API blueprint
     from .features.short_form import create_short_form_blueprint
     short_form_bp = create_short_form_blueprint()
-    app.register_blueprint(short_form_bp, url_prefix='/api')
+    app.register_blueprint(short_form_bp)
+
+    from .features.podcast import create_podcast_blueprints
+    podcast_api_bp, podcast_public_bp = create_podcast_blueprints()
+    app.register_blueprint(podcast_api_bp)
+    app.register_blueprint(podcast_public_bp)
     
     app.register_blueprint(blog_bp, url_prefix='/api/blog')
     app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')

@@ -7,8 +7,13 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from backend.features.podcast.config import get_podcast_config
+from backend.features.podcast.repository import load_podcast_episodes, serialize_podcast_for_export
+
 BLOGS_DIR = PROJECT_ROOT / "backend" / "blogs"
 SERIES_DIR = BLOGS_DIR / "series"
 DB_CANDIDATES = [
@@ -266,9 +271,14 @@ def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
+    podcast_config = get_podcast_config()
     payload = {
         "blogs": [_parse_markdown_file(path) for path in _iter_blog_markdown_files()],
         "projects": _load_projects(),
+        "podcasts": [
+            serialize_podcast_for_export(episode, config=podcast_config)
+            for episode in load_podcast_episodes()
+        ],
     }
     print(json.dumps(payload, ensure_ascii=False))
     return 0

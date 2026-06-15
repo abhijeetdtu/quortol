@@ -10,7 +10,7 @@ from ..infra.loader import get_post_by_id, load_posts
 from ..infra.validators import validate_media_url, validate_video_duration
 
 
-short_form_bp = Blueprint("short_form", __name__, url_prefix="/short-form")
+short_form_bp = Blueprint("short_form", __name__, url_prefix="/api/short-form")
 
 
 def _sanitize_post_media(post):

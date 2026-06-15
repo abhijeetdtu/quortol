@@ -56,6 +56,11 @@ export const portfolio = {
   createProject: (data) => api.post('/portfolio/create', data)
 }
 
+export const podcast = {
+  getEpisodes: () => api.get('/podcasts/'),
+  getEpisode: (slug) => api.get(`/podcasts/${slug}`),
+}
+
 export const agents = {
   getAgents: () => api.get('/agents/'),
   getAgent: (id) => api.get(`/agents/${id}`),

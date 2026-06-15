@@ -1,4 +1,4 @@
-# Text-to-Speech (TTS) Implementation Guide
+﻿# Text-to-Speech (TTS) Implementation Guide
 
 ## Overview
 
@@ -83,26 +83,28 @@ If you prefer the Windows launcher:
 
 ```
 User clicks play
-  → Store checks initialization
-  → Service synthesizes audio (WAV buffer)
-  → Store plays audio with selected voice/speed
-  → Progress bar updates in real-time
-  → Playback ends → Auto-stop
+  â†’ Store checks initialization
+  â†’ Service synthesizes audio (WAV buffer)
+  â†’ Store plays audio with selected voice/speed
+  â†’ Progress bar updates in real-time
+  â†’ Playback ends â†’ Auto-stop
 ```
 
 ## Voice Selection
 
-Available Kokoro voices (7 total):
+Example Kokoro voices from the official `hexgrad/Kokoro-82M` list:
 
 | ID | Name | Gender | Accent | Recommended |
 |----|------|--------|--------|-------------|
-| `af_heart` | Heart | Female | US | ✅ (Default) |
-| `af_alloy` | Alloy | Male | US | |
-| `af_nico` | Nico | Male | US | |
-| `bf_jane` | Jane | Female | UK | |
-| `bf_omega` | Omega | Male | UK | |
-| `ja_eun` | Eun | Female | JP | |
-| `ja_dora` | Dora | Female | JP | |
+| `af_heart` | Heart | Female | US | Default |
+| `af_alloy` | Alloy | Female | US | |
+| `af_bella` | Bella | Female | US | |
+| `am_michael` | Michael | Male | US | |
+| `bf_emma` | Emma | Female | UK | |
+| `bm_fable` | Fable | Male | UK | |
+| `jf_alpha` | Alpha | Female | JP | |
+
+The full official voice inventory lives in `VOICES.md` for `hexgrad/Kokoro-82M`, and the voice prefix determines the language code (`a`, `b`, `j`, `z`, `e`, `f`, `h`, `i`, `p`).
 
 ## Performance
 
@@ -270,7 +272,7 @@ const voices = store.getVoices()
 ### ARIA Labels
 
 ```html
-<button aria-label="Play blog post">▶</button>
+<button aria-label="Play blog post">â–¶</button>
 <select aria-label="Select voice">...</select>
 <input type="range" aria-label="Adjust playback speed" />
 ```
@@ -327,7 +329,7 @@ const hasCache = await cache.keys()
 
 ## Implementation Status
 
-### ✅ Completed
+### âœ… Completed
 
 - [x] Kokoro-js integration
 - [x] Voice selection (7 voices)
@@ -344,7 +346,7 @@ const hasCache = await cache.keys()
 - [x] Responsive design
 - [x] Pinia state management
 
-### 🚧 Future Enhancements
+### ðŸš§ Future Enhancements
 
 - [ ] Streaming synthesis (chunked audio)
 - [ ] Audio export (WAV download)
@@ -449,3 +451,4 @@ store.$subscribe((mutation, state) => {
 - **Model**: Apache 2.0
 - **Code**: MIT (project license)
 - **Dependencies**: Various open-source licenses
+

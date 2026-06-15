@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url'
 import {
   buildBlogPostSEOPayload,
   buildCollectionPageStructuredData,
+  buildPodcastEpisodeSEOPayload,
+  buildPodcastSeriesStructuredData,
   buildPortfolioSEOPayload,
   buildStaticPageSEOPayload,
   buildWebPageStructuredData,
@@ -43,6 +45,8 @@ const homeDescription =
   'Discover Quortol projects across essays, portfolio work, and interactive data storytelling.'
 const blogDescription = 'Read Quortol essays on technology, work, policy, and social futures.'
 const portfolioDescription = 'Browse Quortol portfolio projects and technical case studies.'
+const podcastDescription =
+  'Listen to Quortol podcast episodes adapted from essays and original conversations.'
 const explorerDescription =
   'Explore live Wikipedia research cards and article summaries in Quortol Explorer.'
 const dataStorytellingDescription =
@@ -114,6 +118,35 @@ const buildPortfolioIndexRoute = (projects) => ({
   }),
   pageData: {
     projects,
+  },
+})
+
+const buildPodcastIndexRoute = (podcasts) => ({
+  path: '/podcasts',
+  prerender: true,
+  seo: buildStaticPageSEOPayload({
+    title: 'Podcasts | Quortol',
+    description: podcastDescription,
+    path: '/podcasts',
+    structuredData: [
+      buildCollectionPageStructuredData({
+        title: 'Podcasts | Quortol',
+        description: podcastDescription,
+        path: '/podcasts',
+        items: podcasts.map((episode) => ({
+          name: episode.title,
+          path: `/podcasts/${episode.slug}`,
+        })),
+      }),
+      buildPodcastSeriesStructuredData({
+        title: 'Quortol Podcast',
+        description: podcastDescription,
+        path: '/podcasts',
+      }),
+    ],
+  }),
+  pageData: {
+    podcasts,
   },
 })
 
@@ -227,6 +260,7 @@ const buildManifest = async () => {
 
   const blogs = Array.isArray(payload.blogs) ? payload.blogs : []
   const projects = Array.isArray(payload.projects) ? payload.projects : []
+  const podcasts = Array.isArray(payload.podcasts) ? payload.podcasts : []
 
   const routes = [
     buildHomeRoute(blogs.map(toBlogSummary), projects),
@@ -246,6 +280,15 @@ const buildManifest = async () => {
       seo: buildPortfolioSEOPayload(project),
       pageData: {
         project,
+      },
+    })),
+    buildPodcastIndexRoute(podcasts),
+    ...podcasts.map((episode) => ({
+      path: `/podcasts/${episode.slug}`,
+      prerender: true,
+      seo: buildPodcastEpisodeSEOPayload(episode),
+      pageData: {
+        episode,
       },
     })),
     ...buildStaticRoutes(),

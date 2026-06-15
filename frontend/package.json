@@ -12,7 +12,8 @@
     "seo:generate-manifest": "node ./scripts/generate-public-content-manifest.mjs",
     "seo:generate-sitemap": "node ./scripts/generate-sitemap.mjs",
     "seo:prerender": "node ./scripts/prerender-public-routes.mjs",
-    "test:short-form": "vitest run src/features/short-form/__tests__"
+    "test:short-form": "vitest run src/features/short-form/__tests__",
+    "test:podcasts": "vitest run src/views/podcasts/__tests__"
   },
   "dependencies": {
     "@xenova/transformers": "^2.17.2",

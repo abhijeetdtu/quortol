@@ -127,6 +127,53 @@ export const buildCreativeWorkStructuredData = (project) => {
   return payload
 }
 
+export const buildPodcastSeriesStructuredData = ({
+  title,
+  description,
+  path,
+  image = '/quortol-podcast-cover.svg',
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'PodcastSeries',
+  name: title,
+  description,
+  url: ensureAbsoluteUrl(path),
+  image: ensureAbsoluteUrl(image),
+  publisher: {
+    '@type': 'Organization',
+    name: 'Quortol',
+  },
+})
+
+export const buildPodcastEpisodeStructuredData = (episode) => {
+  const description = buildDescription(
+    episode?.summary || episode?.transcript_markdown || '',
+    'Listen to a Quortol podcast episode.',
+  )
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'PodcastEpisode',
+    name: episode?.title || 'Quortol Podcast Episode',
+    description,
+    url: ensureAbsoluteUrl(`/podcasts/${episode?.slug || ''}`),
+    datePublished: episode?.published_at || undefined,
+    associatedMedia: episode?.audio_url
+      ? {
+          '@type': 'MediaObject',
+          contentUrl: ensureAbsoluteUrl(episode.audio_url),
+          encodingFormat: episode?.audio_meta?.content_type || 'audio/wav',
+        }
+      : undefined,
+    partOfSeries: {
+      '@type': 'PodcastSeries',
+      name: 'Quortol Podcast',
+      url: ensureAbsoluteUrl('/podcasts'),
+    },
+    image: ensureAbsoluteUrl(episode?.image_url || '/quortol-podcast-cover.svg'),
+  }
+}
+
 export const buildStaticPageSEOPayload = ({
   title,
   description,
@@ -180,5 +227,24 @@ export const buildPortfolioSEOPayload = (project) => {
     ogImage: project?.image_url || '',
     twitterCard: 'summary_large_image',
     structuredData: [buildCreativeWorkStructuredData(project)],
+  }
+}
+
+export const buildPodcastEpisodeSEOPayload = (episode) => {
+  const description = buildDescription(
+    episode?.summary || episode?.transcript_markdown || '',
+    'Listen to a Quortol podcast episode.',
+  )
+
+  return {
+    title: `${episode?.title || 'Quortol Podcast'} | Quortol`,
+    description,
+    canonical: ensureAbsoluteUrl(`/podcasts/${episode?.slug || ''}`),
+    path: `/podcasts/${episode?.slug || ''}`,
+    robots: 'index,follow',
+    ogType: 'article',
+    ogImage: episode?.image_url || '/quortol-podcast-cover.svg',
+    twitterCard: 'summary_large_image',
+    structuredData: [buildPodcastEpisodeStructuredData(episode)],
   }
 }

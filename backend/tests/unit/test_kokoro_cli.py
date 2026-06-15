@@ -41,6 +41,7 @@ class TestKokoroCLIHelp:
         assert result.returncode == 0
         assert 'kokoro-cli play "hello world" --wait' in result.stdout
         assert "--volume" in result.stdout
+        assert "doctor" in result.stdout
         assert "Use --wait when the caller should block until playback completes." in result.stdout
 
     def test_play_help_lists_supported_flags(self):
@@ -60,6 +61,12 @@ class TestKokoroCLIHelp:
 
 class TestKokoroCLIPlay:
     """Play command behavior and cleanup."""
+
+    def test_voice_language_defaults_follow_voice_id(self):
+        """Known voices should auto-select the correct Kokoro language code."""
+        assert kokoro_cli.infer_lang_code("af_heart") == "a"
+        assert kokoro_cli.infer_lang_code("bf_emma") == "b"
+        assert kokoro_cli.infer_lang_code("jf_alpha") == "j"
 
     def test_play_command_waits_for_playback_and_cleans_temp_file(self):
         """Temporary WAV files should be deleted after playback completes."""
@@ -109,10 +116,10 @@ class TestKokoroCLIPlay:
 
     def test_reads_text_from_stdin_when_argument_missing(self):
         """Piped stdin should be used when the text argument is omitted."""
-        captured: list[str] = []
+        captured: list[tuple[str, str]] = []
 
         def synthesizer(text: str, voice: str, speed: float, lang: str):
-            captured.append(text)
+            captured.append((text, lang))
             return _fake_synthesizer(text, voice, speed, lang)
 
         exit_code = kokoro_cli.run_cli(
@@ -124,7 +131,22 @@ class TestKokoroCLIPlay:
         )
 
         assert exit_code == 0
-        assert captured == ["hello from stdin"]
+        assert captured == [("hello from stdin", "a")]
+
+    def test_invalid_voice_returns_nonzero(self):
+        """Unknown voice IDs should fail early with a helpful message."""
+        stderr = io.StringIO()
+
+        exit_code = kokoro_cli.run_cli(
+            ["play", "hello world", "--voice", "bf_omega"],
+            synthesizer=_fake_synthesizer,
+            writer=_fake_writer,
+            player=lambda path, wait: None,
+            stderr=stderr,
+        )
+
+        assert exit_code == 1
+        assert "Unsupported Kokoro voice 'bf_omega'" in stderr.getvalue()
 
     def test_invalid_speed_returns_nonzero(self):
         """Invalid speed should return a non-zero exit code and stderr message."""
@@ -176,3 +198,76 @@ class TestKokoroCLIPlay:
 
         assert exit_code == 0
         assert written_audio == [[-0.25, 0.125, 0.375]]
+
+
+class TestKokoroCLIDoctor:
+    """Doctor command environment reporting."""
+
+    def test_doctor_reports_missing_runtime_cleanly(self):
+        stdout = io.StringIO()
+
+        def module_finder(name: str):
+            return None
+
+        exit_code = kokoro_cli.run_doctor_command(
+            stdout=stdout,
+            python_executable="C:\\Python\\python.exe",
+            module_finder=module_finder,
+            espeak_finder=lambda name: None,
+        )
+
+        report = stdout.getvalue()
+        assert exit_code == 0
+        assert "python_executable: C:\\Python\\python.exe" in report
+        assert "kokoro_installed: False" in report
+        assert "torch_installed: False" in report
+        assert "likely_device: cpu" in report
+        assert "kokoro_gpu_ready: False" in report
+
+    def test_doctor_reports_cuda_when_torch_supports_it(self):
+        stdout = io.StringIO()
+
+        class FakeCuda:
+            @staticmethod
+            def is_available():
+                return True
+
+            @staticmethod
+            def device_count():
+                return 1
+
+            @staticmethod
+            def get_device_name(index: int):
+                assert index == 0
+                return "NVIDIA RTX Test"
+
+        class FakeTorch:
+            __version__ = "2.5.0"
+            cuda = FakeCuda()
+
+        def module_finder(name: str):
+            return object() if name in {"torch", "kokoro", "soundfile"} else None
+
+        def module_importer(name: str):
+            if name == "torch":
+                return FakeTorch
+            if name == "kokoro":
+                return object()
+            raise ImportError(name)
+
+        exit_code = kokoro_cli.run_doctor_command(
+            stdout=stdout,
+            module_finder=module_finder,
+            module_importer=module_importer,
+            espeak_finder=lambda name: "C:\\Program Files\\eSpeak NG\\espeak-ng.exe",
+        )
+
+        report = stdout.getvalue()
+        assert exit_code == 0
+        assert "torch_version: 2.5.0" in report
+        assert "cuda_available: True" in report
+        assert "cuda_device_count: 1" in report
+        assert "cuda_devices: NVIDIA RTX Test" in report
+        assert "kokoro_import: ok" in report
+        assert "likely_device: cuda" in report
+        assert "kokoro_gpu_ready: True" in report

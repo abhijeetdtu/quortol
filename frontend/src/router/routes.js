@@ -2,6 +2,8 @@ import Home from '../views/Home.vue'
 import ExplorerLanding from '../views/explorer/ExplorerLanding.vue'
 import BlogList from '../views/blog/BlogList.vue'
 import BlogDetail from '../views/blog/BlogDetail.vue'
+import PodcastList from '../views/podcasts/PodcastList.vue'
+import PodcastDetail from '../views/podcasts/PodcastDetail.vue'
 import PortfolioList from '../views/portfolio/PortfolioList.vue'
 import PortfolioDetail from '../views/portfolio/PortfolioDetail.vue'
 import AgentLogin from '../views/agents/AgentLogin.vue'
@@ -10,6 +12,7 @@ import AgentCapabilities from '../views/agents/AgentCapabilities.vue'
 import ShortFormFeedPage from '../features/short-form/pages/ShortFormFeedPage.vue'
 import {
   buildCollectionPageStructuredData,
+  buildPodcastSeriesStructuredData,
   buildStaticPageSEOPayload,
   buildWebPageStructuredData,
 } from '../utils/seoContent'
@@ -18,6 +21,8 @@ const homeDescription =
   'Discover Quortol projects across essays, portfolio work, and interactive data storytelling.'
 const blogDescription = 'Read Quortol essays on technology, work, policy, and social futures.'
 const portfolioDescription = 'Browse Quortol portfolio projects and technical case studies.'
+const podcastDescription =
+  'Listen to Quortol podcast episodes adapted from essays and original conversations.'
 const explorerDescription =
   'Explore live Wikipedia research cards and article summaries in Quortol Explorer.'
 const dataStorytellingDescription =
@@ -102,6 +107,40 @@ export const routes = [
         title: 'Quortol Blog',
         description: 'Read longform essays from Quortol.',
         path: '/blog',
+        ogType: 'article',
+      }),
+    },
+  },
+  {
+    path: '/podcasts',
+    name: 'podcast-list',
+    component: PodcastList,
+    meta: {
+      requiresAuth: false,
+      seo: buildStaticPageSEOPayload({
+        title: 'Podcasts | Quortol',
+        description: podcastDescription,
+        path: '/podcasts',
+        structuredData: [
+          buildPodcastSeriesStructuredData({
+            title: 'Quortol Podcast',
+            description: podcastDescription,
+            path: '/podcasts',
+          }),
+        ],
+      }),
+    },
+  },
+  {
+    path: '/podcasts/:slug',
+    name: 'podcast-detail',
+    component: PodcastDetail,
+    meta: {
+      requiresAuth: false,
+      seo: buildStaticPageSEOPayload({
+        title: 'Podcast Episode | Quortol',
+        description: 'Listen to a Quortol podcast episode.',
+        path: '/podcasts',
         ogType: 'article',
       }),
     },
