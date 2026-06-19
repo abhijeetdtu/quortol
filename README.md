@@ -157,6 +157,9 @@ npm run serve
 To run it in the background instead:
 
 ```bash
+cd frontend
+npm run build
+pkill -f "serve-production.mjs" || true
 nohup npm run serve > frontend.log 2>&1 &
 ```
 

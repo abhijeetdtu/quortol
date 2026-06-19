@@ -200,6 +200,19 @@ def _parse_markdown_file(path: Path):
     }
 
 
+def _sort_items_by_published_at_desc(items):
+    return sorted(
+        items,
+        key=lambda item: _parse_datetime(item.get("published_at")) or datetime.min,
+        reverse=True,
+    )
+
+
+def _load_blogs():
+    blogs = [_parse_markdown_file(path) for path in _iter_blog_markdown_files()]
+    return _sort_items_by_published_at_desc(blogs)
+
+
 def _resolve_db_path():
     for candidate in DB_CANDIDATES:
         if candidate.exists():
@@ -273,7 +286,7 @@ def main():
 
     podcast_config = get_podcast_config()
     payload = {
-        "blogs": [_parse_markdown_file(path) for path in _iter_blog_markdown_files()],
+        "blogs": _load_blogs(),
         "projects": _load_projects(),
         "podcasts": [
             serialize_podcast_for_export(episode, config=podcast_config)
