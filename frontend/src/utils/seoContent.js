@@ -1,4 +1,4 @@
-export const CANONICAL_ORIGIN = 'https://pokhi.in'
+export const CANONICAL_ORIGIN = 'https://quortol.pokhi.in'
 
 export const DEFAULT_SEO_DESCRIPTION =
   'Quortol publishes essays, portfolio work, and data storytelling projects.'

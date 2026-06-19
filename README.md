@@ -77,8 +77,9 @@ This repo also includes an offline batch generator that:
 
 - reads blog markdown from `backend/blogs`
 - asks a local `llama-server` to convert each post into a two-host podcast script
-- synthesizes each speaker turn with Kokoro
+- synthesizes each speaker turn through a pluggable TTS backend (`kokoro` or `qwen`)
 - writes `script.md`, `manifest.json`, and `episode.wav` per blog under `backend/static/podcasts`
+- reuses an existing `script.md` and goes straight to TTS unless you pass `--force`
 
 Quick usage:
 
@@ -99,9 +100,26 @@ Useful flags:
 
 - `--endpoint http://127.0.0.1:8080/v1/chat/completions`
 - `--model <optional-model-name>`
+- `--tts-backend kokoro`
+- `--tts-conda-env qwen3-tts-cuda`
+- `--tts-model <optional-tts-model-name>`
+- `--tts-language English`
+- `--tts-extra-arg --device-map`
+- `--tts-extra-arg cuda:0`
 - `--output-dir <custom-output-root>`
 - `--host-a-voice af_heart`
 - `--host-b-voice am_fenrir`
+
+Qwen backend contract:
+
+- `quortol` vendors and invokes `scripts.qwen3_tts_chunk` from this repo
+- execution happens through `conda run --name <env> python -m scripts.qwen3_tts_chunk`
+- the selected speaker voice ID is forwarded as `--speaker`
+- language is forwarded as `--language`
+- model is forwarded as `--model` when present
+- the script must write a mono 16-bit PCM WAV file to the provided `--out` path
+- generated manifests record `episode.tts.backend`, optional `episode.tts.model`, and backend-specific voice IDs
+- qwen defaults are `Ryan` for journalist and `Aiden` for author unless overridden
 
 ## Notes
 
@@ -109,7 +127,7 @@ Useful flags:
 - Both must be running simultaneously for the application to work
 - The router fix (importing `useAuthStore`) resolves the navigation guard errors
 
-## Quick Startup (Backend + Frontend + Tunnel)
+## Quick Production Startup (Backend + Frontend + Tunnel)
 
 From the repo root, run these in 3 terminals:
 
@@ -128,11 +146,13 @@ nohup python -m backend.app > backend.log 2>&1 &
 ```bash
 # Terminal 2
 cd frontend
-npm run dev -- --host localhost --port 8050
+npm install
+npm run build
+npm run serve
 ```
 
 ```bash
-nohup npm run dev > frontend.log 2>&1 &
+nohup npm run serve > frontend.log 2>&1 &
 ```
 
 ```bash
@@ -148,7 +168,7 @@ sudo systemctl restart cloudflared
 
 ## Deployment
 
-- Cloudflare Tunnel dev-stack guide for `https://pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
+- Cloudflare Tunnel deployment guide for `https://quortol.pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
 - SEO indexing checklist: [docs/seo-indexing-checklist.md](docs/seo-indexing-checklist.md)
 
 ## SEO Utilities

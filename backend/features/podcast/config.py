@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 DEFAULT_BUNDLES_DIR = Path(__file__).resolve().parents[2] / "static" / "podcasts"
-DEFAULT_SITE_ORIGIN = "https://pokhi.in"
+DEFAULT_SITE_ORIGIN = "https://quortol.pokhi.in"
 DEFAULT_SHOW_TITLE = "Quortol Podcast"
 DEFAULT_SHOW_DESCRIPTION = (
     "Listen to Quortol podcast episodes adapted from essays and original conversations."

@@ -24,7 +24,7 @@ def test_podcast_guid_is_stable_across_manifest_regeneration(tmp_path, monkeypat
     bundle_dir = bundles_dir / "standalone-episode"
     bundle_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = bundle_dir / "manifest.json"
-    (bundle_dir / "script.md").write_text("# Episode\n\nHOST A: Hello.", encoding="utf-8")
+    (bundle_dir / "script.md").write_text("# Episode\n\nJOURNALIST: Hello.", encoding="utf-8")
     _write_wav(bundle_dir / "episode.wav")
 
     base_manifest = {
@@ -80,7 +80,7 @@ def test_repository_marks_existing_blog_slug_as_blog_source(tmp_path, monkeypatc
         ),
         encoding="utf-8",
     )
-    (bundle_dir / "script.md").write_text("# Episode\n\nHOST A: Hello.", encoding="utf-8")
+    (bundle_dir / "script.md").write_text("# Episode\n\nJOURNALIST: Hello.", encoding="utf-8")
     _write_wav(bundle_dir / "episode.wav")
 
     monkeypatch.setenv("PODCASTS_DIR", str(bundles_dir))
@@ -92,3 +92,78 @@ def test_repository_marks_existing_blog_slug_as_blog_source(tmp_path, monkeypatc
     assert len(episodes) == 1
     assert episodes[0].source_type == "blog"
     assert episodes[0].related_blog_slug == "india-political-parties-evolution"
+
+
+def test_repository_serializes_tts_backend_with_legacy_fallback(tmp_path, monkeypatch):
+    bundles_dir = tmp_path / "podcasts"
+    bundle_dir = bundles_dir / "standalone-episode"
+    bundle_dir.mkdir(parents=True, exist_ok=True)
+    (bundle_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "status": "generated",
+                "generated_at": "2026-06-20T09:00:00+00:00",
+                "source": {
+                    "slug": "standalone-episode",
+                    "title": "Standalone Episode",
+                    "published_at": "2026-06-20T09:00:00+00:00",
+                },
+                "episode": {
+                    "episode_title": "Standalone Episode",
+                    "episode_summary": "A standalone Quortol audio release.",
+                    "voices": {"journalist": "af_heart", "author": "am_fenrir"},
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    (bundle_dir / "script.md").write_text("# Episode\n\nJOURNALIST: Hello.", encoding="utf-8")
+    _write_wav(bundle_dir / "episode.wav")
+
+    monkeypatch.setenv("PODCASTS_DIR", str(bundles_dir))
+    monkeypatch.setenv("PUBLIC_SITE_ORIGIN", "https://pokhi.in")
+
+    clear_podcast_cache()
+    payload = serialize_podcast_detail(get_podcast_episode("standalone-episode"))
+
+    assert payload["tts_backend"] == "kokoro"
+
+
+def test_repository_serializes_explicit_tts_backend(tmp_path, monkeypatch):
+    bundles_dir = tmp_path / "podcasts"
+    bundle_dir = bundles_dir / "standalone-episode"
+    bundle_dir.mkdir(parents=True, exist_ok=True)
+    (bundle_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "status": "generated",
+                "generated_at": "2026-06-20T09:00:00+00:00",
+                "source": {
+                    "slug": "standalone-episode",
+                    "title": "Standalone Episode",
+                    "published_at": "2026-06-20T09:00:00+00:00",
+                },
+                "episode": {
+                    "episode_title": "Standalone Episode",
+                    "episode_summary": "A standalone Quortol audio release.",
+                    "tts": {
+                        "backend": "qwen",
+                        "model": "qwen3-tts",
+                        "output_format": "wav",
+                        "voices": {"journalist": "voice-a", "author": "voice-b"},
+                    },
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    (bundle_dir / "script.md").write_text("# Episode\n\nJOURNALIST: Hello.", encoding="utf-8")
+    _write_wav(bundle_dir / "episode.wav")
+
+    monkeypatch.setenv("PODCASTS_DIR", str(bundles_dir))
+    monkeypatch.setenv("PUBLIC_SITE_ORIGIN", "https://pokhi.in")
+
+    clear_podcast_cache()
+    payload = serialize_podcast_detail(get_podcast_episode("standalone-episode"))
+
+    assert payload["tts_backend"] == "qwen"

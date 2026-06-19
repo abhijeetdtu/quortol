@@ -1,0 +1,38 @@
+{
+  "status": "generated",
+  "generated_at": "2026-06-15T23:59:34.662979+00:00",
+  "source": {
+    "slug": "nashua-mill-town-story",
+    "title": "\"The Gate City: Nashua's Mill Town Era, 1823\u20131948\"",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\nashua-mill-town-story.md",
+    "published_at": "2026-05-08T00:00:00",
+    "updated_at": "2026-05-08T00:00:00",
+    "tags": [
+      "Nashua",
+      "NH",
+      "mill town",
+      "textile industry",
+      "industrial history",
+      "NH history",
+      "Nashua River",
+      "Nashua Manufacturing Company",
+      "Jackson Company",
+      "Textron Inc."
+    ]
+  },
+  "episode": {
+    "episode_title": "\"The Gate City: Nashua's Mill Town Era, 1823\u20131948\"",
+    "episode_summary": "This episode explores the rise and fall of Nashua, New Hampshire as a mill town, focusing on the Nashua Manufacturing Company's dominance from 1823 to 1948. Hosts discuss the industrial mechanics of water power, the social architecture built by the company for workers, the impact of the 1948 closure on the city's population, and the subsequent redevelopment of the Millyard district. Visual references including bird's-eye views and hurricane photos are woven into the narrative to illustrate the physical transformation of the city.",
+    "segment_count": 113,
+    "sample_rate": 24000,
+    "voices": {
+      "host_a": "af_heart",
+      "host_b": "am_fenrir"
+    }
+  },
+  "files": {
+    "script": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\nashua-mill-town-story\\script.md",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\nashua-mill-town-story\\manifest.json",
+    "episode": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\nashua-mill-town-story\\episode.wav"
+  }
+}

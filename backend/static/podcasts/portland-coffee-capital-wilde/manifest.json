@@ -1,0 +1,35 @@
+{
+  "status": "generated",
+  "generated_at": "2026-06-16T23:26:10.776313+00:00",
+  "source": {
+    "slug": "portland-coffee-capital-wilde",
+    "title": "The City That Brewed Itself: How Portland Became America's Coffee Capital Without Growing a Single Bean",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\portland-coffee-capital-wilde.md",
+    "published_at": "2026-06-04T15:10:08.868686",
+    "updated_at": "2026-06-04T15:10:08.868686",
+    "tags": []
+  },
+  "episode": {
+    "episode_title": "The City That Brewed Itself: How Portland Became America's Coffee Capital Without Growing a Single Bean",
+    "episode_summary": "An interview with the author of an investigative piece on Portland's coffee economy. They discuss the city's paradoxical status as a global coffee hub despite importing all its beans, the history of third-wave roasters like Stumptown and Heart, the infrastructure of microroasters at Buckman, and the economic fragility introduced by recent federal tariffs on imports.",
+    "segment_count": 61,
+    "sample_rate": 24000,
+    "voices": {
+      "journalist": "af_heart",
+      "author": "am_fenrir"
+    },
+    "tts": {
+      "backend": "kokoro",
+      "output_format": "wav",
+      "voices": {
+        "journalist": "af_heart",
+        "author": "am_fenrir"
+      }
+    }
+  },
+  "files": {
+    "script": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\portland-coffee-capital-wilde\\script.md",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\portland-coffee-capital-wilde\\manifest.json",
+    "episode": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\portland-coffee-capital-wilde\\episode.wav"
+  }
+}

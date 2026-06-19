@@ -1,20 +1,21 @@
-# Quortol Cloudflare Tunnel Setup (`pokhi.in`)
+# Quortol Cloudflare Tunnel Setup (`quortol.pokhi.in`)
 
-This guide exposes the current Quortol dev stack through Cloudflare Tunnel at `https://pokhi.in/`.
+This guide exposes Quortol through Cloudflare Tunnel at `https://quortol.pokhi.in/`.
 
 ## What This Setup Does
 
 - Serves the frontend from `http://127.0.0.1:8050` through Cloudflare Tunnel.
-- Keeps API requests on the same domain via Vite proxy:
-  - Browser calls `https://pokhi.in/api/...`
+- Keeps API requests on the same domain via the Vite preview proxy:
+  - Browser calls `https://quortol.pokhi.in/api/...`
   - Vite proxies `/api` to backend `http://127.0.0.1:5000`
+- Serves the prerendered `frontend/dist` output so crawlers receive route-specific HTML.
 
 ## Preconditions
 
 - Domain `pokhi.in` is active in your Cloudflare account and DNS is managed by Cloudflare.
 - Ubuntu/Debian host with sudo access.
 - Quortol backend running on `127.0.0.1:5000`.
-- Quortol frontend Vite dev server running on `127.0.0.1:8050`.
+- Quortol production build served on `127.0.0.1:8050`.
 
 ## Install Node.js and npm (if missing)
 
@@ -54,7 +55,8 @@ python -m backend.app
 # In another terminal
 cd frontend
 npm install
-npm run dev -- --host 127.0.0.1 --port 8050
+npm run build
+npm run serve
 ```
 
 ## 1) Install cloudflared
@@ -75,13 +77,13 @@ cloudflared tunnel create quortol-dev
 
 Save the generated tunnel UUID shown in output. It appears in `~/.cloudflared/` and is used below as `<TUNNEL_UUID>`.
 
-## 3) Route `pokhi.in` DNS to the Tunnel
+## 3) Route `quortol.pokhi.in` DNS to the Tunnel
 
 ```bash
-cloudflared tunnel route dns quortol-dev pokhi.in
+cloudflared tunnel route dns quortol-dev quortol.pokhi.in
 ```
 
-This creates/updates a Cloudflare DNS record for the apex domain.
+This creates or updates the Cloudflare DNS record for the canonical subdomain.
 
 ## 4) Create Tunnel Config
 
@@ -92,7 +94,7 @@ tunnel: <TUNNEL_UUID>
 credentials-file: /root/.cloudflared/<TUNNEL_UUID>.json
 
 ingress:
-  - hostname: pokhi.in
+  - hostname: quortol.pokhi.in
     service: http://127.0.0.1:8050
   - service: http_status:404
 ```
@@ -122,13 +124,16 @@ cloudflared tunnel list
 Then test in a browser or with curl:
 
 ```bash
-curl -I https://pokhi.in/
-curl -i https://pokhi.in/api/blog/
+curl -I https://quortol.pokhi.in/
+curl -i https://quortol.pokhi.in/api/blog/
+curl -i https://quortol.pokhi.in/robots.txt
+curl -i https://quortol.pokhi.in/sitemap.xml
 ```
 
 Expected:
-- `https://pokhi.in/` returns the frontend app.
-- `https://pokhi.in/api/blog/` returns backend JSON (or route response), proving `/api` proxy path works end-to-end.
+- `https://quortol.pokhi.in/` returns the frontend app.
+- `https://quortol.pokhi.in/api/blog/` returns backend JSON, proving `/api` proxying works.
+- Public routes return prerendered HTML with `quortol.pokhi.in` canonical URLs.
 
 ## Troubleshooting
 
@@ -152,7 +157,7 @@ Expected:
 - Wait for propagation (usually quick, can take a few minutes).
 - Re-run:
   ```bash
-  cloudflared tunnel route dns quortol-dev pokhi.in
+  cloudflared tunnel route dns quortol-dev quortol.pokhi.in
   ```
 - Verify DNS in Cloudflare dashboard.
 

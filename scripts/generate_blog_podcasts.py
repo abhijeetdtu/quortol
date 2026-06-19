@@ -28,16 +28,31 @@ from backend.blog_markdown import (  # noqa: E402
     parse_markdown_file,
 )
 import kokoro_cli  # noqa: E402
+from tts_backends import TTSBackendError, create_tts_backend  # noqa: E402
+from tts_backends.qwen import (  # noqa: E402
+    DEFAULT_QWEN_AUTHOR_VOICE,
+    DEFAULT_QWEN_CONDA_ENV,
+    DEFAULT_QWEN_JOURNALIST_VOICE,
+    DEFAULT_QWEN_MODEL,
+)
 
 
 DEFAULT_ENDPOINT = "http://127.0.0.1:8080/v1/chat/completions"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "backend" / "static" / "podcasts"
 DEFAULT_PROMPT_TEMPLATE = REPO_ROOT / "docs" / "podcast-instructions.md"
-DEFAULT_HOST_A_VOICE = "af_heart"
-DEFAULT_HOST_B_VOICE = "am_fenrir"
+DEFAULT_JOURNALIST_VOICE = "af_heart"
+DEFAULT_AUTHOR_VOICE = "am_fenrir"
+DEFAULT_TTS_BACKEND = "kokoro"
 SHORT_PAUSE_MS = 250
 SECTION_PAUSE_MS = 600
-SUPPORTED_VOICES = kokoro_cli.get_supported_voices()
+SPEAKER_LABELS = {
+    "journalist": "JOURNALIST",
+    "author": "AUTHOR",
+}
+LEGACY_SPEAKER_ALIASES = {
+    "host_a": "journalist",
+    "host_b": "author",
+}
 
 
 class PodcastGenerationError(Exception):
@@ -91,7 +106,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="generate-blog-podcasts",
         description=(
-            "Generate two-host podcast scripts and WAV episodes from blog markdown files."
+            "Generate interview-style podcast scripts and WAV episodes from blog markdown files."
         ),
     )
     selection = parser.add_mutually_exclusive_group(required=True)
@@ -115,25 +130,55 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--model", default="", help="Optional model identifier.")
     parser.add_argument(
+        "--tts-backend",
+        default=DEFAULT_TTS_BACKEND,
+        help="TTS backend to synthesize episode audio. Supported: kokoro, qwen.",
+    )
+    parser.add_argument(
+        "--tts-conda-env",
+        default=DEFAULT_QWEN_CONDA_ENV,
+        help=f"Conda environment name used for local qwen TTS synthesis. Default: {DEFAULT_QWEN_CONDA_ENV}",
+    )
+    parser.add_argument(
+        "--tts-model",
+        default=DEFAULT_QWEN_MODEL,
+        help="Optional TTS model identifier stored in manifest metadata.",
+    )
+    parser.add_argument(
+        "--tts-language",
+        default="english",
+        help="Language passed to the local qwen TTS script. Default: english",
+    )
+    parser.add_argument(
+        "--tts-extra-arg",
+        action="append",
+        default=[],
+        help="Additional argument to forward to the local qwen TTS script. Repeat as needed.",
+    )
+    parser.add_argument(
         "--prompt-template",
         type=Path,
         default=DEFAULT_PROMPT_TEMPLATE,
         help=f"Prompt template file to use. Default: {DEFAULT_PROMPT_TEMPLATE}",
     )
     parser.add_argument(
+        "--journalist-voice",
         "--host-a-voice",
-        default=DEFAULT_HOST_A_VOICE,
-        help=f"Kokoro voice for host_a. Default: {DEFAULT_HOST_A_VOICE}",
+        dest="journalist_voice",
+        default=DEFAULT_JOURNALIST_VOICE,
+        help=f"Kokoro voice for the journalist role. Default: {DEFAULT_JOURNALIST_VOICE}",
     )
     parser.add_argument(
+        "--author-voice",
         "--host-b-voice",
-        default=DEFAULT_HOST_B_VOICE,
-        help=f"Kokoro voice for host_b. Default: {DEFAULT_HOST_B_VOICE}",
+        dest="author_voice",
+        default=DEFAULT_AUTHOR_VOICE,
+        help=f"Kokoro voice for the author role. Default: {DEFAULT_AUTHOR_VOICE}",
     )
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Regenerate outputs even when an episode already exists.",
+        help="Regenerate outputs even when an episode already exists and ignore any existing script.md.",
     )
     parser.add_argument(
         "--dry-run",
@@ -148,10 +193,35 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def validate_voice(voice: str) -> None:
-    if voice not in SUPPORTED_VOICES:
-        supported = ", ".join(sorted(SUPPORTED_VOICES))
-        raise SelectionError(f"Unsupported Kokoro voice '{voice}'. Supported voices: {supported}.")
+def validate_voice(tts_backend: Any, voice: str) -> None:
+    try:
+        tts_backend.validate_voice(voice)
+    except TTSBackendError as exc:
+        raise SelectionError(str(exc)) from exc
+
+
+def resolve_voice_defaults(args: argparse.Namespace, argv: Sequence[str]) -> tuple[str, str]:
+    journalist_explicit = "--journalist-voice" in argv or "--host-a-voice" in argv
+    author_explicit = "--author-voice" in argv or "--host-b-voice" in argv
+
+    journalist_voice = args.journalist_voice
+    author_voice = args.author_voice
+
+    if args.tts_backend.strip().lower() == "qwen":
+        if not journalist_explicit:
+            journalist_voice = DEFAULT_QWEN_JOURNALIST_VOICE
+        if not author_explicit:
+            author_voice = DEFAULT_QWEN_AUTHOR_VOICE
+
+    return journalist_voice, author_voice
+
+
+def normalize_speaker(raw_speaker: str) -> str:
+    speaker = raw_speaker.strip().lower()
+    speaker = LEGACY_SPEAKER_ALIASES.get(speaker, speaker)
+    if speaker not in SPEAKER_LABELS:
+        raise LLMContractError("Segments must use only journalist or author speakers.")
+    return speaker
 
 
 def resolve_target_files(args: argparse.Namespace, blogs_dir: Path = BLOGS_DIR) -> list[Path]:
@@ -273,11 +343,9 @@ def parse_segment_objects(raw_segments: list[dict[str, Any]]) -> list[PodcastSeg
     for raw_segment in raw_segments:
         if not isinstance(raw_segment, dict):
             raise LLMContractError("Each segment must be an object.")
-        speaker = str(raw_segment.get("speaker", "")).strip()
+        speaker = normalize_speaker(str(raw_segment.get("speaker", "")))
         section = str(raw_segment.get("section", "")).strip() or "discussion"
         text = " ".join(str(raw_segment.get("text", "")).split())
-        if speaker not in {"host_a", "host_b"}:
-            raise LLMContractError("Segments must use only host_a or host_b speakers.")
         if not text:
             raise LLMContractError("Each segment must include non-empty text.")
         if previous_speaker and speaker == previous_speaker:
@@ -286,8 +354,8 @@ def parse_segment_objects(raw_segments: list[dict[str, Any]]) -> list[PodcastSeg
         seen_speakers.add(speaker)
         segments.append(PodcastSegment(speaker=speaker, section=section, text=text))
 
-    if seen_speakers != {"host_a", "host_b"}:
-        raise LLMContractError("Episode must include both host_a and host_b.")
+    if seen_speakers != set(SPEAKER_LABELS):
+        raise LLMContractError("Episode must include both journalist and author.")
     return segments
 
 
@@ -301,14 +369,22 @@ def parse_dialogue_text(dialogue: str) -> list[PodcastSegment]:
     seen_speakers: set[str] = set()
     total_lines = len(lines)
     for index, line in enumerate(lines):
-        if line.startswith("HOST A:"):
-            speaker = "host_a"
-            text = line.removeprefix("HOST A:").strip()
-        elif line.startswith("HOST B:"):
-            speaker = "host_b"
-            text = line.removeprefix("HOST B:").strip()
-        else:
-            raise LLMContractError("Dialogue lines must start with 'HOST A:' or 'HOST B:'.")
+        speaker = ""
+        text = ""
+        for label, normalized in (
+            ("JOURNALIST:", "journalist"),
+            ("AUTHOR:", "author"),
+            ("HOST A:", "journalist"),
+            ("HOST B:", "author"),
+        ):
+            if line.startswith(label):
+                speaker = normalized
+                text = line.removeprefix(label).strip()
+                break
+        if not speaker:
+            raise LLMContractError(
+                "Dialogue lines must start with 'JOURNALIST:' or 'AUTHOR:'."
+            )
         if not text:
             raise LLMContractError("Dialogue lines must include spoken text after the speaker label.")
         if previous_speaker and speaker == previous_speaker:
@@ -318,8 +394,8 @@ def parse_dialogue_text(dialogue: str) -> list[PodcastSegment]:
         section = classify_dialogue_section(index, total_lines)
         segments.append(PodcastSegment(speaker=speaker, section=section, text=text))
 
-    if seen_speakers != {"host_a", "host_b"}:
-        raise LLMContractError("Dialogue must include both HOST A and HOST B.")
+    if seen_speakers != set(SPEAKER_LABELS):
+        raise LLMContractError("Dialogue must include both JOURNALIST and AUTHOR.")
     return segments
 
 
@@ -334,7 +410,7 @@ def classify_dialogue_section(index: int, total_lines: int) -> str:
 def derive_episode_summary(segments: list[PodcastSegment]) -> str:
     combined = " ".join(segment.text for segment in segments[:2]).strip()
     if not combined:
-        return "Two hosts explore the source material in conversation."
+        return "A journalist interviews the author about the source material."
     return " ".join(combined.split()[:40]).strip()
 
 
@@ -352,10 +428,10 @@ def build_generation_prompt(document: BlogMarkdownDocument, prompt_template: str
         "{\n"
         '  "episode_title": "string",\n'
         '  "episode_summary": "string",\n'
-        '  "dialogue": "HOST A: ...\\nHOST B: ..."\n'
+        '  "dialogue": "JOURNALIST: ...\\nAUTHOR: ..."\n'
         "}\n\n"
         "Encoding rules for the JSON:\n"
-        "- The dialogue value must contain the full script in the exact HOST A / HOST B format requested by the prompt file.\n"
+        "- The dialogue value must contain the full script in the exact JOURNALIST / AUTHOR format requested by the prompt file.\n"
         "- Keep the dialogue conversational, not outline-like or sectioned.\n"
         "- Do not compress this into a short recap; aim to use most of the requested target length.\n"
         "- Preserve the important chronology, names, institutions, conflicts, and consequences from the source.\n"
@@ -464,7 +540,7 @@ def merge_episode_audio(
     output_dir: Path,
     voice_map: dict[str, str],
     keep_segments: bool,
-    synthesizer: Synthesizer,
+    tts_backend: Any,
 ) -> tuple[Path, int]:
     sample_rate: int | None = None
     merged_frames = bytearray()
@@ -473,8 +549,12 @@ def merge_episode_audio(
 
     for index, segment in enumerate(episode.segments, start=1):
         voice = voice_map[segment.speaker]
-        lang_code = kokoro_cli.infer_lang_code(voice)
-        current_rate, audio_data = synthesizer(segment.text, voice, 1.0, lang_code)
+        current_rate, audio_data = tts_backend.synthesize(
+            segment.text,
+            voice,
+            1.0,
+            segment.speaker,
+        )
         if sample_rate is None:
             sample_rate = current_rate
         elif sample_rate != current_rate:
@@ -508,7 +588,7 @@ def render_script_markdown(document: BlogMarkdownDocument, episode: EpisodeScrip
         "",
     ]
     for segment in episode.segments:
-        speaker_label = "HOST A" if segment.speaker == "host_a" else "HOST B"
+        speaker_label = SPEAKER_LABELS[segment.speaker]
         lines.extend(
             [
                 f"{speaker_label}: {segment.text}",
@@ -516,6 +596,41 @@ def render_script_markdown(document: BlogMarkdownDocument, episode: EpisodeScrip
             ]
         )
     return "\n".join(lines).strip() + "\n"
+
+
+def load_script_markdown(path: Path, document: BlogMarkdownDocument) -> EpisodeScript:
+    try:
+        raw_text = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise PodcastGenerationError(f"Could not read existing script: {path}") from exc
+
+    lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
+    if not lines:
+        raise PodcastGenerationError(f"Existing script is empty: {path}")
+
+    episode_title = document.title
+    dialogue_lines: list[str] = []
+    for line in lines:
+        if line.startswith("# "):
+            episode_title = line.removeprefix("# ").strip() or episode_title
+            continue
+        if line.startswith("Source blog:") or line.startswith("Slug:"):
+            continue
+        if any(
+            line.startswith(label)
+            for label in ("JOURNALIST:", "AUTHOR:", "HOST A:", "HOST B:")
+        ):
+            dialogue_lines.append(line)
+
+    if not dialogue_lines:
+        raise PodcastGenerationError(f"Existing script does not contain dialogue: {path}")
+
+    segments = parse_dialogue_text("\n".join(dialogue_lines))
+    return EpisodeScript(
+        episode_title=episode_title,
+        episode_summary=derive_episode_summary(segments),
+        segments=segments,
+    )
 
 
 def bundle_has_existing_outputs(output_dir: Path) -> bool:
@@ -536,15 +651,24 @@ def process_document(
     endpoint: str,
     model: str,
     prompt_template: str,
-    host_a_voice: str,
-    host_b_voice: str,
+    journalist_voice: str,
+    author_voice: str,
     force: bool,
     dry_run: bool,
     keep_segments: bool,
     requester: Requester = requests.post,
     synthesizer: Synthesizer = kokoro_cli.synthesize_with_kokoro,
+    tts_runner: Callable[..., Any] | None = None,
+    tts_backend: Any | None = None,
+    tts_backend_id: str = DEFAULT_TTS_BACKEND,
+    tts_conda_env: str = DEFAULT_QWEN_CONDA_ENV,
+    tts_model: str = "",
+    tts_language: str = "english",
+    tts_extra_args: list[str] | None = None,
 ) -> ProcessResult:
     output_dir = output_root / document.slug
+    script_path = output_dir / "script.md"
+    episode_path = output_dir / "episode.wav"
     if dry_run:
         return ProcessResult(
             slug=document.slug,
@@ -562,31 +686,43 @@ def process_document(
             output_dir=str(output_dir),
             message="Existing podcast artifacts found. Use --force to regenerate.",
             manifest_path=str(output_dir / "manifest.json"),
-            episode_path=str(output_dir / "episode.wav"),
+            episode_path=str(episode_path),
         )
 
-    voice_map = {"host_a": host_a_voice, "host_b": host_b_voice}
+    voice_map = {"journalist": journalist_voice, "author": author_voice}
+    active_tts_backend = tts_backend or create_tts_backend(
+        tts_backend_id,
+        tts_conda_env=tts_conda_env,
+        tts_model=tts_model,
+        tts_language=tts_language,
+        tts_extra_args=tts_extra_args,
+        kokoro_synthesizer=synthesizer,
+        tts_runner=tts_runner,
+    )
 
     try:
-        episode = request_episode_script(
-            document=document,
-            endpoint=endpoint,
-            model=model,
-            prompt_template=prompt_template,
-            requester=requester,
-        )
         output_dir.mkdir(parents=True, exist_ok=True)
-        script_path = output_dir / "script.md"
-        script_path.write_text(
-            render_script_markdown(document, episode),
-            encoding="utf-8",
-        )
+        reused_existing_script = script_path.exists() and not force
+        if reused_existing_script:
+            episode = load_script_markdown(script_path, document)
+        else:
+            episode = request_episode_script(
+                document=document,
+                endpoint=endpoint,
+                model=model,
+                prompt_template=prompt_template,
+                requester=requester,
+            )
+            script_path.write_text(
+                render_script_markdown(document, episode),
+                encoding="utf-8",
+            )
         episode_path, sample_rate = merge_episode_audio(
             episode=episode,
             output_dir=output_dir,
             voice_map=voice_map,
             keep_segments=keep_segments,
-            synthesizer=synthesizer,
+            tts_backend=active_tts_backend,
         )
         manifest = {
             "status": "generated",
@@ -605,6 +741,10 @@ def process_document(
                 "segment_count": len(episode.segments),
                 "sample_rate": sample_rate,
                 "voices": voice_map,
+                "tts": {
+                    **active_tts_backend.describe(),
+                    "voices": voice_map,
+                },
             },
             "files": {
                 "script": str(script_path),
@@ -618,7 +758,11 @@ def process_document(
             status="generated",
             source_path=str(document.path),
             output_dir=str(output_dir),
-            message="Podcast artifacts generated successfully.",
+            message=(
+                "Podcast audio generated from existing script."
+                if reused_existing_script
+                else "Podcast artifacts generated successfully."
+            ),
             script_path=str(script_path),
             manifest_path=str(manifest_path),
             episode_path=str(episode_path),
@@ -661,18 +805,31 @@ def run_cli(
     stderr: io.TextIOBase | None = None,
     requester: Requester = requests.post,
     synthesizer: Synthesizer = kokoro_cli.synthesize_with_kokoro,
+    tts_runner: Callable[..., Any] | None = None,
 ) -> int:
     parser = build_parser()
-    args = parser.parse_args(list(argv) if argv is not None else None)
+    parsed_argv = list(argv) if argv is not None else None
+    args = parser.parse_args(parsed_argv)
+    current_argv = parsed_argv if parsed_argv is not None else sys.argv[1:]
     stdout = stdout or sys.stdout
     stderr = stderr or sys.stderr
 
     try:
-        validate_voice(args.host_a_voice)
-        validate_voice(args.host_b_voice)
+        journalist_voice, author_voice = resolve_voice_defaults(args, current_argv)
+        tts_backend = create_tts_backend(
+            args.tts_backend,
+            tts_conda_env=args.tts_conda_env,
+            tts_model=args.tts_model,
+            tts_language=args.tts_language,
+            tts_extra_args=args.tts_extra_arg,
+            kokoro_synthesizer=synthesizer,
+            tts_runner=tts_runner,
+        )
+        validate_voice(tts_backend, journalist_voice)
+        validate_voice(tts_backend, author_voice)
         prompt_template = load_prompt_template(args.prompt_template)
         target_files = resolve_target_files(args)
-    except PodcastGenerationError as exc:
+    except (PodcastGenerationError, TTSBackendError) as exc:
         print(f"generate-blog-podcasts: {exc}", file=stderr)
         return 1
 
@@ -685,13 +842,15 @@ def run_cli(
             endpoint=args.endpoint,
             model=args.model,
             prompt_template=prompt_template,
-            host_a_voice=args.host_a_voice,
-            host_b_voice=args.host_b_voice,
+            journalist_voice=journalist_voice,
+            author_voice=author_voice,
             force=args.force,
             dry_run=args.dry_run,
             keep_segments=args.keep_segments,
             requester=requester,
             synthesizer=synthesizer,
+            tts_runner=tts_runner,
+            tts_backend=tts_backend,
         )
         results.append(result)
         print(

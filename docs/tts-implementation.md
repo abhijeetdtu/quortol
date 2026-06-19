@@ -1,454 +1,262 @@
-﻿# Text-to-Speech (TTS) Implementation Guide
+﻿SOURCE DIGESTION RULE:
 
-## Overview
+Before writing the dialogue, silently digest the source into ideas.
 
-This document describes the browser-based text-to-speech integration using **Kokoro-Web**, powered by the `kokoro-js` package. The TTS feature allows users to listen to blog posts with natural-sounding AI-generated voices directly in the browser.
+Do not carry the source’s sentences directly into the podcast.
 
-For local agent workflows on Windows, the repo also includes a separate Python Kokoro CLI wrapper at `scripts/kokoro_cli.py`.
+The podcast is not a spoken version of the article.
+It is a conversation between two people who have read and understood the article.
 
-## Local Kokoro CLI
+The author should sound like they remember the argument, not like they have the source open.
 
-### Setup
+This means:
 
-```bash
-pip install -r scripts/requirements-kokoro.txt
-```
+* Do not quote exact statistics unless precision is absolutely necessary.
+* Do not quote article sentences because they sound good.
+* Do not reproduce the source’s rhetorical flourishes.
+* Do not convert written numbers into spoken exact numbers.
+* Do not preserve decimal points, exact percentages, exact rankings, or exact per-capita figures unless the entire argument depends on that exact value.
+* Do not say “according to [source]” repeatedly unless the institution itself matters.
+* Do not stack multiple names, dates, and numbers in one answer.
+* Do not let the author sound like a report.
 
-On Windows, install `espeak-ng` before first use of the Python Kokoro stack.
+The dialogue should preserve meaning, not wording.
 
-### Usage
+PRECISION IS A LAST RESORT:
 
-```bash
-python scripts/kokoro_cli.py --help
-python scripts/kokoro_cli.py play "hello world" --wait
-python scripts/kokoro_cli.py play "hello world" --speed 1.15 --volume 0.8 --wait
-python scripts/kokoro_cli.py play "save this audio" --output hello.wav --no-play
-```
+Exact numbers are allowed only when one of these is true:
 
-If you prefer the Windows launcher:
+* It is a date needed to understand sequence.
+* It is a named policy amount, such as a tariff rate.
+* It is a price, fine, salary, vote count, deadline, or legal threshold where exactness matters.
+* The source itself is about that exact number.
+* The journalist specifically asks for the number.
 
-```bash
-.\scripts\kokoro-cli.cmd play "hello world" --wait
-```
+Otherwise, convert numbers into approximate spoken memory.
 
-## Technical Stack
+Examples:
 
-### Dependencies
+Bad:
+AUTHOR: Portland has nearly twenty-eight coffee shops for every one hundred thousand residents.
 
-```json
-{
-  "kokoro-js": "^1.2.1",
-  "@xenova/transformers": "^2.17.2",
-  "onnxruntime-web": "^1.25.1"
-}
-```
+Better:
+AUTHOR: Portland has a lot more coffee shops per person than the average city. Not a little more — a lot more.
 
-### Model Information
+Bad:
+AUTHOR: Portland has nearly two-and-a-half roasteries per one hundred thousand residents.
 
-- **Model**: `onnx-community/Kokoro-82M-v1.0-ONNX`
-- **Parameters**: 82 million (lightweight)
-- **Size**: 86MB (quantized `q8` format)
-- **Sample Rate**: 24 kHz
-- **License**: Apache 2.0
-- **Platform**: Runs 100% in browser (WebGPU or WebAssembly)
+Better:
+AUTHOR: The roaster density is even more unusual. There are just many more people actually making coffee there, not just selling it.
 
-## Architecture
+Bad:
+AUTHOR: The United States imported six point three one billion dollars worth of green coffee in 2024.
 
-### Components
+Better:
+AUTHOR: The U.S. imports billions of dollars of green coffee. So this neighborhood cafe thing is sitting on top of a huge trade system.
 
-1. **`services/tts.js`** - Core TTS service layer
-   - Initializes KokoroTTS
-   - Synthesizes speech from text
-   - Manages audio playback
-   - Provides voice selection and speed control
+Bad:
+AUTHOR: Brazil, Colombia, and Guatemala supplied fifty-nine percent of total import value.
 
-2. **`stores/tts.js`** - Pinia state store
-   - Reactive state management
-   - Persists voice/speed preferences
-   - Tracks initialization progress
+Better:
+AUTHOR: A big chunk comes from places like Brazil, Colombia, and Guatemala.
 
-3. **`components/blog/BlogTTS.vue`** - UI controls
-   - Play/stop button
-   - Voice selector dropdown
-   - Speed slider (0.5x - 2.0x)
-   - Playback progress bar
-   - Loading indicator
+Bad:
+AUTHOR: The median FOB price for African specialty coffees was three point nine five dollars per pound.
 
-4. **`views/blog/BlogDetail.vue`** - Integration point
-   - Embeds `BlogTTS` component
-   - Passes plain text content
-   - Handles lifecycle management
+Better:
+AUTHOR: Specialty coffee prices are high enough that small changes really matter to roasters.
 
-### Data Flow
+Bad:
+AUTHOR: Coffee prices rose twenty-one percent year-over-year through October 2025.
 
-```
-User clicks play
-  â†’ Store checks initialization
-  â†’ Service synthesizes audio (WAV buffer)
-  â†’ Store plays audio with selected voice/speed
-  â†’ Progress bar updates in real-time
-  â†’ Playback ends â†’ Auto-stop
-```
+Better:
+AUTHOR: Coffee prices had jumped sharply. Enough that people outside the industry were starting to feel it too.
 
-## Voice Selection
+Bad:
+AUTHOR: The company paid three hundred seventy thousand dollars in tariffs.
 
-Example Kokoro voices from the official `hexgrad/Kokoro-82M` list:
+Better:
+AUTHOR: One Portland roaster was talking about hundreds of thousands of dollars in tariff costs. That’s not a rounding error for a small business.
 
-| ID | Name | Gender | Accent | Recommended |
-|----|------|--------|--------|-------------|
-| `af_heart` | Heart | Female | US | Default |
-| `af_alloy` | Alloy | Female | US | |
-| `af_bella` | Bella | Female | US | |
-| `am_michael` | Michael | Male | US | |
-| `bf_emma` | Emma | Female | UK | |
-| `bm_fable` | Fable | Male | UK | |
-| `jf_alpha` | Alpha | Female | JP | |
+FORBIDDEN NUMBER STYLE:
 
-The full official voice inventory lives in `VOICES.md` for `hexgrad/Kokoro-82M`, and the voice prefix determines the language code (`a`, `b`, `j`, `z`, `e`, `f`, `h`, `i`, `p`).
+Avoid these forms unless exact precision is absolutely necessary:
 
-## Performance
+* “six point three one billion”
+* “seventy-one point zero nine”
+* “two point four per one hundred thousand”
+* “fifty-nine percent”
+* “three point nine five dollars”
+* “twenty-three thousand seven hundred workers”
+* “two thousand two hundred ninety-four businesses”
 
-### Hardware Detection
+Prefer:
 
-```javascript
-const hasWebGPU = typeof navigator !== 'undefined' && navigator.gpu
+* “more than six billion”
+* “clearly first”
+* “several times higher”
+* “well over half”
+* “around four dollars”
+* “tens of thousands of workers”
+* “a couple thousand businesses”
 
-if (hasWebGPU) {
-  // Use WebGPU (8-10x faster than WASM)
-} else {
-  // Fallback to WebAssembly
-}
-```
+Even better, when possible, avoid the number entirely and explain the consequence.
 
-### Speed Benchmarks
+Bad:
+AUTHOR: Margins are roughly ten percent and the tariff was ten percent.
 
-| Hardware | Backend | Synthesis Time | Latency |
-|----------|---------|----------------|---------|
-| NVIDIA RTX 3080 | WebGPU | <2s/paragraph | 150-250ms |
-| Apple M1 Pro | WebGPU | <3s/paragraph | 200-350ms |
-| AMD RX 6800 | WebGPU | <2.5s/paragraph | 180-300ms |
-| Intel Iris Xe | WASM | ~8s/paragraph | 500-800ms |
-| CPU Only | WASM | ~10s/paragraph | 1-2s |
+Better:
+AUTHOR: The tariff was about the size of the margin. That’s the brutal part. There wasn’t much cushion.
 
-### First Load vs Cache
+Exact “ten percent” may be kept if the tariff is central, but the more human version explains why the number matters.
 
-| Scenario | Time | Notes |
-|----------|------|-------|
-| First visit | ~30s | Model download + initialization |
-| Second visit | <1s | Browser cache (IndexedDB) |
-| Cache hit | <1s | Instant |
+ARTICLE LANGUAGE BAN:
 
-## Usage
+Do not reuse the article’s polished lines as dialogue.
 
-### Basic Example
+Bad:
+AUTHOR: The rain will keep falling on Division Street. The espresso machine will keep hissing.
 
-```vue
-<script setup>
-import { useTTSStore } from './stores/tts'
-import { synthesizeToBuffer } from './services/tts'
+Better:
+AUTHOR: People will still love the cafes. That part does not vanish. But once you see the machinery behind it, the story feels less innocent.
 
-const store = useTTSStore()
+Bad:
+AUTHOR: No amount of good brewing can answer that.
 
-// Initialize (one-time)
-await store.initialize()
+Better:
+AUTHOR: Good coffee can’t fix import costs or policy shocks.
 
-// Synthesize audio
-const audioBuffer = await synthesizeToBuffer(
-  'Hello world',
-  'af_heart'
-)
+Bad:
+AUTHOR: A delicious inversion of the old colonial script.
 
-// Play
-TTS.playAudio(audioBuffer, 1.0)
+Better:
+AUTHOR: There is a real reversal there: people from coffee-growing cultures are owning and shaping the coffee scene in a consuming country.
 
-// Stop
-TTS.stopAudio()
-</script>
-```
+Bad:
+AUTHOR: It makes a socialist blush and a capitalist cheer.
 
-### Component Usage
+Better:
+AUTHOR: It is shared infrastructure, basically. Very practical. It lets tiny roasters exist without buying all the equipment themselves.
 
-```vue
-<template>
-  <BlogTTS 
-    :content="plainTextContent"
-    :is-initialized="store.isInitialized"
-  />
-</template>
+Bad:
+AUTHOR: These three buildings are its new city hall.
 
-<script setup>
-import BlogTTS from '@/components/blog/BlogTTS.vue'
-import { useTTSStore } from '@/stores/tts'
+Better:
+AUTHOR: Those roasters made that district feel like the center of Portland coffee.
 
-const store = useTTSStore()
-</script>
-```
+NO SOURCE-VOICE LEAKAGE:
 
-### API Methods
+The journalist should never sound like the article’s narrator.
 
-#### Service Layer (`services/tts.js`)
+Bad:
+JOURNALIST: The rain falls on Division Street. The espresso machine hisses. But the question remains...
 
-```javascript
-// Initialize TTS
-await initKokoroTTS(progressCallback)
+Better:
+JOURNALIST: So people still get the cozy cafe experience, but the business behind it is much more exposed than they realize.
 
-// Synthesize audio buffer
-const audioBuffer = await synthesizeToBuffer(text, voice)
+Bad:
+JOURNALIST: This feels like an inversion of the old colonial script.
 
-// Play audio
-TTS.playAudio(audioBuffer, speed = 1.0)
+Better:
+JOURNALIST: So the people connected to coffee-growing cultures are not just supplying the raw material anymore. They’re owning the cafe and the roaster too?
 
-// Stop playback
-TTS.stopAudio()
+FACTS MUST BE CONVERTED INTO HUMAN CLAIMS:
 
-// Get progress
-const progress = TTS.getPlaybackProgress() // 0-100
+For every statistic, convert it into one of these:
 
-// Get duration
-const duration = TTS.getAudioDuration() // seconds
-```
+* a contrast
+* a consequence
+* a pressure
+* a surprise
+* a risk
+* a practical effect
+* a change someone would notice
 
-#### Store Actions (`stores/tts.js`)
+Examples:
 
-```javascript
-const store = useTTSStore()
+Statistic:
+Portland has far more coffee shops per capita than average.
 
-// Initialize
-await store.initialize(progressCallback)
+Human claim:
+You feel the density on the street. There are simply more places to get good coffee.
 
-// Stop
-store.stop()
+Statistic:
+Roaster density is several times the national average.
 
-// Set voice
-store.setVoice('af_heart')
+Human claim:
+Portland is not just full of cafes. It has an unusual number of people actually roasting coffee.
 
-// Set speed
-store.setSpeed(1.5)
+Statistic:
+Green coffee imports are worth billions.
 
-// Get voices
-const voices = store.getVoices()
-```
+Human claim:
+The local coffee scene depends on a massive import system.
 
-## Features
+Statistic:
+Tariffs matched import margins.
 
-### Voice Selection
+Human claim:
+The tariff landed almost exactly where businesses had no cushion.
 
-- Dropdown selector with 7 voice options
-- Filtered by gender and accent
-- Persistent preference (localStorage)
-- Regenerates audio on voice change
+Statistic:
+Coffee prices rose sharply.
 
-### Speed Control
+Human claim:
+This stopped being an industry problem and became something customers could feel.
 
-- Slider range: 0.5x to 2.0x
-- Increments: 0.1x
-- Default: 1.0x
-- Real-time adjustment (resynthesizes audio)
-- Persistent preference
+ANTI-TRANSCRIPTION CHECK:
 
-### Playback Progress
+Before writing the final dialogue, silently check every line:
 
-- Visual progress bar during playback
-- Time display: `mm:ss / mm:ss`
-- Auto-stops at 100%
-- Updates via requestAnimationFrame
+Ask:
 
-### Loading State
+1. Could this sentence have been copied from the source?
+2. Does this line contain a decimal, exact percentage, or exact per-capita figure?
+3. Is this a written sentence pretending to be speech?
+4. Is the speaker naming too many institutions or people at once?
+5. Is the fact doing conversational work, or is it just included because it was in the source?
 
-- Progress indicator during model download
-- Shows percentage: `Loading TTS model... (67%)`
-- Disables controls until loaded
-- Caches model after first load
+If yes, rewrite it more conversationally.
 
-### Error Handling
+FINAL NUMERICAL FILTER:
 
-- Browser compatibility checks
-- Fallback to WASM if WebGPU unavailable
-- Error messages for failed initialization
-- Graceful degradation
+Before final output, remove or soften almost all exact numbers.
 
-## Accessibility
+Keep only:
 
-### ARIA Labels
+* essential dates
+* central policy numbers
+* a few memorable rounded quantities
+* exact names and places
 
-```html
-<button aria-label="Play blog post">â–¶</button>
-<select aria-label="Select voice">...</select>
-<input type="range" aria-label="Adjust playback speed" />
-```
+A good podcast interview may say:
 
-### Keyboard Navigation
+AUTHOR: Stumptown starts the story in the late nineties.
 
-- Tab: Navigate controls
-- Enter/Space: Activate play button
-- Focus states visible
+Or, if the year matters:
 
-### Screen Reader Support
+AUTHOR: Stumptown opens in 1999, which matters because Starbucks is already everywhere by then.
 
-- Status messages announced on play/stop
-- Progress updates every 500ms
-- Voice selection changes announced
+A bad podcast interview says:
 
-## Browser Requirements
+AUTHOR: Stumptown opened in 1999, Direct Trade began in 2003, Heart started in 2009, Coava in 2008, the facilities clustered by 2015, and the industry reached one point four billion dollars by 2026.
 
-### Minimum Browsers
+That is not conversation. That is a timeline dump.
 
-| Browser | Version | Backend |
-|---------|---------|---------|
-| Chrome | 113+ | WebGPU + WASM |
-| Edge | 113+ | WebGPU + WASM |
-| Firefox | 115+ | WASM |
-| Safari | 16+ | WASM |
-| Opera | 99+ | WASM |
+TARGET FEEL:
 
-### WebGPU Support (Recommended)
+The final script should sound like this:
 
-- **Chrome**: 113+ (desktop), 115+ (mobile)
-- **Edge**: 113+
-- **Requirements**: Dedicated GPU + WebGPU enabled
+JOURNALIST: So when people say Portland is the coffee capital, what are they actually seeing?
 
-### WebAssembly Fallback
+AUTHOR: Mostly density. You feel like there’s a serious cafe every few blocks. And then behind that, there are roasters, tiny producers, shared roasting spaces. It’s not just branding.
 
-- Works on all modern browsers
-- Slower but compatible
-- Uses ONNX Runtime Web
+JOURNALIST: But the bean still comes from somewhere else.
 
-## Offline Usage
+AUTHOR: Exactly. That’s the catch. The local part is the culture and the craft. The raw material is global.
 
-After first load, Kokoro model is cached in browser:
+JOURNALIST: So the city owns the ritual, not the crop.
 
-1. **IndexedDB Storage**: ~86MB model cache
-2. **Service Worker**: Can cache model files
-3. **Offline**: Playback works without network
+AUTHOR: That’s a good way to put it. And the problem is, when the crop gets more expensive or policy makes importing harder, the ritual suddenly gets very vulnerable.
 
-```javascript
-// Check cache availability
-const cache = await caches.open('kokoro-model')
-const hasCache = await cache.keys()
-```
-
-## Implementation Status
-
-### âœ… Completed
-
-- [x] Kokoro-js integration
-- [x] Voice selection (7 voices)
-- [x] Speed control (0.5x-2.0x)
-- [x] Play/stop button
-- [x] Playback progress bar
-- [x] Inline below article title
-- [x] No auto-play
-- [x] Model caching
-- [x] WebGPU detection
-- [x] WASM fallback
-- [x] Error handling
-- [x] Accessibility (ARIA)
-- [x] Responsive design
-- [x] Pinia state management
-
-### ðŸš§ Future Enhancements
-
-- [ ] Streaming synthesis (chunked audio)
-- [ ] Audio export (WAV download)
-- [ ] Keyboard shortcuts
-- [ ] Text highlighting during playback
-- [ ] Multiple paragraphs queue
-- [ ] Voice blending (experimental)
-
-## Troubleshooting
-
-### Issue: Model fails to load
-
-**Symptoms**: "TTS unavailable" message
-
-**Solution**:
-1. Check network connection
-2. Verify browser compatibility
-3. Try Chrome/Edge for WebGPU
-4. Check console for errors
-
-### Issue: Playback too slow
-
-**Symptoms**: >10s per paragraph
-
-**Solution**:
-1. Use Chrome/Edge for WebGPU
-2. Enable hardware acceleration
-3. Try faster model (`q8` vs `fp16`)
-4. Check device capabilities
-
-### Issue: Audio quality poor
-
-**Symptoms**: Metallic, robotic sound
-
-**Solution**:
-1. Verify WebGPU is used (not WASM)
-2. Check GPU driver updates
-3. Try different voice (`af_heart` recommended)
-4. Use `fp32` dtype for higher quality
-
-### Issue: Browser not supported
-
-**Symptoms**: "TTS unavailable"
-
-**Solution**:
-1. Update browser to latest version
-2. Enable WebGPU in flags (`chrome://flags`)
-3. Fallback: Web Speech API (not implemented)
-
-## Code Examples
-
-### Custom TTS Integration
-
-```javascript
-// In your component
-import { useTTSStore } from '@/stores/tts'
-import { synthesizeToBuffer } from '@/services/tts'
-
-const store = useTTSStore()
-
-// Initialize once
-await store.initialize()
-
-// Synthesize and play
-const content = 'Your blog post content'
-const audioBuffer = await synthesizeToBuffer(content, 'af_heart')
-TTS.playAudio(audioBuffer, 1.2)
-
-// Custom event listener
-TTS.playAudio(audioBuffer).onended = () => {
-  console.log('Playback finished')
-}
-```
-
-### Persistent Voice Selection
-
-```javascript
-// Load saved preference
-const savedVoice = localStorage.getItem('tts_voice')
-if (savedVoice) {
-  store.setVoice(savedVoice)
-}
-
-// Save on change
-store.$subscribe((mutation, state) => {
-  if (mutation.state.selectedVoice) {
-    localStorage.setItem('tts_voice', state.selectedVoice)
-  }
-})
-```
-
-## References
-
-- [Kokoro-js GitHub](https://github.com/hexgrad/kokoro)
-- [Transformers.js](https://huggingface.co/docs/transformers.js)
-- [ONNX Runtime Web](https://onnxruntime.ai/docs/web/)
-- [WebGPU Spec](https://www.w3.org/TR/webgpu/)
-- [Kokoro Model on Hugging Face](https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX)
-
-## License
-
-- **Model**: Apache 2.0
-- **Code**: MIT (project license)
-- **Dependencies**: Various open-source licenses
-
+That is the target: remembered, clear, slightly fuzzy, and human.

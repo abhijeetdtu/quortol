@@ -1,0 +1,27 @@
+{
+  "status": "generated",
+  "generated_at": "2026-06-15T23:32:33.280137+00:00",
+  "source": {
+    "slug": "the-podcast-in-your-ear",
+    "title": "The Podcast in Your Ear",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\the-podcast-in-your-ear.md",
+    "published_at": "2026-06-15T23:18:33.810623",
+    "updated_at": "2026-06-15T23:18:33.810623",
+    "tags": []
+  },
+  "episode": {
+    "episode_title": "The Podcast in Your Ear",
+    "episode_summary": "A conversation exploring the explosive growth of podcasting, its roots in ancient oral storytelling traditions, and the neuroscience behind why human brains engage more deeply with audio than video.",
+    "segment_count": 92,
+    "sample_rate": 24000,
+    "voices": {
+      "host_a": "af_heart",
+      "host_b": "am_fenrir"
+    }
+  },
+  "files": {
+    "script": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\the-podcast-in-your-ear\\script.md",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\the-podcast-in-your-ear\\manifest.json",
+    "episode": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\the-podcast-in-your-ear\\episode.wav"
+  }
+}

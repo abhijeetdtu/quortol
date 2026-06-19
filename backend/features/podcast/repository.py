@@ -91,6 +91,19 @@ def _episode_image_path(config: PodcastConfig) -> str:
     return image_path if image_path.startswith("/") else f"/{image_path}"
 
 
+def _episode_tts_backend(manifest: dict[str, Any]) -> str:
+    episode_meta = manifest.get("episode") if isinstance(manifest.get("episode"), dict) else {}
+    tts_meta = episode_meta.get("tts") if isinstance(episode_meta.get("tts"), dict) else {}
+    backend = str(tts_meta.get("backend") or "").strip()
+    if backend:
+        return backend
+
+    legacy_voices = episode_meta.get("voices")
+    if isinstance(legacy_voices, dict) and legacy_voices:
+        return "kokoro"
+    return "unknown"
+
+
 @lru_cache(maxsize=4)
 def _load_episodes_from_path(bundles_dir_str: str, blogs_dir_str: str) -> tuple[PodcastEpisode, ...]:
     bundles_dir = Path(bundles_dir_str)
@@ -225,6 +238,7 @@ def serialize_podcast_summary(
         "source_type": episode.source_type,
         "related_blog_slug": episode.related_blog_slug,
         "related_blog_title": episode.related_blog_title,
+        "tts_backend": _episode_tts_backend(episode.manifest),
         "image_url": _episode_image_path(active_config),
         "detail_url": episode_relative_url(episode),
         "guid": episode_feed_guid(episode, active_config),

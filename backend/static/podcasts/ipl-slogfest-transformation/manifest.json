@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "generated_at": "2026-06-16T00:39:52.552473+00:00",
+  "source": {
+    "slug": "ipl-slogfest-transformation",
+    "title": "The Death of Caution: How the IPL Transformed Cricket's Most Conservative League into a Slogfest",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\ipl-slogfest-transformation.md"
+  },
+  "error": "503 Server Error: Service Unavailable for url: http://127.0.0.1:8080/v1/chat/completions"
+}

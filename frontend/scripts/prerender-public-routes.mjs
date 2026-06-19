@@ -12,6 +12,7 @@ const clientTemplatePath = path.join(clientDistPath, 'index.html')
 const serverBundlePath = path.join(frontendRoot, 'src', 'generated', 'ssr-build', 'entry-server.js')
 const publicRobotsPath = path.join(frontendRoot, 'public', 'robots.txt')
 const publicSitemapPath = path.join(frontendRoot, 'public', 'sitemap.xml')
+const canonicalOrigin = 'https://quortol.pokhi.in'
 
 const escapeHtml = (value = '') =>
   String(value)
@@ -32,12 +33,12 @@ const renderStructuredData = (structuredData = []) => {
 }
 
 const buildSeoBlock = (seo = {}, routePath = '/') => {
-  const canonical = seo.canonical || `https://pokhi.in${routePath}`
+  const canonical = seo.canonical || `${canonicalOrigin}${routePath}`
   const ogImage = seo.ogImage
-    ? `<meta property="og:image" content="${escapeHtml(seo.ogImage.startsWith('http') ? seo.ogImage : `https://pokhi.in${seo.ogImage}`)}">`
+    ? `<meta property="og:image" content="${escapeHtml(seo.ogImage.startsWith('http') ? seo.ogImage : `${canonicalOrigin}${seo.ogImage}`)}">`
     : ''
   const twitterImage = seo.ogImage
-    ? `<meta name="twitter:image" content="${escapeHtml(seo.ogImage.startsWith('http') ? seo.ogImage : `https://pokhi.in${seo.ogImage}`)}">`
+    ? `<meta name="twitter:image" content="${escapeHtml(seo.ogImage.startsWith('http') ? seo.ogImage : `${canonicalOrigin}${seo.ogImage}`)}">`
     : ''
   const structuredData = renderStructuredData(seo.structuredData || [])
 

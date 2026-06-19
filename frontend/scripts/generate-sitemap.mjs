@@ -2,7 +2,7 @@ import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const CANONICAL_ORIGIN = 'https://pokhi.in'
+const CANONICAL_ORIGIN = 'https://quortol.pokhi.in'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..', '..')

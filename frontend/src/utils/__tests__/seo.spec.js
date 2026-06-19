@@ -27,13 +27,13 @@ describe('applySEOMetadata', () => {
 
     expect(document.title).toBe('Test Title')
     expect(document.head.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://pokhi.in/blog/test-post',
+      'https://quortol.pokhi.in/blog/test-post',
     )
     expect(document.head.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe(
       'article',
     )
     expect(document.head.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
-      'https://pokhi.in/images/test.png',
+      'https://quortol.pokhi.in/images/test.png',
     )
     expect(
       document.head.querySelector('script[data-quortol-seo="structured-data"]')?.textContent,

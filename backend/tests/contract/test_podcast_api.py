@@ -17,7 +17,12 @@ def _write_wav(path: Path, *, sample_rate: int = 24000, frame_count: int = 2400)
         wav_file.writeframes(b"\x00\x00" * frame_count)
 
 
-def _write_bundle(base_dir: Path, slug: str, manifest: dict, script_text: str = "# Episode\n\nHOST A: Hello.") -> None:
+def _write_bundle(
+    base_dir: Path,
+    slug: str,
+    manifest: dict,
+    script_text: str = "# Episode\n\nJOURNALIST: Hello.",
+) -> None:
     bundle_dir = base_dir / slug
     bundle_dir.mkdir(parents=True, exist_ok=True)
     (bundle_dir / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
@@ -113,8 +118,39 @@ def test_podcast_detail_contract_includes_transcript_and_blog_linkage(client):
     assert payload["slug"] == "india-political-parties-evolution"
     assert payload["source_type"] == "blog"
     assert payload["related_blog_slug"] == "india-political-parties-evolution"
+    assert payload["tts_backend"] == "unknown"
     assert "transcript_markdown" in payload
     assert payload["audio_meta"]["content_length"] > 0
+
+
+def test_podcast_detail_contract_exposes_explicit_tts_backend(client, podcast_env):
+    qwen_manifest = {
+        "status": "generated",
+        "generated_at": "2026-06-20T09:00:00+00:00",
+        "source": {
+            "slug": "standalone-episode",
+            "title": "Standalone Episode",
+            "published_at": "2026-06-20T09:00:00+00:00",
+        },
+        "episode": {
+            "episode_title": "Standalone Episode",
+            "episode_summary": "A standalone Quortol audio release.",
+            "tts": {
+                "backend": "qwen",
+                "model": "qwen3-tts",
+                "output_format": "wav",
+                "voices": {"journalist": "voice-a", "author": "voice-b"},
+            },
+        },
+    }
+    manifest_path = podcast_env["bundles_dir"] / "standalone-episode" / "manifest.json"
+    manifest_path.write_text(json.dumps(qwen_manifest), encoding="utf-8")
+    clear_podcast_cache()
+
+    response = client.get("/api/podcasts/standalone-episode")
+    assert response.status_code == 200
+    payload = response.get_json()["podcast"]
+    assert payload["tts_backend"] == "qwen"
 
 
 def test_podcast_audio_route_streams_episode(client):

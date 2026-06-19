@@ -27,7 +27,7 @@ vi.mock('../../../services/api', () => ({
           audio_url: '/api/podcasts/standalone-episode/audio',
           source_type: 'standalone',
           image_url: '/quortol-podcast-cover.svg',
-          transcript_markdown: '# Transcript\n\nHOST A: Hello there.',
+          transcript_markdown: '# Transcript\n\nJOURNALIST: Hello there.',
           audio_meta: {
             content_type: 'audio/wav',
             duration_seconds: 61,
@@ -52,6 +52,6 @@ describe('PodcastDetail', () => {
     expect(wrapper.text()).toContain('Standalone Episode')
     expect(wrapper.text()).toContain('Transcript')
     expect(wrapper.html()).toContain('/api/podcasts/standalone-episode/audio')
-    expect(wrapper.html()).toContain('HOST A: Hello there.')
+    expect(wrapper.html()).toContain('JOURNALIST: Hello there.')
   })
 })

@@ -1,0 +1,35 @@
+{
+  "status": "generated",
+  "generated_at": "2026-06-16T23:49:14.145428+00:00",
+  "source": {
+    "slug": "vermonter-downeaster-two-rails",
+    "title": "The Two New England Rails: Vermonter and Downeaster, a Tale of Two Trains",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\vermonter-downeaster-two-rails.md",
+    "published_at": "2026-06-04T15:10:08.888239",
+    "updated_at": "2026-06-04T15:10:08.888239",
+    "tags": []
+  },
+  "episode": {
+    "episode_title": "The Two New England Rails: Vermonter and Downeaster, a Tale of Two Trains",
+    "episode_summary": "A podcast interview exploring the contrasting fates of two Amtrak routes in New England. The author compares the struggling Vermonter (Vermont to DC) with the successful Downeaster (Boston to Maine), analyzing differences in geography, funding models, governance structures, and future expansion ambitions.",
+    "segment_count": 92,
+    "sample_rate": 24000,
+    "voices": {
+      "journalist": "af_heart",
+      "author": "am_fenrir"
+    },
+    "tts": {
+      "backend": "kokoro",
+      "output_format": "wav",
+      "voices": {
+        "journalist": "af_heart",
+        "author": "am_fenrir"
+      }
+    }
+  },
+  "files": {
+    "script": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\vermonter-downeaster-two-rails\\script.md",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\vermonter-downeaster-two-rails\\manifest.json",
+    "episode": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\podcasts\\vermonter-downeaster-two-rails\\episode.wav"
+  }
+}
