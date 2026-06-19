@@ -151,6 +151,11 @@ npm run build
 npm run serve
 ```
 
+`npm run serve` serves route-specific prerendered files such as
+`dist/blog/index.html` and proxies backend paths to `127.0.0.1:5000`.
+
+To run it in the background instead:
+
 ```bash
 nohup npm run serve > frontend.log 2>&1 &
 ```

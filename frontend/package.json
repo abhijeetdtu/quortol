@@ -9,7 +9,7 @@
     "build:client": "node ./scripts/build-client.mjs",
     "build:ssr": "node ./scripts/build-ssr.mjs",
     "preview": "vite preview",
-    "serve": "vite preview --host 127.0.0.1 --port 8050",
+    "serve": "node ./scripts/serve-production.mjs",
     "seo:generate-manifest": "node ./scripts/generate-public-content-manifest.mjs",
     "seo:generate-sitemap": "node ./scripts/generate-sitemap.mjs",
     "seo:prerender": "node ./scripts/prerender-public-routes.mjs",

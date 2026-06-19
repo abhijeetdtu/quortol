@@ -5,10 +5,11 @@ This guide exposes Quortol through Cloudflare Tunnel at `https://quortol.pokhi.i
 ## What This Setup Does
 
 - Serves the frontend from `http://127.0.0.1:8050` through Cloudflare Tunnel.
-- Keeps API requests on the same domain via the Vite preview proxy:
+- Keeps API requests on the same domain via the production server proxy:
   - Browser calls `https://quortol.pokhi.in/api/...`
-  - Vite proxies `/api` to backend `http://127.0.0.1:5000`
-- Serves the prerendered `frontend/dist` output so crawlers receive route-specific HTML.
+  - The production server proxies `/api` to backend `http://127.0.0.1:5000`
+- Serves route-specific files from `frontend/dist` so `/blog` resolves to
+  `frontend/dist/blog/index.html` instead of the generic SPA shell.
 
 ## Preconditions
 
@@ -141,8 +142,8 @@ Expected:
 
 - Confirm frontend is running on `127.0.0.1:8050`.
 - Confirm backend is running on `127.0.0.1:5000`.
-- Confirm Vite proxy is present in `frontend/vite.config.js`:
-  - `/api` -> `http://127.0.0.1:5000`
+- Confirm `BACKEND_ORIGIN` is unset or points to the backend:
+  - default: `http://127.0.0.1:5000`
 
 ### Port mismatch or service unavailable
 
