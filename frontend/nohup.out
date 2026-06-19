@@ -1063,3 +1063,626 @@ dist/assets/index-c4beeb6d.js              1,301.30 kB │ gzip: 451.51 kB
 2026/06/15 13:15:44 Unsolicited response received on idle HTTP channel starting with "HTTP/1.1 400 Bad Request\r\n\r\n"; err=<nil>
 2026-06-15T23:10:40Z ERR  error="stream 1185 canceled by remote with error code 0" connIndex=1 event=1 ingressRule=0 originService=http://localhost:8050
 2026-06-15T23:10:40Z ERR Request failed error="stream 1185 canceled by remote with error code 0" connIndex=1 dest=https://quortol.pokhi.in/api/podcasts/india-political-parties-evolution/audio event=0 ip=198.41.200.113 type=http
+2026-06-16T01:46:55Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.6.0
+2026-06-16T17:32:49Z ERR  error="stream 2537 canceled by remote with error code 0" connIndex=1 event=1 ingressRule=0 originService=http://localhost:8050
+2026-06-16T17:32:49Z ERR Request failed error="stream 2537 canceled by remote with error code 0" connIndex=1 dest=https://quortol.pokhi.in/api/podcasts/india-political-parties-evolution/audio event=0 ip=198.41.200.113 type=http
+2026-06-17T01:46:55Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.6.0
+2026-06-17T06:44:29Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.113
+2026-06-17T06:44:29Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.113
+2026-06-17T06:44:29Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.113
+2026-06-17T06:44:29Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.113
+2026-06-17T06:44:29Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T06:44:29Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T06:44:29Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T06:44:29Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T06:44:29Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T06:44:29Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T06:44:29Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T06:44:29Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T06:44:29Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.47
+2026-06-17T06:44:29Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-17T06:44:29Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-17T06:44:29Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2026-06-17T06:44:59Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [2001:558:feed::1]:53: read udp [2601:188:c101:b860:1ccd:133:22f5:1fa3]:57210->[2001:558:feed::1]:53: i/o timeout"
+2026-06-17T06:44:59Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2026-06-17T06:45:21Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T06:45:21Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T06:45:22Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2026-06-17T06:45:29Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [2001:558:feed::1]:53: read udp [2601:188:c101:b860:1ccd:133:22f5:1fa3]:32854->[2001:558:feed::1]:53: i/o timeout"
+2026-06-17T06:45:29Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-17T06:45:38Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.33
+2026-06-17T06:45:38Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.33
+2026-06-17T06:45:38Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.67
+2026-06-17T06:45:38Z INF Retrying connection in up to 8s connIndex=2 event=0 ip=198.41.192.67
+2026-06-17T06:45:38Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2026-06-17T06:45:39Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-06-17T06:45:59Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [2001:558:feed::1]:53: read udp [2601:188:c101:b860:1ccd:133:22f5:1fa3]:46309->[2001:558:feed::1]:53: i/o timeout"
+2026-06-17T06:45:59Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-17T06:45:59Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:43025->[::1]:53: read: connection refused"
+2026-06-17T06:45:59Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-17T06:46:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.167:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.167
+2026-06-17T06:46:33Z INF Retrying connection in up to 16s connIndex=2 event=0 ip=198.41.192.167
+2026-06-17T06:46:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.63
+2026-06-17T06:46:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.47
+2026-06-17T06:46:33Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.63
+2026-06-17T06:46:33Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.47
+2026-06-17T06:46:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.13
+2026-06-17T06:46:33Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.13
+2026-06-17T06:46:34Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0
+2026-06-17T06:46:35Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=1
+2026-06-17T06:46:36Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=3
+2026-06-17T06:46:40Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.167:7844: sendmsg: network is unreachable" connIndex=2
+2026-06-17T06:47:53Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.27
+2026-06-17T06:47:53Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.27
+2026-06-17T06:47:53Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.37
+2026-06-17T06:47:53Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.63
+2026-06-17T06:47:53Z INF Retrying connection in up to 32s connIndex=2 event=0 ip=198.41.192.37
+2026-06-17T06:47:53Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.200.63
+2026-06-17T06:47:53Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.23
+2026-06-17T06:47:53Z INF Retrying connection in up to 16s connIndex=1 event=0 ip=198.41.200.23
+2026-06-17T06:47:54Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.37:7844: sendmsg: network is unreachable" connIndex=2
+2026-06-17T06:47:55Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.27:7844: sendmsg: network is unreachable" connIndex=0
+2026-06-17T06:47:55Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.63:7844: sendmsg: network is unreachable" connIndex=3
+2026-06-17T06:48:01Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.23:7844: sendmsg: network is unreachable" connIndex=1
+2026-06-17T06:50:01Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T06:50:01Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T06:50:01Z INF Retrying connection in up to 1m4s connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T06:50:01Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T06:50:01Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2026-06-17T06:50:01Z INF Retrying connection in up to 32s connIndex=1 event=0 ip=198.41.200.43
+2026-06-17T06:50:01Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.33
+2026-06-17T06:50:01Z INF Retrying connection in up to 16s connIndex=3 event=0 ip=198.41.200.33
+2026-06-17T06:50:04Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-06-17T06:50:08Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2026-06-17T06:50:17Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0
+2026-06-17T06:50:30Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2026-06-17T06:50:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.167:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.167
+2026-06-17T06:50:33Z INF Retrying connection in up to 32s connIndex=0 event=0 ip=198.41.192.167
+2026-06-17T06:50:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.233
+2026-06-17T06:50:33Z INF Retrying connection in up to 32s connIndex=3 event=0 ip=198.41.200.233
+2026-06-17T06:50:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.53
+2026-06-17T06:50:33Z INF Retrying connection in up to 1m4s connIndex=1 event=0 ip=198.41.200.53
+2026-06-17T06:50:33Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.47
+2026-06-17T06:50:33Z INF Retrying connection in up to 1m4s connIndex=2 event=0 ip=198.41.192.47
+2026-06-17T06:50:39Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=1
+2026-06-17T06:50:50Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.167:7844: sendmsg: network is unreachable" connIndex=0
+2026-06-17T06:50:53Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.233:7844: sendmsg: network is unreachable" connIndex=3
+2026-06-17T06:51:02Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=2
+2026-06-17T06:55:18Z INF Registered tunnel connection connIndex=1 connection=3ea7ba66-6e5a-4858-8dad-2644ff3bc3b0 event=0 ip=198.41.200.233 location=ewr16 protocol=quic
+2026-06-17T06:55:18Z INF Registered tunnel connection connIndex=2 connection=c534fefc-15c5-4607-ba4c-afca1cc2d85a event=0 ip=198.41.192.227 location=bos03 protocol=quic
+2026-06-17T06:55:18Z INF Registered tunnel connection connIndex=0 connection=8890945e-a99c-493d-9418-5aef9a8a6344 event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-17T06:55:18Z INF Registered tunnel connection connIndex=3 connection=ff868e60-ce76-4f14-b147-6a9d56c67116 event=0 ip=198.41.200.23 location=ewr12 protocol=quic
+2026-06-17T13:56:57Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T13:56:57Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T13:56:57Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T13:56:57Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T13:56:58Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-17T13:57:09Z INF Registered tunnel connection connIndex=2 connection=31448020-74b0-42aa-8f3f-bc70c160361c event=0 ip=198.41.192.107 location=bos01 protocol=quic
+2026-06-17T13:57:14Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.23
+2026-06-17T13:57:14Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.23
+2026-06-17T13:57:14Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.23
+2026-06-17T13:57:14Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.23
+2026-06-17T13:57:14Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-17T13:57:20Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:57:20Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:57:20Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:57:20Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:57:20Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-17T13:57:25Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:25Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:25Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:25Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:26Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2026-06-17T13:57:28Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:57:28Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:57:28Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:57:28Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:57:29Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1
+2026-06-17T13:57:40Z INF Registered tunnel connection connIndex=2 connection=95121ab2-05fe-404b-8841-4f6b1aceab67 event=0 ip=198.41.192.107 location=bos01 protocol=quic
+2026-06-17T13:57:40Z INF Registered tunnel connection connIndex=0 connection=698aefee-9f65-42f3-bee5-5e0272e696e2 event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-17T13:57:40Z INF Registered tunnel connection connIndex=1 connection=0796c4b1-36e2-495b-9f5c-0b18d6ffdbd0 event=0 ip=198.41.200.233 location=ewr16 protocol=quic
+2026-06-17T13:57:40Z INF Registered tunnel connection connIndex=3 connection=ee7329f3-7f62-4dd5-af18-f0086d68097c event=0 ip=198.41.200.73 location=ewr07 protocol=quic
+2026-06-17T13:57:52Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:52Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:52Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:52Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.107
+2026-06-17T13:57:54Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-17T13:58:01Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.73
+2026-06-17T13:58:01Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2026-06-17T13:58:01Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2026-06-17T13:58:01Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.73
+2026-06-17T13:58:01Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-17T13:58:02Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:58:02Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:58:02Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:58:02Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.233
+2026-06-17T13:58:03Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-17T13:58:07Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:58:07Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:58:07Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:58:07Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T13:58:09Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-17T13:58:38Z INF Registered tunnel connection connIndex=0 connection=6e124a06-81a0-4bb8-96ca-380934d04620 event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-17T13:58:38Z INF Registered tunnel connection connIndex=3 connection=4874871e-85e2-4f75-803c-5c9311b0b441 event=0 ip=198.41.200.53 location=ewr07 protocol=quic
+2026-06-17T13:58:38Z INF Registered tunnel connection connIndex=1 connection=5794e1c7-a92c-40f8-b29a-78feba05888b event=0 ip=198.41.200.13 location=ewr15 protocol=quic
+2026-06-17T13:58:38Z INF Registered tunnel connection connIndex=2 connection=9d86a14c-3c8a-48e9-b81d-65c651e01c60 event=0 ip=198.41.192.227 location=bos03 protocol=quic
+2026-06-17T14:38:12Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.13
+2026-06-17T14:38:12Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.13
+2026-06-17T14:38:12Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.13
+2026-06-17T14:38:12Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.13
+2026-06-17T14:38:13Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-17T14:38:16Z INF Registered tunnel connection connIndex=1 connection=82b07423-679a-4180-847e-898c52345663 event=0 ip=198.41.200.23 location=ewr07 protocol=quic
+2026-06-17T15:29:11Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:11Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:11Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:11Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:13Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-17T15:29:20Z INF Registered tunnel connection connIndex=0 connection=5d437981-6b57-4d04-b0a3-b04a52b806e4 event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-17T15:29:44Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T15:29:44Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T15:29:44Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T15:29:44Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.227
+2026-06-17T15:29:45Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.23
+2026-06-17T15:29:45Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-17T15:29:45Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-17T15:29:45Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.23
+2026-06-17T15:29:45Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-17T15:29:45Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:45Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:45Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:45Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-17T15:29:45Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T15:29:45Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T15:29:45Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T15:29:45Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2026-06-17T15:29:45Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-17T15:29:46Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-17T15:29:46Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-17T15:30:00Z INF Registered tunnel connection connIndex=2 connection=5f051645-fe7e-4a7b-9f6e-85cfed61ddda event=0 ip=198.41.192.47 location=bos01 protocol=quic
+2026-06-17T15:30:01Z INF Registered tunnel connection connIndex=0 connection=f68080af-a02e-48fc-a335-64b3ebbef5fb event=0 ip=198.41.192.167 location=bos04 protocol=quic
+2026-06-17T15:30:01Z INF Registered tunnel connection connIndex=1 connection=03a25989-c6b6-4db5-b685-6f109c444b7a event=0 ip=198.41.200.63 location=ewr15 protocol=quic
+2026-06-17T15:30:01Z INF Registered tunnel connection connIndex=3 connection=00c2159d-04dd-4797-b899-9fc7706d24b1 event=0 ip=198.41.200.193 location=ewr07 protocol=quic
+2026-06-17T15:30:39Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.167
+2026-06-17T15:30:39Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-17T15:30:39Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-17T15:30:39Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.167
+2026-06-17T15:30:39Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.193
+2026-06-17T15:30:39Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.193
+2026-06-17T15:30:39Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.193
+2026-06-17T15:30:39Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.193
+2026-06-17T15:30:39Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-17T15:30:40Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-17T15:30:42Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.47
+2026-06-17T15:30:42Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.47
+2026-06-17T15:30:42Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.47
+2026-06-17T15:30:42Z ERR writing call: timeout: no recent network activity
+2026-06-17T15:30:42Z ERR writing finish: timeout: no recent network activity
+2026-06-17T15:30:42Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.47
+2026-06-17T15:30:42Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.63
+2026-06-17T15:30:42Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.63
+2026-06-17T15:30:42Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.63
+2026-06-17T15:30:42Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.63
+2026-06-17T15:30:42Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-17T15:30:43Z ERR Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-17T15:31:25Z INF Registered tunnel connection connIndex=1 connection=194ea002-bd59-4769-acd0-5250ea337953 event=0 ip=198.41.200.23 location=ewr07 protocol=quic
+2026-06-17T15:31:25Z INF Registered tunnel connection connIndex=0 connection=436771a9-15f0-4754-82a5-e3c961cc62be event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-17T15:31:25Z INF Registered tunnel connection connIndex=3 connection=8de0fc8d-999a-4347-a6d9-231fc03aba85 event=0 ip=198.41.200.113 location=ewr16 protocol=quic
+2026-06-17T15:31:25Z INF Registered tunnel connection connIndex=2 connection=0693d606-1e4a-40ad-a598-ccc80fed7a57 event=0 ip=198.41.192.167 location=bos03 protocol=quic
+2026-06-17T15:34:06Z ERR  error="Incoming request ended abruptly: context canceled" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-06-17T15:34:06Z ERR Request failed error="Incoming request ended abruptly: context canceled" connIndex=0 dest=https://quortol.pokhi.in/api/blog/ event=0 ip=198.41.192.7 type=http
+2026-06-18T01:46:55Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.6.0
+2026-06-18T06:45:31Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-18T06:45:31Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-18T06:45:31Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-18T06:45:31Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-18T06:45:31Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.113
+2026-06-18T06:45:31Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-18T06:45:31Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-18T06:45:31Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.113
+2026-06-18T06:45:31Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.23
+2026-06-18T06:45:31Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-18T06:45:31Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-18T06:45:31Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.23
+2026-06-18T06:45:32Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.167
+2026-06-18T06:45:32Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.167
+2026-06-18T06:45:32Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.167
+2026-06-18T06:45:32Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.167
+2026-06-18T06:46:02Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [2001:558:feed::1]:53: read udp [2601:188:c101:b860:1ccd:133:22f5:1fa3]:42420->[2001:558:feed::1]:53: i/o timeout"
+2026-06-18T06:46:02Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-18T06:46:07Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.63
+2026-06-18T06:46:07Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.63
+2026-06-18T06:46:10Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2026-06-18T06:46:32Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [2001:558:feed::1]:53: read udp [2601:188:c101:b860:1ccd:133:22f5:1fa3]:59188->[2001:558:feed::1]:53: i/o timeout"
+2026-06-18T06:46:32Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1
+2026-06-18T06:46:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-18T06:46:50Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.23
+2026-06-18T06:46:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.193
+2026-06-18T06:46:50Z INF Retrying connection in up to 8s connIndex=3 event=0 ip=198.41.200.193
+2026-06-18T06:46:51Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-06-18T06:46:52Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [2001:558:feed::1]:53: dial udp [2001:558:feed::1]:53: connect: network is unreachable"
+2026-06-18T06:46:52Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-18T06:46:52Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:48411->[::1]:53: read: connection refused"
+2026-06-18T06:46:52Z ERR Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-18T06:46:54Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2026-06-18T06:47:43Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.53
+2026-06-18T06:47:43Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.47
+2026-06-18T06:47:43Z INF Retrying connection in up to 16s connIndex=3 event=0 ip=198.41.200.53
+2026-06-18T06:47:43Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.192.47
+2026-06-18T06:47:43Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.67:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.67
+2026-06-18T06:47:43Z INF Retrying connection in up to 4s connIndex=2 event=0 ip=198.41.192.67
+2026-06-18T06:47:43Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.13
+2026-06-18T06:47:43Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.13
+2026-06-18T06:47:43Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3
+2026-06-18T06:47:44Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0
+2026-06-18T06:47:45Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.13:7844: sendmsg: network is unreachable" connIndex=1
+2026-06-18T06:47:45Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.67:7844: sendmsg: network is unreachable" connIndex=2
+2026-06-18T06:49:51Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.23
+2026-06-18T06:49:51Z INF Retrying connection in up to 32s connIndex=3 event=0 ip=198.41.200.23
+2026-06-18T06:49:51Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-18T06:49:51Z INF Retrying connection in up to 8s connIndex=2 event=0 ip=198.41.192.107
+2026-06-18T06:49:51Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-18T06:49:51Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.167
+2026-06-18T06:49:51Z ERR Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.73
+2026-06-18T06:49:51Z INF Retrying connection in up to 16s connIndex=1 event=0 ip=198.41.200.73
+2026-06-18T06:49:53Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=2
+2026-06-18T06:49:53Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0
+2026-06-18T06:49:56Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2026-06-18T06:50:05Z ERR Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-06-18T06:51:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=1 event=0 ip=198.41.200.33
+2026-06-18T06:51:50Z INF Retrying connection in up to 32s connIndex=1 event=0 ip=198.41.200.33
+2026-06-18T06:51:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3 event=0 ip=198.41.200.53
+2026-06-18T06:51:50Z INF Retrying connection in up to 1m4s connIndex=3 event=0 ip=198.41.200.53
+2026-06-18T06:51:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.192.47
+2026-06-18T06:51:50Z ERR Failed to create new quic connection error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=2 event=0 ip=198.41.192.7
+2026-06-18T06:51:50Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.192.47
+2026-06-18T06:51:50Z INF Retrying connection in up to 16s connIndex=2 event=0 ip=198.41.192.7
+2026-06-18T06:51:52Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on 192.168.0.1:53: dial udp 192.168.0.1:53: connect: network is unreachable"
+2026-06-18T06:51:52Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:38994->198.41.200.33:7844: sendmsg: network is unreachable" connIndex=1
+2026-06-18T06:51:53Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on 192.168.0.1:53: dial udp 192.168.0.1:53: connect: network is unreachable"
+2026-06-18T06:51:53Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:53101->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=3
+2026-06-18T06:51:59Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:59918->198.41.192.47:7844: sendmsg: network is unreachable" connIndex=0
+2026-06-18T06:52:03Z ERR Failed to refresh protocol error="lookup protocol-v2.argotunnel.com on [::1]:53: read udp [::1]:58151->[::1]:53: read: connection refused"
+2026-06-18T06:52:03Z ERR Connection terminated error="failed to dial to edge with quic: INTERNAL_ERROR (local): write udp [::]:51107->198.41.192.7:7844: sendmsg: network is unreachable" connIndex=2
+2026-06-18T06:56:11Z INF Registered tunnel connection connIndex=2 connection=634e2676-b121-496c-9add-c944d8fd2a5b event=0 ip=198.41.192.227 location=bos03 protocol=quic
+2026-06-18T06:56:11Z INF Registered tunnel connection connIndex=0 connection=c4094a5d-e0bd-49b4-a7a0-4d952b4880e8 event=0 ip=198.41.192.167 location=bos04 protocol=quic
+2026-06-18T06:56:11Z INF Registered tunnel connection connIndex=3 connection=d00a4398-0237-480a-adcc-60a9da382978 event=0 ip=198.41.200.113 location=ewr16 protocol=quic
+2026-06-18T06:56:11Z INF Registered tunnel connection connIndex=1 connection=7558ea9e-309f-432b-97a4-86a6aa7de019 event=0 ip=198.41.200.23 location=ewr07 protocol=quic
+2026-06-19T01:46:55Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.6.1
+2026-06-19T05:29:47Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T05:29:47Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T05:29:47Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T05:29:47Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T05:29:47Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T05:29:51Z INF Registered tunnel connection connIndex=1 connection=67e271cb-22af-43e8-b8ea-3784bce2c190 event=0 ip=198.41.200.53 location=ewr15 protocol=quic
+2026-06-19T05:31:40Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:31:40Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:31:40Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:31:40Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:31:40Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T05:31:40Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T05:31:40Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T05:31:40Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T05:31:40Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T05:31:40Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T05:31:40Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T05:31:40Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T05:31:41Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T05:31:42Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3
+2026-06-19T05:31:42Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T05:31:47Z INF Registered tunnel connection connIndex=3 connection=985107c3-56ab-4d53-bfdd-ec239f62c596 event=0 ip=198.41.200.113 location=ewr16 protocol=quic
+2026-06-19T05:31:47Z INF Registered tunnel connection connIndex=1 connection=2f26af34-44c2-4e60-abd6-8ebeaf7b74c4 event=0 ip=198.41.200.73 location=ewr16 protocol=quic
+2026-06-19T05:31:47Z INF Registered tunnel connection connIndex=0 connection=98cca9c7-cf46-4c62-82b4-950b31d09062 event=0 ip=198.41.192.77 location=bos04 protocol=quic
+2026-06-19T05:31:47Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.227
+2026-06-19T05:31:47Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-19T05:31:47Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.227
+2026-06-19T05:31:47Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.227
+2026-06-19T05:31:48Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T05:31:49Z INF Registered tunnel connection connIndex=2 connection=534633f4-9505-4d1e-b212-cb8b67e05ddd event=0 ip=198.41.192.107 location=bos01 protocol=quic
+2026-06-19T05:33:38Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.77
+2026-06-19T05:33:38Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.77
+2026-06-19T05:33:38Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.77
+2026-06-19T05:33:38Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.77
+2026-06-19T05:33:40Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T05:33:40Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:33:40Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:33:40Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:33:40Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:33:40Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.107
+2026-06-19T05:33:40Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-19T05:33:40Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.107
+2026-06-19T05:33:40Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.107
+2026-06-19T05:33:41Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T05:33:41Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1
+2026-06-19T05:33:44Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:33:44Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:33:44Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:33:44Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:33:45Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3
+2026-06-19T05:33:50Z INF Registered tunnel connection connIndex=3 connection=cc79865b-04c8-4e5f-987e-82081cbb6059 event=0 ip=198.41.200.113 location=ewr16 protocol=quic
+2026-06-19T05:33:50Z INF Registered tunnel connection connIndex=1 connection=5b0c3e38-75f8-42b9-8331-6dd86d12aced event=0 ip=198.41.200.73 location=ewr16 protocol=quic
+2026-06-19T05:33:50Z INF Registered tunnel connection connIndex=0 connection=a781c1a5-3d67-4b57-b0ff-6a0dd7b64cd4 event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-19T05:33:50Z INF Registered tunnel connection connIndex=2 connection=a69ac3f9-0a4d-4bc7-b4a6-eccfa8e6077a event=0 ip=198.41.192.37 location=bos04 protocol=quic
+2026-06-19T05:34:42Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:34:42Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:34:42Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:34:42Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.73
+2026-06-19T05:34:44Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T05:35:17Z INF Registered tunnel connection connIndex=1 connection=2765b552-7270-41f0-a4c0-736338c94802 event=0 ip=198.41.200.13 location=ewr15 protocol=quic
+2026-06-19T05:39:09Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:39:09Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:39:09Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:39:09Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:39:10Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:39:10Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:39:10Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:39:10Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:39:11Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T05:39:11Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T05:39:11Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T05:39:11Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T05:39:11Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2026-06-19T05:39:11Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T05:39:11Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T05:39:11Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T05:39:11Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T05:39:11Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T05:39:11Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T05:39:12Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T05:39:26Z INF Registered tunnel connection connIndex=2 connection=2a69ab26-88a1-4f44-9198-f64cfd9c9cc9 event=0 ip=198.41.192.37 location=bos04 protocol=quic
+2026-06-19T05:39:26Z INF Registered tunnel connection connIndex=1 connection=f4455ad3-1928-4587-b707-8fb0bb1f39ef event=0 ip=198.41.200.33 location=ewr08 protocol=quic
+2026-06-19T05:39:26Z INF Registered tunnel connection connIndex=0 connection=62495486-41de-4f75-8d2d-ba78953c8df6 event=0 ip=198.41.192.47 location=bos01 protocol=quic
+2026-06-19T05:39:26Z INF Registered tunnel connection connIndex=3 connection=59036edf-64e7-460c-b306-3d20ff7ae5eb event=0 ip=198.41.200.63 location=ewr14 protocol=quic
+2026-06-19T05:43:16Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.33
+2026-06-19T05:43:16Z ERR writing call: timeout: no recent network activity
+2026-06-19T05:43:16Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.33
+2026-06-19T05:43:16Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.33
+2026-06-19T05:43:16Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.33
+2026-06-19T05:43:16Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T05:43:17Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:43:17Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:43:17Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:43:17Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.37
+2026-06-19T05:43:17Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T05:43:23Z INF Registered tunnel connection connIndex=2 connection=90bf7a82-78d7-41d3-90b3-0e975762da2f event=0 ip=198.41.192.77 location=bos01 protocol=quic
+2026-06-19T05:43:23Z INF Registered tunnel connection connIndex=1 connection=928135e4-3d58-4d78-afec-f9297bd7569b event=0 ip=198.41.200.43 location=ewr14 protocol=quic
+2026-06-19T05:45:39Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:45:39Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:45:39Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:45:39Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:45:40Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T05:45:40Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T05:45:40Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T05:45:40Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T05:45:41Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T05:45:41Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-19T05:45:44Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.63
+2026-06-19T05:45:44Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.63
+2026-06-19T05:45:44Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.63
+2026-06-19T05:45:44Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.63
+2026-06-19T05:45:45Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T05:45:48Z INF Registered tunnel connection connIndex=0 connection=60e668a0-7c11-47f0-92b1-396127219d35 event=0 ip=198.41.192.47 location=bos01 protocol=quic
+2026-06-19T05:45:49Z INF Registered tunnel connection connIndex=2 connection=12f3be00-7f6f-47cc-a44a-31e5d86bcfea event=0 ip=198.41.192.167 location=bos03 protocol=quic
+2026-06-19T05:45:49Z INF Registered tunnel connection connIndex=3 connection=1e8a4b1e-38d9-4496-908c-f0b027229137 event=0 ip=198.41.200.113 location=ewr16 protocol=quic
+2026-06-19T05:46:12Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T05:46:12Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T05:46:12Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T05:46:12Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T05:46:13Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T05:46:21Z INF Registered tunnel connection connIndex=1 connection=09bab625-70d4-4c2e-8cea-54a8532b75af event=0 ip=198.41.200.13 location=ewr15 protocol=quic
+2026-06-19T05:56:47Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:56:47Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:56:47Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:56:47Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.113
+2026-06-19T05:56:48Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T05:57:13Z INF Registered tunnel connection connIndex=3 connection=37207afe-bf5f-4021-8245-9d9bc158657d event=0 ip=198.41.200.33 location=ewr15 protocol=quic
+2026-06-19T05:58:59Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:58:59Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:58:59Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:58:59Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T05:59:01Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T05:59:19Z INF Registered tunnel connection connIndex=0 connection=272775bd-0f3a-4237-af5e-c759d0c4bb86 event=0 ip=198.41.192.27 location=bos01 protocol=quic
+2026-06-19T06:02:56Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:02:56Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:02:56Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:02:56Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:02:58Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2026-06-19T06:02:59Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.33
+2026-06-19T06:02:59Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.33
+2026-06-19T06:02:59Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.33
+2026-06-19T06:02:59Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.33
+2026-06-19T06:03:00Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T06:03:01Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:03:01Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:03:01Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:03:01Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:03:01Z INF Registered tunnel connection connIndex=2 connection=0a1e7bb5-bc74-4229-bf89-601c29d1497d event=0 ip=198.41.192.167 location=bos03 protocol=quic
+2026-06-19T06:03:01Z INF Registered tunnel connection connIndex=3 connection=bcd0f538-91d8-404f-8218-0a294936d7cd event=0 ip=198.41.200.193 location=ewr07 protocol=quic
+2026-06-19T06:03:02Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T06:03:16Z INF Registered tunnel connection connIndex=0 connection=bfaf2b9d-ef0f-40c1-8196-f1956f0248e0 event=0 ip=198.41.192.37 location=bos03 protocol=quic
+2026-06-19T06:05:26Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T06:05:26Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T06:05:26Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T06:05:26Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.13
+2026-06-19T06:05:28Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T06:06:43Z INF Registered tunnel connection connIndex=1 connection=09a178ea-b863-4ada-8232-1b9763c19526 event=0 ip=198.41.200.53 location=ewr15 protocol=quic
+2026-06-19T06:08:24Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.37
+2026-06-19T06:08:24Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.37
+2026-06-19T06:08:24Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.37
+2026-06-19T06:08:24Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.37
+2026-06-19T06:08:24Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T06:08:24Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:08:24Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:08:24Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:08:24Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.167
+2026-06-19T06:08:25Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:08:25Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:08:25Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:08:25Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:08:25Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T06:08:25Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.193
+2026-06-19T06:08:25Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.193
+2026-06-19T06:08:25Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.193
+2026-06-19T06:08:25Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.193
+2026-06-19T06:08:25Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T06:08:25Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T06:08:26Z INF Registered tunnel connection connIndex=3 connection=cada3b45-9ddd-4c6c-9a8d-12402400511b event=0 ip=198.41.200.23 location=ewr12 protocol=quic
+2026-06-19T06:08:26Z INF Registered tunnel connection connIndex=0 connection=5c53e14d-a857-4ff7-ac41-be7e8457d51b event=0 ip=198.41.192.27 location=bos01 protocol=quic
+2026-06-19T06:08:26Z INF Registered tunnel connection connIndex=1 connection=8a7c419f-04ac-42b9-b275-510385fd46a4 event=0 ip=198.41.200.43 location=ewr14 protocol=quic
+2026-06-19T06:08:26Z INF Registered tunnel connection connIndex=2 connection=b53f0864-8383-452e-9582-09f4df416527 event=0 ip=198.41.192.7 location=bos01 protocol=quic
+2026-06-19T06:08:54Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:08:54Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:08:54Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:08:54Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:08:55Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T06:08:55Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T06:08:55Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T06:08:55Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.43
+2026-06-19T06:08:55Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.23
+2026-06-19T06:08:55Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.23
+2026-06-19T06:08:55Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.23
+2026-06-19T06:08:55Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.23
+2026-06-19T06:08:55Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:08:55Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:08:55Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:08:55Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:08:56Z ERR Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T06:08:56Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-19T06:08:56Z ERR Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T06:08:57Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T06:09:30Z INF Registered tunnel connection connIndex=0 connection=b15c0570-e619-4a4f-9b79-89e451c0a280 event=0 ip=198.41.192.27 location=bos01 protocol=quic
+2026-06-19T06:09:30Z INF Registered tunnel connection connIndex=2 connection=438f6c6b-5da2-400b-960f-95af2c6816f7 event=0 ip=198.41.192.77 location=bos01 protocol=quic
+2026-06-19T06:09:30Z INF Registered tunnel connection connIndex=1 connection=63422d7e-2c27-492c-a86d-eadbcaa3b856 event=0 ip=198.41.200.53 location=ewr15 protocol=quic
+2026-06-19T06:09:30Z INF Registered tunnel connection connIndex=3 connection=5ba88fbd-88e6-45c9-ac9b-e598c1cacfed event=0 ip=198.41.200.73 location=ewr07 protocol=quic
+2026-06-19T06:10:27Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:10:27Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:10:27Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:10:27Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.53
+2026-06-19T06:10:27Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.73
+2026-06-19T06:10:27Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2026-06-19T06:10:27Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2026-06-19T06:10:27Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.73
+2026-06-19T06:10:27Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T06:10:28Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T06:10:28Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:10:28Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:10:28Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:10:28Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:10:29Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:10:29Z ERR Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:10:29Z ERR Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:10:29Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:10:29Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2026-06-19T06:10:29Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0
+2026-06-19T06:11:44Z INF Registered tunnel connection connIndex=0 connection=3652fd29-f16c-4379-afeb-6a6ec0f7bdd4 event=0 ip=198.41.192.27 location=bos01 protocol=quic
+2026-06-19T06:11:44Z INF Registered tunnel connection connIndex=1 connection=d0727072-d50f-4577-b7b8-14fefcc0d54c event=0 ip=198.41.200.193 location=ewr08 protocol=quic
+2026-06-19T06:11:44Z INF Registered tunnel connection connIndex=3 connection=f0d4ffca-a6cb-4875-813d-ff54a63be53d event=0 ip=198.41.200.53 location=ewr07 protocol=quic
+2026-06-19T06:11:44Z INF Registered tunnel connection connIndex=2 connection=031619ad-4229-47de-ae39-0db766eecd85 event=0 ip=198.41.192.77 location=bos01 protocol=quic
+2026-06-19T06:54:39Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:54:39Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:54:39Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:54:39Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:54:39Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:54:39Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:54:39Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:54:39Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:54:40Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:54:40Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:54:40Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:54:40Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.77
+2026-06-19T06:54:41Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:54:41Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:54:41Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:54:41Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.27
+2026-06-19T06:54:44Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3
+2026-06-19T06:54:44Z ERR Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1
+2026-06-19T06:54:44Z ERR Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T06:54:44Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T06:54:54Z INF Registered tunnel connection connIndex=1 connection=82919a4b-92d8-4388-bf0c-65a27ed9d2a8 event=0 ip=198.41.200.193 location=ewr08 protocol=quic
+2026-06-19T06:54:54Z INF Registered tunnel connection connIndex=3 connection=48abe98c-147b-4e58-8e53-361c939204c9 event=0 ip=198.41.200.53 location=ewr07 protocol=quic
+2026-06-19T06:54:54Z INF Registered tunnel connection connIndex=0 connection=60208e7b-0f29-42e5-830d-0855f518baa0 event=0 ip=198.41.192.227 location=bos04 protocol=quic
+2026-06-19T06:54:54Z INF Registered tunnel connection connIndex=2 connection=16ee4ddc-da8b-4076-ae28-d70953df95d3 event=0 ip=198.41.192.7 location=bos01 protocol=quic
+2026-06-19T06:55:09Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.227
+2026-06-19T06:55:09Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.227
+2026-06-19T06:55:09Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.227
+2026-06-19T06:55:09Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.227
+2026-06-19T06:55:09Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:55:09Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:55:09Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:55:09Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:55:09Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=1
+2026-06-19T06:55:10Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T06:55:48Z INF Registered tunnel connection connIndex=0 connection=36062470-55da-46d8-8575-7d9dca3c6b1c event=0 ip=198.41.192.47 location=bos01 protocol=quic
+2026-06-19T06:55:48Z INF Registered tunnel connection connIndex=1 connection=3d3a5e4b-5f71-4067-a6c4-4b0680001f0a event=0 ip=198.41.200.193 location=ewr08 protocol=quic
+2026-06-19T06:58:09Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T06:58:09Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T06:58:09Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T06:58:09Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2026-06-19T06:58:09Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T06:58:09Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:58:09Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:58:09Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:58:09Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.193
+2026-06-19T06:58:10Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:10Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:10Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:10Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:11Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=2
+2026-06-19T06:58:11Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T06:58:11Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:58:11Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:58:11Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:58:11Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T06:58:12Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T06:58:24Z INF Registered tunnel connection connIndex=2 connection=b7fd2f29-13e0-45b9-bb3a-ee5021b868f5 event=0 ip=198.41.192.7 location=bos01 protocol=quic
+2026-06-19T06:58:24Z INF Registered tunnel connection connIndex=3 connection=3db2cbae-04aa-4946-8463-3a5764ee49a1 event=0 ip=198.41.200.13 location=ewr07 protocol=quic
+2026-06-19T06:58:24Z INF Registered tunnel connection connIndex=1 connection=616b8d37-6c3c-4001-bf88-42bfc034e858 event=0 ip=198.41.200.23 location=ewr07 protocol=quic
+2026-06-19T06:58:24Z INF Registered tunnel connection connIndex=0 connection=ef511471-a34a-47b3-94c6-62bc7849a28a event=0 ip=198.41.192.167 location=bos04 protocol=quic
+2026-06-19T06:58:39Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T06:58:39Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T06:58:39Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T06:58:39Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.23
+2026-06-19T06:58:39Z WRN Connection terminated error="timeout: no recent network activity" connIndex=1
+2026-06-19T06:58:41Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:41Z ERR writing call: timeout: no recent network activity
+2026-06-19T06:58:41Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:41Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:41Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.7
+2026-06-19T06:58:41Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.13
+2026-06-19T06:58:41Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.13
+2026-06-19T06:58:41Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.13
+2026-06-19T06:58:41Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.13
+2026-06-19T06:58:41Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T06:58:41Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T06:58:41Z ERR Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T06:58:41Z ERR Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T06:58:41Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.167
+2026-06-19T06:58:42Z ERR Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T06:58:43Z ERR Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T06:59:10Z INF Registered tunnel connection connIndex=3 connection=7a9c714e-0bb9-4464-859b-77148236f702 event=0 ip=198.41.200.233 location=ewr12 protocol=quic
+2026-06-19T06:59:10Z INF Registered tunnel connection connIndex=2 connection=b3838523-9897-4a08-8ddf-6713948ba59e event=0 ip=198.41.192.47 location=bos01 protocol=quic
+2026-06-19T06:59:10Z INF Registered tunnel connection connIndex=1 connection=ad417245-6b2c-425b-b81f-35dce4f1140c event=0 ip=198.41.200.63 location=ewr15 protocol=quic
+2026-06-19T06:59:10Z INF Registered tunnel connection connIndex=0 connection=b041dffb-d27a-4e54-870a-05ab841b6ba9 event=0 ip=198.41.192.7 location=bos03 protocol=quic
+2026-06-19T07:00:15Z INF Unregistered tunnel connection connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T07:00:15Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T07:00:15Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T07:00:15Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.7
+2026-06-19T07:00:16Z WRN Connection terminated error="timeout: no recent network activity" connIndex=0
+2026-06-19T07:00:17Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.233
+2026-06-19T07:00:17Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.233
+2026-06-19T07:00:17Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.233
+2026-06-19T07:00:17Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.233
+2026-06-19T07:00:18Z WRN Connection terminated error="timeout: no recent network activity" connIndex=3
+2026-06-19T07:00:18Z INF Registered tunnel connection connIndex=0 connection=5d50524f-3c57-4db4-ad56-0858b9b5bd92 event=0 ip=198.41.192.67 location=bos03 protocol=quic
+2026-06-19T07:00:37Z INF Registered tunnel connection connIndex=3 connection=328fe814-de51-417c-bc93-f9817384e380 event=0 ip=198.41.200.53 location=ewr07 protocol=quic
+2026-06-19T07:04:24Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T07:04:24Z WRN Failed to serve quic connection error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T07:04:24Z WRN Serve tunnel error error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T07:04:24Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.53
+2026-06-19T07:04:25Z WRN Connection terminated error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=3
+2026-06-19T07:04:26Z INF Unregistered tunnel connection connIndex=2 event=0 ip=198.41.192.47
+2026-06-19T07:04:26Z WRN Failed to serve quic connection error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.47
+2026-06-19T07:04:26Z WRN Serve tunnel error error="timeout: no recent network activity" connIndex=2 event=0 ip=198.41.192.47
+2026-06-19T07:04:26Z INF Retrying connection in up to 1s connIndex=2 event=0 ip=198.41.192.47
+2026-06-19T07:04:27Z WRN Connection terminated error="timeout: no recent network activity" connIndex=2
+2026-06-19T07:04:28Z INF Registered tunnel connection connIndex=3 connection=5b375700-226b-4ab3-930f-6d5b2399e463 event=0 ip=198.41.200.53 location=ewr07 protocol=quic
+2026-06-19T07:04:28Z INF Registered tunnel connection connIndex=2 connection=16e5c9fb-31ab-498f-ad9a-9af647f89236 event=0 ip=198.41.192.37 location=bos04 protocol=quic
