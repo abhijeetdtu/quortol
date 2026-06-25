@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "generated_at": "2026-06-19T15:50:28.777333+00:00",
+  "source": {
+    "slug": "dune-lawrence-dark-mirror",
+    "title": "The Dark Mirror: How Frank Herbert Turned Lawrence of Arabia Inside Out to Create Dune",
+    "path": "/home/pi/Documents/code/quortol/backend/blogs/dune-lawrence-dark-mirror.md"
+  },
+  "error": "HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fff42af2c50>: Failed to establish a new connection: [Errno 111] Connection refused'))"
+}
