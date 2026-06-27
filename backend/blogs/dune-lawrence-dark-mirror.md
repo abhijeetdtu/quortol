@@ -24,6 +24,8 @@ The seed of *Dune* was not planted in the Arabian desert or in the vaults of the
 
 "I got fascinated by sand dunes," Herbert told McNelly. "Because I'm always fascinated by the idea of something that is either seen in miniature and then can be expanded to the macrocosm or which, but for the difference in time, in the flow rate, and the entropy rate, is similar to other features which we wouldn't think were similar. Like a river."
 
+![Sand dunes at the Oregon Dunes National Recreation Area, near Florence, Oregon — the landscape that sparked Frank Herbert's vision of Arrakis. Credit: Carol M. Highsmith / Library of Congress (public domain).](https://upload.wikimedia.org/wikipedia/commons/3/3f/Dunes%2C_Oregon_LCCN2011630037.tif)
+
 [Frank Herbert, McNelly Interview, 1969](https://colgezegenidune.wordpress.com/interview-with-frank-herbert/)
 
 The sand dunes became a desert. The desert became a planet. And the question of how to stabilise sand became a question about ecology, religion, and power. Herbert began reading voraciously: desert cultures, the history of Islam, the Bedouin, the Kalahari bushmen, the Navajo. He read more than two hundred books over six years, spending a full year at the Library of Congress. He studied the Library of the British Museum. He lived in the desert himself.
@@ -45,6 +47,8 @@ But the question of what the Fremen would *do* — of what story would unfold on
 ## II. The Officer and the Fraud
 
 T. E. Lawrence was thirty years old in 1918, a British Army officer who had spent two years living among Arab tribes during their revolt against the Ottoman Empire. He wore their clothes, spoke their language, ate their food, and led their raids on Turkish railways. The American journalist Lowell Thomas turned him into a legend — "Lawrence of Arabia" — through a travelling lantern-slide show that packed London theatres in 1919. The legend has never really faded. It is easier to worship a photograph than to read a confession.
+
+![Colonel T.E. Lawrence in Arab robes, photographed in Jerusalem in 1918 by the American journalist Lowell Thomas, whose lantern-slide show created the legend of "Lawrence of Arabia." Credit: Lowell Thomas / Library of Congress (public domain).](https://upload.wikimedia.org/wikipedia/commons/0/03/Thomas_Edward_Lawrence-Lawrence_of_Arabia.JPG)
 
 [Lowell Thomas, Library of Congress Photograph Collection](https://www.loc.gov/item/2021670977/)
 
@@ -93,6 +97,8 @@ The novel ends with Paul triumphant, seated on the Imperial throne, the Fremen h
 [Frank Herbert, *Dune*, 1965](https://en.wikipedia.org/wiki/Dune_(novel))
 
 In the sequels — *Dune Messiah*, *Children of Dune*, *God Emperor of Dune* — Herbert makes explicit what the first book only intimates. Paul's jihad kills sixty-one billion people. The Fremen religion becomes an instrument of galactic conquest. The man who was meant to liberate becomes the most destructive tyrant in human history. The white saviour becomes the destroyer of worlds. That is the trouble with saviours: they never know when to stop saving.
+
+![Frank Herbert at the Octocon science fiction convention in Santa Rosa, California, October 1978. Credit: Robert E. Nylund (public domain).](https://upload.wikimedia.org/wikipedia/commons/1/19/FrankHerbert1978-cropped.jpg)
 
 ---
 
