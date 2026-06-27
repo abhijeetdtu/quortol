@@ -20,6 +20,14 @@ const proxy = {
   }
 }
 
+if (process.env.UMAMI_ORIGIN) {
+  proxy['/umami'] = {
+    target: process.env.UMAMI_ORIGIN,
+    changeOrigin: true,
+    rewrite: (requestPath) => requestPath.replace(/^\/umami/, '') || '/',
+  }
+}
+
 export default defineConfig({
   plugins: [vue()],
   server: {

@@ -8,6 +8,9 @@ This guide exposes Quortol through Cloudflare Tunnel at `https://quortol.pokhi.i
 - Keeps API requests on the same domain via the production server proxy:
   - Browser calls `https://quortol.pokhi.in/api/...`
   - The production server proxies `/api` to backend `http://127.0.0.1:5000`
+- Optionally keeps Umami analytics on the same domain:
+  - Browser loads `https://quortol.pokhi.in/umami/script.js`
+  - The production server proxies `/umami` to `UMAMI_ORIGIN` (for example `http://127.0.0.1:3001`)
 - Serves route-specific files from `frontend/dist` so `/blog` resolves to
   `frontend/dist/blog/index.html` instead of the generic SPA shell.
 
@@ -17,6 +20,7 @@ This guide exposes Quortol through Cloudflare Tunnel at `https://quortol.pokhi.i
 - Ubuntu/Debian host with sudo access.
 - Quortol backend running on `127.0.0.1:5000`.
 - Quortol production build served on `127.0.0.1:8050`.
+- Optional: Umami running locally, such as on `127.0.0.1:3001`.
 
 ## Install Node.js and npm (if missing)
 
@@ -58,6 +62,12 @@ cd frontend
 npm install
 npm run build
 npm run serve
+```
+
+If you are using Umami, export `UMAMI_ORIGIN` before `npm run serve`:
+
+```bash
+export UMAMI_ORIGIN=http://127.0.0.1:3001
 ```
 
 ## 1) Install cloudflared
@@ -144,6 +154,16 @@ Expected:
 - Confirm backend is running on `127.0.0.1:5000`.
 - Confirm `BACKEND_ORIGIN` is unset or points to the backend:
   - default: `http://127.0.0.1:5000`
+
+### `/umami` requests fail
+
+- Confirm Umami is running and reachable at `UMAMI_ORIGIN`.
+- Confirm `UMAMI_ORIGIN` is exported in the shell that runs `npm run serve`.
+- Test locally:
+  ```bash
+  curl -I http://127.0.0.1:8050/umami/script.js
+  curl -i http://127.0.0.1:8050/umami/api/send
+  ```
 
 ### Port mismatch or service unavailable
 

@@ -152,7 +152,7 @@ npm run serve
 ```
 
 `npm run serve` serves route-specific prerendered files such as
-`dist/blog/index.html` and proxies backend paths to `127.0.0.1:5000`.
+`dist/blog/index.html`, proxies backend paths to `127.0.0.1:5000`, and can proxy `/umami/*` to `UMAMI_ORIGIN`.
 
 To run it in the background instead:
 
@@ -178,6 +178,28 @@ sudo systemctl restart cloudflared
 
 - Cloudflare Tunnel deployment guide for `https://quortol.pokhi.in/`: [docs/cloudflare-tunnel.md](docs/cloudflare-tunnel.md)
 - SEO indexing checklist: [docs/seo-indexing-checklist.md](docs/seo-indexing-checklist.md)
+- Umami analytics setup: [docs/umami-setup.md](docs/umami-setup.md)
+
+## Umami Analytics
+
+Quortol supports optional Umami analytics without vendoring Umami into this repo.
+
+- Browser traffic is sent to the same origin under `/umami/*`
+- `frontend/scripts/serve-production.mjs` proxies `/umami/*` to `UMAMI_ORIGIN`
+- Tracking stays off unless both `VITE_UMAMI_ENABLED=true` and `VITE_UMAMI_WEBSITE_ID` are set at build time
+
+Recommended environment variables:
+
+```bash
+UMAMI_ORIGIN=http://127.0.0.1:3001
+VITE_UMAMI_ENABLED=true
+VITE_UMAMI_WEBSITE_ID=<your-umami-website-id>
+VITE_UMAMI_HOST_URL=/umami
+VITE_UMAMI_DOMAINS=quortol.pokhi.in
+VITE_UMAMI_TRACK_PERFORMANCE=false
+```
+
+Build-time note: `VITE_*` values must be present when you run `npm run build`, for example by exporting them in your shell or placing them in `frontend/.env.local`.
 
 ## SEO Utilities
 

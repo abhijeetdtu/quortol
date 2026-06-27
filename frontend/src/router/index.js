@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import { isPublicAnalyticsPath, trackPageview } from '../services/analytics'
 import { applySEOMetadata } from '../utils/seo'
 import { routes } from './routes'
 
@@ -41,6 +42,10 @@ export const createAppRouter = (history = createWebHistory()) => {
       twitterCard: routeSEO.twitterCard,
       structuredData: routeSEO.structuredData || [],
     })
+
+    if (isPublicAnalyticsPath(to.path)) {
+      trackPageview()
+    }
   })
 
   return router

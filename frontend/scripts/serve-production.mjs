@@ -10,7 +10,9 @@ const distRoot = path.join(frontendRoot, 'dist')
 const host = process.env.HOST || '127.0.0.1'
 const port = Number(process.env.PORT || 8050)
 const backendOrigin = new URL(process.env.BACKEND_ORIGIN || 'http://127.0.0.1:5000')
-const proxyPrefixes = ['/api', '/data-storytelling-app', '/static']
+const umamiOrigin = process.env.UMAMI_ORIGIN ? new URL(process.env.UMAMI_ORIGIN) : null
+export const backendProxyPrefixes = ['/api', '/data-storytelling-app', '/static']
+export const umamiProxyPrefix = '/umami'
 
 const contentTypes = new Map([
   ['.css', 'text/css; charset=utf-8'],
@@ -33,6 +35,26 @@ const contentTypes = new Map([
 
 const isFile = (filePath) => existsSync(filePath) && statSync(filePath).isFile()
 
+const matchesPrefix = (pathname, prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+
+export const shouldProxyToBackend = (pathname) =>
+  backendProxyPrefixes.some((prefix) => matchesPrefix(pathname, prefix))
+
+export const shouldProxyToUmami = (pathname) => matchesPrefix(pathname, umamiProxyPrefix)
+
+export const buildProxyPath = (requestUrl = '/', stripPrefix = '') => {
+  if (!stripPrefix || !requestUrl.startsWith(stripPrefix)) {
+    return requestUrl
+  }
+
+  const strippedPath = requestUrl.slice(stripPrefix.length)
+  if (!strippedPath) {
+    return '/'
+  }
+
+  return strippedPath.startsWith('/') ? strippedPath : `/${strippedPath}`
+}
+
 export const resolveStaticPath = (pathname) => {
   const decodedPath = decodeURIComponent(pathname)
   const relativePath = decodedPath.replace(/^\/+/, '')
@@ -51,20 +73,20 @@ export const resolveStaticPath = (pathname) => {
   return candidates.find(isFile) || path.join(distRoot, 'index.html')
 }
 
-const proxyRequest = (request, response) => {
-  const headers = { ...request.headers, host: backendOrigin.host }
+const proxyRequest = (request, response, { targetOrigin, stripPrefix = '' }) => {
+  const headers = { ...request.headers, host: targetOrigin.host }
   const proxy = httpRequest(
     {
-      protocol: backendOrigin.protocol,
-      hostname: backendOrigin.hostname,
-      port: backendOrigin.port,
+      protocol: targetOrigin.protocol,
+      hostname: targetOrigin.hostname,
+      port: targetOrigin.port,
       method: request.method,
-      path: request.url,
+      path: buildProxyPath(request.url, stripPrefix),
       headers,
     },
-    (backendResponse) => {
-      response.writeHead(backendResponse.statusCode || 502, backendResponse.headers)
-      backendResponse.pipe(response)
+    (proxiedResponse) => {
+      response.writeHead(proxiedResponse.statusCode || 502, proxiedResponse.headers)
+      proxiedResponse.pipe(response)
     },
   )
 
@@ -92,47 +114,70 @@ const serveFile = (request, response, filePath) => {
   createReadStream(filePath).pipe(response)
 }
 
-if (!isFile(path.join(distRoot, 'index.html'))) {
-  console.error('Missing frontend/dist/index.html. Run `npm run build` first.')
-  process.exit(1)
+export const createProductionServer = () =>
+  createServer((request, response) => {
+    const url = new URL(request.url || '/', `http://${request.headers.host || 'localhost'}`)
+
+    if (url.pathname === '/') {
+      response.writeHead(308, { Location: '/blog' })
+      response.end()
+      return
+    }
+
+    if (url.pathname === '/blogs') {
+      response.writeHead(308, { Location: `/blog${url.search}` })
+      response.end()
+      return
+    }
+
+    if (shouldProxyToBackend(url.pathname)) {
+      proxyRequest(request, response, { targetOrigin: backendOrigin })
+      return
+    }
+
+    if (shouldProxyToUmami(url.pathname)) {
+      if (!umamiOrigin) {
+        response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' })
+        response.end('Umami analytics proxy is not configured.')
+        return
+      }
+
+      proxyRequest(request, response, {
+        targetOrigin: umamiOrigin,
+        stripPrefix: umamiProxyPrefix,
+      })
+      return
+    }
+
+    let filePath
+    try {
+      filePath = resolveStaticPath(url.pathname)
+    } catch {
+      response.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' })
+      response.end('Invalid URL')
+      return
+    }
+
+    if (!filePath) {
+      response.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' })
+      response.end('Forbidden')
+      return
+    }
+
+    serveFile(request, response, filePath)
+  })
+
+export const startProductionServer = () => {
+  if (!isFile(path.join(distRoot, 'index.html'))) {
+    console.error('Missing frontend/dist/index.html. Run `npm run build` first.')
+    process.exit(1)
+  }
+
+  return createProductionServer().listen(port, host, () => {
+    console.log(`Quortol production frontend listening on http://${host}:${port}`)
+  })
 }
 
-createServer((request, response) => {
-  const url = new URL(request.url || '/', `http://${request.headers.host || 'localhost'}`)
-
-  if (url.pathname === '/') {
-    response.writeHead(308, { Location: '/blog' })
-    response.end()
-    return
-  }
-
-  if (url.pathname === '/blogs') {
-    response.writeHead(308, { Location: `/blog${url.search}` })
-    response.end()
-    return
-  }
-
-  if (proxyPrefixes.some((prefix) => url.pathname === prefix || url.pathname.startsWith(`${prefix}/`))) {
-    proxyRequest(request, response)
-    return
-  }
-
-  let filePath
-  try {
-    filePath = resolveStaticPath(url.pathname)
-  } catch {
-    response.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' })
-    response.end('Invalid URL')
-    return
-  }
-
-  if (!filePath) {
-    response.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' })
-    response.end('Forbidden')
-    return
-  }
-
-  serveFile(request, response, filePath)
-}).listen(port, host, () => {
-  console.log(`Quortol production frontend listening on http://${host}:${port}`)
-})
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  startProductionServer()
+}

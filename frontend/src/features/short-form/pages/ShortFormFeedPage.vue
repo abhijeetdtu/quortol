@@ -69,6 +69,7 @@ import PostModal from '../components/PostModal.vue'
 import SearchBar from '../components/SearchBar.vue'
 import TagFilter from '../components/TagFilter.vue'
 import { feedService } from '../services/feedService'
+import { trackEvent } from '../../../services/analytics'
 
 const posts = ref([])
 const selectedTags = ref([])
@@ -87,6 +88,33 @@ let feedObserver = null
 
 const hasFilters = computed(() => selectedTags.value.length > 0 || searchKeyword.value.trim() !== '')
 const hasMorePages = computed(() => currentPage.value < totalPages.value)
+
+const getResultCount = (response) =>
+  response?.pagination?.total_posts ?? response?.posts?.length ?? 0
+
+const emitAnalytics = (context, response) => {
+  if (!context?.type) {
+    return
+  }
+
+  const resultCount = getResultCount(response)
+
+  if (context.type === 'search') {
+    trackEvent('shorts_search', {
+      result_count: resultCount,
+      keyword_length: context.keywordLength ?? 0,
+    })
+    return
+  }
+
+  if (context.type === 'filter') {
+    trackEvent('shorts_filter_apply', {
+      result_count: resultCount,
+      tag_count: selectedTags.value.length,
+      tags: [...selectedTags.value],
+    })
+  }
+}
 
 const hydrateAvailableTags = async () => {
   try {
@@ -113,7 +141,7 @@ const hydrateAvailableTags = async () => {
   }
 }
 
-const loadPosts = async (page = 1, reset = false) => {
+const loadPosts = async (page = 1, reset = false, analyticsContext = null) => {
   if (loading.value || isLoadingData.value) return
 
   loading.value = true
@@ -147,6 +175,8 @@ const loadPosts = async (page = 1, reset = false) => {
         allTags.value = Array.from(tagSet)
       }
     }
+
+    emitAnalytics(analyticsContext, response)
   } catch (error) {
     console.error('Failed to load posts:', error)
   } finally {
@@ -157,13 +187,16 @@ const loadPosts = async (page = 1, reset = false) => {
 
 const handleFilterChange = () => {
   currentPage.value = 1
-  loadPosts(1, true)
+  loadPosts(1, true, { type: 'filter' })
 }
 
 const handleSearch = (keyword) => {
   searchKeyword.value = keyword
   currentPage.value = 1
-  loadPosts(1, true)
+  loadPosts(1, true, {
+    type: 'search',
+    keywordLength: keyword.trim().length,
+  })
 }
 
 const handleFilterTag = (tag) => {
@@ -177,7 +210,7 @@ const clearAllFilters = () => {
   selectedTags.value = []
   searchKeyword.value = ''
   currentPage.value = 1
-  loadPosts(1, true)
+  loadPosts(1, true, { type: 'filter' })
 }
 
 const openDetailModal = (post) => {

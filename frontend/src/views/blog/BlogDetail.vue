@@ -75,6 +75,7 @@ import 'highlight.js/styles/github.css'
 import { usePrerenderRouteData } from '../../prerender/context'
 import { blog } from '../../services/api'
 import BlogTTS from '../../components/blog/BlogTTS.vue'
+import { trackEvent } from '../../services/analytics'
 import { useTTSStore } from '../../stores/tts'
 import { applySEOMetadata } from '../../utils/seo'
 import { buildBlogPostingStructuredData, buildDescription } from '../../utils/seoContent'
@@ -255,11 +256,42 @@ const closeImageViewer = () => {
   fullscreenImage.value = null
 }
 
+const trackExternalLinkClick = (anchor) => {
+  if (!anchor || !post.value || typeof window === 'undefined') {
+    return
+  }
+
+  try {
+    const targetUrl = new URL(anchor.href, window.location.href)
+    if (!['http:', 'https:'].includes(targetUrl.protocol)) {
+      return
+    }
+
+    if (targetUrl.origin === window.location.origin) {
+      return
+    }
+
+    trackEvent('blog_external_link_click', {
+      slug: post.value.slug,
+      hostname: targetUrl.hostname,
+    })
+  } catch {
+    return
+  }
+}
+
 const handleContentClick = (event) => {
   const image = event.target?.closest('img')
-  if (!image || !contentRef.value?.contains(image)) return
-  event.preventDefault()
-  openImageViewer(image.getAttribute('src') || '', image.getAttribute('alt') || post.value?.title || '')
+  if (image && contentRef.value?.contains(image)) {
+    event.preventDefault()
+    openImageViewer(image.getAttribute('src') || '', image.getAttribute('alt') || post.value?.title || '')
+    return
+  }
+
+  const link = event.target?.closest('a')
+  if (link && contentRef.value?.contains(link)) {
+    trackExternalLinkClick(link)
+  }
 }
 
 const handleContentKeydown = (event) => {

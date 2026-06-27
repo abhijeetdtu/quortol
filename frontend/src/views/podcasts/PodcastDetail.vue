@@ -33,7 +33,7 @@
 
       <section class="player card app-card mb-4">
         <div class="card-body">
-          <audio controls preload="none" class="w-100" :src="episode.audio_url">
+          <audio controls preload="none" class="w-100" :src="episode.audio_url" @play="handleAudioPlay">
             Your browser does not support audio playback.
           </audio>
         </div>
@@ -54,6 +54,7 @@ import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import { usePrerenderRouteData } from '../../prerender/context'
 import { podcast } from '../../services/api'
+import { trackEvent } from '../../services/analytics'
 import { applySEOMetadata } from '../../utils/seo'
 import {
   buildDescription,
@@ -64,6 +65,7 @@ const route = useRoute()
 const prerenderRouteData = usePrerenderRouteData()
 const episode = ref(prerenderRouteData.value?.episode || null)
 const loading = ref(!episode.value)
+const hasTrackedAudioPlay = ref(false)
 
 const markdownParser = new MarkdownIt({
   html: true,
@@ -107,6 +109,18 @@ const formatDuration = (durationSeconds) => {
   return `${minutes}m ${String(seconds).padStart(2, '0')}s`
 }
 
+const handleAudioPlay = () => {
+  if (!episode.value || hasTrackedAudioPlay.value) {
+    return
+  }
+
+  hasTrackedAudioPlay.value = true
+  trackEvent('podcast_audio_play', {
+    slug: episode.value.slug,
+    source_type: episode.value.source_type || 'podcast',
+  })
+}
+
 const loadEpisode = async (slug) => {
   if (!slug) return
   if (episode.value?.slug === slug) {
@@ -119,6 +133,7 @@ const loadEpisode = async (slug) => {
   try {
     const response = await podcast.getEpisode(slug)
     episode.value = response.data.podcast
+    hasTrackedAudioPlay.value = false
     applyEpisodeSEO(episode.value)
   } catch (error) {
     console.error('Error loading podcast episode:', error)
@@ -145,6 +160,7 @@ watch(
 watch(
   () => episode.value,
   (nextEpisode) => {
+    hasTrackedAudioPlay.value = false
     if (nextEpisode && typeof document !== 'undefined') {
       applyEpisodeSEO(nextEpisode)
     }
