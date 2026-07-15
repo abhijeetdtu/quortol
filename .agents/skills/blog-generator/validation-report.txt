@@ -1,0 +1,16 @@
+Blog Post Validation Report
+============================
+File: /home/pi/Documents/code/quortol/backend/blogs/the-handbook-that-predicted-the-brain.md
+Date: Fri 10 Jul 13:22:30 BST 2026
+
+Results:
+- Frontmatter: ✓ Present
+- Title: ---
+- Sources: 0 citations
+- Images: 1 references
+- Tables: 0 tables
+
+Statistics:
+- Characters: 18599
+- Words: 2896
+- Read time: ~93 minutes
