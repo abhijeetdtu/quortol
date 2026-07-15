@@ -49,13 +49,6 @@ export const blog = {
   createPost: (data) => api.post('/blog/create', data)
 }
 
-export const portfolio = {
-  getProjects: () => api.get('/portfolio/'),
-  getProject: (slug) => api.get(`/portfolio/${slug}`),
-  getTechstacks: () => api.get('/portfolio/techstacks'),
-  createProject: (data) => api.post('/portfolio/create', data)
-}
-
 export const podcast = {
   getEpisodes: () => api.get('/podcasts/'),
   getEpisode: (slug) => api.get(`/podcasts/${slug}`),
@@ -75,13 +68,5 @@ export const auth = {
   logout: () => api.post('/auth/logout'),
   getCurrentUser: () => api.get('/auth/me')
 }
-
-export const pokhiWikipedia = {
-  getPage: (topic) => api.post('/pokhi/wikipedia/page', { topic }),
-  getFeed: ({ count = 10, seed_topic = undefined } = {}) =>
-    api.post('/pokhi/wikipedia/feed', { count, seed_topic })
-}
-
-export const explorerWikipedia = pokhiWikipedia
 
 export default api

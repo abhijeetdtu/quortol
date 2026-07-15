@@ -79,3 +79,36 @@ print("hello")
     assert "Table: Year, Value ; 2024, 12" in spoken
     assert "- first point" in spoken
     assert "- second point" in spoken
+
+
+def test_markdown_to_spoken_text_removes_inline_source_citations_but_keeps_prose_links():
+    markdown = """
+Claim supported by archives [Source One](https://example.com/source-one); [Source Two](https://example.com/source-two).
+
+This [linked phrase](https://example.com/phrase) remains part of the spoken sentence.
+"""
+
+    spoken = markdown_to_spoken_text(markdown)
+
+    assert "Source One" not in spoken
+    assert "Source Two" not in spoken
+    assert "Claim supported by archives." in spoken
+    assert "linked phrase remains part of the spoken sentence." in spoken
+
+
+def test_markdown_to_spoken_text_removes_image_lines_and_standalone_italic_captions():
+    markdown = """
+Before image.
+
+![Dust Bowl refugees camped alongside the highway near Bakersfield, California, November 1935 — the road as both escape route and destination.](dustbowl.jpg)
+*Along the highway near Bakersfield, California. Dorothea Lange, 1935. Farm Security Administration, Library of Congress. Public domain.*
+
+After image.
+"""
+
+    spoken = markdown_to_spoken_text(markdown)
+
+    assert "Dust Bowl refugees camped alongside" not in spoken
+    assert "Dorothea Lange" not in spoken
+    assert "Before image." in spoken
+    assert "After image." in spoken

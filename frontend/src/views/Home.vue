@@ -4,12 +4,12 @@
       <p class="kicker mb-2">Curated</p>
       <h1 class="display-5 mb-3">Come satisfy your curiosity</h1>
       <p class="intro mb-4">
-        Browse longform writing, review portfolio builds, or jump into agent tooling with one coherent editorial UI.
+        Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI.
       </p>
       <div class="d-flex flex-wrap gap-2">
-        <router-link to="/explorer" class="btn btn-sm app-btn-accent">Open Explorer</router-link>
         <router-link to="/blog" class="btn btn-sm app-btn-soft">Read Blog</router-link>
-        <router-link to="/portfolio" class="btn btn-sm app-btn-soft">View Portfolio</router-link>
+        <router-link to="/shorts" class="btn btn-sm app-btn-accent">Browse Shorts</router-link>
+        <router-link to="/podcasts" class="btn btn-sm app-btn-soft">Listen to Podcasts</router-link>
         <router-link v-if="!authStore.isAuthenticated" to="/agent/login" class="btn btn-sm app-btn-soft">
           Access Agents
         </router-link>
@@ -33,21 +33,6 @@
       </div>
     </section>
 
-    <section>
-      <h2 class="mb-3">Featured Projects</h2>
-      <div v-if="projects.length === 0" class="text-muted">Loading...</div>
-      <div v-else class="row g-3">
-        <div v-for="project in projects.slice(0, 3)" :key="project.id" class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 app-card">
-            <div class="card-body">
-              <h3 class="h4 card-title">{{ project.title }}</h3>
-              <p class="card-text text-secondary">{{ project.description }}</p>
-              <router-link :to="`/portfolio/${project.slug}`" class="app-link">View Project &rarr;</router-link>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -55,22 +40,20 @@
 import { ref, onMounted } from 'vue'
 import { usePrerenderRouteData } from '../prerender/context'
 import { useAuthStore } from '../stores/auth.js'
-import { blog, portfolio } from '../services/api'
+import { blog } from '../services/api'
 
 const authStore = useAuthStore()
 const prerenderRouteData = usePrerenderRouteData()
 const posts = ref(prerenderRouteData.value?.posts || [])
-const projects = ref(prerenderRouteData.value?.projects || [])
 
 onMounted(async () => {
-  if (posts.value.length > 0 && projects.value.length > 0) {
+  if (posts.value.length > 0) {
     return
   }
 
   try {
-    const [postsRes, projectsRes] = await Promise.all([blog.getPosts(), portfolio.getProjects()])
+    const postsRes = await blog.getPosts()
     posts.value = postsRes.data
-    projects.value = projectsRes.data
   } catch (error) {
     console.error('Error loading home data:', error)
   }

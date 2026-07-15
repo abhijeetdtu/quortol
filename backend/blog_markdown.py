@@ -198,13 +198,19 @@ def markdown_to_spoken_text(markdown: str) -> str:
     text = markdown.replace("\r\n", "\n")
     text = re.sub(r"```[\s\S]*?```", "\nCode example omitted.\n", text)
     text = re.sub(r"`([^`]+)`", r"\1", text)
-    text = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"(?m)^\s*!\[[^\]]*\]\([^)]+\)\s*$", "", text)
+    text = re.sub(
+        r"\s*(?:\[[^\]]+\]\([^)]+\))(?:\s*;\s*(?:\[[^\]]+\]\([^)]+\)))*(?=(?:[.,;:!?)](?:\s|$)|\s*$))",
+        "",
+        text,
+    )
     text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
-    text = re.sub(r"<img[^>]*alt=[\"']([^\"']*)[\"'][^>]*>", r"\1", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?im)^\s*<img[^>]*>\s*$", "", text)
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"https?://\S+|www\.\S+", "", text)
     text = re.sub(r"^\s{0,3}[-*_]{3,}\s*$", "", text, flags=re.MULTILINE)
     text = re.sub(r"^\s{0,3}>\s?", "", text, flags=re.MULTILINE)
+    text = re.sub(r"(?m)^\s*\*[^\n]*\*\s*$", "", text)
     text = re.sub(r"^\s{0,3}(#{1,6})\s+(.*)$", lambda match: f"\nSection: {match.group(2).strip()}\n", text, flags=re.MULTILINE)
     text = re.sub(r"^\s*[-*+]\s+", "• ", text, flags=re.MULTILINE)
     text = re.sub(r"^\s*\d+\.\s+", "• ", text, flags=re.MULTILINE)

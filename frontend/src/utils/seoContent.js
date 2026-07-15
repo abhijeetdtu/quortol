@@ -1,7 +1,7 @@
 export const CANONICAL_ORIGIN = 'https://quortol.pokhi.in'
 
 export const DEFAULT_SEO_DESCRIPTION =
-  'Quortol publishes essays, portfolio work, and data storytelling projects.'
+  'Quortol publishes essays, podcasts, short-form posts, and data storytelling projects.'
 
 export const ensureAbsoluteUrl = (value = '/') => {
   if (!value) return CANONICAL_ORIGIN
@@ -101,32 +101,6 @@ export const buildBlogPostingStructuredData = (post) => {
   return payload
 }
 
-export const buildCreativeWorkStructuredData = (project) => {
-  const description = buildDescription(
-    project?.long_description || project?.description || '',
-    'Project details from the Quortol portfolio.',
-  )
-  const payload = {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: project?.title || 'Quortol Project',
-    description,
-    url: ensureAbsoluteUrl(`/portfolio/${project?.slug || ''}`),
-    datePublished: project?.published_at || undefined,
-  }
-
-  if (project?.image_url) {
-    payload.image = ensureAbsoluteUrl(project.image_url)
-  }
-
-  const sameAs = [project?.live_url, project?.repo_url].filter(Boolean)
-  if (sameAs.length > 0) {
-    payload.sameAs = sameAs
-  }
-
-  return payload
-}
-
 export const buildPodcastSeriesStructuredData = ({
   title,
   description,
@@ -208,25 +182,6 @@ export const buildBlogPostSEOPayload = (post) => {
     ogImage: post?.featured_image || '',
     twitterCard: 'summary_large_image',
     structuredData: [buildBlogPostingStructuredData(post)],
-  }
-}
-
-export const buildPortfolioSEOPayload = (project) => {
-  const description = buildDescription(
-    project?.long_description || project?.description || '',
-    'Project details from the Quortol portfolio.',
-  )
-
-  return {
-    title: `${project?.title || 'Portfolio Project'} | Quortol`,
-    description,
-    canonical: ensureAbsoluteUrl(`/portfolio/${project?.slug || ''}`),
-    path: `/portfolio/${project?.slug || ''}`,
-    robots: 'index,follow',
-    ogType: 'website',
-    ogImage: project?.image_url || '',
-    twitterCard: 'summary_large_image',
-    structuredData: [buildCreativeWorkStructuredData(project)],
   }
 }
 

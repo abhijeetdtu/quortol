@@ -9,7 +9,6 @@ import {
   buildCollectionPageStructuredData,
   buildPodcastEpisodeSEOPayload,
   buildPodcastSeriesStructuredData,
-  buildPortfolioSEOPayload,
   buildStaticPageSEOPayload,
   buildWebPageStructuredData,
 } from '../src/utils/seoContent.js'
@@ -42,17 +41,14 @@ const resolvePythonCommand = () => {
 }
 
 const homeDescription =
-  'Discover Quortol projects across essays, portfolio work, and interactive data storytelling.'
+  'Discover Quortol essays, podcasts, short-form posts, and interactive data storytelling.'
 const blogDescription = 'Read Quortol essays on technology, work, policy, and social futures.'
-const portfolioDescription = 'Browse Quortol portfolio projects and technical case studies.'
 const podcastDescription =
   'Listen to Quortol podcast episodes adapted from essays and original conversations.'
-const explorerDescription =
-  'Explore live Wikipedia research cards and article summaries in Quortol Explorer.'
 const dataStorytellingDescription =
   'Interactive data storytelling dashboards and visual deep dives.'
 
-const buildHomeRoute = (blogs, projects) => ({
+const buildHomeRoute = (blogs) => ({
   path: '/quortol-home',
   prerender: true,
   seo: buildStaticPageSEOPayload({
@@ -69,7 +65,6 @@ const buildHomeRoute = (blogs, projects) => ({
   }),
   pageData: {
     posts: blogs.slice(0, 3),
-    projects: projects.slice(0, 3),
   },
 })
 
@@ -94,30 +89,6 @@ const buildBlogIndexRoute = (blogs) => ({
   }),
   pageData: {
     posts: blogs,
-  },
-})
-
-const buildPortfolioIndexRoute = (projects) => ({
-  path: '/portfolio',
-  prerender: true,
-  seo: buildStaticPageSEOPayload({
-    title: 'Portfolio | Quortol',
-    description: portfolioDescription,
-    path: '/portfolio',
-    structuredData: [
-      buildCollectionPageStructuredData({
-        title: 'Portfolio | Quortol',
-        description: portfolioDescription,
-        path: '/portfolio',
-        items: projects.map((project) => ({
-          name: project.title,
-          path: `/portfolio/${project.slug}`,
-        })),
-      }),
-    ],
-  }),
-  pageData: {
-    projects,
   },
 })
 
@@ -151,23 +122,6 @@ const buildPodcastIndexRoute = (podcasts) => ({
 })
 
 const buildStaticRoutes = () => [
-  {
-    path: '/explorer',
-    prerender: true,
-    seo: buildStaticPageSEOPayload({
-      title: 'Explorer | Quortol',
-      description: explorerDescription,
-      path: '/explorer',
-      structuredData: [
-        buildWebPageStructuredData({
-          title: 'Explorer | Quortol',
-          description: explorerDescription,
-          path: '/explorer',
-        }),
-      ],
-    }),
-    pageData: null,
-  },
   {
     path: '/data-storytelling',
     prerender: true,
@@ -259,11 +213,10 @@ const buildManifest = async () => {
   const payload = JSON.parse(raw)
 
   const blogs = Array.isArray(payload.blogs) ? payload.blogs : []
-  const projects = Array.isArray(payload.projects) ? payload.projects : []
   const podcasts = Array.isArray(payload.podcasts) ? payload.podcasts : []
 
   const routes = [
-    buildHomeRoute(blogs.map(toBlogSummary), projects),
+    buildHomeRoute(blogs.map(toBlogSummary)),
     buildBlogIndexRoute(blogs.map(toBlogSummary)),
     ...blogs.map((post) => ({
       path: `/blog/${post.slug}`,
@@ -271,15 +224,6 @@ const buildManifest = async () => {
       seo: buildBlogPostSEOPayload(post),
       pageData: {
         post,
-      },
-    })),
-    buildPortfolioIndexRoute(projects),
-    ...projects.map((project) => ({
-      path: `/portfolio/${project.slug}`,
-      prerender: true,
-      seo: buildPortfolioSEOPayload(project),
-      pageData: {
-        project,
       },
     })),
     buildPodcastIndexRoute(podcasts),

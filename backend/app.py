@@ -27,10 +27,8 @@ def create_app(config_class=None, enable_dash=True):
     
     # Register blueprints
     from .routes.blog import blog_bp
-    from .routes.portfolio import portfolio_bp
     from .routes.agent import agent_bp
     from .routes.auth import auth_bp
-    from .routes.pokhi_wikipedia import pokhi_wikipedia_bp
     
     # Register short-form feed API blueprint
     from .features.short_form import create_short_form_blueprint
@@ -43,10 +41,8 @@ def create_app(config_class=None, enable_dash=True):
     app.register_blueprint(podcast_public_bp)
     
     app.register_blueprint(blog_bp, url_prefix='/api/blog')
-    app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')
     app.register_blueprint(agent_bp, url_prefix='/api/agents')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
-    app.register_blueprint(pokhi_wikipedia_bp, url_prefix='/api/pokhi/wikipedia')
     
     # Register Dash application
     dash_enabled = False

@@ -17,9 +17,6 @@
       <div id="quortol-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item">
-            <router-link to="/explorer" class="nav-link">Explorer</router-link>
-          </li>
-          <li class="nav-item">
             <router-link to="/quortol-home" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
@@ -30,9 +27,6 @@
           </li>
           <li class="nav-item">
             <router-link to="/podcasts" class="nav-link">Podcasts</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/portfolio" class="nav-link">Portfolio</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/data-storytelling" class="nav-link">Data Storytelling</router-link>

@@ -55,6 +55,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { usePrerenderRouteData } from '../../prerender/context'
 import { blog } from '../../services/api'
+import { extractHeroImage, extractPlainTextFromMarkdown, sanitizeBlogDisplayContent } from '../../utils/blogContent'
 
 const prerenderRouteData = usePrerenderRouteData()
 const posts = ref(prerenderRouteData.value?.posts || [])
@@ -72,35 +73,21 @@ const formatDate = (date) => {
   })
 }
 
-const extractImageFromContent = (content) => {
-  if (!content) return ''
-  const markdownImageMatch = content.match(/!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/)
-  if (markdownImageMatch?.[1]) return markdownImageMatch[1]
-
-  const htmlImageMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i)
-  if (htmlImageMatch?.[1]) return htmlImageMatch[1]
-
-  return ''
-}
-
 const countWords = (text) => {
-  if (!text) return 0
-  return text
-    .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/`[^`]*`/g, ' ')
-    .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
-    .replace(/\[[^\]]*]\([^)]+\)/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/[>*_~#-]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length
+  const plainText = extractPlainTextFromMarkdown(text)
+  if (!plainText) return 0
+  return plainText.split(/\s+/).filter(Boolean).length
 }
 
 const readTime = (post) => {
   const detail = detailsBySlug.value[post.slug]
-  const baseText = detail?.content || post.excerpt || ''
+  const baseText = detail
+    ? sanitizeBlogDisplayContent({
+        content: detail.content || '',
+        title: detail.title || post.title || '',
+        featuredImage: detail.featured_image || post?.featured_image || '',
+      })
+    : post.excerpt || ''
   const words = countWords(baseText)
   return Math.max(1, Math.round(words / 220))
 }
@@ -112,9 +99,10 @@ const primaryTag = (post) => {
 
 const storyImage = (post) => {
   const detail = detailsBySlug.value[post.slug]
-  if (detail?.featured_image) return detail.featured_image
-  if (post?.featured_image) return post.featured_image
-  return extractImageFromContent(detail?.content || '')
+  return extractHeroImage({
+    content: detail?.content || '',
+    featuredImage: detail?.featured_image || post?.featured_image || '',
+  })
 }
 
 const featuredImage = computed(() => {

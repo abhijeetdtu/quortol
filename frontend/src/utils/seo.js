@@ -60,7 +60,7 @@ const upsertStructuredData = (structuredData) => {
 
 export const applySEOMetadata = ({
   title = 'Quortol',
-  description = 'Quortol publishes essays, portfolio work, and data storytelling projects.',
+  description = 'Quortol publishes essays, podcasts, short-form posts, and data storytelling projects.',
   path = '/',
   canonical,
   robots = 'index,follow',

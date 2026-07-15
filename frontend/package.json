@@ -13,6 +13,7 @@
     "seo:generate-manifest": "node ./scripts/generate-public-content-manifest.mjs",
     "seo:generate-sitemap": "node ./scripts/generate-sitemap.mjs",
     "seo:prerender": "node ./scripts/prerender-public-routes.mjs",
+    "test:blog": "vitest run src/utils/__tests__/blogContent.spec.js src/views/blog/__tests__/BlogDetail.spec.js",
     "test:short-form": "vitest run src/features/short-form/__tests__",
     "test:podcasts": "vitest run src/views/podcasts/__tests__"
   },

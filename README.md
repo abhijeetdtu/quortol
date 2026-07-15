@@ -121,6 +121,53 @@ Qwen backend contract:
 - generated manifests record `episode.tts.backend`, optional `episode.tts.model`, and backend-specific voice IDs
 - qwen defaults are `Ryan` for journalist and `Aiden` for author unless overridden
 
+## Batch Blog-to-Audiobook
+
+This repo also includes an offline batch generator that:
+
+- reads blog markdown from `backend/blogs`
+- converts each post into cleaned spoken text via `backend.blog_markdown.markdown_to_spoken_text()`
+- synthesizes a single-narrator audiobook WAV through local Chatterbox chunked TTS
+- writes `spoken_text.txt`, `manifest.json`, and `audiobook.wav` per blog under `backend/static/audiobooks`
+- optionally keeps reusable chunk WAVs for resume/retry workflows
+
+Install the Chatterbox CLI dependencies:
+
+```bash
+pip install -r scripts/requirements-chatterbox.txt
+```
+
+Quick usage:
+
+```bash
+conda run --no-capture-output -n chatterbox-tts-blackwell python scripts/generate_blog_audiobooks.py --slug american-byways --voice "C:\Users\abhij\Code\bringalive\app\voices\voice_my.mp3" --keep-chunks
+
+python scripts/generate_blog_audiobooks.py --file backend/blogs/additive-arithmetic.md --voice C:\path\to\voice.wav
+python scripts/generate_blog_audiobooks.py --all --voice C:\path\to\voice.wav --dry-run
+python scripts/generate_blog_audiobooks.py --all --voice C:\path\to\voice.wav --keep-chunks --resume
+```
+
+Windows launcher:
+
+```bash
+.\scripts\generate-blog-audiobooks.cmd --slug additive-arithmetic --voice C:\path\to\voice.wav
+```
+
+Useful flags:
+
+- `--output-dir <custom-output-root>`
+- `--chunk-dir <custom-chunk-root>`
+- `--device cuda`
+- `--max-chars 300`
+- `--high-priority`
+- `--autocast`
+- `--temperature 0.8`
+- `--top-p 1.0`
+- `--min-p 0.05`
+- `--cfg-weight 0.5`
+- `--exaggeration 0.5`
+- `--repetition-penalty 1.2`
+
 ## Notes
 
 - Start the backend first, then the frontend
@@ -161,6 +208,7 @@ cd frontend
 npm run build
 pkill -f "serve-production.mjs" || true
 nohup npm run serve > frontend.log 2>&1 &
+disown
 ```
 
 ```bash

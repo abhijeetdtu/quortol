@@ -54,7 +54,7 @@ const buildSitemap = async () => {
 
     urls.set(routePath, {
       loc: toAbsoluteUrl(routePath),
-      lastmod: route.pageData?.post?.updated_at || route.pageData?.post?.published_at || route.pageData?.project?.published_at || today,
+      lastmod: route.pageData?.post?.updated_at || route.pageData?.post?.published_at || today,
       changefreq:
         routePath === '/blog'
           ? 'daily'
@@ -64,17 +64,13 @@ const buildSitemap = async () => {
             ? 'monthly'
             : routePath.startsWith('/podcasts/')
               ? 'monthly'
-            : routePath.startsWith('/portfolio/')
-              ? 'monthly'
               : 'weekly',
       priority:
         routePath === '/blog'
           ? '1.0'
           : routePath === '/podcasts'
             ? '0.95'
-          : routePath === '/portfolio'
-            ? '0.9'
-            : routePath.startsWith('/blog/') || routePath.startsWith('/portfolio/') || routePath.startsWith('/podcasts/')
+            : routePath.startsWith('/blog/') || routePath.startsWith('/podcasts/')
               ? '0.8'
               : '0.7',
     })

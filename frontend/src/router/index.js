@@ -33,7 +33,7 @@ export const createAppRouter = (history = createWebHistory()) => {
       title: routeSEO.title || 'Quortol',
       description:
         routeSEO.description ||
-        'Quortol publishes essays, portfolio work, and data storytelling projects.',
+        'Quortol publishes essays, podcasts, short-form posts, and data storytelling projects.',
       robots: routeSEO.robots || 'index,follow',
       path: to.path,
       canonical: routeSEO.canonical,

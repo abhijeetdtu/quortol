@@ -2,85 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quortol.pokhi.in/quortol-home</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://quortol.pokhi.in/blog/sherlock-holmes-legacy</loc>
-    <lastmod>2026-07-10T01:39:43.960320</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/frozen-archives</loc>
-    <lastmod>2026-07-10T00:48:01.143332</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/emergent-value-paradox</loc>
-    <lastmod>2026-07-10T00:32:16.546234</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/once-safe-now-toxic</loc>
-    <lastmod>2026-07-02T15:07:30.741416</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/the-great-preservation</loc>
-    <lastmod>2026-06-28T15:20:20.054103</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/forty-nine-stones-wilde</loc>
-    <lastmod>2026-06-26T23:21:47.199574</lastmod>
+    <loc>https://quortol.pokhi.in/blog/nyc-contradiction-city</loc>
+    <lastmod>2026-06-27T17:30:01.132827</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog/video-games-as-therapy</loc>
-    <lastmod>2026-06-23T23:57:33.481366</lastmod>
+    <lastmod>2026-06-27T17:30:01.132827</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog/divinity-original-sin-2-blueprint</loc>
-    <lastmod>2026-06-23T21:11:48.897905</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/nyc-contradiction-city</loc>
-    <lastmod>2026-06-23T12:29:10.250540</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/blog/football-evolution-hydration-breaks</loc>
-    <lastmod>2026-06-23T02:04:49.659006</lastmod>
+    <lastmod>2026-06-27T17:30:01.126788</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog/dune-lawrence-dark-mirror</loc>
-    <lastmod>2026-06-19T15:49:52.037680</lastmod>
+    <lastmod>2026-06-27T17:30:01.126788</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/football-evolution-hydration-breaks</loc>
+    <lastmod>2026-06-27T17:30:01.126788</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog/slop-is-democratic</loc>
-    <lastmod>2026-06-17T00:11:28.366981</lastmod>
+    <lastmod>2026-06-19T15:46:53.512988</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -637,62 +601,50 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://quortol.pokhi.in/portfolio</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://quortol.pokhi.in/podcasts</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/the-podcast-in-your-ear</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://quortol.pokhi.in/podcasts/portland-coffee-capital-wilde</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/vermonter-downeaster-two-rails</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/podcasts/portland-coffee-capital-wilde</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/india-political-parties-evolution</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/nashua-mill-town-story</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://quortol.pokhi.in/explorer</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://quortol.pokhi.in/data-storytelling</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/data-storytelling/ball-by-ball-simulation</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

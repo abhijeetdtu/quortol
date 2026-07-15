@@ -44,14 +44,14 @@ describe('applySEOMetadata', () => {
     applySEOMetadata({
       title: 'With image',
       description: 'Description',
-      path: '/portfolio/example',
+      path: '/blog/example',
       ogImage: '/images/example.png',
     })
 
     applySEOMetadata({
       title: 'Without image',
       description: 'Description',
-      path: '/portfolio/example',
+      path: '/blog/example',
     })
 
     expect(document.head.querySelector('meta[property="og:image"]')).toBeNull()

@@ -77,6 +77,7 @@ import { blog } from '../../services/api'
 import BlogTTS from '../../components/blog/BlogTTS.vue'
 import { trackEvent } from '../../services/analytics'
 import { useTTSStore } from '../../stores/tts'
+import { extractHeroImage, extractPlainTextFromMarkdown, sanitizeBlogDisplayContent } from '../../utils/blogContent'
 import { applySEOMetadata } from '../../utils/seo'
 import { buildBlogPostingStructuredData, buildDescription } from '../../utils/seoContent'
 
@@ -119,92 +120,6 @@ markdownParser.renderer.rules.link_open = (tokens, idx, options, env, self) => {
   }
   return defaultLinkRenderer(tokens, idx, options, env, self)
 }
-
-const normalizeComparableText = (value = '') => {
-  return value
-    .toLowerCase()
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/['’"“”]/g, '')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim()
-}
-
-const stripDuplicateLeadHeading = (content, title) => {
-  const lines = content.split(/\r?\n/)
-  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim().length > 0)
-  if (firstNonEmptyLineIndex === -1) return content
-
-  const headingMatch = lines[firstNonEmptyLineIndex].match(/^#\s+(.+?)\s*$/)
-  if (!headingMatch) return content
-
-  const headingText = normalizeComparableText(headingMatch[1] || '')
-  const titleText = normalizeComparableText(title || '')
-  if (!headingText || !titleText || headingText !== titleText) return content
-
-  lines.splice(firstNonEmptyLineIndex, 1)
-  while (firstNonEmptyLineIndex < lines.length && lines[firstNonEmptyLineIndex].trim() === '') {
-    lines.splice(firstNonEmptyLineIndex, 1)
-  }
-
-  return lines.join('\n')
-}
-
-const escapeForRegex = (value = '') => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-
-const stripDuplicateHeroImage = (content, heroUrl) => {
-  if (!heroUrl) return content
-
-  const escapedUrl = escapeForRegex(heroUrl)
-  const markdownPattern = new RegExp(
-    `!\\[[^\\]]*\\]\\((?:\\s*<)?${escapedUrl}(?:>)?(?:\\s+["'][^"']*["'])?\\)`,
-    'i'
-  )
-  if (markdownPattern.test(content)) {
-    return content.replace(markdownPattern, '').replace(/\n{3,}/g, '\n\n')
-  }
-
-  const htmlPattern = new RegExp(`<img[^>]+src=["']${escapedUrl}["'][^>]*>`, 'i')
-  if (htmlPattern.test(content)) {
-    return content.replace(htmlPattern, '').replace(/\n{3,}/g, '\n\n')
-  }
-
-  return content
-}
-
-const unwrapInlineEmphasis = (line = '') => {
-  const trimmed = line.trim()
-  const match = trimmed.match(/^(\*{1,3}|_{1,3})(.+)\1$/)
-  if (!match) return trimmed
-  return (match[2] || '').trim()
-}
-
-const stripDuplicateLeadByline = (content) => {
-  const lines = content.split(/\r?\n/)
-  const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim().length > 0)
-  if (firstNonEmptyLineIndex === -1) return content
-
-  const candidate = unwrapInlineEmphasis(lines[firstNonEmptyLineIndex] || '')
-  if (!/^(by|byline:)\b/i.test(candidate)) return content
-
-  lines.splice(firstNonEmptyLineIndex, 1)
-  while (firstNonEmptyLineIndex < lines.length && lines[firstNonEmptyLineIndex].trim() === '') {
-    lines.splice(firstNonEmptyLineIndex, 1)
-  }
-
-  return lines.join('\n')
-}
-
-const extractTextFromMarkdown = (value = '') =>
-  value
-    .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/`[^`]*`/g, ' ')
-    .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
-    .replace(/\[[^\]]*]\([^)]+\)/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/[>*_~#-]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
 
 const applyPostSEO = (postData) => {
   if (!postData) return
@@ -365,9 +280,23 @@ const formatDate = (date) => {
 
 const sourceContent = computed(() => post.value?.content || '')
 
+const heroImageUrl = computed(() => {
+  return extractHeroImage({
+    content: sourceContent.value,
+    featuredImage: post.value?.featured_image || '',
+  })
+})
+
+const displayContent = computed(() => {
+  return sanitizeBlogDisplayContent({
+    content: sourceContent.value,
+    title: post.value?.title || '',
+    featuredImage: heroImageUrl.value,
+  })
+})
+
 const plainTextContent = computed(() => {
-  const content = displayContent.value
-  return extractTextFromMarkdown(content)
+  return extractPlainTextFromMarkdown(displayContent.value)
 })
 
 const wordCount = computed(() => {
@@ -384,27 +313,6 @@ const dek = computed(() => {
   if (excerpt) return excerpt
   if (!plainTextContent.value) return ''
   return `${plainTextContent.value.slice(0, 220).trim()}...`
-})
-
-const heroImageUrl = computed(() => {
-  if (post.value?.featured_image) return post.value.featured_image
-
-  const content = sourceContent.value
-  const markdownImageMatch = content.match(/!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/)
-  if (markdownImageMatch?.[1]) return markdownImageMatch[1]
-
-  const htmlImageMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i)
-  if (htmlImageMatch?.[1]) return htmlImageMatch[1]
-
-  return ''
-})
-
-const displayContent = computed(() => {
-  if (!sourceContent.value) return ''
-
-  const withoutDuplicateHeading = stripDuplicateLeadHeading(sourceContent.value, post.value?.title || '')
-  const withoutDuplicateByline = stripDuplicateLeadByline(withoutDuplicateHeading)
-  return stripDuplicateHeroImage(withoutDuplicateByline, heroImageUrl.value).trim()
 })
 
 const renderedContent = computed(() => {

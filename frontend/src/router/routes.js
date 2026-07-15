@@ -1,11 +1,8 @@
 import Home from '../views/Home.vue'
-import ExplorerLanding from '../views/explorer/ExplorerLanding.vue'
 import BlogList from '../views/blog/BlogList.vue'
 import BlogDetail from '../views/blog/BlogDetail.vue'
 import PodcastList from '../views/podcasts/PodcastList.vue'
 import PodcastDetail from '../views/podcasts/PodcastDetail.vue'
-import PortfolioList from '../views/portfolio/PortfolioList.vue'
-import PortfolioDetail from '../views/portfolio/PortfolioDetail.vue'
 import AgentLogin from '../views/agents/AgentLogin.vue'
 import AgentDashboard from '../views/agents/AgentDashboard.vue'
 import AgentCapabilities from '../views/agents/AgentCapabilities.vue'
@@ -18,13 +15,10 @@ import {
 } from '../utils/seoContent'
 
 const homeDescription =
-  'Discover Quortol projects across essays, portfolio work, and interactive data storytelling.'
+  'Discover Quortol essays, podcasts, short-form posts, and interactive data storytelling.'
 const blogDescription = 'Read Quortol essays on technology, work, policy, and social futures.'
-const portfolioDescription = 'Browse Quortol portfolio projects and technical case studies.'
 const podcastDescription =
   'Listen to Quortol podcast episodes adapted from essays and original conversations.'
-const explorerDescription =
-  'Explore live Wikipedia research cards and article summaries in Quortol Explorer.'
 const dataStorytellingDescription =
   'Interactive data storytelling dashboards and visual deep dives.'
 
@@ -36,26 +30,6 @@ export const routes = [
   {
     path: '/blogs',
     redirect: '/blog',
-  },
-  {
-    path: '/explorer',
-    name: 'explorer-landing',
-    component: ExplorerLanding,
-    meta: {
-      requiresAuth: false,
-      seo: buildStaticPageSEOPayload({
-        title: 'Explorer | Quortol',
-        description: explorerDescription,
-        path: '/explorer',
-        structuredData: [
-          buildWebPageStructuredData({
-            title: 'Explorer | Quortol',
-            description: explorerDescription,
-            path: '/explorer',
-          }),
-        ],
-      }),
-    },
   },
   {
     path: '/quortol-home',
@@ -142,39 +116,6 @@ export const routes = [
         description: 'Listen to a Quortol podcast episode.',
         path: '/podcasts',
         ogType: 'article',
-      }),
-    },
-  },
-  {
-    path: '/portfolio',
-    name: 'portfolio',
-    component: PortfolioList,
-    meta: {
-      requiresAuth: false,
-      seo: buildStaticPageSEOPayload({
-        title: 'Portfolio | Quortol',
-        description: portfolioDescription,
-        path: '/portfolio',
-        structuredData: [
-          buildCollectionPageStructuredData({
-            title: 'Portfolio | Quortol',
-            description: portfolioDescription,
-            path: '/portfolio',
-          }),
-        ],
-      }),
-    },
-  },
-  {
-    path: '/portfolio/:slug',
-    name: 'portfolio-detail',
-    component: PortfolioDetail,
-    meta: {
-      requiresAuth: false,
-      seo: buildStaticPageSEOPayload({
-        title: 'Portfolio Project | Quortol',
-        description: 'Project details from the Quortol portfolio.',
-        path: '/portfolio',
       }),
     },
   },
