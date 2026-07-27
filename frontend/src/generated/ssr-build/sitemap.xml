@@ -2,15 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quortol.pokhi.in/quortol-home</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/sherlock-holmes-legacy</loc>
+    <lastmod>2026-07-15T00:47:11.196069</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/the-great-preservation</loc>
+    <lastmod>2026-07-15T00:47:11.196069</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/the-handbook-that-predicted-the-brain</loc>
+    <lastmod>2026-07-15T00:47:11.196069</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/once-safe-now-toxic</loc>
+    <lastmod>2026-07-15T00:47:11.190068</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/frozen-archives</loc>
+    <lastmod>2026-07-15T00:47:11.180474</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/gandhi-chaplin-meeting</loc>
+    <lastmod>2026-07-15T00:47:11.180474</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/assault-on-reality</loc>
+    <lastmod>2026-07-15T00:47:11.178946</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/emergent-value-paradox</loc>
+    <lastmod>2026-07-15T00:47:11.178946</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quortol.pokhi.in/blog/forty-nine-stones-wilde</loc>
+    <lastmod>2026-07-15T00:47:11.178946</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/blog/nyc-contradiction-city</loc>
@@ -602,49 +656,49 @@
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/the-podcast-in-your-ear</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/vermonter-downeaster-two-rails</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/portland-coffee-capital-wilde</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/india-political-parties-evolution</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/podcasts/nashua-mill-town-story</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/data-storytelling</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quortol.pokhi.in/data-storytelling/ball-by-ball-simulation</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

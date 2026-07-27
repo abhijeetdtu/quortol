@@ -1,0 +1,43 @@
+{
+  "status": "generated",
+  "generated_at": "2026-07-16T12:22:42.253509+00:00",
+  "source": {
+    "slug": "once-safe-now-toxic",
+    "title": "The Magic Mineral and the Morning Sickness Pill",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\once-safe-now-toxic.md",
+    "published_at": "2026-07-15T00:47:11.190068",
+    "updated_at": "2026-07-15T00:47:11.190068",
+    "tags": []
+  },
+  "audiobook": {
+    "backend": "chatterbox",
+    "module": "scripts.chatterbox_tts_chunk",
+    "sample_rate": 24000,
+    "duration_seconds": 1660.72,
+    "chunk_count": 104,
+    "voice_reference": {
+      "path": "C:\\Users\\abhij\\Code\\bringalive\\app\\voices\\voice_Peter-Coyote.mp3",
+      "name": "voice_Peter-Coyote.mp3"
+    },
+    "synthesis_settings": {
+      "device": null,
+      "max_chars": 300,
+      "high_priority": false,
+      "autocast": false,
+      "exaggeration": 0.5,
+      "cfg_weight": 0.5,
+      "temperature": 0.8,
+      "top_p": 1.0,
+      "min_p": 0.05,
+      "repetition_penalty": 1.2,
+      "resume": false,
+      "keep_chunks": true
+    }
+  },
+  "files": {
+    "audio": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\once-safe-now-toxic\\audiobook.wav",
+    "spoken_text": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\once-safe-now-toxic\\spoken_text.txt",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\once-safe-now-toxic\\manifest.json",
+    "chunks_dir": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\once-safe-now-toxic\\chunks"
+  }
+}

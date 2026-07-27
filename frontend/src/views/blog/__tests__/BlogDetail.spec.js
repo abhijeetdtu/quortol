@@ -3,9 +3,15 @@ import { describe, expect, it, vi } from 'vitest'
 
 import BlogDetail from '../BlogDetail.vue'
 
-const applySEOMetadata = vi.fn()
-const buildBlogPostingStructuredData = vi.fn(() => ({}))
-const buildDescription = vi.fn(() => 'Description')
+const {
+  applySEOMetadata,
+  buildBlogPostingStructuredData,
+  buildDescription,
+} = vi.hoisted(() => ({
+  applySEOMetadata: vi.fn(),
+  buildBlogPostingStructuredData: vi.fn(() => ({})),
+  buildDescription: vi.fn(() => 'Description'),
+}))
 
 vi.mock('vue-router', () => ({
   useRoute: () => ({
@@ -84,6 +90,11 @@ describe('BlogDetail', () => {
           'router-link': true,
           BlogTTS: {
             template: '<div class="blog-tts-stub"></div>',
+            methods: { stop: vi.fn() },
+          },
+          BlogRSVP: {
+            template: '<div class="blog-rsvp-stub"></div>',
+            methods: { stop: vi.fn() },
           },
         },
       },
@@ -98,6 +109,10 @@ describe('BlogDetail', () => {
     expect(wrapper.find('.hero-image img').attributes('src')).toBe('/api/blog/images/new-england-homes_price_index.png')
     expect(wrapper.find('.content h2').text()).toBe('At the Place Where Home Became a Luxury')
     expect(wrapper.find('.content').html()).not.toContain('![')
-    expect(wrapper.find('.content').html()).toContain('<em>Between the first quarter of 2020 and the first quarter of 2026...</em>')
+    expect(wrapper.find('.content em').text()).toBe('Between the first quarter of 2020 and the first quarter of 2026…')
+    expect(wrapper.find('.blog-tts-stub').exists()).toBe(true)
+    expect(wrapper.find('.blog-rsvp-stub').exists()).toBe(true)
+    expect(wrapper.find('.blog-tts-stub').element.compareDocumentPosition(wrapper.find('.blog-rsvp-stub').element) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(wrapper.find('.blog-rsvp-stub').element.compareDocumentPosition(wrapper.find('.content').element) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 })

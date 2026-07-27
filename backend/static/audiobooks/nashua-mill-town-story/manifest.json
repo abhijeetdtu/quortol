@@ -1,0 +1,54 @@
+{
+  "status": "generated",
+  "generated_at": "2026-07-17T19:24:40.078954+00:00",
+  "source": {
+    "slug": "nashua-mill-town-story",
+    "title": "\"The Gate City: Nashua's Mill Town Era, 1823\u20131948\"",
+    "path": "C:\\Users\\abhij\\Code\\quortol\\backend\\blogs\\nashua-mill-town-story.md",
+    "published_at": "2026-05-08T00:00:00",
+    "updated_at": "2026-05-08T00:00:00",
+    "tags": [
+      "Nashua",
+      "NH",
+      "mill town",
+      "textile industry",
+      "industrial history",
+      "NH history",
+      "Nashua River",
+      "Nashua Manufacturing Company",
+      "Jackson Company",
+      "Textron Inc."
+    ]
+  },
+  "audiobook": {
+    "backend": "chatterbox",
+    "module": "scripts.chatterbox_tts_chunk",
+    "sample_rate": 24000,
+    "duration_seconds": 1299.24,
+    "chunk_count": 90,
+    "voice_reference": {
+      "path": "C:\\Users\\abhij\\Code\\bringalive\\app\\voices\\voice_jake_baldino.mp3",
+      "name": "voice_jake_baldino.mp3"
+    },
+    "synthesis_settings": {
+      "device": null,
+      "max_chars": 300,
+      "high_priority": false,
+      "autocast": false,
+      "exaggeration": 0.5,
+      "cfg_weight": 0.5,
+      "temperature": 0.8,
+      "top_p": 1.0,
+      "min_p": 0.05,
+      "repetition_penalty": 1.2,
+      "resume": false,
+      "keep_chunks": true
+    }
+  },
+  "files": {
+    "audio": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\nashua-mill-town-story\\audiobook.wav",
+    "spoken_text": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\nashua-mill-town-story\\spoken_text.txt",
+    "manifest": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\nashua-mill-town-story\\manifest.json",
+    "chunks_dir": "C:\\Users\\abhij\\Code\\quortol\\backend\\static\\audiobooks\\nashua-mill-town-story\\chunks"
+  }
+}

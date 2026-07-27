@@ -85,6 +85,9 @@ const podcast = {
   getEpisodes: () => api.get("/podcasts/"),
   getEpisode: (slug) => api.get(`/podcasts/${slug}`)
 };
+const dataStorytelling = {
+  getDashboards: () => api.get("/data-storytelling/dashboards")
+};
 const agents = {
   getAgents: () => api.get("/agents/"),
   getAgent: (id) => api.get(`/agents/${id}`),
@@ -98,7 +101,7 @@ const auth = {
   logout: () => api.post("/auth/logout"),
   getCurrentUser: () => api.get("/auth/me")
 };
-const Navbar_vue_vue_type_style_index_0_scoped_303715ad_lang = "";
+const Navbar_vue_vue_type_style_index_0_scoped_30dc02b2_lang = "";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -106,7 +109,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$g = {
+const _sfc_main$h = {
   __name: "Navbar",
   __ssrInlineRender: true,
   setup(__props) {
@@ -114,7 +117,7 @@ const _sfc_main$g = {
     return (_ctx, _push, _parent, _attrs) => {
       var _a;
       const _component_router_link = resolveComponent("router-link");
-      _push(`<nav${ssrRenderAttrs(mergeProps({ class: "navbar navbar-expand-lg sticky-top app-navbar py-3" }, _attrs))} data-v-303715ad><div class="container-xl" data-v-303715ad>`);
+      _push(`<nav${ssrRenderAttrs(mergeProps({ class: "navbar navbar-expand-lg sticky-top app-navbar py-3" }, _attrs))} data-v-30dc02b2><div class="container-xl" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/quortol-home",
         class: "navbar-brand app-logo"
@@ -131,7 +134,7 @@ const _sfc_main$g = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#quortol-nav" aria-controls="quortol-nav" aria-expanded="false" aria-label="Toggle navigation" data-v-303715ad><span class="navbar-toggler-icon" data-v-303715ad></span></button><div id="quortol-nav" class="collapse navbar-collapse" data-v-303715ad><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" data-v-303715ad><li class="nav-item" data-v-303715ad>`);
+      _push(`<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#quortol-nav" aria-controls="quortol-nav" aria-expanded="false" aria-label="Toggle navigation" data-v-30dc02b2><span class="navbar-toggler-icon" data-v-30dc02b2></span></button><div id="quortol-nav" class="collapse navbar-collapse" data-v-30dc02b2><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" data-v-30dc02b2><li class="nav-item" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/quortol-home",
         class: "nav-link"
@@ -148,7 +151,7 @@ const _sfc_main$g = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-303715ad>`);
+      _push(`</li><li class="nav-item" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "nav-link"
@@ -165,7 +168,7 @@ const _sfc_main$g = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-303715ad>`);
+      _push(`</li><li class="nav-item" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/shorts",
         class: "nav-link"
@@ -182,7 +185,7 @@ const _sfc_main$g = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-303715ad>`);
+      _push(`</li><li class="nav-item" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/podcasts",
         class: "nav-link"
@@ -199,7 +202,7 @@ const _sfc_main$g = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-303715ad>`);
+      _push(`</li><li class="nav-item" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/data-storytelling",
         class: "nav-link"
@@ -216,24 +219,7 @@ const _sfc_main$g = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-303715ad>`);
-      _push(ssrRenderComponent(_component_router_link, {
-        to: "/data-storytelling/ball-by-ball-simulation",
-        class: "nav-link"
-      }, {
-        default: withCtx((_, _push2, _parent2, _scopeId) => {
-          if (_push2) {
-            _push2(`Simulation`);
-          } else {
-            return [
-              createTextVNode("Simulation")
-            ];
-          }
-        }),
-        _: 1
-        /* STABLE */
-      }, _parent));
-      _push(`</li><li class="nav-item" data-v-303715ad>`);
+      _push(`</li><li class="nav-item" data-v-30dc02b2>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/agent/dashboard",
         class: "nav-link"
@@ -252,13 +238,13 @@ const _sfc_main$g = {
       }, _parent));
       _push(`</li>`);
       if (unref(authStore).isAuthenticated) {
-        _push(`<li class="nav-item text-muted small px-lg-2 py-2 py-lg-0" data-v-303715ad>${ssrInterpolate((_a = unref(authStore).user) == null ? void 0 : _a.username)}</li>`);
+        _push(`<li class="nav-item text-muted small px-lg-2 py-2 py-lg-0" data-v-30dc02b2>${ssrInterpolate((_a = unref(authStore).user) == null ? void 0 : _a.username)}</li>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<li class="nav-item" data-v-303715ad>`);
+      _push(`<li class="nav-item" data-v-30dc02b2>`);
       if (unref(authStore).isAuthenticated) {
-        _push(`<button class="btn btn-sm app-btn" data-v-303715ad>Logout</button>`);
+        _push(`<button class="btn btn-sm app-btn" data-v-30dc02b2>Logout</button>`);
       } else {
         _push(ssrRenderComponent(_component_router_link, {
           to: "/agent/login",
@@ -281,27 +267,27 @@ const _sfc_main$g = {
     };
   }
 };
-const _sfc_setup$g = _sfc_main$g.setup;
-_sfc_main$g.setup = (props, ctx) => {
+const _sfc_setup$h = _sfc_main$h.setup;
+_sfc_main$h.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/Navbar.vue");
-  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
+  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
 };
-const Navbar = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-303715ad"]]);
+const Navbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-30dc02b2"]]);
 const Footer_vue_vue_type_style_index_0_scoped_8a6bde83_lang = "";
-const _sfc_main$f = {};
+const _sfc_main$g = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
   _push(`<footer${ssrRenderAttrs(mergeProps({ class: "app-footer py-3 mt-auto" }, _attrs))} data-v-8a6bde83><div class="container-xl text-center small" data-v-8a6bde83><p class="mb-0" data-v-8a6bde83>© 2026 Quortol. All rights reserved.</p></div></footer>`);
 }
-const _sfc_setup$f = _sfc_main$f.setup;
-_sfc_main$f.setup = (props, ctx) => {
+const _sfc_setup$g = _sfc_main$g.setup;
+_sfc_main$g.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/Footer.vue");
-  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
 };
-const Footer = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-8a6bde83"]]);
+const Footer = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-8a6bde83"]]);
 const App_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$e = {
+const _sfc_main$f = {
   __name: "App",
   __ssrInlineRender: true,
   setup(__props) {
@@ -334,11 +320,11 @@ const _sfc_main$e = {
     };
   }
 };
-const _sfc_setup$e = _sfc_main$e.setup;
-_sfc_main$e.setup = (props, ctx) => {
+const _sfc_setup$f = _sfc_main$f.setup;
+_sfc_main$f.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/App.vue");
-  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
+  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
 const PRERENDER_CONTEXT_KEY = Symbol("quortol-prerender-context");
 const readClientPrerenderPayload = () => {
@@ -613,8 +599,8 @@ const applySEOMetadata = ({
   upsertMetaTag({ name: "twitter:image", content: imageUrl });
   upsertStructuredData(structuredData);
 };
-const Home_vue_vue_type_style_index_0_scoped_38a75fcb_lang = "";
-const _sfc_main$d = {
+const Home_vue_vue_type_style_index_0_scoped_cb0e5bea_lang = "";
+const _sfc_main$e = {
   __name: "Home",
   __ssrInlineRender: true,
   setup(__props) {
@@ -635,7 +621,7 @@ const _sfc_main$d = {
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "home-page container-xl py-5" }, _attrs))} data-v-38a75fcb><section class="hero mb-5" data-v-38a75fcb><p class="kicker mb-2" data-v-38a75fcb>Curated</p><h1 class="display-5 mb-3" data-v-38a75fcb>Come satisfy your curiosity</h1><p class="intro mb-4" data-v-38a75fcb> Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI. </p><div class="d-flex flex-wrap gap-2" data-v-38a75fcb>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "home-page container-xl py-5" }, _attrs))} data-v-cb0e5bea><section class="hero mb-5" data-v-cb0e5bea><p class="kicker mb-2" data-v-cb0e5bea>Curated</p><h1 class="display-5 mb-3" data-v-cb0e5bea>Come satisfy your curiosity</h1><p class="intro mb-4" data-v-cb0e5bea> Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI. </p><div class="d-flex flex-wrap gap-2" data-v-cb0e5bea>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "btn btn-sm app-btn-soft"
@@ -719,13 +705,13 @@ const _sfc_main$d = {
           /* STABLE */
         }, _parent));
       }
-      _push(`</div></section><section class="mb-5" data-v-38a75fcb><h2 class="mb-3" data-v-38a75fcb>Latest Essays</h2>`);
+      _push(`</div></section><section class="mb-5" data-v-cb0e5bea><h2 class="mb-3" data-v-cb0e5bea>Latest Essays</h2>`);
       if (posts.value.length === 0) {
-        _push(`<div class="text-muted" data-v-38a75fcb>Loading...</div>`);
+        _push(`<div class="text-muted" data-v-cb0e5bea>Loading...</div>`);
       } else {
-        _push(`<div class="row g-3" data-v-38a75fcb><!--[-->`);
+        _push(`<div class="row g-3" data-v-cb0e5bea><!--[-->`);
         ssrRenderList(posts.value.slice(0, 3), (post) => {
-          _push(`<div class="col-12 col-md-6 col-xl-4" data-v-38a75fcb><article class="card h-100 app-card" data-v-38a75fcb><div class="card-body" data-v-38a75fcb><h3 class="h4 card-title" data-v-38a75fcb>${ssrInterpolate(post.title)}</h3><p class="card-text text-secondary" data-v-38a75fcb>${ssrInterpolate(post.excerpt)}</p>`);
+          _push(`<div class="col-12 col-md-6 col-xl-4" data-v-cb0e5bea><article class="card h-100 app-card" data-v-cb0e5bea><div class="card-body" data-v-cb0e5bea><h3 class="h4 card-title" data-v-cb0e5bea>${ssrInterpolate(post.title)}</h3><p class="card-text text-secondary" data-v-cb0e5bea>${ssrInterpolate(post.excerpt)}</p>`);
           _push(ssrRenderComponent(_component_router_link, {
             to: `/blog/${post.slug}`,
             class: "app-link"
@@ -750,15 +736,182 @@ const _sfc_main$d = {
     };
   }
 };
-const _sfc_setup$d = _sfc_main$d.setup;
-_sfc_main$d.setup = (props, ctx) => {
+const _sfc_setup$e = _sfc_main$e.setup;
+_sfc_main$e.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/Home.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-38a75fcb"]]);
-const BlogList_vue_vue_type_style_index_0_scoped_f22f0a9b_lang = "";
-const _sfc_main$c = {
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-cb0e5bea"]]);
+const MARKDOWN_IMAGE_PATTERN = /!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/;
+const HTML_IMAGE_PATTERN = /<img[^>]+src=["']([^"']+)["']/i;
+const IMAGE_LINE_PATTERN = /^\s*!\[[^\]]*]\([^)]+\)\s*$/;
+const HTML_IMAGE_LINE_PATTERN = /^\s*<img[^>]+>\s*$/i;
+const HEADING_LINE_PATTERN = /^\s{0,3}#{1,6}\s+/;
+const HORIZONTAL_RULE_PATTERN = /^\s{0,3}(?:-{3,}|\*{3,}|_{3,})\s*$/;
+const VISUAL_HEADING_PATTERN = /^\s{0,3}#{2,6}\s+visual(?:\s*:?\s*.*)?$/i;
+const ITALIC_CAPTION_PATTERN = /^\s*(\*|_).+\1\s*$/;
+const LEAD_METADATA_LABELS = ["slug", "author", "date", "published", "updated", "category", "tags", "series", "status"];
+const findFirstNonEmptyLineIndex = (lines, start = 0) => {
+  for (let index = start; index < lines.length; index += 1) {
+    if (lines[index].trim()) {
+      return index;
+    }
+  }
+  return -1;
+};
+const removeLineAndFollowingBlanks = (lines, index) => {
+  lines.splice(index, 1);
+  while (index < lines.length && lines[index].trim() === "") {
+    lines.splice(index, 1);
+  }
+};
+const normalizeComparableText = (value = "") => {
+  return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/['’"“”]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+};
+const escapeForRegex = (value = "") => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const unwrapInlineEmphasis = (line = "") => {
+  const trimmed = line.trim();
+  const match = trimmed.match(/^(\*{1,3}|_{1,3})(.+)\1$/);
+  if (!match)
+    return trimmed;
+  return (match[2] || "").trim();
+};
+const isLeadMetadataLine = (line = "") => {
+  const trimmed = line.trim();
+  const match = trimmed.match(/^\*\*([^*]{1,40}):\*\*\s*.+$/);
+  if (!match)
+    return false;
+  const label = normalizeComparableText(match[1] || "");
+  return LEAD_METADATA_LABELS.includes(label);
+};
+const isImageLine = (line = "") => IMAGE_LINE_PATTERN.test(line) || HTML_IMAGE_LINE_PATTERN.test(line);
+const isHeadingLine = (line = "") => HEADING_LINE_PATTERN.test(line);
+const isHorizontalRule = (line = "") => HORIZONTAL_RULE_PATTERN.test(line);
+const stripDuplicateLeadHeading = (lines, title) => {
+  const firstNonEmptyLineIndex = findFirstNonEmptyLineIndex(lines);
+  if (firstNonEmptyLineIndex === -1)
+    return;
+  const headingMatch = lines[firstNonEmptyLineIndex].match(/^#\s+(.+?)\s*$/);
+  if (!headingMatch)
+    return;
+  const headingText = normalizeComparableText(headingMatch[1] || "");
+  const titleText = normalizeComparableText(title || "");
+  if (!headingText || !titleText || headingText !== titleText)
+    return;
+  removeLineAndFollowingBlanks(lines, firstNonEmptyLineIndex);
+};
+const stripLeadMetadataLines = (lines) => {
+  let removedMetadata = false;
+  while (true) {
+    const firstNonEmptyLineIndex = findFirstNonEmptyLineIndex(lines);
+    if (firstNonEmptyLineIndex === -1) {
+      return removedMetadata;
+    }
+    if (!isLeadMetadataLine(lines[firstNonEmptyLineIndex])) {
+      return removedMetadata;
+    }
+    removedMetadata = true;
+    removeLineAndFollowingBlanks(lines, firstNonEmptyLineIndex);
+  }
+};
+const stripLeadingRuleAfterMetadata = (lines, removedMetadata) => {
+  if (!removedMetadata)
+    return;
+  while (true) {
+    const firstNonEmptyLineIndex = findFirstNonEmptyLineIndex(lines);
+    if (firstNonEmptyLineIndex === -1)
+      return;
+    if (!isHorizontalRule(lines[firstNonEmptyLineIndex]))
+      return;
+    removeLineAndFollowingBlanks(lines, firstNonEmptyLineIndex);
+  }
+};
+const stripDuplicateLeadByline = (lines) => {
+  const firstNonEmptyLineIndex = findFirstNonEmptyLineIndex(lines);
+  if (firstNonEmptyLineIndex === -1)
+    return;
+  const candidate = unwrapInlineEmphasis(lines[firstNonEmptyLineIndex] || "");
+  if (!/^(by|byline:)\b/i.test(candidate))
+    return;
+  removeLineAndFollowingBlanks(lines, firstNonEmptyLineIndex);
+};
+const isRedundantVisualHeadingBlock = (lines, headingIndex) => {
+  let cursor = findFirstNonEmptyLineIndex(lines, headingIndex + 1);
+  if (cursor === -1 || !isImageLine(lines[cursor])) {
+    return false;
+  }
+  cursor = findFirstNonEmptyLineIndex(lines, cursor + 1);
+  while (cursor !== -1 && ITALIC_CAPTION_PATTERN.test(lines[cursor].trim())) {
+    cursor = findFirstNonEmptyLineIndex(lines, cursor + 1);
+  }
+  if (cursor === -1) {
+    return true;
+  }
+  return isHorizontalRule(lines[cursor]) || isHeadingLine(lines[cursor]);
+};
+const stripRedundantVisualHeadings = (lines) => {
+  for (let index = 0; index < lines.length; index += 1) {
+    if (!VISUAL_HEADING_PATTERN.test(lines[index]))
+      continue;
+    if (!isRedundantVisualHeadingBlock(lines, index))
+      continue;
+    lines.splice(index, 1);
+    if (index < lines.length && lines[index].trim() === "") {
+      lines.splice(index, 1);
+    }
+    index -= 1;
+  }
+};
+const stripDuplicateHeroImage = (content, heroUrl) => {
+  if (!heroUrl)
+    return content;
+  const escapedUrl = escapeForRegex(heroUrl);
+  const markdownPattern = new RegExp(
+    `!\\[[^\\]]*\\]\\((?:\\s*<)?${escapedUrl}(?:>)?(?:\\s+["'][^"']*["'])?\\)`,
+    "i"
+  );
+  if (markdownPattern.test(content)) {
+    return content.replace(markdownPattern, "").replace(/\n{3,}/g, "\n\n");
+  }
+  const htmlPattern = new RegExp(`<img[^>]+src=["']${escapedUrl}["'][^>]*>`, "i");
+  if (htmlPattern.test(content)) {
+    return content.replace(htmlPattern, "").replace(/\n{3,}/g, "\n\n");
+  }
+  return content;
+};
+const normalizeMarkdownSpacing = (content = "") => {
+  return content.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+};
+const extractHeroImage = ({ content = "", featuredImage = "" } = {}) => {
+  if (featuredImage)
+    return featuredImage;
+  const markdownImageMatch = content.match(MARKDOWN_IMAGE_PATTERN);
+  if (markdownImageMatch == null ? void 0 : markdownImageMatch[1])
+    return markdownImageMatch[1];
+  const htmlImageMatch = content.match(HTML_IMAGE_PATTERN);
+  if (htmlImageMatch == null ? void 0 : htmlImageMatch[1])
+    return htmlImageMatch[1];
+  return "";
+};
+const extractPlainTextFromMarkdown = (value = "") => {
+  return value.replace(/```[\s\S]*?```/g, " ").replace(/`[^`]*`/g, " ").replace(/!\[[^\]]*]\([^)]+\)/g, " ").replace(/\[[^\]]*]\([^)]+\)/g, " ").replace(/<[^>]+>/g, " ").replace(/[>*_~#-]/g, " ").replace(/\s+/g, " ").trim();
+};
+const sanitizeBlogDisplayContent = ({ content = "", title = "", featuredImage = "" } = {}) => {
+  if (!content)
+    return "";
+  const lines = content.replace(/\r\n/g, "\n").split("\n");
+  stripDuplicateLeadHeading(lines, title);
+  const removedMetadata = stripLeadMetadataLines(lines);
+  stripLeadingRuleAfterMetadata(lines, removedMetadata);
+  stripDuplicateLeadByline(lines);
+  stripRedundantVisualHeadings(lines);
+  const heroImage = extractHeroImage({ content, featuredImage });
+  const cleanedContent = stripDuplicateHeroImage(lines.join("\n"), heroImage);
+  return normalizeMarkdownSpacing(cleanedContent);
+};
+const BlogList_vue_vue_type_style_index_0_scoped_57fed79a_lang = "";
+const _sfc_main$d = {
   __name: "BlogList",
   __ssrInlineRender: true,
   setup(__props) {
@@ -776,25 +929,19 @@ const _sfc_main$c = {
         day: "numeric"
       });
     };
-    const extractImageFromContent = (content) => {
-      if (!content)
-        return "";
-      const markdownImageMatch = content.match(/!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/);
-      if (markdownImageMatch == null ? void 0 : markdownImageMatch[1])
-        return markdownImageMatch[1];
-      const htmlImageMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
-      if (htmlImageMatch == null ? void 0 : htmlImageMatch[1])
-        return htmlImageMatch[1];
-      return "";
-    };
     const countWords = (text) => {
-      if (!text)
+      const plainText = extractPlainTextFromMarkdown(text);
+      if (!plainText)
         return 0;
-      return text.replace(/```[\s\S]*?```/g, " ").replace(/`[^`]*`/g, " ").replace(/!\[[^\]]*]\([^)]+\)/g, " ").replace(/\[[^\]]*]\([^)]+\)/g, " ").replace(/<[^>]+>/g, " ").replace(/[>*_~#-]/g, " ").replace(/\s+/g, " ").trim().split(/\s+/).filter(Boolean).length;
+      return plainText.split(/\s+/).filter(Boolean).length;
     };
     const readTime = (post) => {
       const detail = detailsBySlug.value[post.slug];
-      const baseText = (detail == null ? void 0 : detail.content) || post.excerpt || "";
+      const baseText = detail ? sanitizeBlogDisplayContent({
+        content: detail.content || "",
+        title: detail.title || post.title || "",
+        featuredImage: detail.featured_image || (post == null ? void 0 : post.featured_image) || ""
+      }) : post.excerpt || "";
       const words = countWords(baseText);
       return Math.max(1, Math.round(words / 220));
     };
@@ -805,11 +952,10 @@ const _sfc_main$c = {
     };
     const storyImage = (post) => {
       const detail = detailsBySlug.value[post.slug];
-      if (detail == null ? void 0 : detail.featured_image)
-        return detail.featured_image;
-      if (post == null ? void 0 : post.featured_image)
-        return post.featured_image;
-      return extractImageFromContent((detail == null ? void 0 : detail.content) || "");
+      return extractHeroImage({
+        content: (detail == null ? void 0 : detail.content) || "",
+        featuredImage: (detail == null ? void 0 : detail.featured_image) || (post == null ? void 0 : post.featured_image) || ""
+      });
     };
     const featuredImage = computed(() => {
       if (!featuredPost.value)
@@ -844,19 +990,19 @@ const _sfc_main$c = {
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-index container-xl py-4 py-md-5" }, _attrs))} data-v-f22f0a9b><header class="masthead mb-4" data-v-f22f0a9b><p class="brand mb-2" data-v-f22f0a9b>Curated</p><h1 class="display-4 mb-2" data-v-f22f0a9b>Essays</h1><p class="deck mb-0" data-v-f22f0a9b>Longform writing on technology, work, and social futures.</p></header>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-index container-xl py-4 py-md-5" }, _attrs))} data-v-57fed79a><header class="masthead mb-4" data-v-57fed79a><p class="brand mb-2" data-v-57fed79a>Curated</p><h1 class="display-4 mb-2" data-v-57fed79a>Essays</h1><p class="deck mb-0" data-v-57fed79a>Longform writing on technology, work, and social futures.</p></header>`);
       if (loading.value) {
-        _push(`<div class="text-center text-muted py-4" data-v-f22f0a9b>Loading essays...</div>`);
+        _push(`<div class="text-center text-muted py-4" data-v-57fed79a>Loading essays...</div>`);
       } else if (posts.value.length === 0) {
-        _push(`<div class="text-center text-muted py-4" data-v-f22f0a9b>No blog posts yet.</div>`);
+        _push(`<div class="text-center text-muted py-4" data-v-57fed79a>No blog posts yet.</div>`);
       } else {
-        _push(`<div class="index-content" data-v-f22f0a9b><article class="featured row g-3 g-lg-4 pb-4 mb-4" data-v-f22f0a9b><div class="col-12 col-lg-7" data-v-f22f0a9b><div class="featured-media h-100" data-v-f22f0a9b>`);
+        _push(`<div class="index-content" data-v-57fed79a><article class="featured row g-3 g-lg-4 pb-4 mb-4" data-v-57fed79a><div class="col-12 col-lg-7" data-v-57fed79a><div class="featured-media h-100" data-v-57fed79a>`);
         if (featuredImage.value) {
-          _push(`<img${ssrRenderAttr("src", featuredImage.value)}${ssrRenderAttr("alt", featuredPost.value.title)} data-v-f22f0a9b>`);
+          _push(`<img${ssrRenderAttr("src", featuredImage.value)}${ssrRenderAttr("alt", featuredPost.value.title)} data-v-57fed79a>`);
         } else {
-          _push(`<div class="media-fallback" data-v-f22f0a9b></div>`);
+          _push(`<div class="media-fallback" data-v-57fed79a></div>`);
         }
-        _push(`</div></div><div class="col-12 col-lg-5" data-v-f22f0a9b><div class="featured-copy h-100 d-flex flex-column" data-v-f22f0a9b><p class="type mb-2" data-v-f22f0a9b>${ssrInterpolate(primaryTag(featuredPost.value))}</p><h2 class="mb-2" data-v-f22f0a9b>${ssrInterpolate(featuredPost.value.title)}</h2><p class="excerpt mb-2" data-v-f22f0a9b>${ssrInterpolate(featuredPost.value.excerpt)}</p><p class="meta mb-2" data-v-f22f0a9b>${ssrInterpolate(formatDate(featuredPost.value.published_at))} · ${ssrInterpolate(readTime(featuredPost.value))} min read</p>`);
+        _push(`</div></div><div class="col-12 col-lg-5" data-v-57fed79a><div class="featured-copy h-100 d-flex flex-column" data-v-57fed79a><p class="type mb-2" data-v-57fed79a>${ssrInterpolate(primaryTag(featuredPost.value))}</p><h2 class="mb-2" data-v-57fed79a>${ssrInterpolate(featuredPost.value.title)}</h2><p class="excerpt mb-2" data-v-57fed79a>${ssrInterpolate(featuredPost.value.excerpt)}</p><p class="meta mb-2" data-v-57fed79a>${ssrInterpolate(formatDate(featuredPost.value.published_at))} · ${ssrInterpolate(readTime(featuredPost.value))} min read</p>`);
         _push(ssrRenderComponent(_component_router_link, {
           to: `/blog/${featuredPost.value.slug}`,
           class: "read-link mt-auto"
@@ -873,15 +1019,15 @@ const _sfc_main$c = {
           _: 1
           /* STABLE */
         }, _parent));
-        _push(`</div></div></article><section class="latest" data-v-f22f0a9b><h3 class="mb-2" data-v-f22f0a9b>Latest</h3><!--[-->`);
+        _push(`</div></div></article><section class="latest" data-v-57fed79a><h3 class="mb-2" data-v-57fed79a>Latest</h3><!--[-->`);
         ssrRenderList(remainingPosts.value, (post) => {
-          _push(`<article class="story-row row g-3 py-3" data-v-f22f0a9b><div class="col-12 col-md-4 col-lg-3" data-v-f22f0a9b><div class="story-thumb" data-v-f22f0a9b>`);
+          _push(`<article class="story-row row g-3 py-3" data-v-57fed79a><div class="col-12 col-md-4 col-lg-3" data-v-57fed79a><div class="story-thumb" data-v-57fed79a>`);
           if (storyImage(post)) {
-            _push(`<img${ssrRenderAttr("src", storyImage(post))}${ssrRenderAttr("alt", post.title)} data-v-f22f0a9b>`);
+            _push(`<img${ssrRenderAttr("src", storyImage(post))}${ssrRenderAttr("alt", post.title)} data-v-57fed79a>`);
           } else {
-            _push(`<div class="media-fallback" data-v-f22f0a9b></div>`);
+            _push(`<div class="media-fallback" data-v-57fed79a></div>`);
           }
-          _push(`</div></div><div class="col-12 col-md-8 col-lg-9" data-v-f22f0a9b><div class="story-copy" data-v-f22f0a9b><p class="type mb-1" data-v-f22f0a9b>${ssrInterpolate(primaryTag(post))}</p><h4 class="mb-2" data-v-f22f0a9b>${ssrInterpolate(post.title)}</h4><p class="excerpt mb-2" data-v-f22f0a9b>${ssrInterpolate(post.excerpt)}</p><p class="meta mb-2" data-v-f22f0a9b>${ssrInterpolate(formatDate(post.published_at))} · ${ssrInterpolate(readTime(post))} min read</p>`);
+          _push(`</div></div><div class="col-12 col-md-8 col-lg-9" data-v-57fed79a><div class="story-copy" data-v-57fed79a><p class="type mb-1" data-v-57fed79a>${ssrInterpolate(primaryTag(post))}</p><h4 class="mb-2" data-v-57fed79a>${ssrInterpolate(post.title)}</h4><p class="excerpt mb-2" data-v-57fed79a>${ssrInterpolate(post.excerpt)}</p><p class="meta mb-2" data-v-57fed79a>${ssrInterpolate(formatDate(post.published_at))} · ${ssrInterpolate(readTime(post))} min read</p>`);
           _push(ssrRenderComponent(_component_router_link, {
             to: `/blog/${post.slug}`,
             class: "read-link"
@@ -906,13 +1052,13 @@ const _sfc_main$c = {
     };
   }
 };
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$d = _sfc_main$d.setup;
+_sfc_main$d.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/blog/BlogList.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const BlogList = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-f22f0a9b"]]);
+const BlogList = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-57fed79a"]]);
 const github = "";
 const DEFAULT_VOICE_ID = "default";
 let synth = null;
@@ -1126,8 +1272,8 @@ const useTTSStore = defineStore("tts", {
     paths: ["selectedVoice", "playbackSpeed"]
   }
 });
-const BlogTTS_vue_vue_type_style_index_0_scoped_26ef2d13_lang = "";
-const _sfc_main$b = {
+const BlogTTS_vue_vue_type_style_index_0_scoped_b2b30eee_lang = "";
+const _sfc_main$c = {
   __name: "BlogTTS",
   __ssrInlineRender: true,
   props: {
@@ -1135,22 +1281,34 @@ const _sfc_main$b = {
       type: String,
       required: true
     },
+    audioUrl: {
+      type: String,
+      default: null
+    },
     isInitialized: {
       type: Boolean,
       default: false
     }
   },
-  setup(__props) {
+  emits: ["playback-start", "playback-state"],
+  setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
+    const emit = __emit;
     const store = useTTSStore();
     const isReady = ref(false);
     const hasError = ref(false);
     const selectedVoice = ref("default");
     const playbackSpeed = ref(1);
     const isSynthesizing = ref(false);
+    const recordedAudio = ref(null);
+    const recordedIsPlaying = ref(false);
+    const recordedCurrentTime = ref(0);
+    const recordedDuration = ref(0);
+    const recordedError = ref(false);
     let progressFrameId = null;
     const availableVoices = computed(() => store.getVoices());
-    const isPlaying2 = computed(() => store.isPlaying);
+    const hasRecordedAudio = computed(() => Boolean(props.audioUrl));
+    const isPlaying2 = computed(() => hasRecordedAudio.value ? recordedIsPlaying.value : store.isPlaying);
     const formattedProgress = computed(() => {
       if (!store.audioDuration || store.playbackProgress <= 0)
         return "";
@@ -1169,7 +1327,35 @@ const _sfc_main$b = {
       const seconds = Math.floor(store.audioDuration % 60);
       return `Duration: ${minutes}m ${seconds}s`;
     });
-    const playbackProgress = computed(() => store.playbackProgress);
+    const playbackProgress = computed(() => {
+      if (hasRecordedAudio.value) {
+        return recordedDuration.value > 0 ? recordedCurrentTime.value / recordedDuration.value * 100 : 0;
+      }
+      return store.playbackProgress;
+    });
+    const formatAudioTime = (seconds) => {
+      if (!Number.isFinite(seconds))
+        return "0:00";
+      const minutes = Math.floor(seconds / 60);
+      const remainder = Math.floor(seconds % 60);
+      return `${minutes}:${remainder.toString().padStart(2, "0")}`;
+    };
+    const recordedTimeDisplay = computed(() => {
+      if (!recordedDuration.value)
+        return "";
+      return `${formatAudioTime(recordedCurrentTime.value)} / ${formatAudioTime(recordedDuration.value)}`;
+    });
+    const stopRecordedAudio = (resetProgress = false) => {
+      const audio = recordedAudio.value;
+      if (audio) {
+        audio.pause();
+        if (resetProgress)
+          audio.currentTime = 0;
+      }
+      recordedIsPlaying.value = false;
+      if (resetProgress)
+        recordedCurrentTime.value = 0;
+    };
     const stopProgressPolling = () => {
       if (progressFrameId !== null) {
         cancelAnimationFrame(progressFrameId);
@@ -1206,6 +1392,11 @@ const _sfc_main$b = {
       stopPlaybackSession();
       store.cleanup();
     };
+    const cleanupPlayback = () => {
+      stopRecordedAudio();
+      if (!hasRecordedAudio.value)
+        cleanupTTS();
+    };
     onMounted(async () => {
       const savedVoice = typeof window !== "undefined" ? localStorage.getItem("tts_voice") : null;
       const savedSpeed = typeof window !== "undefined" ? localStorage.getItem("tts_speed") : null;
@@ -1221,50 +1412,96 @@ const _sfc_main$b = {
       }
     });
     onUnmounted(() => {
-      cleanupTTS();
+      cleanupPlayback();
     });
     watch(() => props.content, () => {
-      stopPlaybackSession();
+      if (hasRecordedAudio.value)
+        stopRecordedAudio(true);
+      else
+        stopPlaybackSession();
       store.setAudioDuration(null);
     });
+    watch(() => props.audioUrl, () => {
+      stopRecordedAudio(true);
+      stopPlaybackSession(true);
+      recordedDuration.value = 0;
+      recordedError.value = false;
+    });
+    watch(isPlaying2, (playing) => {
+      emit("playback-state", playing);
+    });
+    const stop = () => {
+      stopRecordedAudio();
+      stopPlaybackSession();
+      isSynthesizing.value = false;
+    };
+    __expose({ stop });
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({
-        class: ["blog-tts-controls", { "loading": unref(store).isLoading }]
-      }, _attrs))} data-v-26ef2d13><div class="controls-header" data-v-26ef2d13><button class="play-button"${ssrRenderAttr("aria-label", isPlaying2.value ? "Stop reading" : "Start reading")}${ssrIncludeBooleanAttr(!isReady.value) ? " disabled" : ""} data-v-26ef2d13>`);
-      if (!isPlaying2.value) {
-        _push(`<span data-v-26ef2d13><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" data-v-26ef2d13><path d="M8 5v14l11-7z" data-v-26ef2d13></path></svg></span>`);
+        class: ["blog-tts-controls", { "loading": !hasRecordedAudio.value && unref(store).isLoading }]
+      }, _attrs))} data-v-b2b30eee>`);
+      if (hasRecordedAudio.value) {
+        _push(`<audio${ssrRenderAttr("src", __props.audioUrl)} preload="metadata" data-v-b2b30eee></audio>`);
       } else {
-        _push(`<span data-v-26ef2d13><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" data-v-26ef2d13><rect x="6" y="6" width="12" height="12" data-v-26ef2d13></rect></svg></span>`);
+        _push(`<!---->`);
       }
-      _push(`</button><div class="voice-select" data-v-26ef2d13><select${ssrIncludeBooleanAttr(!isReady.value || !unref(store).isInitialized || isSynthesizing.value) ? " disabled" : ""} aria-label="Select voice" data-v-26ef2d13><!--[-->`);
-      ssrRenderList(availableVoices.value, (voice) => {
-        _push(`<option${ssrRenderAttr("value", voice.id)} data-v-26ef2d13${ssrIncludeBooleanAttr(Array.isArray(selectedVoice.value) ? ssrLooseContain(selectedVoice.value, voice.id) : ssrLooseEqual(selectedVoice.value, voice.id)) ? " selected" : ""}>${ssrInterpolate(voice.name)}</option>`);
-      });
-      _push(`<!--]--></select></div><div class="speed-control" data-v-26ef2d13><label for="speed-slider" class="sr-only" data-v-26ef2d13>Playback speed</label><input type="range" id="speed-slider" min="0.5" max="2" step="0.1"${ssrRenderAttr("value", playbackSpeed.value)}${ssrIncludeBooleanAttr(!isReady.value || !unref(store).isInitialized || isSynthesizing.value) ? " disabled" : ""} aria-label="Adjust playback speed" data-v-26ef2d13><span class="speed-value" data-v-26ef2d13>${ssrInterpolate(playbackSpeed.value)}x</span></div></div><div class="status-bar" data-v-26ef2d13><div class="status-message" data-v-26ef2d13>`);
-      if (!unref(store).isInitialized) {
+      _push(`<div class="audio-mode-label" data-v-b2b30eee>${ssrInterpolate(hasRecordedAudio.value ? "Audiobook" : "Text-to-speech")}</div><div class="controls-header" data-v-b2b30eee><button class="play-button"${ssrRenderAttr("aria-label", isPlaying2.value ? "Pause audio" : "Play audio")}${ssrIncludeBooleanAttr(!isReady.value) ? " disabled" : ""} data-v-b2b30eee>`);
+      if (!isPlaying2.value) {
+        _push(`<span data-v-b2b30eee><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" data-v-b2b30eee><path d="M8 5v14l11-7z" data-v-b2b30eee></path></svg></span>`);
+      } else {
+        _push(`<span data-v-b2b30eee><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" data-v-b2b30eee><rect x="6" y="6" width="12" height="12" data-v-b2b30eee></rect></svg></span>`);
+      }
+      _push(`</button>`);
+      if (!hasRecordedAudio.value) {
+        _push(`<div class="voice-select" data-v-b2b30eee><select${ssrIncludeBooleanAttr(!isReady.value || !unref(store).isInitialized || isSynthesizing.value) ? " disabled" : ""} aria-label="Select voice" data-v-b2b30eee><!--[-->`);
+        ssrRenderList(availableVoices.value, (voice) => {
+          _push(`<option${ssrRenderAttr("value", voice.id)} data-v-b2b30eee${ssrIncludeBooleanAttr(Array.isArray(selectedVoice.value) ? ssrLooseContain(selectedVoice.value, voice.id) : ssrLooseEqual(selectedVoice.value, voice.id)) ? " selected" : ""}>${ssrInterpolate(voice.name)}</option>`);
+        });
+        _push(`<!--]--></select></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`<div class="speed-control" data-v-b2b30eee><label for="speed-slider" class="sr-only" data-v-b2b30eee>Playback speed</label><input type="range" id="speed-slider" min="0.5" max="2" step="0.1"${ssrRenderAttr("value", playbackSpeed.value)}${ssrIncludeBooleanAttr(!isReady.value || !hasRecordedAudio.value && (!unref(store).isInitialized || isSynthesizing.value)) ? " disabled" : ""} aria-label="Adjust playback speed" data-v-b2b30eee><span class="speed-value" data-v-b2b30eee>${ssrInterpolate(playbackSpeed.value)}x</span></div></div>`);
+      if (hasRecordedAudio.value) {
+        _push(`<input class="seek-control" type="range" min="0"${ssrRenderAttr("max", recordedDuration.value || 0)} step="0.1"${ssrRenderAttr("value", recordedCurrentTime.value)} aria-label="Seek audiobook" data-v-b2b30eee>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`<div class="status-bar" data-v-b2b30eee><div class="status-message" data-v-b2b30eee>`);
+      if (hasRecordedAudio.value) {
+        _push(`<!--[-->`);
+        if (recordedError.value) {
+          _push(`<span data-v-b2b30eee>Audiobook unavailable</span>`);
+        } else if (recordedIsPlaying.value) {
+          _push(`<span class="playing" data-v-b2b30eee>Playing... ${ssrInterpolate(recordedTimeDisplay.value)}</span>`);
+        } else {
+          _push(`<span data-v-b2b30eee>${ssrInterpolate(recordedTimeDisplay.value || "Loading audiobook...")}</span>`);
+        }
+        _push(`<!--]-->`);
+      } else if (!unref(store).isInitialized) {
         _push(`<!--[-->`);
         if (unref(store).isLoading) {
-          _push(`<span class="loading-indicator" data-v-26ef2d13> Loading TTS model... <span class="progress" data-v-26ef2d13>(${ssrInterpolate(unref(store).loadProgress)}%)</span></span>`);
+          _push(`<span class="loading-indicator" data-v-b2b30eee> Loading TTS model... <span class="progress" data-v-b2b30eee>(${ssrInterpolate(unref(store).loadProgress)}%)</span></span>`);
         } else if (!unref(store).isInitialized && hasError.value) {
-          _push(`<span data-v-26ef2d13> TTS unavailable </span>`);
+          _push(`<span data-v-b2b30eee> TTS unavailable </span>`);
         } else {
-          _push(`<span data-v-26ef2d13> Ready to read </span>`);
+          _push(`<span data-v-b2b30eee> Ready to read </span>`);
         }
         _push(`<!--]-->`);
       } else if (unref(store).isPlaying) {
-        _push(`<span class="playing" data-v-26ef2d13>Playing... ${ssrInterpolate(formattedProgress.value)}</span>`);
+        _push(`<span class="playing" data-v-b2b30eee>Playing... ${ssrInterpolate(formattedProgress.value)}</span>`);
       } else {
         _push(`<!--[-->`);
         if (unref(store).audioDuration) {
-          _push(`<span data-v-26ef2d13>${ssrInterpolate(durationDisplay.value)}</span>`);
+          _push(`<span data-v-b2b30eee>${ssrInterpolate(durationDisplay.value)}</span>`);
         } else {
-          _push(`<span data-v-26ef2d13>Click play to start</span>`);
+          _push(`<span data-v-b2b30eee>Click play to start</span>`);
         }
         _push(`<!--]-->`);
       }
       _push(`</div></div>`);
-      if (unref(store).isPlaying) {
-        _push(`<div class="progress-bar" data-v-26ef2d13><div class="progress-fill" style="${ssrRenderStyle({ width: `${playbackProgress.value}%` })}" data-v-26ef2d13></div></div>`);
+      if (isPlaying2.value) {
+        _push(`<div class="progress-bar" data-v-b2b30eee><div class="progress-fill" style="${ssrRenderStyle({ width: `${playbackProgress.value}%` })}" data-v-b2b30eee></div></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -1272,14 +1509,104 @@ const _sfc_main$b = {
     };
   }
 };
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogTTS.vue");
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+};
+const BlogTTS = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-b2b30eee"]]);
+const BlogRSVP_vue_vue_type_style_index_0_scoped_4bbd4478_lang = "";
+const STORAGE_KEY = "quortol-rsvp-wpm";
+const DEFAULT_WPM = 300;
+const MIN_WPM = 100;
+const MAX_WPM = 1e3;
+const WPM_STEP = 50;
+const _sfc_main$b = {
+  __name: "BlogRSVP",
+  __ssrInlineRender: true,
+  props: {
+    content: {
+      type: String,
+      required: true
+    }
+  },
+  emits: ["playback-start", "playback-state"],
+  setup(__props, { expose: __expose, emit: __emit }) {
+    const props = __props;
+    const emit = __emit;
+    const tokenize = (content) => (content || "").trim().split(/\s+/).filter(Boolean);
+    const words = computed(() => tokenize(props.content));
+    const wordIndex = ref(0);
+    const isPlaying2 = ref(false);
+    const hasFinished = ref(false);
+    const wpm = ref(DEFAULT_WPM);
+    const speeds = Array.from(
+      { length: (MAX_WPM - MIN_WPM) / WPM_STEP + 1 },
+      (_, index) => MIN_WPM + index * WPM_STEP
+    );
+    const lastIndex = computed(() => Math.max(0, words.value.length - 1));
+    const currentWord = computed(() => words.value[wordIndex.value] || "Ready");
+    const positionLabel = computed(() => words.value.length ? `Word ${wordIndex.value + 1} of ${words.value.length}` : "No words available");
+    const elapsedSeconds = computed(() => wordIndex.value * 60 / wpm.value);
+    const totalSeconds = computed(() => words.value.length * 60 / wpm.value);
+    const formatTime = (seconds) => {
+      const safeSeconds = Math.max(0, Math.round(seconds));
+      const minutes = Math.floor(safeSeconds / 60);
+      return `${minutes}:${String(safeSeconds % 60).padStart(2, "0")}`;
+    };
+    const elapsedDisplay = computed(() => formatTime(elapsedSeconds.value));
+    const totalDisplay = computed(() => formatTime(totalSeconds.value));
+    const setPlaying = (value) => {
+      if (isPlaying2.value === value)
+        return;
+      isPlaying2.value = value;
+      emit("playback-state", value);
+    };
+    const pause = () => {
+      setPlaying(false);
+    };
+    const restoreSpeed = () => {
+      if (typeof window === "undefined")
+        return;
+      try {
+        const saved = Number(window.localStorage.getItem(STORAGE_KEY));
+        if (saved >= MIN_WPM && saved <= MAX_WPM && saved % WPM_STEP === 0) {
+          wpm.value = saved;
+        }
+      } catch {
+        wpm.value = DEFAULT_WPM;
+      }
+    };
+    const stop = () => pause();
+    watch(() => props.content, () => {
+      pause();
+      wordIndex.value = 0;
+      hasFinished.value = false;
+    });
+    onMounted(restoreSpeed);
+    onUnmounted(pause);
+    __expose({ stop });
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<section${ssrRenderAttrs(mergeProps({
+        class: "blog-rsvp",
+        "aria-labelledby": "rsvp-heading"
+      }, _attrs))} data-v-4bbd4478><div class="rsvp-heading-row" data-v-4bbd4478><div data-v-4bbd4478><p class="rsvp-kicker" data-v-4bbd4478>Speed reader</p><h2 id="rsvp-heading" data-v-4bbd4478>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-4bbd4478>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-4bbd4478><span class="word" data-v-4bbd4478>${ssrInterpolate(currentWord.value)}</span></div><label class="sr-only" for="rsvp-position" data-v-4bbd4478>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-4bbd4478><div class="position-label" aria-hidden="true" data-v-4bbd4478>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-4bbd4478><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-4bbd4478>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-4bbd4478>Restart</button><label for="rsvp-speed" data-v-4bbd4478>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-4bbd4478><!--[-->`);
+      ssrRenderList(unref(speeds), (speed) => {
+        _push(`<option${ssrRenderAttr("value", speed)} data-v-4bbd4478>${ssrInterpolate(speed)} WPM</option>`);
+      });
+      _push(`<!--]--></select></div></section>`);
+    };
+  }
+};
 const _sfc_setup$b = _sfc_main$b.setup;
 _sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogTTS.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogRSVP.vue");
   return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const BlogTTS = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-26ef2d13"]]);
-const BlogDetail_vue_vue_type_style_index_0_scoped_47220a06_lang = "";
+const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-4bbd4478"]]);
+const BlogDetail_vue_vue_type_style_index_0_scoped_a6533fe0_lang = "";
 const _sfc_main$a = {
   __name: "BlogDetail",
   __ssrInlineRender: true,
@@ -1292,6 +1619,16 @@ const _sfc_main$a = {
     const store = useTTSStore();
     const contentRef = ref(null);
     const fullscreenImage = ref(null);
+    const ttsRef = ref(null);
+    const rsvpRef = ref(null);
+    const handleTTSStart = () => {
+      var _a2;
+      (_a2 = rsvpRef.value) == null ? void 0 : _a2.stop();
+    };
+    const handleRSVPStart = () => {
+      var _a2;
+      (_a2 = ttsRef.value) == null ? void 0 : _a2.stop();
+    };
     const slug = computed(() => route.params.slug);
     const markdownParser = new MarkdownIt({
       html: true,
@@ -1317,67 +1654,6 @@ const _sfc_main$a = {
       }
       return defaultLinkRenderer(tokens, idx, options, env, self);
     };
-    const normalizeComparableText = (value = "") => {
-      return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/['’"“”]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
-    };
-    const stripDuplicateLeadHeading = (content, title) => {
-      const lines = content.split(/\r?\n/);
-      const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim().length > 0);
-      if (firstNonEmptyLineIndex === -1)
-        return content;
-      const headingMatch = lines[firstNonEmptyLineIndex].match(/^#\s+(.+?)\s*$/);
-      if (!headingMatch)
-        return content;
-      const headingText = normalizeComparableText(headingMatch[1] || "");
-      const titleText = normalizeComparableText(title || "");
-      if (!headingText || !titleText || headingText !== titleText)
-        return content;
-      lines.splice(firstNonEmptyLineIndex, 1);
-      while (firstNonEmptyLineIndex < lines.length && lines[firstNonEmptyLineIndex].trim() === "") {
-        lines.splice(firstNonEmptyLineIndex, 1);
-      }
-      return lines.join("\n");
-    };
-    const escapeForRegex = (value = "") => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const stripDuplicateHeroImage = (content, heroUrl) => {
-      if (!heroUrl)
-        return content;
-      const escapedUrl = escapeForRegex(heroUrl);
-      const markdownPattern = new RegExp(
-        `!\\[[^\\]]*\\]\\((?:\\s*<)?${escapedUrl}(?:>)?(?:\\s+["'][^"']*["'])?\\)`,
-        "i"
-      );
-      if (markdownPattern.test(content)) {
-        return content.replace(markdownPattern, "").replace(/\n{3,}/g, "\n\n");
-      }
-      const htmlPattern = new RegExp(`<img[^>]+src=["']${escapedUrl}["'][^>]*>`, "i");
-      if (htmlPattern.test(content)) {
-        return content.replace(htmlPattern, "").replace(/\n{3,}/g, "\n\n");
-      }
-      return content;
-    };
-    const unwrapInlineEmphasis = (line = "") => {
-      const trimmed = line.trim();
-      const match = trimmed.match(/^(\*{1,3}|_{1,3})(.+)\1$/);
-      if (!match)
-        return trimmed;
-      return (match[2] || "").trim();
-    };
-    const stripDuplicateLeadByline = (content) => {
-      const lines = content.split(/\r?\n/);
-      const firstNonEmptyLineIndex = lines.findIndex((line) => line.trim().length > 0);
-      if (firstNonEmptyLineIndex === -1)
-        return content;
-      const candidate = unwrapInlineEmphasis(lines[firstNonEmptyLineIndex] || "");
-      if (!/^(by|byline:)\b/i.test(candidate))
-        return content;
-      lines.splice(firstNonEmptyLineIndex, 1);
-      while (firstNonEmptyLineIndex < lines.length && lines[firstNonEmptyLineIndex].trim() === "") {
-        lines.splice(firstNonEmptyLineIndex, 1);
-      }
-      return lines.join("\n");
-    };
-    const extractTextFromMarkdown = (value = "") => value.replace(/```[\s\S]*?```/g, " ").replace(/`[^`]*`/g, " ").replace(/!\[[^\]]*]\([^)]+\)/g, " ").replace(/\[[^\]]*]\([^)]+\)/g, " ").replace(/<[^>]+>/g, " ").replace(/[>*_~#-]/g, " ").replace(/\s+/g, " ").trim();
     const applyPostSEO = (postData) => {
       if (!postData)
         return;
@@ -1479,9 +1755,23 @@ const _sfc_main$a = {
       var _a2;
       return ((_a2 = post.value) == null ? void 0 : _a2.content) || "";
     });
+    const heroImageUrl = computed(() => {
+      var _a2;
+      return extractHeroImage({
+        content: sourceContent.value,
+        featuredImage: ((_a2 = post.value) == null ? void 0 : _a2.featured_image) || ""
+      });
+    });
+    const displayContent = computed(() => {
+      var _a2;
+      return sanitizeBlogDisplayContent({
+        content: sourceContent.value,
+        title: ((_a2 = post.value) == null ? void 0 : _a2.title) || "",
+        featuredImage: heroImageUrl.value
+      });
+    });
     const plainTextContent = computed(() => {
-      const content = displayContent.value;
-      return extractTextFromMarkdown(content);
+      return extractPlainTextFromMarkdown(displayContent.value);
     });
     const wordCount = computed(() => {
       if (!plainTextContent.value)
@@ -1500,27 +1790,6 @@ const _sfc_main$a = {
         return "";
       return `${plainTextContent.value.slice(0, 220).trim()}...`;
     });
-    const heroImageUrl = computed(() => {
-      var _a2;
-      if ((_a2 = post.value) == null ? void 0 : _a2.featured_image)
-        return post.value.featured_image;
-      const content = sourceContent.value;
-      const markdownImageMatch = content.match(/!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/);
-      if (markdownImageMatch == null ? void 0 : markdownImageMatch[1])
-        return markdownImageMatch[1];
-      const htmlImageMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
-      if (htmlImageMatch == null ? void 0 : htmlImageMatch[1])
-        return htmlImageMatch[1];
-      return "";
-    });
-    const displayContent = computed(() => {
-      var _a2;
-      if (!sourceContent.value)
-        return "";
-      const withoutDuplicateHeading = stripDuplicateLeadHeading(sourceContent.value, ((_a2 = post.value) == null ? void 0 : _a2.title) || "");
-      const withoutDuplicateByline = stripDuplicateLeadByline(withoutDuplicateHeading);
-      return stripDuplicateHeroImage(withoutDuplicateByline, heroImageUrl.value).trim();
-    });
     const renderedContent = computed(() => {
       if (!displayContent.value)
         return "";
@@ -1535,7 +1804,7 @@ const _sfc_main$a = {
     return (_ctx, _push, _parent, _attrs) => {
       var _a2, _b;
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-page" }, _attrs))} data-v-47220a06>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-page" }, _attrs))} data-v-a6533fe0>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "back-link"
@@ -1553,24 +1822,24 @@ const _sfc_main$a = {
         /* STABLE */
       }, _parent));
       if (loading.value) {
-        _push(`<div class="loading" data-v-47220a06>Loading post...</div>`);
+        _push(`<div class="loading" data-v-a6533fe0>Loading post...</div>`);
       } else if (post.value) {
-        _push(`<article class="essay" data-v-47220a06><header class="hero" data-v-47220a06>`);
+        _push(`<article class="essay" data-v-a6533fe0><header class="hero" data-v-a6533fe0>`);
         if (heroImageUrl.value) {
-          _push(`<figure class="hero-image" data-v-47220a06><img${ssrRenderAttr("src", heroImageUrl.value)}${ssrRenderAttr("alt", post.value.title)} class="clickable-image" tabindex="0" role="button" data-v-47220a06></figure>`);
+          _push(`<figure class="hero-image" data-v-a6533fe0><img${ssrRenderAttr("src", heroImageUrl.value)}${ssrRenderAttr("alt", post.value.title)} class="clickable-image" tabindex="0" role="button" data-v-a6533fe0></figure>`);
         } else {
-          _push(`<div class="hero-fallback" data-v-47220a06></div>`);
+          _push(`<div class="hero-fallback" data-v-a6533fe0></div>`);
         }
         if ((_a2 = post.value.tags) == null ? void 0 : _a2.length) {
-          _push(`<p class="kicker" data-v-47220a06>${ssrInterpolate(post.value.tags[0].name)}</p>`);
+          _push(`<p class="kicker" data-v-a6533fe0>${ssrInterpolate(post.value.tags[0].name)}</p>`);
         } else {
           _push(`<!---->`);
         }
-        _push(`<h1 class="title" data-v-47220a06>${ssrInterpolate(post.value.title)}</h1><p class="dek" data-v-47220a06>${ssrInterpolate(dek.value)}</p><div class="meta-row" data-v-47220a06><span data-v-47220a06>${ssrInterpolate(formatDate(post.value.published_at))}</span><span data-v-47220a06>${ssrInterpolate(readTime.value)} min read</span><span data-v-47220a06>${ssrInterpolate(wordCount.value.toLocaleString())} words</span></div>`);
+        _push(`<h1 class="title" data-v-a6533fe0>${ssrInterpolate(post.value.title)}</h1><p class="dek" data-v-a6533fe0>${ssrInterpolate(dek.value)}</p><div class="meta-row" data-v-a6533fe0><span data-v-a6533fe0>${ssrInterpolate(formatDate(post.value.published_at))}</span><span data-v-a6533fe0>${ssrInterpolate(readTime.value)} min read</span><span data-v-a6533fe0>${ssrInterpolate(wordCount.value.toLocaleString())} words</span></div>`);
         if ((_b = post.value.tags) == null ? void 0 : _b.length) {
-          _push(`<div class="tag-row" data-v-47220a06><!--[-->`);
+          _push(`<div class="tag-row" data-v-a6533fe0><!--[-->`);
           ssrRenderList(post.value.tags, (tag) => {
-            _push(`<span class="tag" data-v-47220a06>${ssrInterpolate(tag.name)}</span>`);
+            _push(`<span class="tag" data-v-a6533fe0>${ssrInterpolate(tag.name)}</span>`);
           });
           _push(`<!--]--></div>`);
         } else {
@@ -1579,18 +1848,32 @@ const _sfc_main$a = {
         _push(`</header>`);
         if (plainTextContent.value) {
           _push(ssrRenderComponent(BlogTTS, {
+            ref_key: "ttsRef",
+            ref: ttsRef,
             content: plainTextContent.value,
-            "is-initialized": unref(store).isInitialized
+            "audio-url": post.value.audio_url,
+            "is-initialized": unref(store).isInitialized,
+            onPlaybackStart: handleTTSStart
           }, null, _parent));
         } else {
           _push(`<!---->`);
         }
-        _push(`<section class="content" data-v-47220a06>${renderedContent.value ?? ""}</section></article>`);
+        if (plainTextContent.value) {
+          _push(ssrRenderComponent(BlogRSVP, {
+            ref_key: "rsvpRef",
+            ref: rsvpRef,
+            content: plainTextContent.value,
+            onPlaybackStart: handleRSVPStart
+          }, null, _parent));
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`<section class="content" data-v-a6533fe0>${renderedContent.value ?? ""}</section></article>`);
       } else {
-        _push(`<div class="not-found" data-v-47220a06>Post not found</div>`);
+        _push(`<div class="not-found" data-v-a6533fe0>Post not found</div>`);
       }
       if (fullscreenImage.value) {
-        _push(`<div class="image-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-v-47220a06><button class="lightbox-close" type="button" aria-label="Close image viewer" data-v-47220a06> Close </button><img${ssrRenderAttr("src", fullscreenImage.value.src)}${ssrRenderAttr("alt", fullscreenImage.value.alt)} class="lightbox-image" data-v-47220a06></div>`);
+        _push(`<div class="image-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-v-a6533fe0><button class="lightbox-close" type="button" aria-label="Close image viewer" data-v-a6533fe0> Close </button><img${ssrRenderAttr("src", fullscreenImage.value.src)}${ssrRenderAttr("alt", fullscreenImage.value.alt)} class="lightbox-image" data-v-a6533fe0></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -1604,7 +1887,7 @@ _sfc_main$a.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/blog/BlogDetail.vue");
   return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const BlogDetail = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-47220a06"]]);
+const BlogDetail = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-a6533fe0"]]);
 const PodcastList_vue_vue_type_style_index_0_scoped_356bc522_lang = "";
 const defaultImage = "/quortol-podcast-cover.svg";
 const _sfc_main$9 = {
@@ -2882,7 +3165,7 @@ const routes = [
   {
     path: "/data-storytelling",
     name: "data-storytelling",
-    component: () => import("./assets/DataStorytelling-3743c88a.js"),
+    component: () => import("./assets/DataStorytelling-7074c981.js"),
     meta: {
       requiresAuth: false,
       seo: buildStaticPageSEOPayload({
@@ -2902,7 +3185,7 @@ const routes = [
   {
     path: "/data-storytelling/:dashboard",
     name: "dashboard-view",
-    component: () => import("./assets/DataStorytelling-3743c88a.js"),
+    component: () => import("./assets/DataStorytellingDetail-b85c2dbf.js"),
     meta: {
       requiresAuth: false,
       seo: buildStaticPageSEOPayload({
@@ -2968,7 +3251,7 @@ const createAppRouter = (history = createWebHistory()) => {
 };
 const bootstrap_min = "";
 const createQuortolApp = ({ url = "/", ssr = false, prerenderPayload = null } = {}) => {
-  const app = createSSRApp(_sfc_main$e);
+  const app = createSSRApp(_sfc_main$f);
   const pinia = createPinia();
   const history = ssr ? createMemoryHistory() : createWebHistory();
   const router = createAppRouter(history);
@@ -2997,5 +3280,7 @@ const render = async (url, manifestEntry) => {
 };
 export {
   _export_sfc as _,
-  render
+  dataStorytelling as d,
+  render,
+  usePrerenderRouteData as u
 };

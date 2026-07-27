@@ -142,7 +142,9 @@ Quick usage:
 ```bash
 conda run --no-capture-output -n chatterbox-tts-blackwell python scripts/generate_blog_audiobooks.py --slug american-byways --voice "C:\Users\abhij\Code\bringalive\app\voices\voice_my.mp3" --keep-chunks
 
-python scripts/generate_blog_audiobooks.py --file backend/blogs/additive-arithmetic.md --voice C:\path\to\voice.wav
+conda run --no-capture-output -n chatterbox-tts-blackwell `
+python scripts/generate_blog_audiobooks.py --file "backend\blogs\nashua-mill-town-story.md" --voice "C:\Users\abhij\Code\bringalive\app\voices\voice_jake_baldino.mp3" --keep-chunks
+
 python scripts/generate_blog_audiobooks.py --all --voice C:\path\to\voice.wav --dry-run
 python scripts/generate_blog_audiobooks.py --all --voice C:\path\to\voice.wav --keep-chunks --resume
 ```

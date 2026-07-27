@@ -35,3 +35,28 @@ def test_load_blogs_sorts_by_published_at_desc(monkeypatch):
     blogs = export_public_content._load_blogs()
 
     assert [blog["slug"] for blog in blogs] == ["newer", "middle", "older"]
+
+
+def test_parse_markdown_file_includes_existing_audiobook(tmp_path, monkeypatch):
+    blog_path = tmp_path / "recorded-post.md"
+    blog_path.write_text("# Recorded Post\n\nContent.", encoding="utf-8")
+    audiobook = tmp_path / "audiobooks" / "recorded-post" / "audiobook.wav"
+    audiobook.parent.mkdir(parents=True)
+    audiobook.write_bytes(b"RIFF")
+    monkeypatch.setattr(export_public_content, "BLOGS_DIR", tmp_path)
+    monkeypatch.setattr(export_public_content, "AUDIOBOOKS_DIR", tmp_path / "audiobooks")
+
+    parsed = export_public_content._parse_markdown_file(blog_path)
+
+    assert parsed["audio_url"] == "/static/audiobooks/recorded-post/audiobook.wav"
+
+
+def test_parse_markdown_file_uses_null_audio_url_without_recording(tmp_path, monkeypatch):
+    blog_path = tmp_path / "text-only.md"
+    blog_path.write_text("# Text Only\n\nContent.", encoding="utf-8")
+    monkeypatch.setattr(export_public_content, "BLOGS_DIR", tmp_path)
+    monkeypatch.setattr(export_public_content, "AUDIOBOOKS_DIR", tmp_path / "audiobooks")
+
+    parsed = export_public_content._parse_markdown_file(blog_path)
+
+    assert parsed["audio_url"] is None

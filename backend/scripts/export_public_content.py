@@ -14,8 +14,29 @@ if str(PROJECT_ROOT) not in sys.path:
 from backend.features.podcast.config import get_podcast_config
 from backend.features.podcast.repository import load_podcast_episodes, serialize_podcast_for_export
 
+
+def _load_dashboards():
+    """Build the catalog from the same Dash registry used at runtime."""
+    try:
+        from dash import Dash, page_registry
+        from flask import Flask
+        from backend.dashboards import register_dashboards, serialize_dashboard_registry
+
+        server = Flask('quortol-public-content-export')
+        dash_app = Dash(
+            'quortol-public-content-export', server=server,
+            url_base_pathname='/data-storytelling-app/', use_pages=True,
+            pages_folder='', suppress_callback_exceptions=True,
+        )
+        register_dashboards(dash_app)
+        return serialize_dashboard_registry(page_registry)
+    except Exception as exc:
+        print(f'Warning: dashboard catalog export failed: {exc}', file=sys.stderr)
+        return []
+
 BLOGS_DIR = PROJECT_ROOT / "backend" / "blogs"
 SERIES_DIR = BLOGS_DIR / "series"
+AUDIOBOOKS_DIR = PROJECT_ROOT / "backend" / "static" / "audiobooks"
 DB_CANDIDATES = [
     PROJECT_ROOT / "backend" / "instance" / "quortol.db",
     PROJECT_ROOT / "instance" / "quortol.db",
@@ -170,6 +191,7 @@ def _parse_markdown_file(path: Path):
         title = path.stem.replace("-", " ").replace("_", " ").title()
 
     slug = metadata.get("slug") or _default_slug_for_path(path)
+    audiobook_path = AUDIOBOOKS_DIR / slug / "audiobook.wav"
     excerpt = metadata.get("excerpt") or _derive_excerpt(body)
     tags = _parse_tags(metadata.get("tags", ""))
     published_at = (
@@ -197,6 +219,7 @@ def _parse_markdown_file(path: Path):
         "tags": [{"id": _slugify(tag), "name": tag, "slug": _slugify(tag)} for tag in tags],
         "featured_image": featured_image,
         "featured_image_caption": featured_image_caption,
+        "audio_url": f"/static/audiobooks/{slug}/audiobook.wav" if audiobook_path.is_file() else None,
     }
 
 
@@ -292,6 +315,7 @@ def main():
             serialize_podcast_for_export(episode, config=podcast_config)
             for episode in load_podcast_episodes()
         ],
+        "dashboards": _load_dashboards(),
     }
     print(json.dumps(payload, ensure_ascii=False))
     return 0

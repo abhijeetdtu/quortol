@@ -54,6 +54,10 @@ export const podcast = {
   getEpisode: (slug) => api.get(`/podcasts/${slug}`),
 }
 
+export const dataStorytelling = {
+  getDashboards: () => api.get('/data-storytelling/dashboards'),
+}
+
 export const agents = {
   getAgents: () => api.get('/agents/'),
   getAgent: (id) => api.get(`/agents/${id}`),

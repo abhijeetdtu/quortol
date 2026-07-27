@@ -1,10 +1,23 @@
 <template>
-  <div class="blog-tts-controls" :class="{ 'loading': store.isLoading }">
+  <div class="blog-tts-controls" :class="{ 'loading': !hasRecordedAudio && store.isLoading }">
+    <audio
+      v-if="hasRecordedAudio"
+      ref="recordedAudio"
+      :src="audioUrl"
+      preload="metadata"
+      @loadedmetadata="handleRecordedMetadata"
+      @timeupdate="handleRecordedTimeUpdate"
+      @play="recordedIsPlaying = true"
+      @pause="recordedIsPlaying = false"
+      @ended="handleRecordedEnded"
+      @error="handleRecordedError"
+    ></audio>
+    <div class="audio-mode-label">{{ hasRecordedAudio ? 'Audiobook' : 'Text-to-speech' }}</div>
     <div class="controls-header">
       <button 
         @click="togglePlay" 
         class="play-button" 
-        :aria-label="isPlaying ? 'Stop reading' : 'Start reading'"
+        :aria-label="isPlaying ? 'Pause audio' : 'Play audio'"
         :disabled="!isReady"
       >
         <span v-if="!isPlaying">
@@ -19,7 +32,7 @@
         </span>
       </button>
 
-      <div class="voice-select">
+      <div v-if="!hasRecordedAudio" class="voice-select">
         <select 
           v-model="selectedVoice" 
           @change="handleVoiceChange"
@@ -45,17 +58,34 @@
           max="2" 
           step="0.1" 
           v-model="playbackSpeed"
-          @input="handleSpeedChange"
-          :disabled="!isReady || !store.isInitialized || isSynthesizing"
+          @change="handleSpeedChange"
+          :disabled="!isReady || (!hasRecordedAudio && (!store.isInitialized || isSynthesizing))"
           aria-label="Adjust playback speed"
         />
         <span class="speed-value">{{ playbackSpeed }}x</span>
       </div>
     </div>
 
+    <input
+      v-if="hasRecordedAudio"
+      class="seek-control"
+      type="range"
+      min="0"
+      :max="recordedDuration || 0"
+      step="0.1"
+      :value="recordedCurrentTime"
+      aria-label="Seek audiobook"
+      @input="handleRecordedSeek"
+    />
+
     <div class="status-bar">
       <div class="status-message">
-        <template v-if="!store.isInitialized">
+        <template v-if="hasRecordedAudio">
+          <span v-if="recordedError">Audiobook unavailable</span>
+          <span v-else-if="recordedIsPlaying" class="playing">Playing... {{ recordedTimeDisplay }}</span>
+          <span v-else>{{ recordedTimeDisplay || 'Loading audiobook...' }}</span>
+        </template>
+        <template v-else-if="!store.isInitialized">
           <span class="loading-indicator" v-if="store.isLoading">
             Loading TTS model... <span class="progress">({{ store.loadProgress }}%)</span>
           </span>
@@ -78,7 +108,7 @@
       </div>
     </div>
 
-    <div class="progress-bar" v-if="store.isPlaying">
+    <div class="progress-bar" v-if="isPlaying">
       <div class="progress-fill" :style="{ width: `${playbackProgress}%` }"></div>
     </div>
   </div>
@@ -95,11 +125,16 @@ const props = defineProps({
     type: String,
     required: true
   },
+  audioUrl: {
+    type: String,
+    default: null
+  },
   isInitialized: {
     type: Boolean,
     default: false
   }
 })
+const emit = defineEmits(['playback-start', 'playback-state'])
 
 // State
 const store = useTTSStore()
@@ -108,12 +143,18 @@ const hasError = ref(false)
 const selectedVoice = ref('default')
 const playbackSpeed = ref(1.0)
 const isSynthesizing = ref(false)
+const recordedAudio = ref(null)
+const recordedIsPlaying = ref(false)
+const recordedCurrentTime = ref(0)
+const recordedDuration = ref(0)
+const recordedError = ref(false)
 let progressFrameId = null
 let playbackRequestId = 0
 
 // Computed
 const availableVoices = computed(() => store.getVoices())
-const isPlaying = computed(() => store.isPlaying)
+const hasRecordedAudio = computed(() => Boolean(props.audioUrl))
+const isPlaying = computed(() => hasRecordedAudio.value ? recordedIsPlaying.value : store.isPlaying)
 const formattedProgress = computed(() => {
   if (!store.audioDuration || store.playbackProgress <= 0) return ''
 
@@ -134,7 +175,60 @@ const durationDisplay = computed(() => {
   return `Duration: ${minutes}m ${seconds}s`
 })
 
-const playbackProgress = computed(() => store.playbackProgress)
+const playbackProgress = computed(() => {
+  if (hasRecordedAudio.value) {
+    return recordedDuration.value > 0 ? (recordedCurrentTime.value / recordedDuration.value) * 100 : 0
+  }
+  return store.playbackProgress
+})
+
+const formatAudioTime = (seconds) => {
+  if (!Number.isFinite(seconds)) return '0:00'
+  const minutes = Math.floor(seconds / 60)
+  const remainder = Math.floor(seconds % 60)
+  return `${minutes}:${remainder.toString().padStart(2, '0')}`
+}
+
+const recordedTimeDisplay = computed(() => {
+  if (!recordedDuration.value) return ''
+  return `${formatAudioTime(recordedCurrentTime.value)} / ${formatAudioTime(recordedDuration.value)}`
+})
+
+const stopRecordedAudio = (resetProgress = false) => {
+  const audio = recordedAudio.value
+  if (audio) {
+    audio.pause()
+    if (resetProgress) audio.currentTime = 0
+  }
+  recordedIsPlaying.value = false
+  if (resetProgress) recordedCurrentTime.value = 0
+}
+
+const handleRecordedMetadata = () => {
+  recordedDuration.value = recordedAudio.value?.duration || 0
+  recordedError.value = false
+}
+
+const handleRecordedTimeUpdate = () => {
+  recordedCurrentTime.value = recordedAudio.value?.currentTime || 0
+}
+
+const handleRecordedSeek = (event) => {
+  const targetTime = Number(event.target.value)
+  if (!recordedAudio.value || !Number.isFinite(targetTime)) return
+  recordedAudio.value.currentTime = targetTime
+  recordedCurrentTime.value = targetTime
+}
+
+const handleRecordedEnded = () => {
+  recordedIsPlaying.value = false
+  recordedCurrentTime.value = recordedDuration.value
+}
+
+const handleRecordedError = () => {
+  recordedIsPlaying.value = false
+  recordedError.value = true
+}
 
 const stopProgressPolling = () => {
   if (progressFrameId !== null) {
@@ -196,6 +290,24 @@ const startSpeechFromOffset = async (fullText, offsetChars = 0) => {
 
 // Methods
 const togglePlay = async () => {
+  if (hasRecordedAudio.value) {
+    const audio = recordedAudio.value
+    if (!audio || recordedError.value) return
+    if (recordedIsPlaying.value) {
+      audio.pause()
+    } else {
+      emit('playback-start')
+      audio.playbackRate = playbackSpeed.value
+      try {
+        await audio.play()
+      } catch (error) {
+        console.error('Audiobook playback error:', error)
+        handleRecordedError()
+      }
+    }
+    return
+  }
+
   if (!props.content) return
 
   try {
@@ -206,6 +318,7 @@ const togglePlay = async () => {
       return
     }
 
+    emit('playback-start')
     if (!store.isInitialized) {
       await initializeTTS()
     }
@@ -238,6 +351,11 @@ const handleVoiceChange = async (event) => {
 const handleSpeedChange = async (event) => {
   playbackSpeed.value = parseFloat(event.target.value)
   store.setSpeed(playbackSpeed.value)
+
+  if (hasRecordedAudio.value) {
+    if (recordedAudio.value) recordedAudio.value.playbackRate = playbackSpeed.value
+    return
+  }
 
   if (!store.isPlaying) return
 
@@ -296,6 +414,11 @@ const cleanupTTS = () => {
   store.cleanup()
 }
 
+const cleanupPlayback = () => {
+  stopRecordedAudio()
+  if (!hasRecordedAudio.value) cleanupTTS()
+}
+
 // Lifecycle
 onMounted(async () => {
   // Restore preferences
@@ -321,15 +444,35 @@ onMounted(async () => {
 
 onUnmounted(() => {
   playbackRequestId += 1
-  cleanupTTS()
+  cleanupPlayback()
 })
 
 // Watch for changes
 watch(() => props.content, () => {
-  stopPlaybackSession()
+  if (hasRecordedAudio.value) stopRecordedAudio(true)
+  else stopPlaybackSession()
   // Reset when content changes
   store.setAudioDuration(null)
 })
+
+watch(() => props.audioUrl, () => {
+  stopRecordedAudio(true)
+  stopPlaybackSession(true)
+  recordedDuration.value = 0
+  recordedError.value = false
+})
+
+watch(isPlaying, (playing) => {
+  emit('playback-state', playing)
+})
+
+const stop = () => {
+  stopRecordedAudio()
+  stopPlaybackSession()
+  isSynthesizing.value = false
+}
+
+defineExpose({ stop })
 
 </script>
 
@@ -346,6 +489,15 @@ watch(() => props.content, () => {
 
 .blog-tts-controls.loading {
   opacity: 0.7;
+}
+
+.audio-mode-label {
+  margin-bottom: 0.5rem;
+  color: #7f3a27;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .controls-header {
@@ -427,6 +579,12 @@ watch(() => props.content, () => {
   cursor: pointer;
   padding: 0;
   box-shadow: inset 0 0 0 1px rgba(140, 127, 108, 0.32);
+}
+
+.seek-control {
+  width: 100%;
+  margin: 0 0 0.75rem;
+  accent-color: #7f3a27;
 }
 
 .speed-control input[type="range"]::-webkit-slider-thumb {

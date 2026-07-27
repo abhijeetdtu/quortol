@@ -121,7 +121,7 @@ const buildPodcastIndexRoute = (podcasts) => ({
   },
 })
 
-const buildStaticRoutes = () => [
+const buildStaticRoutes = (dashboards) => [
   {
     path: '/data-storytelling',
     prerender: true,
@@ -137,7 +137,7 @@ const buildStaticRoutes = () => [
         }),
       ],
     }),
-    pageData: null,
+    pageData: { dashboards },
   },
 ]
 
@@ -214,6 +214,7 @@ const buildManifest = async () => {
 
   const blogs = Array.isArray(payload.blogs) ? payload.blogs : []
   const podcasts = Array.isArray(payload.podcasts) ? payload.podcasts : []
+  const dashboards = Array.isArray(payload.dashboards) ? payload.dashboards : []
 
   const routes = [
     buildHomeRoute(blogs.map(toBlogSummary)),
@@ -235,7 +236,7 @@ const buildManifest = async () => {
         episode,
       },
     })),
-    ...buildStaticRoutes(),
+    ...buildStaticRoutes(dashboards),
     ...buildExcludedShellRoutes(),
   ]
 

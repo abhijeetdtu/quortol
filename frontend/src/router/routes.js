@@ -184,7 +184,7 @@ export const routes = [
   {
     path: '/data-storytelling/:dashboard',
     name: 'dashboard-view',
-    component: () => import('@/views/DataStorytelling.vue'),
+    component: () => import('@/views/DataStorytellingDetail.vue'),
     meta: {
       requiresAuth: false,
       seo: buildStaticPageSEOPayload({

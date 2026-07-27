@@ -8,6 +8,7 @@ from ..extensions import db
 blog_bp = Blueprint('blog', __name__)
 BLOG_IMAGES_DIR = (Path(__file__).resolve().parent.parent / 'blogs' / 'images').resolve()
 BLOGS_DIR = (Path(__file__).resolve().parent.parent / 'blogs').resolve()
+BLOG_AUDIOBOOKS_DIR = (Path(__file__).resolve().parent.parent / 'static' / 'audiobooks').resolve()
 SERIES_DIR = BLOGS_DIR / 'series'
 _FEATURED_IMAGE_CACHE = {
     'signature': None,
@@ -112,6 +113,13 @@ def _image_fields_for_post(post):
         image_fields['featured_image'] = _extract_first_image_url(post.content)
     return image_fields
 
+
+def _audio_url_for_slug(slug):
+    audiobook = BLOG_AUDIOBOOKS_DIR / slug / 'audiobook.wav'
+    if audiobook.is_file():
+        return f'/static/audiobooks/{slug}/audiobook.wav'
+    return None
+
 @blog_bp.route('/', methods=['GET'])
 def get_posts():
     posts = BlogPost.query.order_by(BlogPost.published_at.desc()).all()
@@ -147,6 +155,7 @@ def get_post(slug):
             }
             for tag in post.tags
         ],
+        'audio_url': _audio_url_for_slug(post.slug),
         **_image_fields_for_post(post),
     })
 

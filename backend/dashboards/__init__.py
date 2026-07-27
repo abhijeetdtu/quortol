@@ -5,7 +5,36 @@ from pathlib import Path
 
 from dash import html, page_container
 
-__all__ = ['register_dashboards']
+__all__ = ['register_dashboards', 'serialize_dashboard_registry']
+
+
+def serialize_dashboard_registry(page_registry):
+    """Return the public dashboard catalog from a Dash page registry."""
+    dashboards = []
+    for page in page_registry.values():
+        path = str(page.get('path') or '').strip()
+        if path in {'', '/'} or page.get('dashboard_visible', True) is False:
+            continue
+
+        slug = path.strip('/')
+        if not slug:
+            continue
+
+        dashboards.append({
+            'slug': slug,
+            'title': page.get('dashboard_title') or page.get('name') or 'Dashboard',
+            'description': (
+                page.get('dashboard_description')
+                or page.get('description')
+                or ''
+            ),
+            'order': page.get('order', 999),
+            'public_path': f'/data-storytelling/{slug}',
+            'embed_path': f'/data-storytelling-app/{slug}',
+        })
+
+    dashboards.sort(key=lambda item: (item['order'], item['title']))
+    return dashboards
 
 
 def _iter_page_modules():

@@ -36,8 +36,18 @@
 
       <BlogTTS
         v-if="plainTextContent"
+        ref="ttsRef"
         :content="plainTextContent"
+        :audio-url="post.audio_url"
         :is-initialized="store.isInitialized"
+        @playback-start="handleTTSStart"
+      />
+
+      <BlogRSVP
+        v-if="plainTextContent"
+        ref="rsvpRef"
+        :content="plainTextContent"
+        @playback-start="handleRSVPStart"
       />
 
       <section
@@ -75,6 +85,7 @@ import 'highlight.js/styles/github.css'
 import { usePrerenderRouteData } from '../../prerender/context'
 import { blog } from '../../services/api'
 import BlogTTS from '../../components/blog/BlogTTS.vue'
+import BlogRSVP from '../../components/blog/BlogRSVP.vue'
 import { trackEvent } from '../../services/analytics'
 import { useTTSStore } from '../../stores/tts'
 import { extractHeroImage, extractPlainTextFromMarkdown, sanitizeBlogDisplayContent } from '../../utils/blogContent'
@@ -88,6 +99,16 @@ const loading = ref(!post.value)
 const store = useTTSStore()
 const contentRef = ref(null)
 const fullscreenImage = ref(null)
+const ttsRef = ref(null)
+const rsvpRef = ref(null)
+
+const handleTTSStart = () => {
+  rsvpRef.value?.stop()
+}
+
+const handleRSVPStart = () => {
+  ttsRef.value?.stop()
+}
 
 const slug = computed(() => route.params.slug)
 

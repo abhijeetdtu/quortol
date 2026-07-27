@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from pathlib import Path
 
 try:
@@ -9,7 +9,7 @@ except ImportError:
 
 # Dash import for data storytelling
 try:
-    from dash import Dash
+    from dash import Dash, page_registry
 except ImportError:
     Dash = None
 
@@ -46,9 +46,10 @@ def create_app(config_class=None, enable_dash=True):
     
     # Register Dash application
     dash_enabled = False
+    dashboard_catalog = None
     if enable_dash and Dash is not None:
         try:
-            from .dashboards import register_dashboards
+            from .dashboards import register_dashboards, serialize_dashboard_registry
             dash_assets_path = Path(__file__).resolve().parent / 'dashboards' / 'assets'
             dash_app = Dash(
                 __name__,
@@ -63,6 +64,7 @@ def create_app(config_class=None, enable_dash=True):
                 ],
             )
             register_dashboards(dash_app)
+            dashboard_catalog = serialize_dashboard_registry(page_registry)
             dash_enabled = True
         except Exception:
             app.logger.exception('Failed to initialize data storytelling Dash app')
@@ -78,6 +80,14 @@ def create_app(config_class=None, enable_dash=True):
                 'Install backend dependencies and restart the backend server.',
                 503
             )
+
+    @app.get('/api/data-storytelling/dashboards')
+    def data_storytelling_dashboards():
+        if dashboard_catalog is None:
+            return jsonify({
+                'error': 'Data Storytelling is unavailable because Dash is not initialized.'
+            }), 503
+        return jsonify({'dashboards': dashboard_catalog})
     
     # Create database tables
     with app.app_context():
