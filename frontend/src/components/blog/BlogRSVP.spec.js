@@ -76,4 +76,19 @@ describe('BlogRSVP', () => {
     expect(wrapper.get('label[for="rsvp-position"]').exists()).toBe(true)
     expect(wrapper.get('label[for="rsvp-speed"]').exists()).toBe(true)
   })
+
+  it('enters distraction-free focus mode while playing and exits with Escape', async () => {
+    const wrapper = mount(BlogRSVP, { props: { content: 'focus mode reader' } })
+
+    await wrapper.get('.rsvp-play').trigger('click')
+    expect(wrapper.classes()).toContain('is-focus-mode')
+    expect(document.body.style.overflow).toBe('hidden')
+    expect(wrapper.get('.focus-exit').attributes('aria-label')).toContain('exit focus mode')
+
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.classes()).not.toContain('is-focus-mode')
+    expect(document.body.style.overflow).toBe('')
+  })
 })

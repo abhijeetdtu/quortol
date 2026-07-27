@@ -1,5 +1,5 @@
 <template>
-  <section class="blog-rsvp" aria-labelledby="rsvp-heading">
+  <section class="blog-rsvp" :class="{ 'is-focus-mode': isPlaying }" aria-labelledby="rsvp-heading">
     <div class="rsvp-heading-row">
       <div>
         <p class="rsvp-kicker">Speed reader</p>
@@ -15,6 +15,16 @@
         <span class="word-suffix" aria-hidden="true">{{ wordParts.suffix }}</span>
       </span>
     </div>
+
+    <button
+      v-if="isPlaying"
+      type="button"
+      class="focus-exit"
+      aria-label="Pause RSVP and exit focus mode"
+      @click="pause"
+    >
+      Pause
+    </button>
 
     <label class="sr-only" for="rsvp-position">Reading position</label>
     <input
@@ -205,14 +215,33 @@ const restoreSpeed = () => {
 
 const stop = () => pause()
 
+const handleKeydown = (event) => {
+  if (event.key === 'Escape' && isPlaying.value) {
+    pause()
+  }
+}
+
 watch(() => props.content, () => {
   pause()
   wordIndex.value = 0
   hasFinished.value = false
 })
 
-onMounted(restoreSpeed)
-onUnmounted(pause)
+watch(isPlaying, (playing) => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = playing ? 'hidden' : ''
+  }
+})
+
+onMounted(() => {
+  restoreSpeed()
+  window.addEventListener('keydown', handleKeydown)
+})
+onUnmounted(() => {
+  pause()
+  if (typeof document !== 'undefined') document.body.style.overflow = ''
+  if (typeof window !== 'undefined') window.removeEventListener('keydown', handleKeydown)
+})
 
 defineExpose({ stop })
 </script>
@@ -224,6 +253,42 @@ defineExpose({ stop })
   padding: 1.25rem;
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px rgba(128, 110, 84, 0.28);
+}
+
+.blog-rsvp.is-focus-mode {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  max-width: none;
+  margin: 0;
+  padding: clamp(1rem, 5vw, 5rem);
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+}
+
+.is-focus-mode .rsvp-heading-row,
+.is-focus-mode .position-slider,
+.is-focus-mode .position-label,
+.is-focus-mode .rsvp-controls {
+  display: none;
+}
+
+.is-focus-mode .word-stage {
+  width: min(100%, 900px);
+  min-height: clamp(9rem, 28vh, 15rem);
+  margin: 0;
+}
+
+.focus-exit {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  border-color: rgba(23, 23, 19, 0.45);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .rsvp-heading-row,

@@ -47,4 +47,5 @@ exclude
 .opencode
 audiobook/**/chunks/*
 frontend/src/generated/*
+frontend/public/sitemap.xml
 backend/instance/*
