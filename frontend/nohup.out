@@ -4453,3 +4453,404 @@ dist/assets/index-c4beeb6d.js              1,301.30 kB │ gzip: 451.51 kB
 2026-07-14T14:35:13Z WRN Connection terminated error="failed to accept QUIC stream: Application error 0x0 (remote)" connIndex=0
 2026-07-14T14:36:04Z INF Registered tunnel connection connIndex=0 connection=0b8cdc46-933a-4f37-b480-2d7d1bed215e event=0 ip=198.41.192.77 location=bos04 protocol=quic
 2026-07-14T14:47:29Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.7.1
+2026-07-15T06:18:49Z ERR  error="stream 53 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:49Z ERR Request failed error="stream 53 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/nashua-mill-town-story event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:49Z ERR  error="stream 61 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:49Z ERR Request failed error="stream 61 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/netflix-paradox event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:49Z ERR  error="stream 57 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:49Z ERR Request failed error="stream 57 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/llm-inference-unit-economics event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:49Z ERR  error="stream 65 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:49Z ERR Request failed error="stream 65 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/nyc-contradiction-city event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:51Z ERR  error="stream 941 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 941 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/dune-lawrence-dark-mirror event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 929 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 929 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/medieval-westworld-market-feasibility event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 933 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR  error="stream 937 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 937 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/ai-agents-in-your-pocket-wilde event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR Request failed error="stream 933 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/redrawing-the-map event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 949 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 949 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/series-science-the-rooftop event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 945 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 945 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/trinket-shop-nostalgia-economy event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 969 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 969 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/north-conway-economy event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 965 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 965 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/caribbean-life-data-driven event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 957 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR  error="stream 973 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 957 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/series-speculative-fiction-the-weight-of-a-pagoda event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR Request failed error="stream 973 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/one-hour-adventure event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 961 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR  error="stream 1045 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 961 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/rcb-back-to-back-champions event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR Request failed error="stream 1045 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/nyc-contradiction-city event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 953 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR  error="stream 997 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 997 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/horse-and-machine event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR Request failed error="stream 953 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/slop-is-democratic event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1009 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1009 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/what-the-mountains-dont-say event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 981 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 981 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/catskills-next-act event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1013 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR  error="stream 993 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1013 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/the-entropy-of-knowing event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR Request failed error="stream 993 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/maine-summers-history-nature-peace event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 989 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR  error="stream 1005 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 989 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/new-england-hiking-150-years event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR Request failed error="stream 1005 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/the-podcast-in-your-ear event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 977 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 977 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/hidden-world-underneath-oceans event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 985 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 985 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/meditation-science-wilde event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1001 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1001 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/ai-is-the-new-space-race event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1029 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1029 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/stoicism-science-wilde event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1025 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1025 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/the-sociology-of-time event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1033 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1033 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/india-political-parties-evolution event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1021 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1021 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/when-the-sky-kisses-the-earth event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1041 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1041 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/netflix-paradox event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1017 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1017 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/scottish-islands-data-driven event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1053 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1053 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/the-accidental-genius-wilde event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1037 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1037 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/scaling-the-harness event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1061 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1061 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/yugoslavia-reckoning event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1049 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1049 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/pacific-northwest-biodiversity-refuge event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1101 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1101 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/the-citation-economy-wilde event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1081 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1081 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/series-science-a-calendar-of-maintenance-windows event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1077 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1077 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/football-evolution-hydration-breaks event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1073 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1073 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/divinity-original-sin-2-blueprint event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1097 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1097 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/what-louisa-earned event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1069 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1069 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/the-long-pour-wilde event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1085 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1085 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/frozen-archives event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1105 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1105 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/appalachian-trail-spine-of-the-east event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1065 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1065 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/llm-inference-unit-economics event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1057 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1057 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/biggest-living-organism event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1109 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1109 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/pnw-reinvention event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1089 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1089 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/american-byways event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1093 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1093 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/stoicism-origins-to-evolution event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1117 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1117 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/series-science-the-deepening event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1113 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1113 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/ai-race-700-billion-question event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 1121 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 1121 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog/restless-species event=0 ip=198.41.200.73 type=http
+2026-07-15T06:18:51Z ERR  error="stream 81 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:51Z ERR Request failed error="stream 81 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-network-architects-trade-off event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 89 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR  error="stream 93 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 89 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/science-of-the-alarm-clock-wilde event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 85 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 93 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/house-that-built-us event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR Request failed error="stream 85 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/medieval-travel-india event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 97 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 97 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/gandhi-nehru-relationship event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 105 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 105 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/vermonter-downeaster-two-rails event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 117 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR  error="stream 125 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 125 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/sleep-necessity-puzzle event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR Request failed error="stream 117 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/concord-pilgrimage event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 109 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 109 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/southern-cone-resource-paradox event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 121 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 121 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/cosmology-research-2024-2026 event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 101 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 101 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-53-million-dollar-summer event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 113 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 113 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-life-we-lost event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 133 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 133 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/ai-consumer-hardware-race event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 129 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 129 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/life-as-discrete-events event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 137 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 137 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/nyc-contradiction-city event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 141 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 141 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/new-england-homes event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 149 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 149 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-great-preservation event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 161 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 161 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/beginning-farmers-dilemma-draft event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 157 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 157 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/forty-nine-stones-wilde event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 145 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR  error="stream 153 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 145 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/once-safe-now-toxic event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR Request failed error="stream 153 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/cracks-in-standard-cosmological-model event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 173 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 173 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/ipl-bench-economy event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 189 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 189 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/series-science-a-protocol-for-invisibility event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 209 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 209 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/monasteries-from-antiquity event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 185 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 185 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/series-speculative-fiction-the-weight-of-being-known event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 193 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 193 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/sherlock-holmes-legacy event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 197 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 197 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/additive-arithmetic event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 169 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 169 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/emerson-to-ecomyth event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 217 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 217 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/indian-food-history-future event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 165 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 165 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/hidden-math-in-what-you-hear event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 225 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 225 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-thread-of-power event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 181 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 181 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/studio-ghibli-the-wind-that-shook-the-world event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 177 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 177 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-two-berkshires event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 241 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 241 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/portland-coffee-capital-wilde event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 201 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 201 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/other-new-england event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 221 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR  error="stream 229 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 229 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/video-games-as-therapy event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 205 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 205 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/new-england-coast-quiet event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR Request failed error="stream 221 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-last-laugh-editorial-cartoonists event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 237 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR  error="stream 213 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 237 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/new-hampshire-bed-and-breakfasts event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR Request failed error="stream 213 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/architecture-of-belief-wilde event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 245 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 245 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/the-lost-art-of-looking-up event=0 ip=198.41.192.77 type=http
+2026-07-15T06:18:52Z ERR  error="stream 233 canceled by remote with error code 0" connIndex=0 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-15T06:18:52Z ERR Request failed error="stream 233 canceled by remote with error code 0" connIndex=0 dest=https://quortol.pokhi.in/blog/cricket-numbers-transformation-wilde event=0 ip=198.41.192.77 type=http
+2026-07-15T14:47:29Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.7.2
+2026-07-16T05:21:07Z ERR  error="stream 2157 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2157 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1725 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1861 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1725 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1861 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2005 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2005 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2137 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2117 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2145 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2117 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2113 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2145 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2137 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2113 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1721 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1721 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2009 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2009 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2173 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2173 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2149 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1829 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2149 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1829 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1701 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1701 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1697 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2065 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1697 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2065 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2121 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1737 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2121 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1737 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2141 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2141 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2169 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2169 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2165 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2165 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2181 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2181 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1729 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1729 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1713 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1713 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1817 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1817 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2185 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2185 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2189 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2177 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2177 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1853 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1853 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2189 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2061 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2061 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1925 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1705 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1705 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1929 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1909 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1929 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1925 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1933 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1933 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2029 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2029 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1917 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1917 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2025 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2225 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2225 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2025 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1937 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1937 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1909 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2069 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2069 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1837 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2013 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1913 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1913 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1837 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2209 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1733 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2209 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1733 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2013 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1741 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1805 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1805 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1741 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1973 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1825 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1973 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1821 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1825 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1821 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2101 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2101 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1753 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1941 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1753 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1941 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2105 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2081 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2105 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2085 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2085 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2081 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1845 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1845 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1921 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1921 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1761 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1841 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1761 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1841 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2089 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2097 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2089 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2097 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1905 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1905 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1709 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2125 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1709 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2125 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2001 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2133 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2133 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2153 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2153 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2109 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2109 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2001 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1981 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2201 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1981 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2201 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1945 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1809 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1809 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1945 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1857 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1869 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1857 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2021 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1869 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2021 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1757 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1969 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2129 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1969 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2161 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1757 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2161 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2037 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2037 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2129 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1985 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 2093 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2093 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2213 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR  error="stream 1765 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 2213 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 2033 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1765 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 2033 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR  error="stream 1997 canceled by remote with error code 0" connIndex=3 event=1 ingressRule=0 originService=http://localhost:8050
+2026-07-16T05:21:07Z ERR Request failed error="stream 1985 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T05:21:07Z ERR Request failed error="stream 1997 canceled by remote with error code 0" connIndex=3 dest=https://quortol.pokhi.in/blog event=0 ip=198.41.200.73 type=http
+2026-07-16T09:59:34Z INF abort: rpc: aborted by remote: rpc: shutdown
+2026-07-16T09:59:34Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.43
+2026-07-16T09:59:34Z WRN Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=1 event=0 ip=198.41.200.43
+2026-07-16T09:59:34Z WRN Serve tunnel error error="Application error 0x0 (remote)" connIndex=1 event=0 ip=198.41.200.43
+2026-07-16T09:59:34Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.43
+2026-07-16T09:59:34Z WRN Connection terminated error="Application error 0x0 (remote)" connIndex=1
+2026-07-16T09:59:50Z WRN Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.43
+2026-07-16T09:59:50Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.43
+2026-07-16T09:59:53Z WRN Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-07-16T10:00:09Z INF Registered tunnel connection connIndex=1 connection=e6cd97cc-732b-4426-a204-378d7dbbdff3 event=0 ip=198.41.200.33 location=ewr15 protocol=quic
+2026-07-16T11:27:15Z INF abort: rpc: aborted by remote: rpc: shutdown
+2026-07-16T11:27:15Z INF Unregistered tunnel connection connIndex=3 event=0 ip=198.41.200.73
+2026-07-16T11:27:15Z WRN Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=3 event=0 ip=198.41.200.73
+2026-07-16T11:27:15Z WRN Serve tunnel error error="Application error 0x0 (remote)" connIndex=3 event=0 ip=198.41.200.73
+2026-07-16T11:27:15Z INF Retrying connection in up to 1s connIndex=3 event=0 ip=198.41.200.73
+2026-07-16T11:27:15Z WRN Connection terminated error="Application error 0x0 (remote)" connIndex=3
+2026-07-16T11:27:19Z INF abort: rpc: aborted by remote: rpc: shutdown
+2026-07-16T11:27:19Z INF Unregistered tunnel connection connIndex=1 event=0 ip=198.41.200.33
+2026-07-16T11:27:19Z WRN Failed to serve quic connection error="Application error 0x0 (remote)" connIndex=1 event=0 ip=198.41.200.33
+2026-07-16T11:27:19Z WRN Serve tunnel error error="Application error 0x0 (remote)" connIndex=1 event=0 ip=198.41.200.33
+2026-07-16T11:27:19Z INF Retrying connection in up to 1s connIndex=1 event=0 ip=198.41.200.33
+2026-07-16T11:27:20Z WRN Connection terminated error="Application error 0x0 (remote)" connIndex=1
+2026-07-16T11:27:33Z WRN Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3 event=0 ip=198.41.200.73
+2026-07-16T11:27:33Z WRN Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.33
+2026-07-16T11:27:33Z INF Retrying connection in up to 4s connIndex=3 event=0 ip=198.41.200.73
+2026-07-16T11:27:33Z INF Retrying connection in up to 4s connIndex=1 event=0 ip=198.41.200.33
+2026-07-16T11:27:34Z WRN Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-07-16T11:27:35Z WRN Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=3
+2026-07-16T11:27:39Z WRN Failed to create new quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1 event=0 ip=198.41.200.73
+2026-07-16T11:27:39Z INF Retrying connection in up to 8s connIndex=1 event=0 ip=198.41.200.73
+2026-07-16T11:27:46Z WRN Connection terminated error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=1
+2026-07-16T11:28:28Z INF Registered tunnel connection connIndex=3 connection=ec8d5587-a40e-451e-8936-ea93dae0620f event=0 ip=198.41.200.53 location=ewr08 protocol=quic
+2026-07-16T11:28:28Z INF Registered tunnel connection connIndex=1 connection=f9b3498e-2ffa-4ca4-9b78-5e0a2b7173c5 event=0 ip=198.41.200.13 location=ewr16 protocol=quic
+2026-07-16T14:47:29Z WRN Your version 2024.5.0 is outdated. We recommend upgrading it to 2026.7.2
