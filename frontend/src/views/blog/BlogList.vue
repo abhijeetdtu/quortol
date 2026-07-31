@@ -6,10 +6,45 @@
       <p class="deck mb-0">Longform writing on technology, work, and social futures.</p>
     </header>
 
+    <form class="blog-search mb-4" role="search" @submit.prevent="applySearchNow">
+      <label class="visually-hidden" for="blog-search-input">Search essays</label>
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input
+        id="blog-search-input"
+        v-model="searchInput"
+        class="form-control"
+        type="search"
+        placeholder="Search essays"
+        autocomplete="off"
+        @input="scheduleSearch"
+      />
+      <button
+        v-if="searchInput"
+        class="clear-search"
+        type="button"
+        aria-label="Clear search"
+        @click="clearSearch"
+      >
+        Clear
+      </button>
+    </form>
+
     <div v-if="loading" class="text-center text-muted py-4">Loading essays...</div>
+    <div v-else-if="error" class="text-center py-4" role="alert">
+      <p class="text-muted mb-3">{{ error }}</p>
+      <button class="btn btn-sm app-btn-soft" type="button" @click="loadPage(requestedPage)">
+        Try again
+      </button>
+    </div>
+    <div v-else-if="invalidPage" class="text-center text-muted py-4" role="alert">
+      This blog page does not exist.
+    </div>
+    <div v-else-if="posts.length === 0 && activeQuery" class="text-center text-muted py-4">
+      No essays found for “{{ activeQuery }}”.
+    </div>
     <div v-else-if="posts.length === 0" class="text-center text-muted py-4">No blog posts yet.</div>
     <div v-else class="index-content">
-      <article class="featured row g-3 g-lg-4 pb-4 mb-4">
+      <article v-if="showFeatured" class="featured row g-3 g-lg-4 pb-4 mb-4">
         <div class="col-12 col-lg-7">
           <div class="featured-media h-100">
             <img v-if="featuredImage" :src="featuredImage" :alt="featuredPost.title" />
@@ -28,8 +63,11 @@
       </article>
 
       <section class="latest">
-        <h3 class="mb-2">Latest</h3>
-        <article v-for="post in remainingPosts" :key="post.id" class="story-row row g-3 py-3">
+        <h3 class="mb-2">
+          <template v-if="activeQuery">Search results for “{{ activeQuery }}” ({{ pagination.total_posts }})</template>
+          <template v-else>Latest</template>
+        </h3>
+        <article v-for="post in listPosts" :key="post.id" class="story-row row g-3 py-3">
           <div class="col-12 col-md-4 col-lg-3">
             <div class="story-thumb">
               <img v-if="storyImage(post)" :src="storyImage(post)" :alt="post.title" />
@@ -47,23 +85,119 @@
           </div>
         </article>
       </section>
+
+      <nav v-if="totalPages > 1" class="blog-pagination" aria-label="Blog pages">
+        <router-link
+          v-if="currentPage > 1"
+          class="page-link"
+          rel="prev"
+          :to="pagePath(currentPage - 1)"
+        >
+          Previous
+        </router-link>
+        <span v-else class="page-link disabled" aria-disabled="true">Previous</span>
+
+        <router-link
+          v-for="page in visiblePages"
+          :key="page"
+          class="page-link page-number"
+          :class="{ active: page === currentPage }"
+          :aria-current="page === currentPage ? 'page' : undefined"
+          :to="pagePath(page)"
+        >
+          {{ page }}
+        </router-link>
+
+        <router-link
+          v-if="currentPage < totalPages"
+          class="page-link"
+          rel="next"
+          :to="pagePath(currentPage + 1)"
+        >
+          Next
+        </router-link>
+        <span v-else class="page-link disabled" aria-disabled="true">Next</span>
+      </nav>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { usePrerenderRouteData } from '../../prerender/context'
 import { blog } from '../../services/api'
-import { extractHeroImage, extractPlainTextFromMarkdown, sanitizeBlogDisplayContent } from '../../utils/blogContent'
+import { extractHeroImage, extractPlainTextFromMarkdown } from '../../utils/blogContent'
 
 const prerenderRouteData = usePrerenderRouteData()
+const route = useRoute()
+const router = useRouter()
+const PAGE_SIZE = 12
+const SEARCH_DEBOUNCE_MS = 300
 const posts = ref(prerenderRouteData.value?.posts || [])
 const loading = ref(posts.value.length === 0)
-const detailsBySlug = ref({})
+const pagination = ref(prerenderRouteData.value?.pagination || {
+  current_page: 1,
+  total_pages: posts.value.length > 0 ? 1 : 0,
+  total_posts: posts.value.length,
+  posts_per_page: PAGE_SIZE,
+})
+const error = ref('')
+const activeQuery = computed(() => String(route.query.q || '').trim())
+const searchInput = ref(activeQuery.value)
+let searchTimer = null
+let requestSequence = 0
 
 const featuredPost = computed(() => posts.value[0] || null)
-const remainingPosts = computed(() => posts.value.slice(1))
+const requestedPage = computed(() => {
+  if (route.name !== 'blog-page') return 1
+  const raw = String(route.params.page || '')
+  return /^\d+$/.test(raw) ? Number(raw) : Number.NaN
+})
+const currentPage = computed(() => pagination.value.current_page || requestedPage.value || 1)
+const totalPages = computed(() => pagination.value.total_pages || 0)
+const invalidPage = computed(() =>
+  !Number.isInteger(requestedPage.value) ||
+  requestedPage.value < 1 ||
+  requestedPage.value === 1 && route.name === 'blog-page' ||
+  totalPages.value > 0 && requestedPage.value > totalPages.value ||
+  pagination.value.total_posts === 0 && requestedPage.value > 1
+)
+const showFeatured = computed(() => !activeQuery.value && currentPage.value === 1 && Boolean(featuredPost.value))
+const listPosts = computed(() => showFeatured.value ? posts.value.slice(1) : posts.value)
+const visiblePages = computed(() => {
+  const start = Math.max(1, currentPage.value - 2)
+  const end = Math.min(totalPages.value, start + 4)
+  const adjustedStart = Math.max(1, end - 4)
+  return Array.from({ length: end - adjustedStart + 1 }, (_, index) => adjustedStart + index)
+})
+
+const pagePath = (page) => ({
+  path: page === 1 ? '/blog' : `/blog/page/${page}`,
+  query: activeQuery.value ? { q: activeQuery.value } : {},
+})
+
+const updateSearchRoute = async () => {
+  const query = searchInput.value.trim()
+  if (query === activeQuery.value && requestedPage.value === 1) return
+  await router.push({ path: '/blog', query: query ? { q: query } : {} })
+}
+
+const scheduleSearch = () => {
+  clearTimeout(searchTimer)
+  searchTimer = setTimeout(updateSearchRoute, SEARCH_DEBOUNCE_MS)
+}
+
+const applySearchNow = async () => {
+  clearTimeout(searchTimer)
+  await updateSearchRoute()
+}
+
+const clearSearch = async () => {
+  searchInput.value = ''
+  clearTimeout(searchTimer)
+  await updateSearchRoute()
+}
 
 const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-US', {
@@ -80,15 +214,7 @@ const countWords = (text) => {
 }
 
 const readTime = (post) => {
-  const detail = detailsBySlug.value[post.slug]
-  const baseText = detail
-    ? sanitizeBlogDisplayContent({
-        content: detail.content || '',
-        title: detail.title || post.title || '',
-        featuredImage: detail.featured_image || post?.featured_image || '',
-      })
-    : post.excerpt || ''
-  const words = countWords(baseText)
+  const words = countWords(post.excerpt || '')
   return Math.max(1, Math.round(words / 220))
 }
 
@@ -98,10 +224,9 @@ const primaryTag = (post) => {
 }
 
 const storyImage = (post) => {
-  const detail = detailsBySlug.value[post.slug]
   return extractHeroImage({
-    content: detail?.content || '',
-    featuredImage: detail?.featured_image || post?.featured_image || '',
+    content: '',
+    featuredImage: post?.featured_image || '',
   })
 }
 
@@ -110,34 +235,53 @@ const featuredImage = computed(() => {
   return storyImage(featuredPost.value)
 })
 
-onMounted(async () => {
-  if (posts.value.length > 0) {
+const loadPage = async (page) => {
+  if (!Number.isInteger(page) || page < 1 || (page === 1 && route.name === 'blog-page')) {
     loading.value = false
     return
   }
 
+  loading.value = true
+  error.value = ''
+  const requestId = ++requestSequence
   try {
-    const response = await blog.getPosts()
-    posts.value = response.data
-
-    const slugs = posts.value.slice(0, 8).map((post) => post.slug)
-    const detailEntries = await Promise.all(
-      slugs.map(async (slug) => {
-        try {
-          const detailResponse = await blog.getPost(slug)
-          return [slug, detailResponse.data]
-        } catch (error) {
-          return [slug, null]
-        }
-      })
-    )
-    detailsBySlug.value = Object.fromEntries(detailEntries)
-  } catch (error) {
-    console.error('Error loading posts:', error)
+    const params = { page, limit: PAGE_SIZE }
+    if (activeQuery.value) params.q = activeQuery.value
+    const response = await blog.getPosts(params)
+    if (requestId !== requestSequence) return
+    posts.value = response.data.posts || []
+    pagination.value = response.data.pagination || {}
+  } catch (loadError) {
+    if (requestId !== requestSequence) return
+    console.error('Error loading posts:', loadError)
+    error.value = 'Essays could not be loaded.'
   } finally {
+    if (requestId === requestSequence) loading.value = false
+  }
+}
+
+onMounted(async () => {
+  if (
+    !activeQuery.value &&
+    posts.value.length > 0 &&
+    pagination.value.current_page === requestedPage.value
+  ) {
     loading.value = false
+    return
+  }
+  await loadPage(requestedPage.value)
+})
+
+watch([requestedPage, activeQuery], async ([page, query], [previousPage, previousQuery]) => {
+  if (page === previousPage && query === previousQuery) return
+  searchInput.value = query
+  await loadPage(page)
+  if (!error.value && typeof window !== 'undefined') {
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }
 })
+
+onBeforeUnmount(() => clearTimeout(searchTimer))
 </script>
 
 <style scoped>
@@ -253,5 +397,63 @@ onMounted(async () => {
 .read-link:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.blog-search {
+  position: relative;
+  max-width: 42rem;
+}
+
+.blog-search .form-control {
+  padding-left: 2.5rem;
+  padding-right: 4.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  color: var(--ink-soft);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.clear-search {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  border: 0;
+  color: #7f3a27;
+  background: transparent;
+  transform: translateY(-50%);
+}
+
+.blog-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 2rem;
+}
+
+.page-link {
+  min-width: 2.25rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 4px;
+  color: #7f3a27;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(146, 126, 95, 0.25);
+}
+
+.page-link.active {
+  color: #fff;
+  background: #7f3a27;
+}
+
+.page-link.disabled {
+  color: var(--ink-soft);
+  opacity: 0.55;
 }
 </style>

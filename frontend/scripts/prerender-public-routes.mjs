@@ -41,6 +41,12 @@ const buildSeoBlock = (seo = {}, routePath = '/') => {
     ? `<meta name="twitter:image" content="${escapeHtml(seo.ogImage.startsWith('http') ? seo.ogImage : `${canonicalOrigin}${seo.ogImage}`)}">`
     : ''
   const structuredData = renderStructuredData(seo.structuredData || [])
+  const prevLink = seo.prev
+    ? `<link rel="prev" href="${escapeHtml(seo.prev.startsWith('http') ? seo.prev : `${canonicalOrigin}${seo.prev}`)}">`
+    : ''
+  const nextLink = seo.next
+    ? `<link rel="next" href="${escapeHtml(seo.next.startsWith('http') ? seo.next : `${canonicalOrigin}${seo.next}`)}">`
+    : ''
 
   return `  <title>${escapeHtml(seo.title || 'Quortol')}</title>
   <meta name="description" content="${escapeHtml(seo.description || '')}">
@@ -55,6 +61,8 @@ const buildSeoBlock = (seo = {}, routePath = '/') => {
   <meta name="twitter:description" content="${escapeHtml(seo.description || '')}">
   ${twitterImage}
   <link rel="canonical" href="${escapeHtml(canonical)}">
+  ${prevLink}
+  ${nextLink}
   ${structuredData}`.trimEnd()
 }
 

@@ -42,7 +42,7 @@ api.interceptors.response.use(
 
 // API methods
 export const blog = {
-  getPosts: () => api.get('/blog/'),
+  getPosts: (params) => api.get('/blog/', { params }),
   getPost: (slug) => api.get(`/blog/${slug}`),
   getTags: () => api.get('/blog/tags'),
   getCategories: () => api.get('/blog/categories'),

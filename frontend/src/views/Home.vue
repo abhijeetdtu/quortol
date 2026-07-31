@@ -52,8 +52,8 @@ onMounted(async () => {
   }
 
   try {
-    const postsRes = await blog.getPosts()
-    posts.value = postsRes.data
+    const postsRes = await blog.getPosts({ page: 1, limit: 3 })
+    posts.value = postsRes.data.posts || []
   } catch (error) {
     console.error('Error loading home data:', error)
   }

@@ -1,5 +1,5 @@
 import { renderToString } from "@vue/server-renderer";
-import { ref, useSSRContext, resolveComponent, mergeProps, withCtx, createTextVNode, unref, computed, onMounted, inject, onUnmounted, watch, nextTick, reactive, createSSRApp } from "vue";
+import { ref, useSSRContext, resolveComponent, mergeProps, withCtx, createTextVNode, unref, computed, onMounted, inject, watch, onBeforeUnmount, toDisplayString, onUnmounted, nextTick, reactive, createSSRApp } from "vue";
 import { useRoute, useRouter, createRouter, createWebHistory, createMemoryHistory } from "vue-router";
 import { defineStore, createPinia } from "pinia";
 import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual, ssrRenderStyle, ssrRenderClass } from "vue/server-renderer";
@@ -75,7 +75,7 @@ api.interceptors.response.use(
   }
 );
 const blog = {
-  getPosts: () => api.get("/blog/"),
+  getPosts: (params) => api.get("/blog/", { params }),
   getPost: (slug) => api.get(`/blog/${slug}`),
   getTags: () => api.get("/blog/tags"),
   getCategories: () => api.get("/blog/categories"),
@@ -599,7 +599,7 @@ const applySEOMetadata = ({
   upsertMetaTag({ name: "twitter:image", content: imageUrl });
   upsertStructuredData(structuredData);
 };
-const Home_vue_vue_type_style_index_0_scoped_cb0e5bea_lang = "";
+const Home_vue_vue_type_style_index_0_scoped_ca5e32d0_lang = "";
 const _sfc_main$e = {
   __name: "Home",
   __ssrInlineRender: true,
@@ -613,15 +613,15 @@ const _sfc_main$e = {
         return;
       }
       try {
-        const postsRes = await blog.getPosts();
-        posts.value = postsRes.data;
+        const postsRes = await blog.getPosts({ page: 1, limit: 3 });
+        posts.value = postsRes.data.posts || [];
       } catch (error) {
         console.error("Error loading home data:", error);
       }
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "home-page container-xl py-5" }, _attrs))} data-v-cb0e5bea><section class="hero mb-5" data-v-cb0e5bea><p class="kicker mb-2" data-v-cb0e5bea>Curated</p><h1 class="display-5 mb-3" data-v-cb0e5bea>Come satisfy your curiosity</h1><p class="intro mb-4" data-v-cb0e5bea> Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI. </p><div class="d-flex flex-wrap gap-2" data-v-cb0e5bea>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "home-page container-xl py-5" }, _attrs))} data-v-ca5e32d0><section class="hero mb-5" data-v-ca5e32d0><p class="kicker mb-2" data-v-ca5e32d0>Curated</p><h1 class="display-5 mb-3" data-v-ca5e32d0>Come satisfy your curiosity</h1><p class="intro mb-4" data-v-ca5e32d0> Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI. </p><div class="d-flex flex-wrap gap-2" data-v-ca5e32d0>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "btn btn-sm app-btn-soft"
@@ -705,13 +705,13 @@ const _sfc_main$e = {
           /* STABLE */
         }, _parent));
       }
-      _push(`</div></section><section class="mb-5" data-v-cb0e5bea><h2 class="mb-3" data-v-cb0e5bea>Latest Essays</h2>`);
+      _push(`</div></section><section class="mb-5" data-v-ca5e32d0><h2 class="mb-3" data-v-ca5e32d0>Latest Essays</h2>`);
       if (posts.value.length === 0) {
-        _push(`<div class="text-muted" data-v-cb0e5bea>Loading...</div>`);
+        _push(`<div class="text-muted" data-v-ca5e32d0>Loading...</div>`);
       } else {
-        _push(`<div class="row g-3" data-v-cb0e5bea><!--[-->`);
+        _push(`<div class="row g-3" data-v-ca5e32d0><!--[-->`);
         ssrRenderList(posts.value.slice(0, 3), (post) => {
-          _push(`<div class="col-12 col-md-6 col-xl-4" data-v-cb0e5bea><article class="card h-100 app-card" data-v-cb0e5bea><div class="card-body" data-v-cb0e5bea><h3 class="h4 card-title" data-v-cb0e5bea>${ssrInterpolate(post.title)}</h3><p class="card-text text-secondary" data-v-cb0e5bea>${ssrInterpolate(post.excerpt)}</p>`);
+          _push(`<div class="col-12 col-md-6 col-xl-4" data-v-ca5e32d0><article class="card h-100 app-card" data-v-ca5e32d0><div class="card-body" data-v-ca5e32d0><h3 class="h4 card-title" data-v-ca5e32d0>${ssrInterpolate(post.title)}</h3><p class="card-text text-secondary" data-v-ca5e32d0>${ssrInterpolate(post.excerpt)}</p>`);
           _push(ssrRenderComponent(_component_router_link, {
             to: `/blog/${post.slug}`,
             class: "app-link"
@@ -742,7 +742,7 @@ _sfc_main$e.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/Home.vue");
   return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-cb0e5bea"]]);
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-ca5e32d0"]]);
 const MARKDOWN_IMAGE_PATTERN = /!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/;
 const HTML_IMAGE_PATTERN = /<img[^>]+src=["']([^"']+)["']/i;
 const IMAGE_LINE_PATTERN = /^\s*!\[[^\]]*]\([^)]+\)\s*$/;
@@ -910,18 +910,53 @@ const sanitizeBlogDisplayContent = ({ content = "", title = "", featuredImage = 
   const cleanedContent = stripDuplicateHeroImage(lines.join("\n"), heroImage);
   return normalizeMarkdownSpacing(cleanedContent);
 };
-const BlogList_vue_vue_type_style_index_0_scoped_57fed79a_lang = "";
+const BlogList_vue_vue_type_style_index_0_scoped_0999e4e0_lang = "";
+const PAGE_SIZE = 12;
 const _sfc_main$d = {
   __name: "BlogList",
   __ssrInlineRender: true,
   setup(__props) {
-    var _a;
+    var _a, _b;
     const prerenderRouteData = usePrerenderRouteData();
+    const route = useRoute();
+    useRouter();
     const posts = ref(((_a = prerenderRouteData.value) == null ? void 0 : _a.posts) || []);
     const loading = ref(posts.value.length === 0);
-    const detailsBySlug = ref({});
+    const pagination = ref(((_b = prerenderRouteData.value) == null ? void 0 : _b.pagination) || {
+      current_page: 1,
+      total_pages: posts.value.length > 0 ? 1 : 0,
+      total_posts: posts.value.length,
+      posts_per_page: PAGE_SIZE
+    });
+    const error = ref("");
+    const activeQuery = computed(() => String(route.query.q || "").trim());
+    const searchInput = ref(activeQuery.value);
+    let searchTimer = null;
+    let requestSequence = 0;
     const featuredPost = computed(() => posts.value[0] || null);
-    const remainingPosts = computed(() => posts.value.slice(1));
+    const requestedPage = computed(() => {
+      if (route.name !== "blog-page")
+        return 1;
+      const raw = String(route.params.page || "");
+      return /^\d+$/.test(raw) ? Number(raw) : Number.NaN;
+    });
+    const currentPage = computed(() => pagination.value.current_page || requestedPage.value || 1);
+    const totalPages = computed(() => pagination.value.total_pages || 0);
+    const invalidPage = computed(
+      () => !Number.isInteger(requestedPage.value) || requestedPage.value < 1 || requestedPage.value === 1 && route.name === "blog-page" || totalPages.value > 0 && requestedPage.value > totalPages.value || pagination.value.total_posts === 0 && requestedPage.value > 1
+    );
+    const showFeatured = computed(() => !activeQuery.value && currentPage.value === 1 && Boolean(featuredPost.value));
+    const listPosts = computed(() => showFeatured.value ? posts.value.slice(1) : posts.value);
+    const visiblePages = computed(() => {
+      const start = Math.max(1, currentPage.value - 2);
+      const end = Math.min(totalPages.value, start + 4);
+      const adjustedStart = Math.max(1, end - 4);
+      return Array.from({ length: end - adjustedStart + 1 }, (_, index) => adjustedStart + index);
+    });
+    const pagePath = (page) => ({
+      path: page === 1 ? "/blog" : `/blog/page/${page}`,
+      query: activeQuery.value ? { q: activeQuery.value } : {}
+    });
     const formatDate = (date) => {
       return new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
@@ -936,13 +971,7 @@ const _sfc_main$d = {
       return plainText.split(/\s+/).filter(Boolean).length;
     };
     const readTime = (post) => {
-      const detail = detailsBySlug.value[post.slug];
-      const baseText = detail ? sanitizeBlogDisplayContent({
-        content: detail.content || "",
-        title: detail.title || post.title || "",
-        featuredImage: detail.featured_image || (post == null ? void 0 : post.featured_image) || ""
-      }) : post.excerpt || "";
-      const words = countWords(baseText);
+      const words = countWords(post.excerpt || "");
       return Math.max(1, Math.round(words / 220));
     };
     const primaryTag = (post) => {
@@ -951,10 +980,9 @@ const _sfc_main$d = {
       return "Essay";
     };
     const storyImage = (post) => {
-      const detail = detailsBySlug.value[post.slug];
       return extractHeroImage({
-        content: (detail == null ? void 0 : detail.content) || "",
-        featuredImage: (detail == null ? void 0 : detail.featured_image) || (post == null ? void 0 : post.featured_image) || ""
+        content: "",
+        featuredImage: (post == null ? void 0 : post.featured_image) || ""
       });
     };
     const featuredImage = computed(() => {
@@ -962,72 +990,114 @@ const _sfc_main$d = {
         return "";
       return storyImage(featuredPost.value);
     });
-    onMounted(async () => {
-      if (posts.value.length > 0) {
+    const loadPage = async (page) => {
+      if (!Number.isInteger(page) || page < 1 || page === 1 && route.name === "blog-page") {
         loading.value = false;
         return;
       }
+      loading.value = true;
+      error.value = "";
+      const requestId = ++requestSequence;
       try {
-        const response = await blog.getPosts();
-        posts.value = response.data;
-        const slugs = posts.value.slice(0, 8).map((post) => post.slug);
-        const detailEntries = await Promise.all(
-          slugs.map(async (slug) => {
-            try {
-              const detailResponse = await blog.getPost(slug);
-              return [slug, detailResponse.data];
-            } catch (error) {
-              return [slug, null];
-            }
-          })
-        );
-        detailsBySlug.value = Object.fromEntries(detailEntries);
-      } catch (error) {
-        console.error("Error loading posts:", error);
+        const params = { page, limit: PAGE_SIZE };
+        if (activeQuery.value)
+          params.q = activeQuery.value;
+        const response = await blog.getPosts(params);
+        if (requestId !== requestSequence)
+          return;
+        posts.value = response.data.posts || [];
+        pagination.value = response.data.pagination || {};
+      } catch (loadError) {
+        if (requestId !== requestSequence)
+          return;
+        console.error("Error loading posts:", loadError);
+        error.value = "Essays could not be loaded.";
       } finally {
+        if (requestId === requestSequence)
+          loading.value = false;
+      }
+    };
+    onMounted(async () => {
+      if (!activeQuery.value && posts.value.length > 0 && pagination.value.current_page === requestedPage.value) {
         loading.value = false;
+        return;
+      }
+      await loadPage(requestedPage.value);
+    });
+    watch([requestedPage, activeQuery], async ([page, query], [previousPage, previousQuery]) => {
+      if (page === previousPage && query === previousQuery)
+        return;
+      searchInput.value = query;
+      await loadPage(page);
+      if (!error.value && typeof window !== "undefined") {
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
     });
+    onBeforeUnmount(() => clearTimeout(searchTimer));
     return (_ctx, _push, _parent, _attrs) => {
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-index container-xl py-4 py-md-5" }, _attrs))} data-v-57fed79a><header class="masthead mb-4" data-v-57fed79a><p class="brand mb-2" data-v-57fed79a>Curated</p><h1 class="display-4 mb-2" data-v-57fed79a>Essays</h1><p class="deck mb-0" data-v-57fed79a>Longform writing on technology, work, and social futures.</p></header>`);
-      if (loading.value) {
-        _push(`<div class="text-center text-muted py-4" data-v-57fed79a>Loading essays...</div>`);
-      } else if (posts.value.length === 0) {
-        _push(`<div class="text-center text-muted py-4" data-v-57fed79a>No blog posts yet.</div>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-index container-xl py-4 py-md-5" }, _attrs))} data-v-0999e4e0><header class="masthead mb-4" data-v-0999e4e0><p class="brand mb-2" data-v-0999e4e0>Curated</p><h1 class="display-4 mb-2" data-v-0999e4e0>Essays</h1><p class="deck mb-0" data-v-0999e4e0>Longform writing on technology, work, and social futures.</p></header><form class="blog-search mb-4" role="search" data-v-0999e4e0><label class="visually-hidden" for="blog-search-input" data-v-0999e4e0>Search essays</label><span class="search-icon" aria-hidden="true" data-v-0999e4e0>⌕</span><input id="blog-search-input"${ssrRenderAttr("value", searchInput.value)} class="form-control" type="search" placeholder="Search essays" autocomplete="off" data-v-0999e4e0>`);
+      if (searchInput.value) {
+        _push(`<button class="clear-search" type="button" aria-label="Clear search" data-v-0999e4e0> Clear </button>`);
       } else {
-        _push(`<div class="index-content" data-v-57fed79a><article class="featured row g-3 g-lg-4 pb-4 mb-4" data-v-57fed79a><div class="col-12 col-lg-7" data-v-57fed79a><div class="featured-media h-100" data-v-57fed79a>`);
-        if (featuredImage.value) {
-          _push(`<img${ssrRenderAttr("src", featuredImage.value)}${ssrRenderAttr("alt", featuredPost.value.title)} data-v-57fed79a>`);
-        } else {
-          _push(`<div class="media-fallback" data-v-57fed79a></div>`);
-        }
-        _push(`</div></div><div class="col-12 col-lg-5" data-v-57fed79a><div class="featured-copy h-100 d-flex flex-column" data-v-57fed79a><p class="type mb-2" data-v-57fed79a>${ssrInterpolate(primaryTag(featuredPost.value))}</p><h2 class="mb-2" data-v-57fed79a>${ssrInterpolate(featuredPost.value.title)}</h2><p class="excerpt mb-2" data-v-57fed79a>${ssrInterpolate(featuredPost.value.excerpt)}</p><p class="meta mb-2" data-v-57fed79a>${ssrInterpolate(formatDate(featuredPost.value.published_at))} · ${ssrInterpolate(readTime(featuredPost.value))} min read</p>`);
-        _push(ssrRenderComponent(_component_router_link, {
-          to: `/blog/${featuredPost.value.slug}`,
-          class: "read-link mt-auto"
-        }, {
-          default: withCtx((_, _push2, _parent2, _scopeId) => {
-            if (_push2) {
-              _push2(`Read essay`);
-            } else {
-              return [
-                createTextVNode("Read essay")
-              ];
-            }
-          }),
-          _: 1
-          /* STABLE */
-        }, _parent));
-        _push(`</div></div></article><section class="latest" data-v-57fed79a><h3 class="mb-2" data-v-57fed79a>Latest</h3><!--[-->`);
-        ssrRenderList(remainingPosts.value, (post) => {
-          _push(`<article class="story-row row g-3 py-3" data-v-57fed79a><div class="col-12 col-md-4 col-lg-3" data-v-57fed79a><div class="story-thumb" data-v-57fed79a>`);
-          if (storyImage(post)) {
-            _push(`<img${ssrRenderAttr("src", storyImage(post))}${ssrRenderAttr("alt", post.title)} data-v-57fed79a>`);
+        _push(`<!---->`);
+      }
+      _push(`</form>`);
+      if (loading.value) {
+        _push(`<div class="text-center text-muted py-4" data-v-0999e4e0>Loading essays...</div>`);
+      } else if (error.value) {
+        _push(`<div class="text-center py-4" role="alert" data-v-0999e4e0><p class="text-muted mb-3" data-v-0999e4e0>${ssrInterpolate(error.value)}</p><button class="btn btn-sm app-btn-soft" type="button" data-v-0999e4e0> Try again </button></div>`);
+      } else if (invalidPage.value) {
+        _push(`<div class="text-center text-muted py-4" role="alert" data-v-0999e4e0> This blog page does not exist. </div>`);
+      } else if (posts.value.length === 0 && activeQuery.value) {
+        _push(`<div class="text-center text-muted py-4" data-v-0999e4e0> No essays found for “${ssrInterpolate(activeQuery.value)}”. </div>`);
+      } else if (posts.value.length === 0) {
+        _push(`<div class="text-center text-muted py-4" data-v-0999e4e0>No blog posts yet.</div>`);
+      } else {
+        _push(`<div class="index-content" data-v-0999e4e0>`);
+        if (showFeatured.value) {
+          _push(`<article class="featured row g-3 g-lg-4 pb-4 mb-4" data-v-0999e4e0><div class="col-12 col-lg-7" data-v-0999e4e0><div class="featured-media h-100" data-v-0999e4e0>`);
+          if (featuredImage.value) {
+            _push(`<img${ssrRenderAttr("src", featuredImage.value)}${ssrRenderAttr("alt", featuredPost.value.title)} data-v-0999e4e0>`);
           } else {
-            _push(`<div class="media-fallback" data-v-57fed79a></div>`);
+            _push(`<div class="media-fallback" data-v-0999e4e0></div>`);
           }
-          _push(`</div></div><div class="col-12 col-md-8 col-lg-9" data-v-57fed79a><div class="story-copy" data-v-57fed79a><p class="type mb-1" data-v-57fed79a>${ssrInterpolate(primaryTag(post))}</p><h4 class="mb-2" data-v-57fed79a>${ssrInterpolate(post.title)}</h4><p class="excerpt mb-2" data-v-57fed79a>${ssrInterpolate(post.excerpt)}</p><p class="meta mb-2" data-v-57fed79a>${ssrInterpolate(formatDate(post.published_at))} · ${ssrInterpolate(readTime(post))} min read</p>`);
+          _push(`</div></div><div class="col-12 col-lg-5" data-v-0999e4e0><div class="featured-copy h-100 d-flex flex-column" data-v-0999e4e0><p class="type mb-2" data-v-0999e4e0>${ssrInterpolate(primaryTag(featuredPost.value))}</p><h2 class="mb-2" data-v-0999e4e0>${ssrInterpolate(featuredPost.value.title)}</h2><p class="excerpt mb-2" data-v-0999e4e0>${ssrInterpolate(featuredPost.value.excerpt)}</p><p class="meta mb-2" data-v-0999e4e0>${ssrInterpolate(formatDate(featuredPost.value.published_at))} · ${ssrInterpolate(readTime(featuredPost.value))} min read</p>`);
+          _push(ssrRenderComponent(_component_router_link, {
+            to: `/blog/${featuredPost.value.slug}`,
+            class: "read-link mt-auto"
+          }, {
+            default: withCtx((_, _push2, _parent2, _scopeId) => {
+              if (_push2) {
+                _push2(`Read essay`);
+              } else {
+                return [
+                  createTextVNode("Read essay")
+                ];
+              }
+            }),
+            _: 1
+            /* STABLE */
+          }, _parent));
+          _push(`</div></div></article>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`<section class="latest" data-v-0999e4e0><h3 class="mb-2" data-v-0999e4e0>`);
+        if (activeQuery.value) {
+          _push(`<!--[-->Search results for “${ssrInterpolate(activeQuery.value)}” (${ssrInterpolate(pagination.value.total_posts)})<!--]-->`);
+        } else {
+          _push(`<!--[-->Latest<!--]-->`);
+        }
+        _push(`</h3><!--[-->`);
+        ssrRenderList(listPosts.value, (post) => {
+          _push(`<article class="story-row row g-3 py-3" data-v-0999e4e0><div class="col-12 col-md-4 col-lg-3" data-v-0999e4e0><div class="story-thumb" data-v-0999e4e0>`);
+          if (storyImage(post)) {
+            _push(`<img${ssrRenderAttr("src", storyImage(post))}${ssrRenderAttr("alt", post.title)} data-v-0999e4e0>`);
+          } else {
+            _push(`<div class="media-fallback" data-v-0999e4e0></div>`);
+          }
+          _push(`</div></div><div class="col-12 col-md-8 col-lg-9" data-v-0999e4e0><div class="story-copy" data-v-0999e4e0><p class="type mb-1" data-v-0999e4e0>${ssrInterpolate(primaryTag(post))}</p><h4 class="mb-2" data-v-0999e4e0>${ssrInterpolate(post.title)}</h4><p class="excerpt mb-2" data-v-0999e4e0>${ssrInterpolate(post.excerpt)}</p><p class="meta mb-2" data-v-0999e4e0>${ssrInterpolate(formatDate(post.published_at))} · ${ssrInterpolate(readTime(post))} min read</p>`);
           _push(ssrRenderComponent(_component_router_link, {
             to: `/blog/${post.slug}`,
             class: "read-link"
@@ -1046,7 +1116,82 @@ const _sfc_main$d = {
           }, _parent));
           _push(`</div></div></article>`);
         });
-        _push(`<!--]--></section></div>`);
+        _push(`<!--]--></section>`);
+        if (totalPages.value > 1) {
+          _push(`<nav class="blog-pagination" aria-label="Blog pages" data-v-0999e4e0>`);
+          if (currentPage.value > 1) {
+            _push(ssrRenderComponent(_component_router_link, {
+              class: "page-link",
+              rel: "prev",
+              to: pagePath(currentPage.value - 1)
+            }, {
+              default: withCtx((_, _push2, _parent2, _scopeId) => {
+                if (_push2) {
+                  _push2(` Previous `);
+                } else {
+                  return [
+                    createTextVNode(" Previous ")
+                  ];
+                }
+              }),
+              _: 1
+              /* STABLE */
+            }, _parent));
+          } else {
+            _push(`<span class="page-link disabled" aria-disabled="true" data-v-0999e4e0>Previous</span>`);
+          }
+          _push(`<!--[-->`);
+          ssrRenderList(visiblePages.value, (page) => {
+            _push(ssrRenderComponent(_component_router_link, {
+              key: page,
+              class: ["page-link page-number", { active: page === currentPage.value }],
+              "aria-current": page === currentPage.value ? "page" : void 0,
+              to: pagePath(page)
+            }, {
+              default: withCtx((_, _push2, _parent2, _scopeId) => {
+                if (_push2) {
+                  _push2(`${ssrInterpolate(page)}`);
+                } else {
+                  return [
+                    createTextVNode(
+                      toDisplayString(page),
+                      1
+                      /* TEXT */
+                    )
+                  ];
+                }
+              }),
+              _: 2
+              /* DYNAMIC */
+            }, _parent));
+          });
+          _push(`<!--]-->`);
+          if (currentPage.value < totalPages.value) {
+            _push(ssrRenderComponent(_component_router_link, {
+              class: "page-link",
+              rel: "next",
+              to: pagePath(currentPage.value + 1)
+            }, {
+              default: withCtx((_, _push2, _parent2, _scopeId) => {
+                if (_push2) {
+                  _push2(` Next `);
+                } else {
+                  return [
+                    createTextVNode(" Next ")
+                  ];
+                }
+              }),
+              _: 1
+              /* STABLE */
+            }, _parent));
+          } else {
+            _push(`<span class="page-link disabled" aria-disabled="true" data-v-0999e4e0>Next</span>`);
+          }
+          _push(`</nav>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`</div>`);
       }
       _push(`</div>`);
     };
@@ -1058,7 +1203,7 @@ _sfc_main$d.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/blog/BlogList.vue");
   return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const BlogList = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-57fed79a"]]);
+const BlogList = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-0999e4e0"]]);
 const github = "";
 const DEFAULT_VOICE_ID = "default";
 let synth = null;
@@ -1516,7 +1661,7 @@ _sfc_main$c.setup = (props, ctx) => {
   return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
 const BlogTTS = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-b2b30eee"]]);
-const BlogRSVP_vue_vue_type_style_index_0_scoped_4bbd4478_lang = "";
+const BlogRSVP_vue_vue_type_style_index_0_scoped_0643f029_lang = "";
 const STORAGE_KEY = "quortol-rsvp-wpm";
 const DEFAULT_WPM = 300;
 const MIN_WPM = 100;
@@ -1547,6 +1692,27 @@ const _sfc_main$b = {
     );
     const lastIndex = computed(() => Math.max(0, words.value.length - 1));
     const currentWord = computed(() => words.value[wordIndex.value] || "Ready");
+    const focusIndex = (word) => {
+      const length = word.length;
+      if (length <= 1)
+        return 0;
+      if (length <= 5)
+        return 1;
+      if (length <= 9)
+        return 2;
+      if (length <= 13)
+        return 3;
+      return 4;
+    };
+    const wordParts = computed(() => {
+      const word = currentWord.value;
+      const index = Math.min(focusIndex(word), Math.max(0, word.length - 1));
+      return {
+        prefix: word.slice(0, index),
+        focus: word.charAt(index),
+        suffix: word.slice(index + 1)
+      };
+    });
     const positionLabel = computed(() => words.value.length ? `Word ${wordIndex.value + 1} of ${words.value.length}` : "No words available");
     const elapsedSeconds = computed(() => wordIndex.value * 60 / wpm.value);
     const totalSeconds = computed(() => words.value.length * 60 / wpm.value);
@@ -1579,21 +1745,46 @@ const _sfc_main$b = {
       }
     };
     const stop = () => pause();
+    const handleKeydown = (event) => {
+      if (event.key === "Escape" && isPlaying2.value) {
+        pause();
+      }
+    };
     watch(() => props.content, () => {
       pause();
       wordIndex.value = 0;
       hasFinished.value = false;
     });
-    onMounted(restoreSpeed);
-    onUnmounted(pause);
+    watch(isPlaying2, (playing) => {
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = playing ? "hidden" : "";
+      }
+    });
+    onMounted(() => {
+      restoreSpeed();
+      window.addEventListener("keydown", handleKeydown);
+    });
+    onUnmounted(() => {
+      pause();
+      if (typeof document !== "undefined")
+        document.body.style.overflow = "";
+      if (typeof window !== "undefined")
+        window.removeEventListener("keydown", handleKeydown);
+    });
     __expose({ stop });
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<section${ssrRenderAttrs(mergeProps({
-        class: "blog-rsvp",
+        class: ["blog-rsvp", { "is-focus-mode": isPlaying2.value }],
         "aria-labelledby": "rsvp-heading"
-      }, _attrs))} data-v-4bbd4478><div class="rsvp-heading-row" data-v-4bbd4478><div data-v-4bbd4478><p class="rsvp-kicker" data-v-4bbd4478>Speed reader</p><h2 id="rsvp-heading" data-v-4bbd4478>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-4bbd4478>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-4bbd4478><span class="word" data-v-4bbd4478>${ssrInterpolate(currentWord.value)}</span></div><label class="sr-only" for="rsvp-position" data-v-4bbd4478>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-4bbd4478><div class="position-label" aria-hidden="true" data-v-4bbd4478>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-4bbd4478><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-4bbd4478>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-4bbd4478>Restart</button><label for="rsvp-speed" data-v-4bbd4478>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-4bbd4478><!--[-->`);
+      }, _attrs))} data-v-0643f029><div class="rsvp-heading-row" data-v-0643f029><div data-v-0643f029><p class="rsvp-kicker" data-v-0643f029>Speed reader</p><h2 id="rsvp-heading" data-v-0643f029>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-0643f029>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-0643f029><span class="word"${ssrRenderAttr("aria-label", currentWord.value)} data-v-0643f029><span class="word-prefix" aria-hidden="true" data-v-0643f029>${ssrInterpolate(wordParts.value.prefix)}</span><span class="word-focus" aria-hidden="true" data-v-0643f029>${ssrInterpolate(wordParts.value.focus)}</span><span class="word-suffix" aria-hidden="true" data-v-0643f029>${ssrInterpolate(wordParts.value.suffix)}</span></span></div>`);
+      if (isPlaying2.value) {
+        _push(`<button type="button" class="focus-exit" aria-label="Pause RSVP and exit focus mode" data-v-0643f029> Pause </button>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`<label class="sr-only" for="rsvp-position" data-v-0643f029>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-0643f029><div class="position-label" aria-hidden="true" data-v-0643f029>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-0643f029><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-0643f029>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-0643f029>Restart</button><label for="rsvp-speed" data-v-0643f029>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-0643f029><!--[-->`);
       ssrRenderList(unref(speeds), (speed) => {
-        _push(`<option${ssrRenderAttr("value", speed)} data-v-4bbd4478>${ssrInterpolate(speed)} WPM</option>`);
+        _push(`<option${ssrRenderAttr("value", speed)} data-v-0643f029>${ssrInterpolate(speed)} WPM</option>`);
       });
       _push(`<!--]--></select></div></section>`);
     };
@@ -1605,7 +1796,7 @@ _sfc_main$b.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogRSVP.vue");
   return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-4bbd4478"]]);
+const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-0643f029"]]);
 const BlogDetail_vue_vue_type_style_index_0_scoped_a6533fe0_lang = "";
 const _sfc_main$a = {
   __name: "BlogDetail",
@@ -2742,10 +2933,8 @@ _sfc_main$1.setup = (props, ctx) => {
 };
 const TagFilter = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-e047c887"]]);
 const API_BASE = "/api/short-form";
-const LEGACY_API_BASE = "/api";
 const feedService = {
   async getFeed(params = {}) {
-    var _a;
     const { page = 1, limit = 20, tags = [], keyword = "" } = params;
     const queryParams = new URLSearchParams({
       page: String(page),
@@ -2757,34 +2946,17 @@ const feedService = {
     if (keyword && keyword.trim()) {
       queryParams.append("keyword", keyword.trim());
     }
-    try {
-      const response = await axios.get(`${API_BASE}/feed?${queryParams.toString()}`);
-      return response.data;
-    } catch (error) {
-      if (((_a = error == null ? void 0 : error.response) == null ? void 0 : _a.status) !== 404) {
-        throw error;
-      }
-      const legacyResponse = await axios.get(
-        `${LEGACY_API_BASE}/feed?${queryParams.toString()}`
-      );
-      return legacyResponse.data;
-    }
+    const response = await axios.get(`${API_BASE}/feed?${queryParams.toString()}`, {
+      signal: params.signal
+    });
+    return response.data;
   },
   async getPost(postId) {
-    var _a;
-    try {
-      const response = await axios.get(`${API_BASE}/posts/${postId}`);
-      return response.data.post;
-    } catch (error) {
-      if (((_a = error == null ? void 0 : error.response) == null ? void 0 : _a.status) !== 404) {
-        throw error;
-      }
-      const legacyResponse = await axios.get(`${LEGACY_API_BASE}/post/${postId}`);
-      return legacyResponse.data.post;
-    }
+    const response = await axios.get(`${API_BASE}/posts/${postId}`);
+    return response.data.post;
   }
 };
-const ShortFormFeedPage_vue_vue_type_style_index_0_scoped_b97b305e_lang = "";
+const ShortFormFeedPage_vue_vue_type_style_index_0_scoped_f05db9ec_lang = "";
 const postsPerPage = 20;
 const _sfc_main = {
   __name: "ShortFormFeedPage",
@@ -2797,12 +2969,28 @@ const _sfc_main = {
     const isLoadingData = ref(false);
     const selectedPost = ref(null);
     const loadTrigger = ref(null);
+    const feedMain = ref(null);
+    const loadError = ref("");
     const currentPage = ref(1);
     const totalPages = ref(0);
     const allTags = ref([]);
     let feedObserver = null;
+    let activeController = null;
+    let requestVersion = 0;
     const hasFilters = computed(() => selectedTags.value.length > 0 || searchKeyword.value.trim() !== "");
     const hasMorePages = computed(() => currentPage.value < totalPages.value);
+    const appendUniquePosts = (existing, incoming) => {
+      const seen = new Set(existing.map((post) => post.id));
+      return [
+        ...existing,
+        ...incoming.filter((post) => {
+          if (seen.has(post.id))
+            return false;
+          seen.add(post.id);
+          return true;
+        })
+      ];
+    };
     const getResultCount = (response) => {
       var _a, _b;
       return ((_a = response == null ? void 0 : response.pagination) == null ? void 0 : _a.total_posts) ?? ((_b = response == null ? void 0 : response.posts) == null ? void 0 : _b.length) ?? 0;
@@ -2827,49 +3015,37 @@ const _sfc_main = {
         });
       }
     };
-    const hydrateAvailableTags = async () => {
-      try {
-        const response = await feedService.getFeed({
-          page: 1,
-          limit: 100,
-          tags: [],
-          keyword: ""
-        });
-        if (Array.isArray(response.available_tags) && response.available_tags.length > 0) {
-          allTags.value = response.available_tags;
-          return;
-        }
-        const tagSet = /* @__PURE__ */ new Set();
-        (response.posts || []).forEach((post) => {
-          ;
-          (post.tags || []).forEach((tag) => tagSet.add(tag));
-        });
-        allTags.value = Array.from(tagSet);
-      } catch (error) {
-        console.error("Failed to hydrate available tags:", error);
-      }
-    };
     const loadPosts = async (page = 1, reset = false, analyticsContext = null) => {
-      var _a;
-      if (loading.value || isLoadingData.value)
+      var _a, _b;
+      if (reset) {
+        requestVersion += 1;
+        activeController == null ? void 0 : activeController.abort();
+      } else if (loading.value || isLoadingData.value) {
         return;
+      }
+      const version = requestVersion;
+      const controller = new AbortController();
+      activeController = controller;
       loading.value = true;
       isLoadingData.value = true;
+      loadError.value = "";
       try {
         const response = await feedService.getFeed({
           page,
           limit: postsPerPage,
           tags: selectedTags.value,
-          keyword: searchKeyword.value.trim()
+          keyword: searchKeyword.value.trim(),
+          signal: controller.signal
         });
+        if (version !== requestVersion)
+          return;
         if (reset) {
           posts.value = response.posts || [];
-          currentPage.value = 1;
         } else {
-          posts.value = [...posts.value, ...response.posts || []];
-          currentPage.value = page;
+          posts.value = appendUniquePosts(posts.value, response.posts || []);
         }
-        totalPages.value = ((_a = response.pagination) == null ? void 0 : _a.total_pages) || 0;
+        currentPage.value = ((_a = response.pagination) == null ? void 0 : _a.current_page) || page;
+        totalPages.value = ((_b = response.pagination) == null ? void 0 : _b.total_pages) || 0;
         if (allTags.value.length === 0) {
           if (Array.isArray(response.available_tags) && response.available_tags.length > 0) {
             allTags.value = response.available_tags;
@@ -2881,19 +3057,36 @@ const _sfc_main = {
         }
         emitAnalytics(analyticsContext, response);
       } catch (error) {
+        if (controller.signal.aborted || version !== requestVersion)
+          return;
         console.error("Failed to load posts:", error);
+        loadError.value = posts.value.length > 0 ? "More posts could not be loaded." : "Posts could not be loaded.";
       } finally {
-        loading.value = false;
-        isLoadingData.value = false;
+        if (version === requestVersion) {
+          loading.value = false;
+          isLoadingData.value = false;
+          if (activeController === controller)
+            activeController = null;
+        }
+      }
+    };
+    const resetFeedPosition = () => {
+      const scrollTarget = feedMain.value;
+      if (typeof (scrollTarget == null ? void 0 : scrollTarget.scrollTo) === "function") {
+        scrollTarget.scrollTo({ top: 0, behavior: "auto" });
+      } else if (typeof window !== "undefined" && typeof window.scrollTo === "function") {
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
     };
     const handleFilterChange = () => {
       currentPage.value = 1;
+      resetFeedPosition();
       loadPosts(1, true, { type: "filter" });
     };
     const handleSearch = (keyword) => {
       searchKeyword.value = keyword;
       currentPage.value = 1;
+      resetFeedPosition();
       loadPosts(1, true, {
         type: "search",
         keywordLength: keyword.trim().length
@@ -2922,26 +3115,34 @@ const _sfc_main = {
         if (!hasMorePages.value || loading.value)
           return;
         loadPosts(currentPage.value + 1);
-      }, { root: null, threshold: 0.1 });
+      }, { root: null, rootMargin: "240px 0px", threshold: 0.1 });
       if (loadTrigger.value) {
         feedObserver.observe(loadTrigger.value);
       }
     };
     onMounted(async () => {
-      await hydrateAvailableTags();
       await loadPosts(1);
       setupObserver();
     });
     watch(loadTrigger, () => {
       setupObserver();
     });
+    watch(hasMorePages, (hasMore) => {
+      if (!hasMore) {
+        feedObserver == null ? void 0 : feedObserver.disconnect();
+      } else {
+        setupObserver();
+      }
+    });
     onUnmounted(() => {
+      requestVersion += 1;
+      activeController == null ? void 0 : activeController.abort();
       if (feedObserver) {
         feedObserver.disconnect();
       }
     });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "feed-container" }, _attrs))} data-v-b97b305e><aside class="filters-sidebar" data-v-b97b305e><h2 class="filters-title" data-v-b97b305e>Filters</h2>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "feed-container" }, _attrs))} data-v-f05db9ec><aside class="filters-sidebar" data-v-f05db9ec><h2 class="filters-title" data-v-f05db9ec>Filters</h2>`);
       _push(ssrRenderComponent(TagFilter, {
         modelValue: selectedTags.value,
         "onUpdate:modelValue": ($event) => selectedTags.value = $event,
@@ -2956,17 +3157,17 @@ const _sfc_main = {
         class: "filter-section"
       }, null, _parent));
       if (hasFilters.value) {
-        _push(`<button class="clear-filters-btn" data-v-b97b305e> Clear All Filters </button>`);
+        _push(`<button class="clear-filters-btn" data-v-f05db9ec> Clear All Filters </button>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`</aside><main class="feed-main" data-v-b97b305e><h1 class="feed-title" data-v-b97b305e>Short-Form Content Feed</h1>`);
+      _push(`</aside><main class="feed-main" data-v-f05db9ec><h1 class="feed-title" data-v-f05db9ec>Short-Form Content Feed</h1>`);
       if (loading.value && posts.value.length === 0) {
-        _push(`<div class="loading-state" data-v-b97b305e><div class="spinner" data-v-b97b305e></div><p data-v-b97b305e>Loading posts...</p></div>`);
+        _push(`<div class="loading-state" data-v-f05db9ec><div class="spinner" data-v-f05db9ec></div><p data-v-f05db9ec>Loading posts...</p></div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="posts-container" style="${ssrRenderStyle(!loading.value || posts.value.length > 0 ? null : { display: "none" })}" data-v-b97b305e><!--[-->`);
+      _push(`<div class="posts-container" style="${ssrRenderStyle(!loading.value || posts.value.length > 0 ? null : { display: "none" })}" data-v-f05db9ec><!--[-->`);
       ssrRenderList(posts.value, (post) => {
         _push(ssrRenderComponent(PostCard, {
           key: post.id,
@@ -2979,23 +3180,28 @@ const _sfc_main = {
       });
       _push(`<!--]-->`);
       if (hasMorePages.value && !loading.value) {
-        _push(`<div class="load-trigger" data-v-b97b305e></div>`);
+        _push(`<div class="load-trigger" data-v-f05db9ec></div>`);
       } else {
         _push(`<!---->`);
       }
       _push(`</div>`);
-      if (!loading.value && posts.value.length === 0 && !isLoadingData.value) {
-        _push(`<div class="empty-state" data-v-b97b305e><h2 data-v-b97b305e>No posts available yet</h2><p data-v-b97b305e>Check back soon for new short-form content!</p></div>`);
+      if (!loading.value && posts.value.length === 0 && !isLoadingData.value && !loadError.value) {
+        _push(`<div class="empty-state" data-v-f05db9ec><h2 data-v-f05db9ec>No posts available yet</h2><p data-v-f05db9ec>Check back soon for new short-form content!</p></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      if (loadError.value) {
+        _push(`<div class="feed-error" role="alert" data-v-f05db9ec><span data-v-f05db9ec>${ssrInterpolate(loadError.value)}</span><button type="button" class="retry-btn" data-v-f05db9ec>Try again</button></div>`);
       } else {
         _push(`<!---->`);
       }
       if (loading.value && posts.value.length > 0) {
-        _push(`<div class="load-more-spinner" data-v-b97b305e><div class="spinner" data-v-b97b305e></div><span data-v-b97b305e>Loading more...</span></div>`);
+        _push(`<div class="load-more-spinner" data-v-f05db9ec><div class="spinner" data-v-f05db9ec></div><span data-v-f05db9ec>Loading more...</span></div>`);
       } else {
         _push(`<!---->`);
       }
       if (!hasMorePages.value && !loading.value && posts.value.length > 0) {
-        _push(`<div class="no-more-posts" data-v-b97b305e><span data-v-b97b305e>All posts loaded</span></div>`);
+        _push(`<div class="no-more-posts" data-v-f05db9ec><span data-v-f05db9ec>All posts loaded</span></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -3018,7 +3224,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/pages/ShortFormFeedPage.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const ShortFormFeedPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-b97b305e"]]);
+const ShortFormFeedPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-f05db9ec"]]);
 const homeDescription = "Discover Quortol essays, podcasts, short-form posts, and interactive data storytelling.";
 const blogDescription = "Read Quortol essays on technology, work, policy, and social futures.";
 const podcastDescription = "Listen to Quortol podcast episodes adapted from essays and original conversations.";
@@ -3070,6 +3276,19 @@ const routes = [
           })
         ]
       })
+    }
+  },
+  {
+    path: "/blog/page/:page",
+    name: "blog-page",
+    component: BlogList,
+    meta: {
+      requiresAuth: false,
+      seo: {
+        title: "Quortol Blog",
+        description: blogDescription,
+        robots: "index,follow"
+      }
     }
   },
   {

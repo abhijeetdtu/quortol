@@ -2,10 +2,13 @@ from pathlib import Path
 import re
 
 from flask import Blueprint, request, jsonify, abort, send_from_directory
+from sqlalchemy import or_
 from ..models import BlogPost, Tag, Category
 from ..extensions import db
 
 blog_bp = Blueprint('blog', __name__)
+DEFAULT_BLOG_PAGE_SIZE = 12
+MAX_BLOG_PAGE_SIZE = 100
 BLOG_IMAGES_DIR = (Path(__file__).resolve().parent.parent / 'blogs' / 'images').resolve()
 BLOGS_DIR = (Path(__file__).resolve().parent.parent / 'blogs').resolve()
 BLOG_AUDIOBOOKS_DIR = (Path(__file__).resolve().parent.parent / 'static' / 'audiobooks').resolve()
@@ -122,8 +125,55 @@ def _audio_url_for_slug(slug):
 
 @blog_bp.route('/', methods=['GET'])
 def get_posts():
-    posts = BlogPost.query.order_by(BlogPost.published_at.desc()).all()
-    return jsonify([
+    paginated = 'page' in request.args or 'limit' in request.args
+    try:
+        page = int(request.args.get('page', 1))
+        limit = int(request.args.get('limit', DEFAULT_BLOG_PAGE_SIZE))
+    except (TypeError, ValueError):
+        return jsonify({
+            'error': 'Invalid query parameters',
+            'details': {'message': 'Page and limit must be integers'},
+        }), 400
+
+    if page < 1:
+        return jsonify({
+            'error': 'Invalid query parameters',
+            'details': {'message': 'Page must be >= 1'},
+        }), 400
+
+    if limit < 1 or limit > MAX_BLOG_PAGE_SIZE:
+        return jsonify({
+            'error': 'Invalid query parameters',
+            'details': {
+                'message': f'Limit must be between 1 and {MAX_BLOG_PAGE_SIZE}'
+            },
+        }), 400
+
+    search_term = request.args.get('q', '').strip()
+    query = BlogPost.query
+    if search_term:
+        escaped_term = (
+            search_term.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_')
+        )
+        pattern = f'%{escaped_term}%'
+        query = query.filter(or_(
+            BlogPost.title.ilike(pattern, escape='\\'),
+            BlogPost.excerpt.ilike(pattern, escape='\\'),
+            BlogPost.content.ilike(pattern, escape='\\'),
+            BlogPost.tags.any(Tag.name.ilike(pattern, escape='\\')),
+        ))
+
+    query = query.order_by(
+        BlogPost.published_at.desc(),
+        BlogPost.id.desc(),
+    )
+    total_posts = query.count()
+    posts = (
+        query.offset((page - 1) * limit).limit(limit).all()
+        if paginated
+        else query.all()
+    )
+    post_payloads = [
         {
             'id': post.id,
             'title': post.title,
@@ -134,7 +184,21 @@ def get_posts():
             **_image_fields_for_post(post),
         }
         for post in posts
-    ])
+    ]
+
+    if not paginated:
+        return jsonify(post_payloads)
+
+    total_pages = (total_posts + limit - 1) // limit if total_posts else 0
+    return jsonify({
+        'posts': post_payloads,
+        'pagination': {
+            'current_page': page,
+            'total_pages': total_pages,
+            'total_posts': total_posts,
+            'posts_per_page': limit,
+        },
+    })
 
 @blog_bp.route('/<slug>', methods=['GET'])
 def get_post(slug):

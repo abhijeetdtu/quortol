@@ -47,6 +47,7 @@ const podcastDescription =
   'Listen to Quortol podcast episodes adapted from essays and original conversations.'
 const dataStorytellingDescription =
   'Interactive data storytelling dashboards and visual deep dives.'
+const BLOG_PAGE_SIZE = 12
 
 const buildHomeRoute = (blogs) => ({
   path: '/quortol-home',
@@ -68,29 +69,51 @@ const buildHomeRoute = (blogs) => ({
   },
 })
 
-const buildBlogIndexRoute = (blogs) => ({
-  path: '/blog',
-  prerender: true,
-  seo: buildStaticPageSEOPayload({
-    title: 'Quortol Blog',
-    description: blogDescription,
-    path: '/blog',
-    structuredData: [
-      buildCollectionPageStructuredData({
-        title: 'Quortol Blog',
-        description: blogDescription,
-        path: '/blog',
-        items: blogs.map((post) => ({
-          name: post.title,
-          path: `/blog/${post.slug}`,
-        })),
-      }),
-    ],
-  }),
-  pageData: {
-    posts: blogs,
-  },
-})
+const buildBlogIndexRoutes = (blogs) => {
+  const totalPages = Math.max(1, Math.ceil(blogs.length / BLOG_PAGE_SIZE))
+
+  return Array.from({ length: totalPages }, (_, index) => {
+    const currentPage = index + 1
+    const routePath = currentPage === 1 ? '/blog' : `/blog/page/${currentPage}`
+    const posts = blogs.slice(index * BLOG_PAGE_SIZE, currentPage * BLOG_PAGE_SIZE)
+    const seo = buildStaticPageSEOPayload({
+      title: currentPage === 1 ? 'Quortol Blog' : `Quortol Blog – Page ${currentPage}`,
+      description: blogDescription,
+      path: routePath,
+      structuredData: [
+        buildCollectionPageStructuredData({
+          title: currentPage === 1 ? 'Quortol Blog' : `Quortol Blog – Page ${currentPage}`,
+          description: blogDescription,
+          path: routePath,
+          items: posts.map((post) => ({
+            name: post.title,
+            path: `/blog/${post.slug}`,
+          })),
+        }),
+      ],
+    })
+
+    seo.prev = currentPage > 1
+      ? (currentPage === 2 ? '/blog' : `/blog/page/${currentPage - 1}`)
+      : ''
+    seo.next = currentPage < totalPages ? `/blog/page/${currentPage + 1}` : ''
+
+    return {
+      path: routePath,
+      prerender: true,
+      seo,
+      pageData: {
+        posts,
+        pagination: {
+          current_page: currentPage,
+          total_pages: blogs.length > 0 ? totalPages : 0,
+          total_posts: blogs.length,
+          posts_per_page: BLOG_PAGE_SIZE,
+        },
+      },
+    }
+  })
+}
 
 const buildPodcastIndexRoute = (podcasts) => ({
   path: '/podcasts',
@@ -218,7 +241,7 @@ const buildManifest = async () => {
 
   const routes = [
     buildHomeRoute(blogs.map(toBlogSummary)),
-    buildBlogIndexRoute(blogs.map(toBlogSummary)),
+    ...buildBlogIndexRoutes(blogs.map(toBlogSummary)),
     ...blogs.map((post) => ({
       path: `/blog/${post.slug}`,
       prerender: true,

@@ -2,14 +2,20 @@ import { flushPromises, mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import ShortFormFeedPage from '../pages/ShortFormFeedPage.vue'
 import TagFilter from '../components/TagFilter.vue'
+import { feedService } from '../services/feedService'
 
+const observers = []
 global.IntersectionObserver = class {
-  observe() {}
+  constructor(callback) {
+    this.callback = callback
+    this.disconnect = vi.fn()
+    observers.push(this)
+  }
+  observe = vi.fn()
   unobserve() {}
-  disconnect() {}
 }
 
-const trackEvent = vi.fn()
+const { trackEvent } = vi.hoisted(() => ({ trackEvent: vi.fn() }))
 
 vi.mock('../services/feedService', () => ({
   feedService: {
@@ -43,6 +49,8 @@ vi.mock('../../../services/analytics', () => ({
 describe('ShortFormFeedPage', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    observers.length = 0
+    window.scrollTo = vi.fn()
   })
 
   it('renders posts from API', async () => {
@@ -83,5 +91,51 @@ describe('ShortFormFeedPage', () => {
       tag_count: 1,
       tags: ['#test'],
     })
+  })
+
+  it('loads the next page once and deduplicates repeated posts', async () => {
+    feedService.getFeed
+      .mockResolvedValueOnce({
+        posts: [{ id: 'p1', text: 'first', tags: [] }],
+        pagination: { current_page: 1, total_pages: 2, total_posts: 2, posts_per_page: 20 },
+        available_tags: [],
+      })
+      .mockResolvedValueOnce({
+        posts: [
+          { id: 'p1', text: 'first', tags: [] },
+          { id: 'p2', text: 'second', tags: [] },
+        ],
+        pagination: { current_page: 2, total_pages: 2, total_posts: 2, posts_per_page: 20 },
+        available_tags: [],
+      })
+
+    const wrapper = mount(ShortFormFeedPage)
+    await flushPromises()
+    const activeObserver = observers.at(-1)
+    activeObserver.callback([{ isIntersecting: true }])
+    activeObserver.callback([{ isIntersecting: true }])
+    await flushPromises()
+
+    expect(feedService.getFeed).toHaveBeenCalledTimes(2)
+    expect(feedService.getFeed.mock.calls[1][0].page).toBe(2)
+    expect(wrapper.findAll('.post-item')).toHaveLength(2)
+    expect(wrapper.text()).toContain('All posts loaded')
+  })
+
+  it('shows a retry action when the initial request fails', async () => {
+    feedService.getFeed
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce({
+        posts: [{ id: 'p2', text: 'recovered', tags: [] }],
+        pagination: { current_page: 1, total_pages: 1 },
+      })
+
+    const wrapper = mount(ShortFormFeedPage)
+    await flushPromises()
+    expect(wrapper.text()).toContain('Posts could not be loaded')
+
+    await wrapper.find('.retry-btn').trigger('click')
+    await flushPromises()
+    expect(wrapper.text()).toContain('recovered')
   })
 })

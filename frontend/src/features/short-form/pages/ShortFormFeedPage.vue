@@ -21,7 +21,7 @@
       </button>
     </aside>
 
-    <main class="feed-main">
+    <main ref="feedMain" class="feed-main">
       <h1 class="feed-title">Short-Form Content Feed</h1>
 
       <div v-if="loading && posts.length === 0" class="loading-state">
@@ -43,9 +43,14 @@
         <div v-if="hasMorePages && !loading" ref="loadTrigger" class="load-trigger"></div>
       </div>
 
-      <div v-if="!loading && posts.length === 0 && !isLoadingData" class="empty-state">
+      <div v-if="!loading && posts.length === 0 && !isLoadingData && !loadError" class="empty-state">
         <h2>No posts available yet</h2>
         <p>Check back soon for new short-form content!</p>
+      </div>
+
+      <div v-if="loadError" class="feed-error" role="alert">
+        <span>{{ loadError }}</span>
+        <button type="button" class="retry-btn" @click="retryLoad">Try again</button>
       </div>
 
       <div v-if="loading && posts.length > 0" class="load-more-spinner">
@@ -78,6 +83,8 @@ const loading = ref(false)
 const isLoadingData = ref(false)
 const selectedPost = ref(null)
 const loadTrigger = ref(null)
+const feedMain = ref(null)
+const loadError = ref('')
 
 const currentPage = ref(1)
 const totalPages = ref(0)
@@ -85,9 +92,23 @@ const postsPerPage = 20
 const allTags = ref([])
 
 let feedObserver = null
+let activeController = null
+let requestVersion = 0
 
 const hasFilters = computed(() => selectedTags.value.length > 0 || searchKeyword.value.trim() !== '')
 const hasMorePages = computed(() => currentPage.value < totalPages.value)
+
+const appendUniquePosts = (existing, incoming) => {
+  const seen = new Set(existing.map((post) => post.id))
+  return [
+    ...existing,
+    ...incoming.filter((post) => {
+      if (seen.has(post.id)) return false
+      seen.add(post.id)
+      return true
+    }),
+  ]
+}
 
 const getResultCount = (response) =>
   response?.pagination?.total_posts ?? response?.posts?.length ?? 0
@@ -116,36 +137,20 @@ const emitAnalytics = (context, response) => {
   }
 }
 
-const hydrateAvailableTags = async () => {
-  try {
-    const response = await feedService.getFeed({
-      page: 1,
-      limit: 100,
-      tags: [],
-      keyword: '',
-    })
-
-    if (Array.isArray(response.available_tags) && response.available_tags.length > 0) {
-      allTags.value = response.available_tags
-      return
-    }
-
-    // Fallback for legacy payloads without `available_tags`.
-    const tagSet = new Set()
-    ;(response.posts || []).forEach((post) => {
-      ;(post.tags || []).forEach((tag) => tagSet.add(tag))
-    })
-    allTags.value = Array.from(tagSet)
-  } catch (error) {
-    console.error('Failed to hydrate available tags:', error)
-  }
-}
-
 const loadPosts = async (page = 1, reset = false, analyticsContext = null) => {
-  if (loading.value || isLoadingData.value) return
+  if (reset) {
+    requestVersion += 1
+    activeController?.abort()
+  } else if (loading.value || isLoadingData.value) {
+    return
+  }
 
+  const version = requestVersion
+  const controller = new AbortController()
+  activeController = controller
   loading.value = true
   isLoadingData.value = true
+  loadError.value = ''
 
   try {
     const response = await feedService.getFeed({
@@ -153,16 +158,18 @@ const loadPosts = async (page = 1, reset = false, analyticsContext = null) => {
       limit: postsPerPage,
       tags: selectedTags.value,
       keyword: searchKeyword.value.trim(),
+      signal: controller.signal,
     })
+
+    if (version !== requestVersion) return
 
     if (reset) {
       posts.value = response.posts || []
-      currentPage.value = 1
     } else {
-      posts.value = [...posts.value, ...(response.posts || [])]
-      currentPage.value = page
+      posts.value = appendUniquePosts(posts.value, response.posts || [])
     }
 
+    currentPage.value = response.pagination?.current_page || page
     totalPages.value = response.pagination?.total_pages || 0
 
     // Keep a stable master tag list; don't collapse options when current filtered result is empty.
@@ -178,21 +185,39 @@ const loadPosts = async (page = 1, reset = false, analyticsContext = null) => {
 
     emitAnalytics(analyticsContext, response)
   } catch (error) {
+    if (controller.signal.aborted || version !== requestVersion) return
     console.error('Failed to load posts:', error)
+    loadError.value = posts.value.length > 0
+      ? 'More posts could not be loaded.'
+      : 'Posts could not be loaded.'
   } finally {
-    loading.value = false
-    isLoadingData.value = false
+    if (version === requestVersion) {
+      loading.value = false
+      isLoadingData.value = false
+      if (activeController === controller) activeController = null
+    }
+  }
+}
+
+const resetFeedPosition = () => {
+  const scrollTarget = feedMain.value
+  if (typeof scrollTarget?.scrollTo === 'function') {
+    scrollTarget.scrollTo({ top: 0, behavior: 'auto' })
+  } else if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+    window.scrollTo({ top: 0, behavior: 'auto' })
   }
 }
 
 const handleFilterChange = () => {
   currentPage.value = 1
+  resetFeedPosition()
   loadPosts(1, true, { type: 'filter' })
 }
 
 const handleSearch = (keyword) => {
   searchKeyword.value = keyword
   currentPage.value = 1
+  resetFeedPosition()
   loadPosts(1, true, {
     type: 'search',
     keywordLength: keyword.trim().length,
@@ -210,7 +235,13 @@ const clearAllFilters = () => {
   selectedTags.value = []
   searchKeyword.value = ''
   currentPage.value = 1
+  resetFeedPosition()
   loadPosts(1, true, { type: 'filter' })
+}
+
+const retryLoad = () => {
+  const page = posts.value.length > 0 ? currentPage.value + 1 : 1
+  loadPosts(page, posts.value.length === 0)
 }
 
 const openDetailModal = (post) => {
@@ -232,7 +263,7 @@ const setupObserver = () => {
     if (!hasMorePages.value || loading.value) return
 
     loadPosts(currentPage.value + 1)
-  }, { root: null, threshold: 0.1 })
+  }, { root: null, rootMargin: '240px 0px', threshold: 0.1 })
 
   if (loadTrigger.value) {
     feedObserver.observe(loadTrigger.value)
@@ -240,7 +271,6 @@ const setupObserver = () => {
 }
 
 onMounted(async () => {
-  await hydrateAvailableTags()
   await loadPosts(1)
   setupObserver()
 })
@@ -249,7 +279,17 @@ watch(loadTrigger, () => {
   setupObserver()
 })
 
+watch(hasMorePages, (hasMore) => {
+  if (!hasMore) {
+    feedObserver?.disconnect()
+  } else {
+    setupObserver()
+  }
+})
+
 onUnmounted(() => {
+  requestVersion += 1
+  activeController?.abort()
   if (feedObserver) {
     feedObserver.disconnect()
   }
@@ -384,6 +424,24 @@ onUnmounted(() => {
   padding: 16px;
   color: var(--text-muted, #999);
   font-size: 14px;
+}
+
+.feed-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  color: #8b2f24;
+}
+
+.retry-btn {
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

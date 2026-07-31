@@ -56,7 +56,7 @@ const buildSitemap = async () => {
       loc: toAbsoluteUrl(routePath),
       lastmod: route.pageData?.post?.updated_at || route.pageData?.post?.published_at || today,
       changefreq:
-        routePath === '/blog'
+        routePath === '/blog' || routePath.startsWith('/blog/page/')
           ? 'daily'
           : routePath === '/podcasts'
             ? 'weekly'
@@ -68,6 +68,8 @@ const buildSitemap = async () => {
       priority:
         routePath === '/blog'
           ? '1.0'
+          : routePath.startsWith('/blog/page/')
+            ? '0.9'
           : routePath === '/podcasts'
             ? '0.95'
             : routePath.startsWith('/blog/') || routePath.startsWith('/podcasts/')

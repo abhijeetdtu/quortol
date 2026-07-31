@@ -286,6 +286,23 @@ llama-server `
 ```
 
 ```bash
+./llama-server `
+-hf unsloth/Qwen3.6-35B-A3B-GGUF:IQ3_S `
+--n-gpu-layers 99 `
+--n-cpu-moe 16 `
+--batch-size 1024 `
+--ubatch-size 1024 `
+--threads 14 `
+--parallel 1 `
+--flash-attn 1 `
+--cache-type-k q8_0 `
+--cache-type-v q8_0 `
+--ctx-size 240000 `
+--cache-ram 2048 `
+--no-mmap
+```
+
+```bash
 llama-server `
   -hf unsloth/Qwen3.5-35B-A3B-GGUF:IQ2_M `
   --host 127.0.0.1 `

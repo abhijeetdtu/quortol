@@ -72,6 +72,19 @@ export const routes = [
     },
   },
   {
+    path: '/blog/page/:page',
+    name: 'blog-page',
+    component: BlogList,
+    meta: {
+      requiresAuth: false,
+      seo: {
+        title: 'Quortol Blog',
+        description: blogDescription,
+        robots: 'index,follow',
+      },
+    },
+  },
+  {
     path: '/blog/:slug',
     name: 'blog-detail',
     component: BlogDetail,
