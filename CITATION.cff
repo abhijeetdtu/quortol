@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: >-
+  If you use Quortol in a public product, website, publication, or report,
+  credit Quortol contributors and include the repository and license links.
+title: Quortol
+type: software
+authors:
+  - name: Quortol contributors
+repository-code: "https://github.com/abhijeetdtu/quortol"
+url: "https://github.com/abhijeetdtu/quortol"
+license-url: "https://github.com/abhijeetdtu/quortol/blob/master/LICENSE"

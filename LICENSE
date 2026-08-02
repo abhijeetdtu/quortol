@@ -1,0 +1,103 @@
+QUORTOL CITATION-REQUIRED SOFTWARE LICENSE
+Draft 1.0 — 2 August 2026
+
+This is a source-available license. It is not an Open Source Initiative approved
+license and must not be represented as an open-source license.
+
+Copyright (c) 2026 Quortol contributors. Each contributor retains copyright in
+their respective contribution.
+
+1. Definitions
+
+"Software" means the software source code and associated executable materials
+made available with this license, excluding Content and Third-Party Materials.
+
+"You" means the individual or legal entity exercising rights under this
+license.
+
+"Public Output" means a publicly accessible product, website, service,
+publication, report, presentation, or other work that materially uses the
+Software or a substantial portion of its functionality. Merely using an output
+created by an unmodified, general-purpose tool does not by itself make that
+output a Public Output.
+
+"Attribution" means a reasonable and visible notice containing all of:
+
+  (a) the name "Quortol";
+  (b) the credit "Quortol contributors";
+  (c) https://github.com/abhijeetdtu/quortol; and
+  (d) a link to, or an included copy of, this license.
+
+"Content" means original documentation, writing, datasets, images, audio,
+video, and other non-software works identified in CONTENT-LICENSE.md.
+
+"Third-Party Materials" means material for which copyright or other rights are
+held by someone other than the Quortol contributors, including dependencies,
+imported datasets, quotations, and externally sourced media.
+
+2. Permission Grant
+
+Subject to the conditions below, each contributor grants You a worldwide,
+royalty-free, non-exclusive license under their copyright in the Software to
+use, reproduce, modify, prepare derivative works of, display, perform,
+distribute, sublicense, and sell the Software for commercial or noncommercial
+purposes.
+
+3. Attribution Conditions
+
+If You distribute the Software or a modified version of it, You must include
+the Attribution with the distributed materials.
+
+If You make a Public Output available, You must display the Attribution in a
+location reasonably discoverable by its audience. Suitable locations include
+documentation, legal notices, credits, an About page, or a publication's
+acknowledgments or references. The Attribution need not be displayed more
+prominently than comparable third-party notices.
+
+Purely private or internal use that is not distributed and produces no Public
+Output does not require a publicly displayed Attribution.
+
+You may add Your own copyright statements and license terms for Your
+modifications, provided they do not restrict recipients from exercising the
+rights granted here in the unmodified Software and do not remove or obscure the
+required Attribution.
+
+4. Third-Party Materials and Content
+
+This license applies only to copyrightable Software contributions whose rights
+are controlled by their contributors. It does not license trademarks, patents,
+Content, or Third-Party Materials. Content is addressed in CONTENT-LICENSE.md.
+Third-Party Materials remain subject to their own terms; see
+THIRD_PARTY_NOTICES.md.
+
+5. Termination and Reinstatement
+
+Your rights under this license terminate automatically if You fail to comply
+with its conditions. Your rights are reinstated automatically when You correct
+the violation within 30 days after discovering it. Otherwise, reinstatement
+requires express written permission from the affected copyright holder. This
+section does not limit any remedies available for a violation.
+
+6. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. YOU BEAR ALL RISK
+ARISING FROM USE OR DISTRIBUTION OF THE SOFTWARE.
+
+7. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, NO CONTRIBUTOR SHALL BE
+LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT,
+OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR ITS
+USE OR OTHER DEALINGS.
+
+8. No Trademark License
+
+This license does not grant permission to use contributor names or the Quortol
+name or marks except as necessary to provide the required Attribution or to
+describe the origin of the Software accurately.
+
+NOTICE: These are custom draft terms and have not been reviewed or approved by
+the Open Source Initiative. Obtain qualified legal advice before relying on
+them for enforcement or compliance decisions.

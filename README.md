@@ -2,6 +2,41 @@
 
 A full-stack application with Vue 3 frontend and Flask backend.
 
+## Licensing and citation
+
+Quortol software is available under the custom
+[Quortol Citation-Required Software License](LICENSE). It permits commercial
+and noncommercial use, modification, and distribution, but it is a
+source-available license—not an OSI-approved open-source license.
+
+Redistributions and public-facing products, websites, publications, or reports
+that materially use Quortol must provide reasonable, visible attribution with
+all four of these elements:
+
+- the project name **Quortol**;
+- the credit **Quortol contributors**;
+- <https://github.com/abhijeetdtu/quortol>; and
+- a link to or copy of the [software license](LICENSE).
+
+For example, a product's About or notices page may say:
+
+> This product uses Quortol by Quortol contributors,
+> <https://github.com/abhijeetdtu/quortol>, under the
+> [Quortol Citation-Required Software License](LICENSE).
+
+An academic paper or public report may use:
+
+> Quortol contributors. *Quortol*.
+> <https://github.com/abhijeetdtu/quortol>. Licensed under the
+> [Quortol Citation-Required Software License](LICENSE).
+
+Original non-software material is covered separately by
+[CC BY 4.0](CONTENT-LICENSE.md) where contributors control the necessary
+rights. Dependencies, imported data, quotations, externally sourced media, and
+other third-party works retain their own terms; see
+[Third-Party Notices](THIRD_PARTY_NOTICES.md). Machine-readable citation
+metadata is available in [CITATION.cff](CITATION.cff).
+
 ## Prerequisites
 
 - Node.js (v16+)

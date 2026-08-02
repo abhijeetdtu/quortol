@@ -71,9 +71,85 @@ const props = defineProps({
 
 const emit = defineEmits(['playback-start', 'playback-state', 'position-change'])
 
-const tokenize = (content) => (content || '').trim().split(/\s+/).filter(Boolean)
-const words = computed(() => tokenize(props.content))
-const wordIndex = ref(0)
+const MAX_LETTERS_PER_UNIT = 18
+const WORD_CHARACTER_PATTERN = /[\p{L}\p{N}]/u
+const CLAUSE_PUNCTUATION_PATTERN = /[,;:][\p{Pe}\p{Pf}'"]*$/u
+const SENTENCE_PUNCTUATION_PATTERN = /[.!?][\p{Pe}\p{Pf}'"]*$/u
+
+const tokenize = (content) => {
+  const value = content || ''
+  const matches = [...value.matchAll(/\S+/gu)]
+  return matches.map((match, index) => {
+    const nextStart = matches[index + 1]?.index ?? value.length
+    const separator = value.slice(match.index + match[0].length, nextStart)
+    return {
+      text: match[0],
+      paragraphEnd: /\r?\n\s*\r?\n/.test(separator),
+    }
+  })
+}
+
+const countLetters = (value) => [...value].filter((character) => WORD_CHARACTER_PATTERN.test(character)).length
+
+const splitLongToken = (token) => {
+  if (countLetters(token) <= MAX_LETTERS_PER_UNIT) return [token]
+
+  const characters = [...token]
+  const fragments = []
+  let start = 0
+
+  while (countLetters(characters.slice(start).join('')) > MAX_LETTERS_PER_UNIT) {
+    let letterCount = 0
+    let limit = start
+    let preferredBreak = -1
+
+    while (limit < characters.length && letterCount < MAX_LETTERS_PER_UNIT) {
+      if (WORD_CHARACTER_PATTERN.test(characters[limit])) letterCount += 1
+      limit += 1
+      if (characters[limit - 1] === '-' && letterCount > 0) preferredBreak = limit
+    }
+
+    const end = preferredBreak > start ? preferredBreak : limit
+    fragments.push(characters.slice(start, end).join(''))
+    start = end
+  }
+
+  fragments.push(characters.slice(start).join(''))
+  return fragments.filter(Boolean)
+}
+
+const lengthMultiplier = (letterCount) => {
+  if (letterCount <= 6) return 1
+  if (letterCount <= 8) return 1.125
+  if (letterCount <= 10) return 1.25
+  if (letterCount <= 13) return 1.375
+  return 1.5
+}
+
+const punctuationMultiplier = (text, paragraphEnd) => {
+  if (paragraphEnd || SENTENCE_PUNCTUATION_PATTERN.test(text)) return 1
+  if (CLAUSE_PUNCTUATION_PATTERN.test(text)) return 0.5
+  return 0
+}
+
+const buildDisplayUnits = (content) => tokenize(content).flatMap((token, sourceWordIndex) => {
+  const fragments = splitLongToken(token.text)
+  return fragments.map((text, fragmentIndex) => {
+    const isLastFragment = fragmentIndex === fragments.length - 1
+    const letterCount = countLetters(text)
+    return {
+      text,
+      letterCount,
+      sourceWordIndex,
+      timingMultiplier: lengthMultiplier(letterCount)
+        + (isLastFragment ? punctuationMultiplier(text, token.paragraphEnd) : 0),
+    }
+  })
+})
+
+const words = computed(() => tokenize(props.content).map((token) => token.text))
+const displayUnits = computed(() => buildDisplayUnits(props.content))
+const unitIndex = ref(0)
 const isPlaying = ref(false)
 const hasFinished = ref(false)
 const wpm = ref(DEFAULT_WPM)
@@ -85,9 +161,11 @@ const speeds = Array.from(
 )
 
 const lastIndex = computed(() => Math.max(0, words.value.length - 1))
-const currentWord = computed(() => words.value[wordIndex.value] || 'Ready')
-const focusIndex = (word) => {
-  const length = word.length
+const lastUnitIndex = computed(() => Math.max(0, displayUnits.value.length - 1))
+const currentUnit = computed(() => displayUnits.value[unitIndex.value])
+const wordIndex = computed(() => currentUnit.value?.sourceWordIndex || 0)
+const currentWord = computed(() => currentUnit.value?.text || 'Ready')
+const focusLetterPosition = (length) => {
   if (length <= 1) return 0
   if (length <= 5) return 1
   if (length <= 9) return 2
@@ -96,18 +174,29 @@ const focusIndex = (word) => {
 }
 const wordParts = computed(() => {
   const word = currentWord.value
-  const index = Math.min(focusIndex(word), Math.max(0, word.length - 1))
+  const targetLetter = focusLetterPosition(currentUnit.value?.letterCount || countLetters(word))
+  const characters = [...word]
+  const letterIndexes = characters.reduce((indexes, character, index) => {
+    if (WORD_CHARACTER_PATTERN.test(character)) indexes.push(index)
+    return indexes
+  }, [])
+  const index = letterIndexes[Math.min(targetLetter, Math.max(0, letterIndexes.length - 1))] || 0
   return {
-    prefix: word.slice(0, index),
-    focus: word.charAt(index),
-    suffix: word.slice(index + 1),
+    prefix: characters.slice(0, index).join(''),
+    focus: characters[index] || '',
+    suffix: characters.slice(index + 1).join(''),
   }
 })
 const positionLabel = computed(() => (
   words.value.length ? `Word ${wordIndex.value + 1} of ${words.value.length}` : 'No words available'
 ))
-const elapsedSeconds = computed(() => (wordIndex.value * 60) / wpm.value)
-const totalSeconds = computed(() => (words.value.length * 60) / wpm.value)
+const unitDuration = (unit) => (60000 / wpm.value) * unit.timingMultiplier
+const elapsedSeconds = computed(() => (
+  displayUnits.value.slice(0, unitIndex.value).reduce((total, unit) => total + unitDuration(unit), 0) / 1000
+))
+const totalSeconds = computed(() => (
+  displayUnits.value.reduce((total, unit) => total + unitDuration(unit), 0) / 1000
+))
 
 const formatTime = (seconds) => {
   const safeSeconds = Math.max(0, Math.round(seconds))
@@ -141,20 +230,20 @@ const scheduleNextWord = () => {
   if (!isPlaying.value || !words.value.length) return
 
   timerId = window.setTimeout(() => {
-    if (wordIndex.value >= lastIndex.value) {
+    if (unitIndex.value >= lastUnitIndex.value) {
       hasFinished.value = true
       pause()
       return
     }
-    wordIndex.value += 1
+    unitIndex.value += 1
     scheduleNextWord()
-  }, 60000 / wpm.value)
+  }, unitDuration(currentUnit.value))
 }
 
 const play = () => {
   if (!words.value.length) return
-  if (hasFinished.value || wordIndex.value >= lastIndex.value) {
-    wordIndex.value = 0
+  if (hasFinished.value || unitIndex.value >= lastUnitIndex.value) {
+    unitIndex.value = 0
     hasFinished.value = false
   }
   emit('playback-start')
@@ -170,7 +259,7 @@ const togglePlayback = () => {
 const restart = () => {
   const resume = isPlaying.value
   clearTimer()
-  wordIndex.value = 0
+  unitIndex.value = 0
   hasFinished.value = false
   if (resume) scheduleNextWord()
 }
@@ -178,7 +267,8 @@ const restart = () => {
 const seek = (event) => {
   const nextIndex = Number(event.target.value)
   if (!Number.isFinite(nextIndex)) return
-  wordIndex.value = Math.max(0, Math.min(lastIndex.value, nextIndex))
+  const sourceWordIndex = Math.max(0, Math.min(lastIndex.value, nextIndex))
+  unitIndex.value = Math.max(0, displayUnits.value.findIndex((unit) => unit.sourceWordIndex === sourceWordIndex))
   hasFinished.value = false
   if (isPlaying.value) scheduleNextWord()
 }
@@ -187,7 +277,8 @@ const seekTo = (index) => {
   const nextIndex = Number(index)
   if (!Number.isFinite(nextIndex)) return
   pause()
-  wordIndex.value = Math.max(0, Math.min(lastIndex.value, Math.trunc(nextIndex)))
+  const sourceWordIndex = Math.max(0, Math.min(lastIndex.value, Math.trunc(nextIndex)))
+  unitIndex.value = Math.max(0, displayUnits.value.findIndex((unit) => unit.sourceWordIndex === sourceWordIndex))
   hasFinished.value = false
 }
 
@@ -231,11 +322,12 @@ const handleKeydown = (event) => {
 
 watch(() => props.content, () => {
   pause()
-  wordIndex.value = 0
+  unitIndex.value = 0
   hasFinished.value = false
 })
 
-watch(wordIndex, (index) => {
+watch(wordIndex, (index, previousIndex) => {
+  if (index === previousIndex) return
   emit('position-change', index)
 })
 

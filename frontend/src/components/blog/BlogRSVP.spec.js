@@ -17,15 +17,115 @@ describe('BlogRSVP', () => {
     const wrapper = mount(BlogRSVP, { props: { content: 'Hello, RSVP world!' } })
 
     expect(wrapper.get('.word').text()).toBe('Hello,')
-    expect(wrapper.get('.word-focus').text()).toBe('l')
+    expect(wrapper.get('.word-focus').text()).toBe('e')
     vi.advanceTimersByTime(1000)
     expect(wrapper.get('.word').text()).toBe('Hello,')
 
     await wrapper.get('.rsvp-play').trigger('click')
     expect(wrapper.emitted('playback-start')).toHaveLength(1)
-    vi.advanceTimersByTime(200)
+    vi.advanceTimersByTime(300)
     await wrapper.vm.$nextTick()
     expect(wrapper.get('.word').text()).toBe('RSVP')
+  })
+
+  it('gives longer words progressively more display time', async () => {
+    const wrapper = mount(BlogRSVP, {
+      props: { content: 'a abcdef abcdefg abcdefghi abcdefghijk abcdefghijklmn done' },
+    })
+
+    await wrapper.get('.rsvp-play').trigger('click')
+
+    vi.advanceTimersByTime(199)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('a')
+    vi.advanceTimersByTime(1)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('abcdef')
+
+    vi.advanceTimersByTime(200)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('abcdefg')
+    vi.advanceTimersByTime(225)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('abcdefghi')
+    vi.advanceTimersByTime(250)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('abcdefghijk')
+    vi.advanceTimersByTime(275)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('abcdefghijklmn')
+    vi.advanceTimersByTime(300)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('done')
+  })
+
+  it('adds clause, sentence, quoted-sentence, and paragraph pauses', async () => {
+    const wrapper = mount(BlogRSVP, {
+      props: { content: 'go, next. "finished." paragraph\n\nbreak done' },
+    })
+
+    await wrapper.get('.rsvp-play').trigger('click')
+    vi.advanceTimersByTime(299)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('go,')
+    vi.advanceTimersByTime(1)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('next.')
+
+    vi.advanceTimersByTime(399)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('next.')
+    vi.advanceTimersByTime(1)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('"finished."')
+    expect(wrapper.get('.word-focus').text()).toBe('n')
+
+    vi.advanceTimersByTime(424)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('"finished."')
+    vi.advanceTimersByTime(1)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('paragraph')
+    vi.advanceTimersByTime(449)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('paragraph')
+    vi.advanceTimersByTime(1)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('break')
+  })
+
+  it('splits words over 18 letters without advancing word-level progress', async () => {
+    const wrapper = mount(BlogRSVP, {
+      props: { content: 'abcdefghijklmnopqrs next' },
+    })
+
+    await wrapper.get('.rsvp-play').trigger('click')
+    expect(wrapper.get('.word').text()).toBe('abcdefghijklmnopqr')
+    expect(wrapper.get('.position-label').text()).toBe('Word 1 of 2')
+
+    vi.advanceTimersByTime(300)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('s')
+    expect(wrapper.get('.position-label').text()).toBe('Word 1 of 2')
+    expect(wrapper.emitted('position-change')).toBeUndefined()
+
+    vi.advanceTimersByTime(200)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('next')
+    expect(wrapper.get('.position-label').text()).toBe('Word 2 of 2')
+    expect(wrapper.emitted('position-change')).toEqual([[1]])
+
+    wrapper.vm.seekTo(0)
+    await wrapper.vm.$nextTick()
+    expect(wrapper.get('.word').text()).toBe('abcdefghijklmnopqr')
+  })
+
+  it('recalculates adaptive total time when WPM changes', async () => {
+    const wrapper = mount(BlogRSVP, { props: { content: 'a communication.' } })
+
+    expect(wrapper.get('.rsvp-time').text()).toBe('0:00 / 0:01')
+    await wrapper.get('#rsvp-speed').setValue('100')
+    expect(wrapper.get('.rsvp-time').text()).toBe('0:00 / 0:02')
   })
 
   it('pauses, restarts, seeks, and reports accessible progress', async () => {
