@@ -47,6 +47,8 @@ const podcastDescription =
   'Listen to Quortol podcast episodes adapted from essays and original conversations.'
 const dataStorytellingDescription =
   'Interactive data storytelling dashboards and visual deep dives.'
+const readerDescription =
+  'Read a local plain-text document one word at a time with a private RSVP speed reader.'
 const BLOG_PAGE_SIZE = 12
 
 const buildHomeRoute = (blogs) => ({
@@ -145,6 +147,23 @@ const buildPodcastIndexRoute = (podcasts) => ({
 })
 
 const buildStaticRoutes = (dashboards) => [
+  {
+    path: '/reader',
+    prerender: true,
+    seo: buildStaticPageSEOPayload({
+      title: 'Rapid Reader | Quortol',
+      description: readerDescription,
+      path: '/reader',
+      structuredData: [
+        buildWebPageStructuredData({
+          title: 'Rapid Reader | Quortol',
+          description: readerDescription,
+          path: '/reader',
+        }),
+      ],
+    }),
+    pageData: null,
+  },
   {
     path: '/data-storytelling',
     prerender: true,

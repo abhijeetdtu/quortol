@@ -45,6 +45,19 @@ describe('BlogRSVP', () => {
     expect(wrapper.get('.word').text()).toBe('one')
   })
 
+  it('emits position changes and exposes a paused external seek', async () => {
+    const wrapper = mount(BlogRSVP, { props: { content: 'one two three four' } })
+
+    await wrapper.get('.rsvp-play').trigger('click')
+    wrapper.vm.seekTo(2)
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.get('.word').text()).toBe('three')
+    expect(wrapper.classes()).not.toContain('is-focus-mode')
+    expect(wrapper.emitted('playback-state').at(-1)).toEqual([false])
+    expect(wrapper.emitted('position-change').at(-1)).toEqual([2])
+  })
+
   it('persists a valid speed and restores it in another reader', async () => {
     const wrapper = mount(BlogRSVP, { props: { content: 'one two' } })
     await wrapper.get('#rsvp-speed').setValue('500')

@@ -69,7 +69,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['playback-start', 'playback-state'])
+const emit = defineEmits(['playback-start', 'playback-state', 'position-change'])
 
 const tokenize = (content) => (content || '').trim().split(/\s+/).filter(Boolean)
 const words = computed(() => tokenize(props.content))
@@ -183,6 +183,14 @@ const seek = (event) => {
   if (isPlaying.value) scheduleNextWord()
 }
 
+const seekTo = (index) => {
+  const nextIndex = Number(index)
+  if (!Number.isFinite(nextIndex)) return
+  pause()
+  wordIndex.value = Math.max(0, Math.min(lastIndex.value, Math.trunc(nextIndex)))
+  hasFinished.value = false
+}
+
 const saveSpeed = () => {
   if (typeof window !== 'undefined') {
     try {
@@ -227,6 +235,10 @@ watch(() => props.content, () => {
   hasFinished.value = false
 })
 
+watch(wordIndex, (index) => {
+  emit('position-change', index)
+})
+
 watch(isPlaying, (playing) => {
   if (typeof document !== 'undefined') {
     document.body.style.overflow = playing ? 'hidden' : ''
@@ -243,7 +255,7 @@ onUnmounted(() => {
   if (typeof window !== 'undefined') window.removeEventListener('keydown', handleKeydown)
 })
 
-defineExpose({ stop })
+defineExpose({ stop, seekTo })
 </script>
 
 <style scoped>

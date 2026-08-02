@@ -7,6 +7,7 @@ import AgentLogin from '../views/agents/AgentLogin.vue'
 import AgentDashboard from '../views/agents/AgentDashboard.vue'
 import AgentCapabilities from '../views/agents/AgentCapabilities.vue'
 import ShortFormFeedPage from '../features/short-form/pages/ShortFormFeedPage.vue'
+import Reader from '../views/Reader.vue'
 import {
   buildCollectionPageStructuredData,
   buildPodcastSeriesStructuredData,
@@ -205,6 +206,26 @@ export const routes = [
         description: 'Interactive dashboard detail view on Quortol.',
         path: '/data-storytelling',
         robots: 'noindex,follow',
+      }),
+    },
+  },
+  {
+    path: '/reader',
+    name: 'reader',
+    component: Reader,
+    meta: {
+      requiresAuth: false,
+      seo: buildStaticPageSEOPayload({
+        title: 'Rapid Reader | Quortol',
+        description: 'Read a local plain-text document one word at a time with a private RSVP speed reader.',
+        path: '/reader',
+        structuredData: [
+          buildWebPageStructuredData({
+            title: 'Rapid Reader | Quortol',
+            description: 'Read a local plain-text document one word at a time with a private RSVP speed reader.',
+            path: '/reader',
+          }),
+        ],
       }),
     },
   },

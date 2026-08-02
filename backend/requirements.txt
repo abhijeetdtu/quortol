@@ -17,3 +17,6 @@ dash==2.15.0
 plotly==5.18.0
 pandas>=2.0.0
 scipy>=1.11.0
+
+# CPIDR-inspired English blog evaluation (model installed separately; see README)
+spacy>=3.7,<4

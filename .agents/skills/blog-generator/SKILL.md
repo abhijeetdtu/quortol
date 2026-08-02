@@ -47,3 +47,25 @@ No additional dependencies required - uses standard Unix tools.
 ```
 
 ### Extract
+
+### Evaluate Propositional Idea Density
+
+Use the repository's CPIDR-inspired evaluator for an English Markdown (`.md`)
+or plain-text (`.txt`) document, or for every supported file below a directory:
+
+```bash
+python scripts/evaluate_blog_cpidr.py backend/blogs/my-post.md
+python scripts/evaluate_blog_cpidr.py path/to/source.txt
+python scripts/evaluate_blog_cpidr.py backend/blogs --format json --output cpidr-report.json
+```
+
+Install spaCy and its English model first:
+
+```bash
+pip install -r backend/requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+The score is diagnostic only. It approximates propositional idea density using
+a modern POS tagger and selected rules from Brown et al. (2008); it is not
+numerically interchangeable with the original CPIDR 3 or proprietary CPIDR 5.

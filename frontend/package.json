@@ -14,6 +14,7 @@
     "seo:generate-sitemap": "node ./scripts/generate-sitemap.mjs",
     "seo:prerender": "node ./scripts/prerender-public-routes.mjs",
     "test:blog": "vitest run src/utils/__tests__/blogContent.spec.js src/components/blog/BlogTTS.spec.js src/components/blog/BlogRSVP.spec.js src/views/blog/__tests__/BlogDetail.spec.js",
+    "test:reader": "vitest run src/components/blog/BlogRSVP.spec.js src/components/reader/ContextTextNavigator.spec.js src/views/__tests__/Reader.spec.js src/router/__tests__/index.spec.js",
     "test:short-form": "vitest run src/features/short-form/__tests__",
     "test:podcasts": "vitest run src/views/podcasts/__tests__"
   },

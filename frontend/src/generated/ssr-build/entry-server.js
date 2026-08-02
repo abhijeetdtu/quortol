@@ -101,7 +101,7 @@ const auth = {
   logout: () => api.post("/auth/logout"),
   getCurrentUser: () => api.get("/auth/me")
 };
-const Navbar_vue_vue_type_style_index_0_scoped_4633f8dc_lang = "";
+const Navbar_vue_vue_type_style_index_0_scoped_5b8a3a42_lang = "";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -109,7 +109,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$h = {
+const _sfc_main$j = {
   __name: "Navbar",
   __ssrInlineRender: true,
   setup(__props) {
@@ -117,7 +117,7 @@ const _sfc_main$h = {
     return (_ctx, _push, _parent, _attrs) => {
       var _a;
       const _component_router_link = resolveComponent("router-link");
-      _push(`<nav${ssrRenderAttrs(mergeProps({ class: "navbar navbar-expand-lg sticky-top app-navbar py-3" }, _attrs))} data-v-4633f8dc><div class="container-xl" data-v-4633f8dc>`);
+      _push(`<nav${ssrRenderAttrs(mergeProps({ class: "navbar navbar-expand-lg sticky-top app-navbar py-3" }, _attrs))} data-v-5b8a3a42><div class="container-xl" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/quortol-home",
         class: "navbar-brand app-logo"
@@ -134,7 +134,7 @@ const _sfc_main$h = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#quortol-nav" aria-controls="quortol-nav" aria-expanded="false" aria-label="Toggle navigation" data-v-4633f8dc><span class="navbar-toggler-icon" data-v-4633f8dc></span></button><div id="quortol-nav" class="collapse navbar-collapse" data-v-4633f8dc><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" data-v-4633f8dc><li class="nav-item" data-v-4633f8dc>`);
+      _push(`<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#quortol-nav" aria-controls="quortol-nav" aria-expanded="false" aria-label="Toggle navigation" data-v-5b8a3a42><span class="navbar-toggler-icon" data-v-5b8a3a42></span></button><div id="quortol-nav" class="collapse navbar-collapse" data-v-5b8a3a42><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" data-v-5b8a3a42><li class="nav-item" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/quortol-home",
         class: "nav-link"
@@ -151,7 +151,7 @@ const _sfc_main$h = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-4633f8dc>`);
+      _push(`</li><li class="nav-item" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "nav-link"
@@ -168,7 +168,7 @@ const _sfc_main$h = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-4633f8dc>`);
+      _push(`</li><li class="nav-item" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/shorts",
         class: "nav-link"
@@ -185,7 +185,24 @@ const _sfc_main$h = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-4633f8dc>`);
+      _push(`</li><li class="nav-item" data-v-5b8a3a42>`);
+      _push(ssrRenderComponent(_component_router_link, {
+        to: "/reader",
+        class: "nav-link"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`Reader`);
+          } else {
+            return [
+              createTextVNode("Reader")
+            ];
+          }
+        }),
+        _: 1
+        /* STABLE */
+      }, _parent));
+      _push(`</li><li class="nav-item" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/podcasts",
         class: "nav-link"
@@ -202,7 +219,7 @@ const _sfc_main$h = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-4633f8dc>`);
+      _push(`</li><li class="nav-item" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/data-storytelling",
         class: "nav-link"
@@ -219,7 +236,7 @@ const _sfc_main$h = {
         _: 1
         /* STABLE */
       }, _parent));
-      _push(`</li><li class="nav-item" data-v-4633f8dc>`);
+      _push(`</li><li class="nav-item" data-v-5b8a3a42>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/agent/dashboard",
         class: "nav-link"
@@ -238,13 +255,13 @@ const _sfc_main$h = {
       }, _parent));
       _push(`</li>`);
       if (unref(authStore).isAuthenticated) {
-        _push(`<li class="nav-item text-muted small px-lg-2 py-2 py-lg-0" data-v-4633f8dc>${ssrInterpolate((_a = unref(authStore).user) == null ? void 0 : _a.username)}</li>`);
+        _push(`<li class="nav-item text-muted small px-lg-2 py-2 py-lg-0" data-v-5b8a3a42>${ssrInterpolate((_a = unref(authStore).user) == null ? void 0 : _a.username)}</li>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<li class="nav-item" data-v-4633f8dc>`);
+      _push(`<li class="nav-item" data-v-5b8a3a42>`);
       if (unref(authStore).isAuthenticated) {
-        _push(`<button class="btn btn-sm app-btn" data-v-4633f8dc>Logout</button>`);
+        _push(`<button class="btn btn-sm app-btn" data-v-5b8a3a42>Logout</button>`);
       } else {
         _push(ssrRenderComponent(_component_router_link, {
           to: "/agent/login",
@@ -267,27 +284,27 @@ const _sfc_main$h = {
     };
   }
 };
-const _sfc_setup$h = _sfc_main$h.setup;
-_sfc_main$h.setup = (props, ctx) => {
+const _sfc_setup$j = _sfc_main$j.setup;
+_sfc_main$j.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/Navbar.vue");
-  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
+  return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
-const Navbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-4633f8dc"]]);
+const Navbar = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-5b8a3a42"]]);
 const Footer_vue_vue_type_style_index_0_scoped_8a6bde83_lang = "";
-const _sfc_main$g = {};
+const _sfc_main$i = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
   _push(`<footer${ssrRenderAttrs(mergeProps({ class: "app-footer py-3 mt-auto" }, _attrs))} data-v-8a6bde83><div class="container-xl text-center small" data-v-8a6bde83><p class="mb-0" data-v-8a6bde83>© 2026 Quortol. All rights reserved.</p></div></footer>`);
 }
-const _sfc_setup$g = _sfc_main$g.setup;
-_sfc_main$g.setup = (props, ctx) => {
+const _sfc_setup$i = _sfc_main$i.setup;
+_sfc_main$i.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/Footer.vue");
-  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
+  return _sfc_setup$i ? _sfc_setup$i(props, ctx) : void 0;
 };
-const Footer = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-8a6bde83"]]);
+const Footer = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-8a6bde83"]]);
 const App_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$f = {
+const _sfc_main$h = {
   __name: "App",
   __ssrInlineRender: true,
   setup(__props) {
@@ -320,11 +337,11 @@ const _sfc_main$f = {
     };
   }
 };
-const _sfc_setup$f = _sfc_main$f.setup;
-_sfc_main$f.setup = (props, ctx) => {
+const _sfc_setup$h = _sfc_main$h.setup;
+_sfc_main$h.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/App.vue");
-  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
 };
 const PRERENDER_CONTEXT_KEY = Symbol("quortol-prerender-context");
 const readClientPrerenderPayload = () => {
@@ -599,8 +616,8 @@ const applySEOMetadata = ({
   upsertMetaTag({ name: "twitter:image", content: imageUrl });
   upsertStructuredData(structuredData);
 };
-const Home_vue_vue_type_style_index_0_scoped_38a75fcb_lang = "";
-const _sfc_main$e = {
+const Home_vue_vue_type_style_index_0_scoped_ca5e32d0_lang = "";
+const _sfc_main$g = {
   __name: "Home",
   __ssrInlineRender: true,
   setup(__props) {
@@ -621,7 +638,7 @@ const _sfc_main$e = {
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "home-page container-xl py-5" }, _attrs))} data-v-38a75fcb><section class="hero mb-5" data-v-38a75fcb><p class="kicker mb-2" data-v-38a75fcb>Curated</p><h1 class="display-5 mb-3" data-v-38a75fcb>Come satisfy your curiosity</h1><p class="intro mb-4" data-v-38a75fcb> Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI. </p><div class="d-flex flex-wrap gap-2" data-v-38a75fcb>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "home-page container-xl py-5" }, _attrs))} data-v-ca5e32d0><section class="hero mb-5" data-v-ca5e32d0><p class="kicker mb-2" data-v-ca5e32d0>Curated</p><h1 class="display-5 mb-3" data-v-ca5e32d0>Come satisfy your curiosity</h1><p class="intro mb-4" data-v-ca5e32d0> Browse longform writing, listen to podcasts, explore short-form posts, or jump into agent tooling with one coherent editorial UI. </p><div class="d-flex flex-wrap gap-2" data-v-ca5e32d0>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "btn btn-sm app-btn-soft"
@@ -705,13 +722,13 @@ const _sfc_main$e = {
           /* STABLE */
         }, _parent));
       }
-      _push(`</div></section><section class="mb-5" data-v-38a75fcb><h2 class="mb-3" data-v-38a75fcb>Latest Essays</h2>`);
+      _push(`</div></section><section class="mb-5" data-v-ca5e32d0><h2 class="mb-3" data-v-ca5e32d0>Latest Essays</h2>`);
       if (posts.value.length === 0) {
-        _push(`<div class="text-muted" data-v-38a75fcb>Loading...</div>`);
+        _push(`<div class="text-muted" data-v-ca5e32d0>Loading...</div>`);
       } else {
-        _push(`<div class="row g-3" data-v-38a75fcb><!--[-->`);
+        _push(`<div class="row g-3" data-v-ca5e32d0><!--[-->`);
         ssrRenderList(posts.value.slice(0, 3), (post) => {
-          _push(`<div class="col-12 col-md-6 col-xl-4" data-v-38a75fcb><article class="card h-100 app-card" data-v-38a75fcb><div class="card-body" data-v-38a75fcb><h3 class="h4 card-title" data-v-38a75fcb>${ssrInterpolate(post.title)}</h3><p class="card-text text-secondary" data-v-38a75fcb>${ssrInterpolate(post.excerpt)}</p>`);
+          _push(`<div class="col-12 col-md-6 col-xl-4" data-v-ca5e32d0><article class="card h-100 app-card" data-v-ca5e32d0><div class="card-body" data-v-ca5e32d0><h3 class="h4 card-title" data-v-ca5e32d0>${ssrInterpolate(post.title)}</h3><p class="card-text text-secondary" data-v-ca5e32d0>${ssrInterpolate(post.excerpt)}</p>`);
           _push(ssrRenderComponent(_component_router_link, {
             to: `/blog/${post.slug}`,
             class: "app-link"
@@ -736,13 +753,13 @@ const _sfc_main$e = {
     };
   }
 };
-const _sfc_setup$e = _sfc_main$e.setup;
-_sfc_main$e.setup = (props, ctx) => {
+const _sfc_setup$g = _sfc_main$g.setup;
+_sfc_main$g.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/Home.vue");
-  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
+  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-38a75fcb"]]);
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-ca5e32d0"]]);
 const MARKDOWN_IMAGE_PATTERN = /!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/;
 const HTML_IMAGE_PATTERN = /<img[^>]+src=["']([^"']+)["']/i;
 const IMAGE_LINE_PATTERN = /^\s*!\[[^\]]*]\([^)]+\)\s*$/;
@@ -910,8 +927,9 @@ const sanitizeBlogDisplayContent = ({ content = "", title = "", featuredImage = 
   const cleanedContent = stripDuplicateHeroImage(lines.join("\n"), heroImage);
   return normalizeMarkdownSpacing(cleanedContent);
 };
-const BlogList_vue_vue_type_style_index_0_scoped_6f61b2c2_lang = "";
-const _sfc_main$d = {
+const BlogList_vue_vue_type_style_index_0_scoped_0999e4e0_lang = "";
+const PAGE_SIZE = 12;
+const _sfc_main$f = {
   __name: "BlogList",
   __ssrInlineRender: true,
   setup(__props) {
@@ -1035,44 +1053,68 @@ const _sfc_main$d = {
     onBeforeUnmount(() => clearTimeout(searchTimer));
     return (_ctx, _push, _parent, _attrs) => {
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-index container-xl py-4 py-md-5" }, _attrs))} data-v-6f61b2c2><header class="masthead mb-4" data-v-6f61b2c2><p class="brand mb-2" data-v-6f61b2c2>Curated</p><h1 class="display-4 mb-2" data-v-6f61b2c2>Essays</h1><p class="deck mb-0" data-v-6f61b2c2>Longform writing on technology, work, and social futures.</p></header>`);
-      if (loading.value) {
-        _push(`<div class="text-center text-muted py-4" data-v-6f61b2c2>Loading essays...</div>`);
-      } else if (posts.value.length === 0) {
-        _push(`<div class="text-center text-muted py-4" data-v-6f61b2c2>No blog posts yet.</div>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-index container-xl py-4 py-md-5" }, _attrs))} data-v-0999e4e0><header class="masthead mb-4" data-v-0999e4e0><p class="brand mb-2" data-v-0999e4e0>Curated</p><h1 class="display-4 mb-2" data-v-0999e4e0>Essays</h1><p class="deck mb-0" data-v-0999e4e0>Longform writing on technology, work, and social futures.</p></header><form class="blog-search mb-4" role="search" data-v-0999e4e0><label class="visually-hidden" for="blog-search-input" data-v-0999e4e0>Search essays</label><span class="search-icon" aria-hidden="true" data-v-0999e4e0>⌕</span><input id="blog-search-input"${ssrRenderAttr("value", searchInput.value)} class="form-control" type="search" placeholder="Search essays" autocomplete="off" data-v-0999e4e0>`);
+      if (searchInput.value) {
+        _push(`<button class="clear-search" type="button" aria-label="Clear search" data-v-0999e4e0> Clear </button>`);
       } else {
-        _push(`<div class="index-content" data-v-6f61b2c2><article class="featured row g-3 g-lg-4 pb-4 mb-4" data-v-6f61b2c2><div class="col-12 col-lg-7" data-v-6f61b2c2><div class="featured-media h-100" data-v-6f61b2c2>`);
-        if (featuredImage.value) {
-          _push(`<img${ssrRenderAttr("src", featuredImage.value)}${ssrRenderAttr("alt", featuredPost.value.title)} data-v-6f61b2c2>`);
-        } else {
-          _push(`<div class="media-fallback" data-v-6f61b2c2></div>`);
-        }
-        _push(`</div></div><div class="col-12 col-lg-5" data-v-6f61b2c2><div class="featured-copy h-100 d-flex flex-column" data-v-6f61b2c2><p class="type mb-2" data-v-6f61b2c2>${ssrInterpolate(primaryTag(featuredPost.value))}</p><h2 class="mb-2" data-v-6f61b2c2>${ssrInterpolate(featuredPost.value.title)}</h2><p class="excerpt mb-2" data-v-6f61b2c2>${ssrInterpolate(featuredPost.value.excerpt)}</p><p class="meta mb-2" data-v-6f61b2c2>${ssrInterpolate(formatDate(featuredPost.value.published_at))} · ${ssrInterpolate(readTime(featuredPost.value))} min read</p>`);
-        _push(ssrRenderComponent(_component_router_link, {
-          to: `/blog/${featuredPost.value.slug}`,
-          class: "read-link mt-auto"
-        }, {
-          default: withCtx((_, _push2, _parent2, _scopeId) => {
-            if (_push2) {
-              _push2(`Read essay`);
-            } else {
-              return [
-                createTextVNode("Read essay")
-              ];
-            }
-          }),
-          _: 1
-          /* STABLE */
-        }, _parent));
-        _push(`</div></div></article><section class="latest" data-v-6f61b2c2><h3 class="mb-2" data-v-6f61b2c2>Latest</h3><!--[-->`);
-        ssrRenderList(remainingPosts.value, (post) => {
-          _push(`<article class="story-row row g-3 py-3" data-v-6f61b2c2><div class="col-12 col-md-4 col-lg-3" data-v-6f61b2c2><div class="story-thumb" data-v-6f61b2c2>`);
-          if (storyImage(post)) {
-            _push(`<img${ssrRenderAttr("src", storyImage(post))}${ssrRenderAttr("alt", post.title)} data-v-6f61b2c2>`);
+        _push(`<!---->`);
+      }
+      _push(`</form>`);
+      if (loading.value) {
+        _push(`<div class="text-center text-muted py-4" data-v-0999e4e0>Loading essays...</div>`);
+      } else if (error.value) {
+        _push(`<div class="text-center py-4" role="alert" data-v-0999e4e0><p class="text-muted mb-3" data-v-0999e4e0>${ssrInterpolate(error.value)}</p><button class="btn btn-sm app-btn-soft" type="button" data-v-0999e4e0> Try again </button></div>`);
+      } else if (invalidPage.value) {
+        _push(`<div class="text-center text-muted py-4" role="alert" data-v-0999e4e0> This blog page does not exist. </div>`);
+      } else if (posts.value.length === 0 && activeQuery.value) {
+        _push(`<div class="text-center text-muted py-4" data-v-0999e4e0> No essays found for “${ssrInterpolate(activeQuery.value)}”. </div>`);
+      } else if (posts.value.length === 0) {
+        _push(`<div class="text-center text-muted py-4" data-v-0999e4e0>No blog posts yet.</div>`);
+      } else {
+        _push(`<div class="index-content" data-v-0999e4e0>`);
+        if (showFeatured.value) {
+          _push(`<article class="featured row g-3 g-lg-4 pb-4 mb-4" data-v-0999e4e0><div class="col-12 col-lg-7" data-v-0999e4e0><div class="featured-media h-100" data-v-0999e4e0>`);
+          if (featuredImage.value) {
+            _push(`<img${ssrRenderAttr("src", featuredImage.value)}${ssrRenderAttr("alt", featuredPost.value.title)} data-v-0999e4e0>`);
           } else {
-            _push(`<div class="media-fallback" data-v-6f61b2c2></div>`);
+            _push(`<div class="media-fallback" data-v-0999e4e0></div>`);
           }
-          _push(`</div></div><div class="col-12 col-md-8 col-lg-9" data-v-6f61b2c2><div class="story-copy" data-v-6f61b2c2><p class="type mb-1" data-v-6f61b2c2>${ssrInterpolate(primaryTag(post))}</p><h4 class="mb-2" data-v-6f61b2c2>${ssrInterpolate(post.title)}</h4><p class="excerpt mb-2" data-v-6f61b2c2>${ssrInterpolate(post.excerpt)}</p><p class="meta mb-2" data-v-6f61b2c2>${ssrInterpolate(formatDate(post.published_at))} · ${ssrInterpolate(readTime(post))} min read</p>`);
+          _push(`</div></div><div class="col-12 col-lg-5" data-v-0999e4e0><div class="featured-copy h-100 d-flex flex-column" data-v-0999e4e0><p class="type mb-2" data-v-0999e4e0>${ssrInterpolate(primaryTag(featuredPost.value))}</p><h2 class="mb-2" data-v-0999e4e0>${ssrInterpolate(featuredPost.value.title)}</h2><p class="excerpt mb-2" data-v-0999e4e0>${ssrInterpolate(featuredPost.value.excerpt)}</p><p class="meta mb-2" data-v-0999e4e0>${ssrInterpolate(formatDate(featuredPost.value.published_at))} · ${ssrInterpolate(readTime(featuredPost.value))} min read</p>`);
+          _push(ssrRenderComponent(_component_router_link, {
+            to: `/blog/${featuredPost.value.slug}`,
+            class: "read-link mt-auto"
+          }, {
+            default: withCtx((_, _push2, _parent2, _scopeId) => {
+              if (_push2) {
+                _push2(`Read essay`);
+              } else {
+                return [
+                  createTextVNode("Read essay")
+                ];
+              }
+            }),
+            _: 1
+            /* STABLE */
+          }, _parent));
+          _push(`</div></div></article>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`<section class="latest" data-v-0999e4e0><h3 class="mb-2" data-v-0999e4e0>`);
+        if (activeQuery.value) {
+          _push(`<!--[-->Search results for “${ssrInterpolate(activeQuery.value)}” (${ssrInterpolate(pagination.value.total_posts)})<!--]-->`);
+        } else {
+          _push(`<!--[-->Latest<!--]-->`);
+        }
+        _push(`</h3><!--[-->`);
+        ssrRenderList(listPosts.value, (post) => {
+          _push(`<article class="story-row row g-3 py-3" data-v-0999e4e0><div class="col-12 col-md-4 col-lg-3" data-v-0999e4e0><div class="story-thumb" data-v-0999e4e0>`);
+          if (storyImage(post)) {
+            _push(`<img${ssrRenderAttr("src", storyImage(post))}${ssrRenderAttr("alt", post.title)} data-v-0999e4e0>`);
+          } else {
+            _push(`<div class="media-fallback" data-v-0999e4e0></div>`);
+          }
+          _push(`</div></div><div class="col-12 col-md-8 col-lg-9" data-v-0999e4e0><div class="story-copy" data-v-0999e4e0><p class="type mb-1" data-v-0999e4e0>${ssrInterpolate(primaryTag(post))}</p><h4 class="mb-2" data-v-0999e4e0>${ssrInterpolate(post.title)}</h4><p class="excerpt mb-2" data-v-0999e4e0>${ssrInterpolate(post.excerpt)}</p><p class="meta mb-2" data-v-0999e4e0>${ssrInterpolate(formatDate(post.published_at))} · ${ssrInterpolate(readTime(post))} min read</p>`);
           _push(ssrRenderComponent(_component_router_link, {
             to: `/blog/${post.slug}`,
             class: "read-link"
@@ -1172,13 +1214,13 @@ const _sfc_main$d = {
     };
   }
 };
-const _sfc_setup$d = _sfc_main$d.setup;
-_sfc_main$d.setup = (props, ctx) => {
+const _sfc_setup$f = _sfc_main$f.setup;
+_sfc_main$f.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/blog/BlogList.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
-const BlogList = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-6f61b2c2"]]);
+const BlogList = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-0999e4e0"]]);
 const github = "";
 const DEFAULT_VOICE_ID = "default";
 let synth = null;
@@ -1393,7 +1435,7 @@ const useTTSStore = defineStore("tts", {
   }
 });
 const BlogTTS_vue_vue_type_style_index_0_scoped_b2b30eee_lang = "";
-const _sfc_main$c = {
+const _sfc_main$e = {
   __name: "BlogTTS",
   __ssrInlineRender: true,
   props: {
@@ -1629,20 +1671,20 @@ const _sfc_main$c = {
     };
   }
 };
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$e = _sfc_main$e.setup;
+_sfc_main$e.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogTTS.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
-const BlogTTS = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-b2b30eee"]]);
-const BlogRSVP_vue_vue_type_style_index_0_scoped_0643f029_lang = "";
+const BlogTTS = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-b2b30eee"]]);
+const BlogRSVP_vue_vue_type_style_index_0_scoped_fc7c8579_lang = "";
 const STORAGE_KEY = "quortol-rsvp-wpm";
 const DEFAULT_WPM = 300;
 const MIN_WPM = 100;
 const MAX_WPM = 1e3;
 const WPM_STEP = 50;
-const _sfc_main$b = {
+const _sfc_main$d = {
   __name: "BlogRSVP",
   __ssrInlineRender: true,
   props: {
@@ -1651,7 +1693,7 @@ const _sfc_main$b = {
       required: true
     }
   },
-  emits: ["playback-start", "playback-state"],
+  emits: ["playback-start", "playback-state", "position-change"],
   setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
     const emit = __emit;
@@ -1707,6 +1749,14 @@ const _sfc_main$b = {
     const pause = () => {
       setPlaying(false);
     };
+    const seekTo = (index) => {
+      const nextIndex = Number(index);
+      if (!Number.isFinite(nextIndex))
+        return;
+      pause();
+      wordIndex.value = Math.max(0, Math.min(lastIndex.value, Math.trunc(nextIndex)));
+      hasFinished.value = false;
+    };
     const restoreSpeed = () => {
       if (typeof window === "undefined")
         return;
@@ -1730,6 +1780,9 @@ const _sfc_main$b = {
       wordIndex.value = 0;
       hasFinished.value = false;
     });
+    watch(wordIndex, (index) => {
+      emit("position-change", index);
+    });
     watch(isPlaying2, (playing) => {
       if (typeof document !== "undefined") {
         document.body.style.overflow = playing ? "hidden" : "";
@@ -1746,34 +1799,34 @@ const _sfc_main$b = {
       if (typeof window !== "undefined")
         window.removeEventListener("keydown", handleKeydown);
     });
-    __expose({ stop });
+    __expose({ stop, seekTo });
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<section${ssrRenderAttrs(mergeProps({
         class: ["blog-rsvp", { "is-focus-mode": isPlaying2.value }],
         "aria-labelledby": "rsvp-heading"
-      }, _attrs))} data-v-0643f029><div class="rsvp-heading-row" data-v-0643f029><div data-v-0643f029><p class="rsvp-kicker" data-v-0643f029>Speed reader</p><h2 id="rsvp-heading" data-v-0643f029>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-0643f029>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-0643f029><span class="word"${ssrRenderAttr("aria-label", currentWord.value)} data-v-0643f029><span class="word-prefix" aria-hidden="true" data-v-0643f029>${ssrInterpolate(wordParts.value.prefix)}</span><span class="word-focus" aria-hidden="true" data-v-0643f029>${ssrInterpolate(wordParts.value.focus)}</span><span class="word-suffix" aria-hidden="true" data-v-0643f029>${ssrInterpolate(wordParts.value.suffix)}</span></span></div>`);
+      }, _attrs))} data-v-fc7c8579><div class="rsvp-heading-row" data-v-fc7c8579><div data-v-fc7c8579><p class="rsvp-kicker" data-v-fc7c8579>Speed reader</p><h2 id="rsvp-heading" data-v-fc7c8579>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-fc7c8579>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-fc7c8579><span class="word"${ssrRenderAttr("aria-label", currentWord.value)} data-v-fc7c8579><span class="word-prefix" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(wordParts.value.prefix)}</span><span class="word-focus" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(wordParts.value.focus)}</span><span class="word-suffix" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(wordParts.value.suffix)}</span></span></div>`);
       if (isPlaying2.value) {
-        _push(`<button type="button" class="focus-exit" aria-label="Pause RSVP and exit focus mode" data-v-0643f029> Pause </button>`);
+        _push(`<button type="button" class="focus-exit" aria-label="Pause RSVP and exit focus mode" data-v-fc7c8579> Pause </button>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<label class="sr-only" for="rsvp-position" data-v-0643f029>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-0643f029><div class="position-label" aria-hidden="true" data-v-0643f029>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-0643f029><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-0643f029>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-0643f029>Restart</button><label for="rsvp-speed" data-v-0643f029>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-0643f029><!--[-->`);
+      _push(`<label class="sr-only" for="rsvp-position" data-v-fc7c8579>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-fc7c8579><div class="position-label" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-fc7c8579><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-fc7c8579>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-fc7c8579>Restart</button><label for="rsvp-speed" data-v-fc7c8579>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-fc7c8579><!--[-->`);
       ssrRenderList(unref(speeds), (speed) => {
-        _push(`<option${ssrRenderAttr("value", speed)} data-v-0643f029>${ssrInterpolate(speed)} WPM</option>`);
+        _push(`<option${ssrRenderAttr("value", speed)} data-v-fc7c8579>${ssrInterpolate(speed)} WPM</option>`);
       });
       _push(`<!--]--></select></div></section>`);
     };
   }
 };
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$d = _sfc_main$d.setup;
+_sfc_main$d.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogRSVP.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-0643f029"]]);
-const BlogDetail_vue_vue_type_style_index_0_scoped_b6941e0d_lang = "";
-const _sfc_main$a = {
+const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-fc7c8579"]]);
+const BlogDetail_vue_vue_type_style_index_0_scoped_a6533fe0_lang = "";
+const _sfc_main$c = {
   __name: "BlogDetail",
   __ssrInlineRender: true,
   setup(__props) {
@@ -1970,7 +2023,7 @@ const _sfc_main$a = {
     return (_ctx, _push, _parent, _attrs) => {
       var _a2, _b;
       const _component_router_link = resolveComponent("router-link");
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-page" }, _attrs))} data-v-b6941e0d>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "essay-page" }, _attrs))} data-v-a6533fe0>`);
       _push(ssrRenderComponent(_component_router_link, {
         to: "/blog",
         class: "back-link"
@@ -1988,24 +2041,24 @@ const _sfc_main$a = {
         /* STABLE */
       }, _parent));
       if (loading.value) {
-        _push(`<div class="loading" data-v-b6941e0d>Loading post...</div>`);
+        _push(`<div class="loading" data-v-a6533fe0>Loading post...</div>`);
       } else if (post.value) {
-        _push(`<article class="essay" data-v-b6941e0d><header class="hero" data-v-b6941e0d>`);
+        _push(`<article class="essay" data-v-a6533fe0><header class="hero" data-v-a6533fe0>`);
         if (heroImageUrl.value) {
-          _push(`<figure class="hero-image" data-v-b6941e0d><img${ssrRenderAttr("src", heroImageUrl.value)}${ssrRenderAttr("alt", post.value.title)} class="clickable-image" tabindex="0" role="button" data-v-b6941e0d></figure>`);
+          _push(`<figure class="hero-image" data-v-a6533fe0><img${ssrRenderAttr("src", heroImageUrl.value)}${ssrRenderAttr("alt", post.value.title)} class="clickable-image" tabindex="0" role="button" data-v-a6533fe0></figure>`);
         } else {
-          _push(`<div class="hero-fallback" data-v-b6941e0d></div>`);
+          _push(`<div class="hero-fallback" data-v-a6533fe0></div>`);
         }
         if ((_a2 = post.value.tags) == null ? void 0 : _a2.length) {
-          _push(`<p class="kicker" data-v-b6941e0d>${ssrInterpolate(post.value.tags[0].name)}</p>`);
+          _push(`<p class="kicker" data-v-a6533fe0>${ssrInterpolate(post.value.tags[0].name)}</p>`);
         } else {
           _push(`<!---->`);
         }
-        _push(`<h1 class="title" data-v-b6941e0d>${ssrInterpolate(post.value.title)}</h1><p class="dek" data-v-b6941e0d>${ssrInterpolate(dek.value)}</p><div class="meta-row" data-v-b6941e0d><span data-v-b6941e0d>${ssrInterpolate(formatDate(post.value.published_at))}</span><span data-v-b6941e0d>${ssrInterpolate(readTime.value)} min read</span><span data-v-b6941e0d>${ssrInterpolate(wordCount.value.toLocaleString())} words</span></div>`);
+        _push(`<h1 class="title" data-v-a6533fe0>${ssrInterpolate(post.value.title)}</h1><p class="dek" data-v-a6533fe0>${ssrInterpolate(dek.value)}</p><div class="meta-row" data-v-a6533fe0><span data-v-a6533fe0>${ssrInterpolate(formatDate(post.value.published_at))}</span><span data-v-a6533fe0>${ssrInterpolate(readTime.value)} min read</span><span data-v-a6533fe0>${ssrInterpolate(wordCount.value.toLocaleString())} words</span></div>`);
         if ((_b = post.value.tags) == null ? void 0 : _b.length) {
-          _push(`<div class="tag-row" data-v-b6941e0d><!--[-->`);
+          _push(`<div class="tag-row" data-v-a6533fe0><!--[-->`);
           ssrRenderList(post.value.tags, (tag) => {
-            _push(`<span class="tag" data-v-b6941e0d>${ssrInterpolate(tag.name)}</span>`);
+            _push(`<span class="tag" data-v-a6533fe0>${ssrInterpolate(tag.name)}</span>`);
           });
           _push(`<!--]--></div>`);
         } else {
@@ -2034,12 +2087,12 @@ const _sfc_main$a = {
         } else {
           _push(`<!---->`);
         }
-        _push(`<section class="content" data-v-b6941e0d>${renderedContent.value ?? ""}</section></article>`);
+        _push(`<section class="content" data-v-a6533fe0>${renderedContent.value ?? ""}</section></article>`);
       } else {
-        _push(`<div class="not-found" data-v-b6941e0d>Post not found</div>`);
+        _push(`<div class="not-found" data-v-a6533fe0>Post not found</div>`);
       }
       if (fullscreenImage.value) {
-        _push(`<div class="image-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-v-b6941e0d><button class="lightbox-close" type="button" aria-label="Close image viewer" data-v-b6941e0d> Close </button><img${ssrRenderAttr("src", fullscreenImage.value.src)}${ssrRenderAttr("alt", fullscreenImage.value.alt)} class="lightbox-image" data-v-b6941e0d></div>`);
+        _push(`<div class="image-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-v-a6533fe0><button class="lightbox-close" type="button" aria-label="Close image viewer" data-v-a6533fe0> Close </button><img${ssrRenderAttr("src", fullscreenImage.value.src)}${ssrRenderAttr("alt", fullscreenImage.value.alt)} class="lightbox-image" data-v-a6533fe0></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -2047,16 +2100,16 @@ const _sfc_main$a = {
     };
   }
 };
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/blog/BlogDetail.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
-const BlogDetail = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-b6941e0d"]]);
+const BlogDetail = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-a6533fe0"]]);
 const PodcastList_vue_vue_type_style_index_0_scoped_356bc522_lang = "";
 const defaultImage = "/quortol-podcast-cover.svg";
-const _sfc_main$9 = {
+const _sfc_main$b = {
   __name: "PodcastList",
   __ssrInlineRender: true,
   setup(__props) {
@@ -2148,15 +2201,15 @@ const _sfc_main$9 = {
     };
   }
 };
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/podcasts/PodcastList.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const PodcastList = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-356bc522"]]);
+const PodcastList = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-356bc522"]]);
 const PodcastDetail_vue_vue_type_style_index_0_scoped_5bb09e2c_lang = "";
-const _sfc_main$8 = {
+const _sfc_main$a = {
   __name: "PodcastDetail",
   __ssrInlineRender: true,
   setup(__props) {
@@ -2312,15 +2365,15 @@ const _sfc_main$8 = {
     };
   }
 };
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/podcasts/PodcastDetail.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const PodcastDetail = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-5bb09e2c"]]);
+const PodcastDetail = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-5bb09e2c"]]);
 const AgentLogin_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$7 = {
+const _sfc_main$9 = {
   __name: "AgentLogin",
   __ssrInlineRender: true,
   setup(__props) {
@@ -2385,14 +2438,14 @@ const _sfc_main$7 = {
     };
   }
 };
-const _sfc_setup$7 = _sfc_main$7.setup;
-_sfc_main$7.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/agents/AgentLogin.vue");
-  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
 const AgentDashboard_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$6 = {
+const _sfc_main$8 = {
   __name: "AgentDashboard",
   __ssrInlineRender: true,
   setup(__props) {
@@ -2449,14 +2502,14 @@ const _sfc_main$6 = {
     };
   }
 };
-const _sfc_setup$6 = _sfc_main$6.setup;
-_sfc_main$6.setup = (props, ctx) => {
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/agents/AgentDashboard.vue");
-  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
 const AgentCapabilities_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$5 = {
+const _sfc_main$7 = {
   __name: "AgentCapabilities",
   __ssrInlineRender: true,
   setup(__props) {
@@ -2547,14 +2600,14 @@ const _sfc_main$5 = {
     };
   }
 };
-const _sfc_setup$5 = _sfc_main$5.setup;
-_sfc_main$5.setup = (props, ctx) => {
+const _sfc_setup$7 = _sfc_main$7.setup;
+_sfc_main$7.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/agents/AgentCapabilities.vue");
-  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
+  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
-const PostCard_vue_vue_type_style_index_0_scoped_06a08301_lang = "";
-const _sfc_main$4 = {
+const PostCard_vue_vue_type_style_index_0_scoped_cdf3720c_lang = "";
+const _sfc_main$6 = {
   __name: "PostCard",
   __ssrInlineRender: true,
   props: {
@@ -2617,46 +2670,46 @@ const _sfc_main$4 = {
         class: "post-card",
         ref_key: "postRef",
         ref: postRef
-      }, _attrs))} data-v-06a08301>`);
+      }, _attrs))} data-v-cdf3720c>`);
       if (hasMediaContent.value) {
-        _push(`<div class="media-container" data-v-06a08301>`);
+        _push(`<div class="media-container" data-v-cdf3720c>`);
         if (showImage.value) {
-          _push(`<img${ssrRenderAttr("src", __props.post.media_url)}${ssrRenderAttr("alt", __props.post.text || "Post image")} class="post-image" loading="lazy" data-v-06a08301>`);
+          _push(`<img${ssrRenderAttr("src", __props.post.media_url)}${ssrRenderAttr("alt", __props.post.text || "Post image")} class="post-image" loading="lazy" data-v-cdf3720c>`);
         } else {
           _push(`<!---->`);
         }
         if (showVideo.value) {
-          _push(`<video controls preload="metadata" class="post-video" data-v-06a08301><source${ssrRenderAttr("src", __props.post.video_url)} type="video/mp4" data-v-06a08301> Your browser does not support the video tag. </video>`);
+          _push(`<video controls preload="metadata" class="post-video" data-v-cdf3720c><source${ssrRenderAttr("src", __props.post.video_url)} type="video/mp4" data-v-cdf3720c> Your browser does not support the video tag. </video>`);
         } else {
           _push(`<!---->`);
         }
         if (!showImage.value && !showVideo.value) {
-          _push(`<div class="media-placeholder" data-v-06a08301><span class="icon" data-v-06a08301>Media unavailable</span></div>`);
+          _push(`<div class="media-placeholder" data-v-cdf3720c><span class="icon" data-v-cdf3720c>Media unavailable</span></div>`);
         } else {
           _push(`<!---->`);
         }
         _push(`</div>`);
       } else {
-        _push(`<div class="media-placeholder" data-v-06a08301><span class="icon" data-v-06a08301>Text post</span></div>`);
+        _push(`<div class="media-placeholder" data-v-cdf3720c><span class="icon" data-v-cdf3720c>Text post</span></div>`);
       }
-      _push(`<div class="content-section" data-v-06a08301>`);
+      _push(`<div class="content-section" data-v-cdf3720c>`);
       if (__props.post.text) {
-        _push(`<p class="${ssrRenderClass([{ "has-media": hasMediaContent.value }, "post-text"])}" data-v-06a08301>${ssrInterpolate(__props.post.text)}</p>`);
+        _push(`<p class="${ssrRenderClass([{ "has-media": hasMediaContent.value }, "post-text"])}" data-v-cdf3720c>${ssrInterpolate(__props.post.text)}</p>`);
       } else {
         _push(`<!---->`);
       }
       if (__props.post.tags && __props.post.tags.length > 0) {
-        _push(`<div class="tags-section" data-v-06a08301><!--[-->`);
+        _push(`<div class="tags-section" data-v-cdf3720c><!--[-->`);
         ssrRenderList(__props.post.tags, (tag) => {
-          _push(`<span class="tag" tabindex="0" role="button" data-v-06a08301>${ssrInterpolate(tag)}</span>`);
+          _push(`<span class="tag" tabindex="0" role="button" data-v-cdf3720c>${ssrInterpolate(tag)}</span>`);
         });
         _push(`<!--]--></div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="metadata-section" data-v-06a08301><span class="author" data-v-06a08301>${ssrInterpolate(__props.post.author)}</span><span class="timestamp"${ssrRenderAttr("title", formatTimestamp())} data-v-06a08301>${ssrInterpolate(formatRelativeTime())}</span></div></div><div class="engagement-section" data-v-06a08301><div class="metrics-placeholder" data-v-06a08301><span class="info-text" data-v-06a08301>View post details for more info</span></div></div>`);
+      _push(`<div class="metadata-section" data-v-cdf3720c><span class="author" data-v-cdf3720c>${ssrInterpolate(__props.post.author)}</span><span class="timestamp"${ssrRenderAttr("title", formatTimestamp())} data-v-cdf3720c>${ssrInterpolate(formatRelativeTime())}</span></div></div><div class="engagement-section" data-v-cdf3720c><div class="metrics-placeholder" data-v-cdf3720c><span class="info-text" data-v-cdf3720c>View post details for more info</span></div></div>`);
       if (__props.loading) {
-        _push(`<div class="loading-spinner" data-v-06a08301>Loading...</div>`);
+        _push(`<div class="loading-spinner" data-v-cdf3720c>Loading...</div>`);
       } else {
         _push(`<!---->`);
       }
@@ -2664,15 +2717,15 @@ const _sfc_main$4 = {
     };
   }
 };
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/components/PostCard.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const PostCard = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-06a08301"]]);
-const PostModal_vue_vue_type_style_index_0_scoped_19a3027c_lang = "";
-const _sfc_main$3 = {
+const PostCard = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-cdf3720c"]]);
+const PostModal_vue_vue_type_style_index_0_scoped_9e39a4c1_lang = "";
+const _sfc_main$5 = {
   __name: "PostModal",
   __ssrInlineRender: true,
   props: {
@@ -2718,21 +2771,21 @@ const _sfc_main$3 = {
       document.body.style.overflow = "";
     });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<!--[--><div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="${ssrRenderStyle(isVisible.value ? null : { display: "none" })}" data-v-19a3027c><div class="modal-content" data-v-19a3027c><button class="close-button" aria-label="Close modal" data-v-19a3027c> x </button><header class="modal-header" data-v-19a3027c><h2 id="modal-title" class="modal-title" data-v-19a3027c>Post Details</h2></header><div class="modal-body" data-v-19a3027c>`);
+      _push(`<!--[--><div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="${ssrRenderStyle(isVisible.value ? null : { display: "none" })}" data-v-9e39a4c1><div class="modal-content" data-v-9e39a4c1><button class="close-button" aria-label="Close modal" data-v-9e39a4c1> x </button><header class="modal-header" data-v-9e39a4c1><h2 id="modal-title" class="modal-title" data-v-9e39a4c1>Post Details</h2></header><div class="modal-body" data-v-9e39a4c1>`);
       if (__props.post.media_url || __props.post.video_url) {
-        _push(`<div class="media-section" data-v-19a3027c>`);
+        _push(`<div class="media-section" data-v-9e39a4c1>`);
         if (showImage.value) {
-          _push(`<img${ssrRenderAttr("src", __props.post.media_url)}${ssrRenderAttr("alt", __props.post.text || "Post image")} class="modal-image" loading="lazy" data-v-19a3027c>`);
+          _push(`<img${ssrRenderAttr("src", __props.post.media_url)}${ssrRenderAttr("alt", __props.post.text || "Post image")} class="modal-image" loading="lazy" data-v-9e39a4c1>`);
         } else {
           _push(`<!---->`);
         }
         if (showVideo.value) {
-          _push(`<video controls preload="metadata" class="modal-video" data-v-19a3027c><source${ssrRenderAttr("src", __props.post.video_url)} type="video/mp4" data-v-19a3027c> Your browser does not support the video tag. </video>`);
+          _push(`<video controls preload="metadata" class="modal-video" data-v-9e39a4c1><source${ssrRenderAttr("src", __props.post.video_url)} type="video/mp4" data-v-9e39a4c1> Your browser does not support the video tag. </video>`);
         } else {
           _push(`<!---->`);
         }
         if (!showImage.value && !showVideo.value) {
-          _push(`<div class="media-placeholder" data-v-19a3027c><span class="icon" data-v-19a3027c>Media unavailable</span></div>`);
+          _push(`<div class="media-placeholder" data-v-9e39a4c1><span class="icon" data-v-9e39a4c1>Media unavailable</span></div>`);
         } else {
           _push(`<!---->`);
         }
@@ -2740,24 +2793,24 @@ const _sfc_main$3 = {
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="content-section" data-v-19a3027c>`);
+      _push(`<div class="content-section" data-v-9e39a4c1>`);
       if (__props.post.text) {
-        _push(`<section class="post-text-section" data-v-19a3027c><h3 class="post-caption" data-v-19a3027c>Caption</h3><p class="post-text" data-v-19a3027c>${ssrInterpolate(__props.post.text)}</p></section>`);
+        _push(`<section class="post-text-section" data-v-9e39a4c1><h3 class="post-caption" data-v-9e39a4c1>Caption</h3><p class="post-text" data-v-9e39a4c1>${ssrInterpolate(__props.post.text)}</p></section>`);
       } else {
         _push(`<!---->`);
       }
       if (__props.post.tags && __props.post.tags.length > 0) {
-        _push(`<section class="tags-section" data-v-19a3027c><h3 class="section-title" data-v-19a3027c>Tags</h3><div class="tags-container" data-v-19a3027c><!--[-->`);
+        _push(`<section class="tags-section" data-v-9e39a4c1><h3 class="section-title" data-v-9e39a4c1>Tags</h3><div class="tags-container" data-v-9e39a4c1><!--[-->`);
         ssrRenderList(__props.post.tags, (tag) => {
-          _push(`<span class="tag" data-v-19a3027c>${ssrInterpolate(tag)}</span>`);
+          _push(`<span class="tag" data-v-9e39a4c1>${ssrInterpolate(tag)}</span>`);
         });
         _push(`<!--]--></div></section>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<section class="metadata-section" data-v-19a3027c><h3 class="section-title" data-v-19a3027c>Metadata</h3><div class="metadata-grid" data-v-19a3027c><div class="metadata-item" data-v-19a3027c><span class="label" data-v-19a3027c>Author:</span><span class="value" data-v-19a3027c>${ssrInterpolate(__props.post.author)}</span></div><div class="metadata-item" data-v-19a3027c><span class="label" data-v-19a3027c>Posted:</span><span class="value"${ssrRenderAttr("title", formatTimestamp())} data-v-19a3027c>${ssrInterpolate(formatRelativeTime())}</span></div><div class="metadata-item" data-v-19a3027c><span class="label" data-v-19a3027c>Post ID:</span><span class="value" data-v-19a3027c>${ssrInterpolate(__props.post.id)}</span></div></div></section></div></div><footer class="modal-footer" data-v-19a3027c><button class="close-btn" aria-label="Close and return to feed" data-v-19a3027c> Close </button></footer></div></div>`);
+      _push(`<section class="metadata-section" data-v-9e39a4c1><h3 class="section-title" data-v-9e39a4c1>Metadata</h3><div class="metadata-grid" data-v-9e39a4c1><div class="metadata-item" data-v-9e39a4c1><span class="label" data-v-9e39a4c1>Author:</span><span class="value" data-v-9e39a4c1>${ssrInterpolate(__props.post.author)}</span></div><div class="metadata-item" data-v-9e39a4c1><span class="label" data-v-9e39a4c1>Posted:</span><span class="value"${ssrRenderAttr("title", formatTimestamp())} data-v-9e39a4c1>${ssrInterpolate(formatRelativeTime())}</span></div><div class="metadata-item" data-v-9e39a4c1><span class="label" data-v-9e39a4c1>Post ID:</span><span class="value" data-v-9e39a4c1>${ssrInterpolate(__props.post.id)}</span></div></div></section></div></div><footer class="modal-footer" data-v-9e39a4c1><button class="close-btn" aria-label="Close and return to feed" data-v-9e39a4c1> Close </button></footer></div></div>`);
       if (__props.loading) {
-        _push(`<div class="modal-loading" data-v-19a3027c><div class="spinner" data-v-19a3027c></div><span data-v-19a3027c>Loading post details...</span></div>`);
+        _push(`<div class="modal-loading" data-v-9e39a4c1><div class="spinner" data-v-9e39a4c1></div><span data-v-9e39a4c1>Loading post details...</span></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -2765,15 +2818,15 @@ const _sfc_main$3 = {
     };
   }
 };
-const _sfc_setup$3 = _sfc_main$3.setup;
-_sfc_main$3.setup = (props, ctx) => {
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/components/PostModal.vue");
-  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const PostModal = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-19a3027c"]]);
-const SearchBar_vue_vue_type_style_index_0_scoped_3049c5d6_lang = "";
-const _sfc_main$2 = {
+const PostModal = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-9e39a4c1"]]);
+const SearchBar_vue_vue_type_style_index_0_scoped_33b8cef8_lang = "";
+const _sfc_main$4 = {
   __name: "SearchBar",
   __ssrInlineRender: true,
   props: {
@@ -2802,9 +2855,9 @@ const _sfc_main$2 = {
       }
     );
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "search-bar-container" }, _attrs))} data-v-3049c5d6><input type="text"${ssrRenderAttr("value", keyword.value)} placeholder="Search posts..."${ssrIncludeBooleanAttr(__props.loading) ? " disabled" : ""} class="search-input" aria-label="Search posts by keyword" data-v-3049c5d6>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "search-bar-container" }, _attrs))} data-v-33b8cef8><input type="text"${ssrRenderAttr("value", keyword.value)} placeholder="Search posts..."${ssrIncludeBooleanAttr(__props.loading) ? " disabled" : ""} class="search-input" aria-label="Search posts by keyword" data-v-33b8cef8>`);
       if (hasKeyword.value && !__props.loading) {
-        _push(`<button class="clear-button" aria-label="Clear search" data-v-3049c5d6> x </button>`);
+        _push(`<button class="clear-button" aria-label="Clear search" data-v-33b8cef8> x </button>`);
       } else {
         _push(`<!---->`);
       }
@@ -2812,15 +2865,15 @@ const _sfc_main$2 = {
     };
   }
 };
-const _sfc_setup$2 = _sfc_main$2.setup;
-_sfc_main$2.setup = (props, ctx) => {
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/components/SearchBar.vue");
-  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const SearchBar = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-3049c5d6"]]);
-const TagFilter_vue_vue_type_style_index_0_scoped_cc7142a1_lang = "";
-const _sfc_main$1 = {
+const SearchBar = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-33b8cef8"]]);
+const TagFilter_vue_vue_type_style_index_0_scoped_e047c887_lang = "";
+const _sfc_main$3 = {
   __name: "TagFilter",
   __ssrInlineRender: true,
   props: {
@@ -2876,23 +2929,23 @@ const _sfc_main$1 = {
         class: "tag-filter-container",
         ref_key: "containerRef",
         ref: containerRef
-      }, _attrs))} data-v-cc7142a1><label class="tag-label" for="tag-filter" data-v-cc7142a1>Filter by tags:</label>`);
+      }, _attrs))} data-v-e047c887><label class="tag-label" for="tag-filter" data-v-e047c887>Filter by tags:</label>`);
       if (selectedTags.value.length > 0) {
-        _push(`<div class="selected-tags" data-v-cc7142a1><!--[-->`);
+        _push(`<div class="selected-tags" data-v-e047c887><!--[-->`);
         ssrRenderList(selectedTags.value, (tag) => {
-          _push(`<span class="tag-pill" tabindex="0" role="button" data-v-cc7142a1>${ssrInterpolate(tag)} <span class="remove-icon" data-v-cc7142a1>x</span></span>`);
+          _push(`<span class="tag-pill" tabindex="0" role="button" data-v-e047c887>${ssrInterpolate(tag)} <span class="remove-icon" data-v-e047c887>x</span></span>`);
         });
         _push(`<!--]--></div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="dropdown-container" data-v-cc7142a1><input id="tag-filter" type="text"${ssrRenderAttr("value", filterText.value)} placeholder="Select tags..." class="filter-input"${ssrRenderAttr("aria-expanded", isOpen.value)}${ssrRenderAttr("aria-controls", `tag-options-${id}`)} data-v-cc7142a1><div class="dropdown-menu"${ssrRenderAttr("id", `tag-options-${id}`)} style="${ssrRenderStyle(isOpen.value ? null : { display: "none" })}" data-v-cc7142a1><!--[-->`);
+      _push(`<div class="dropdown-container" data-v-e047c887><input id="tag-filter" type="text"${ssrRenderAttr("value", filterText.value)} placeholder="Select tags..." class="filter-input"${ssrRenderAttr("aria-expanded", isOpen.value)}${ssrRenderAttr("aria-controls", `tag-options-${id}`)} data-v-e047c887><div class="dropdown-menu"${ssrRenderAttr("id", `tag-options-${id}`)} style="${ssrRenderStyle(isOpen.value ? null : { display: "none" })}" data-v-e047c887><!--[-->`);
       ssrRenderList(filteredOptions.value, (option, index) => {
-        _push(`<div class="${ssrRenderClass([{ selected: isSelected(option.value), active: index === currentIndex.value }, "dropdown-option"])}" tabindex="-1" data-v-cc7142a1><span class="tag-checkbox" data-v-cc7142a1><input type="checkbox"${ssrIncludeBooleanAttr(isSelected(option.value)) ? " checked" : ""} readonly data-v-cc7142a1></span><span class="tag-label-display" data-v-cc7142a1>${ssrInterpolate(option.label)}</span></div>`);
+        _push(`<div class="${ssrRenderClass([{ selected: isSelected(option.value), active: index === currentIndex.value }, "dropdown-option"])}" tabindex="-1" data-v-e047c887><span class="tag-checkbox" data-v-e047c887><input type="checkbox"${ssrIncludeBooleanAttr(isSelected(option.value)) ? " checked" : ""} readonly data-v-e047c887></span><span class="tag-label-display" data-v-e047c887>${ssrInterpolate(option.label)}</span></div>`);
       });
       _push(`<!--]-->`);
       if (filteredOptions.value.length === 0) {
-        _push(`<div class="no-results" data-v-cc7142a1>No matching tags found</div>`);
+        _push(`<div class="no-results" data-v-e047c887>No matching tags found</div>`);
       } else {
         _push(`<!---->`);
       }
@@ -2900,13 +2953,13 @@ const _sfc_main$1 = {
     };
   }
 };
-const _sfc_setup$1 = _sfc_main$1.setup;
-_sfc_main$1.setup = (props, ctx) => {
+const _sfc_setup$3 = _sfc_main$3.setup;
+_sfc_main$3.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/components/TagFilter.vue");
-  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
+  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const TagFilter = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-cc7142a1"]]);
+const TagFilter = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-e047c887"]]);
 const API_BASE = "/api/short-form";
 const feedService = {
   async getFeed(params = {}) {
@@ -2931,9 +2984,9 @@ const feedService = {
     return response.data.post;
   }
 };
-const ShortFormFeedPage_vue_vue_type_style_index_0_scoped_c8ca8d54_lang = "";
+const ShortFormFeedPage_vue_vue_type_style_index_0_scoped_f05db9ec_lang = "";
 const postsPerPage = 20;
-const _sfc_main = {
+const _sfc_main$2 = {
   __name: "ShortFormFeedPage",
   __ssrInlineRender: true,
   setup(__props) {
@@ -3117,7 +3170,7 @@ const _sfc_main = {
       }
     });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "feed-container" }, _attrs))} data-v-c8ca8d54><aside class="filters-sidebar" data-v-c8ca8d54><h2 class="filters-title" data-v-c8ca8d54>Filters</h2>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "feed-container" }, _attrs))} data-v-f05db9ec><aside class="filters-sidebar" data-v-f05db9ec><h2 class="filters-title" data-v-f05db9ec>Filters</h2>`);
       _push(ssrRenderComponent(TagFilter, {
         modelValue: selectedTags.value,
         "onUpdate:modelValue": ($event) => selectedTags.value = $event,
@@ -3132,17 +3185,17 @@ const _sfc_main = {
         class: "filter-section"
       }, null, _parent));
       if (hasFilters.value) {
-        _push(`<button class="clear-filters-btn" data-v-c8ca8d54> Clear All Filters </button>`);
+        _push(`<button class="clear-filters-btn" data-v-f05db9ec> Clear All Filters </button>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`</aside><main class="feed-main" data-v-c8ca8d54><h1 class="feed-title" data-v-c8ca8d54>Short-Form Content Feed</h1>`);
+      _push(`</aside><main class="feed-main" data-v-f05db9ec><h1 class="feed-title" data-v-f05db9ec>Short-Form Content Feed</h1>`);
       if (loading.value && posts.value.length === 0) {
-        _push(`<div class="loading-state" data-v-c8ca8d54><div class="spinner" data-v-c8ca8d54></div><p data-v-c8ca8d54>Loading posts...</p></div>`);
+        _push(`<div class="loading-state" data-v-f05db9ec><div class="spinner" data-v-f05db9ec></div><p data-v-f05db9ec>Loading posts...</p></div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="posts-container" style="${ssrRenderStyle(!loading.value || posts.value.length > 0 ? null : { display: "none" })}" data-v-c8ca8d54><!--[-->`);
+      _push(`<div class="posts-container" style="${ssrRenderStyle(!loading.value || posts.value.length > 0 ? null : { display: "none" })}" data-v-f05db9ec><!--[-->`);
       ssrRenderList(posts.value, (post) => {
         _push(ssrRenderComponent(PostCard, {
           key: post.id,
@@ -3155,23 +3208,28 @@ const _sfc_main = {
       });
       _push(`<!--]-->`);
       if (hasMorePages.value && !loading.value) {
-        _push(`<div class="load-trigger" data-v-c8ca8d54></div>`);
+        _push(`<div class="load-trigger" data-v-f05db9ec></div>`);
       } else {
         _push(`<!---->`);
       }
       _push(`</div>`);
-      if (!loading.value && posts.value.length === 0 && !isLoadingData.value) {
-        _push(`<div class="empty-state" data-v-c8ca8d54><h2 data-v-c8ca8d54>No posts available yet</h2><p data-v-c8ca8d54>Check back soon for new short-form content!</p></div>`);
+      if (!loading.value && posts.value.length === 0 && !isLoadingData.value && !loadError.value) {
+        _push(`<div class="empty-state" data-v-f05db9ec><h2 data-v-f05db9ec>No posts available yet</h2><p data-v-f05db9ec>Check back soon for new short-form content!</p></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      if (loadError.value) {
+        _push(`<div class="feed-error" role="alert" data-v-f05db9ec><span data-v-f05db9ec>${ssrInterpolate(loadError.value)}</span><button type="button" class="retry-btn" data-v-f05db9ec>Try again</button></div>`);
       } else {
         _push(`<!---->`);
       }
       if (loading.value && posts.value.length > 0) {
-        _push(`<div class="load-more-spinner" data-v-c8ca8d54><div class="spinner" data-v-c8ca8d54></div><span data-v-c8ca8d54>Loading more...</span></div>`);
+        _push(`<div class="load-more-spinner" data-v-f05db9ec><div class="spinner" data-v-f05db9ec></div><span data-v-f05db9ec>Loading more...</span></div>`);
       } else {
         _push(`<!---->`);
       }
       if (!hasMorePages.value && !loading.value && posts.value.length > 0) {
-        _push(`<div class="no-more-posts" data-v-c8ca8d54><span data-v-c8ca8d54>All posts loaded</span></div>`);
+        _push(`<div class="no-more-posts" data-v-f05db9ec><span data-v-f05db9ec>All posts loaded</span></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -3188,13 +3246,218 @@ const _sfc_main = {
     };
   }
 };
+const _sfc_setup$2 = _sfc_main$2.setup;
+_sfc_main$2.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/pages/ShortFormFeedPage.vue");
+  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
+};
+const ShortFormFeedPage = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f05db9ec"]]);
+const ContextTextNavigator_vue_vue_type_style_index_0_scoped_79395a2b_lang = "";
+const _sfc_main$1 = {
+  __name: "ContextTextNavigator",
+  __ssrInlineRender: true,
+  props: {
+    content: { type: String, required: true },
+    currentIndex: { type: Number, default: 0 },
+    active: { type: Boolean, default: true }
+  },
+  emits: ["seek"],
+  setup(__props, { expose: __expose, emit: __emit }) {
+    const props = __props;
+    ref(null);
+    const currentWord = ref(null);
+    const words = computed(() => {
+      const matches = [];
+      const pattern = /\S+/g;
+      let match = pattern.exec(props.content);
+      while (match) {
+        matches.push({ text: match[0], start: match.index, end: pattern.lastIndex });
+        match = pattern.exec(props.content);
+      }
+      return matches;
+    });
+    const safeCurrentIndex = computed(() => Math.max(
+      0,
+      Math.min(words.value.length - 1, Math.trunc(props.currentIndex))
+    ));
+    const currentToken = computed(() => words.value[safeCurrentIndex.value] || null);
+    const textBefore = computed(() => currentToken.value ? props.content.slice(0, currentToken.value.start) : props.content);
+    const textAfter = computed(() => currentToken.value ? props.content.slice(currentToken.value.end) : "");
+    const prefersReducedMotion = () => {
+      var _a;
+      return typeof window !== "undefined" && ((_a = window.matchMedia) == null ? void 0 : _a.call(window, "(prefers-reduced-motion: reduce)").matches);
+    };
+    const centerCurrentWord = async () => {
+      var _a, _b;
+      await nextTick();
+      if (!props.active || !currentWord.value)
+        return;
+      (_b = (_a = currentWord.value).scrollIntoView) == null ? void 0 : _b.call(_a, {
+        block: "center",
+        inline: "nearest",
+        behavior: prefersReducedMotion() ? "auto" : "smooth"
+      });
+    };
+    watch(() => props.currentIndex, centerCurrentWord);
+    watch(() => props.active, (active) => {
+      if (active)
+        window.setTimeout(centerCurrentWord, 0);
+    });
+    watch(() => props.content, centerCurrentWord);
+    onMounted(centerCurrentWord);
+    __expose({ centerCurrentWord });
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<section${ssrRenderAttrs(mergeProps({
+        class: "context-section",
+        "aria-labelledby": "context-heading"
+      }, _attrs))} data-v-79395a2b><div class="context-heading-row" data-v-79395a2b><div data-v-79395a2b><p class="context-kicker" data-v-79395a2b>Document context</p><h2 id="context-heading" data-v-79395a2b>Choose where to continue</h2></div><p id="context-instructions" data-v-79395a2b>Scroll through the text and select any word to continue from there.</p></div><div class="context-viewport" tabindex="0" aria-describedby="context-instructions" data-v-79395a2b><span data-v-79395a2b>${ssrInterpolate(textBefore.value)}</span>`);
+      if (currentToken.value) {
+        _push(`<button type="button" class="context-word is-current" aria-current="true"${ssrRenderAttr("aria-label", `Current word ${safeCurrentIndex.value + 1}: ${currentToken.value.text}`)} data-v-79395a2b>${ssrInterpolate(currentToken.value.text)}</button>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`<span data-v-79395a2b>${ssrInterpolate(textAfter.value)}</span></div></section>`);
+    };
+  }
+};
+const _sfc_setup$1 = _sfc_main$1.setup;
+_sfc_main$1.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/reader/ContextTextNavigator.vue");
+  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
+};
+const ContextTextNavigator = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-79395a2b"]]);
+const Reader_vue_vue_type_style_index_0_scoped_80d31dbe_lang = "";
+const ESTIMATE_WPM = 300;
+const READER_PROGRESS_KEY = "quortol-reader-progress";
+const _sfc_main = {
+  __name: "Reader",
+  __ssrInlineRender: true,
+  setup(__props) {
+    const content = ref("");
+    const fileName = ref("");
+    const errorMessage = ref("");
+    const isDragging = ref(false);
+    ref(null);
+    const rsvp = ref(null);
+    const currentWordIndex = ref(0);
+    const isPlaying2 = ref(false);
+    const contextNavigator = ref(null);
+    const savedFileName = ref("");
+    const savedWordIndex = ref(0);
+    const wordCount = computed(() => content.value.trim().split(/\s+/).filter(Boolean).length);
+    const estimatedTime = computed(() => {
+      const seconds = Math.ceil(wordCount.value * 60 / ESTIMATE_WPM);
+      if (seconds < 60)
+        return `${seconds} sec`;
+      const minutes = Math.ceil(seconds / 60);
+      return `${minutes} min`;
+    });
+    const saveProgress = () => {
+      if (!fileName.value || typeof window === "undefined")
+        return;
+      const progress = {
+        fileName: fileName.value,
+        wordIndex: currentWordIndex.value
+      };
+      savedFileName.value = progress.fileName;
+      savedWordIndex.value = progress.wordIndex;
+      try {
+        window.localStorage.setItem(READER_PROGRESS_KEY, JSON.stringify(progress));
+      } catch {
+      }
+    };
+    const restoreProgress = () => {
+      if (typeof window === "undefined")
+        return;
+      try {
+        const progress = JSON.parse(window.localStorage.getItem(READER_PROGRESS_KEY) || "null");
+        if (progress && typeof progress.fileName === "string" && Number.isInteger(progress.wordIndex) && progress.wordIndex >= 0) {
+          savedFileName.value = progress.fileName;
+          savedWordIndex.value = progress.wordIndex;
+        }
+      } catch {
+        savedFileName.value = "";
+        savedWordIndex.value = 0;
+      }
+    };
+    const handlePlaybackState = (playing) => {
+      isPlaying2.value = playing;
+      if (!playing) {
+        nextTick(() => {
+          window.setTimeout(() => {
+            var _a, _b;
+            return (_b = (_a = contextNavigator.value) == null ? void 0 : _a.centerCurrentWord) == null ? void 0 : _b.call(_a);
+          }, 0);
+        });
+      }
+    };
+    const handlePositionChange = (index) => {
+      currentWordIndex.value = index;
+      saveProgress();
+    };
+    const seekFromContext = (index) => {
+      var _a;
+      (_a = rsvp.value) == null ? void 0 : _a.seekTo(index);
+      currentWordIndex.value = index;
+      saveProgress();
+    };
+    onMounted(restoreProgress);
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "reader-page" }, _attrs))} data-v-80d31dbe><header class="reader-hero" data-v-80d31dbe><p class="eyebrow" data-v-80d31dbe>Rapid reader</p><h1 data-v-80d31dbe>Read at the speed of thought.</h1><p data-v-80d31dbe> Choose a plain-text file and read it one word at a time with Rapid Serial Visual Presentation. Your document stays in this browser tab and is never uploaded. </p></header><section class="reader-workspace" aria-labelledby="upload-heading" data-v-80d31dbe><div class="${ssrRenderClass([{ "is-dragging": isDragging.value }, "drop-zone"])}" data-v-80d31dbe><div data-v-80d31dbe><p class="eyebrow" data-v-80d31dbe>Private by design</p><h2 id="upload-heading" data-v-80d31dbe>${ssrInterpolate(fileName.value ? "Choose another document" : "Choose a text document")}</h2><p data-v-80d31dbe>Drop one UTF-8 .txt file here, or browse your device. Maximum size: 5 MB.</p>`);
+      if (!fileName.value && savedFileName.value) {
+        _push(`<p class="resume-hint" data-v-80d31dbe> Re-select <strong data-v-80d31dbe>${ssrInterpolate(savedFileName.value)}</strong> to resume at word ${ssrInterpolate(savedWordIndex.value + 1)}. </p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</div><label class="file-button" for="reader-file" data-v-80d31dbe>${ssrInterpolate(fileName.value ? "Replace file" : "Choose .txt file")}</label><input id="reader-file" class="visually-hidden" type="file" accept=".txt,text/plain" data-v-80d31dbe></div>`);
+      if (errorMessage.value) {
+        _push(`<p class="reader-error" role="alert" data-v-80d31dbe>${ssrInterpolate(errorMessage.value)}</p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      if (fileName.value) {
+        _push(`<div class="document-summary" aria-live="polite" data-v-80d31dbe><div data-v-80d31dbe><span class="summary-label" data-v-80d31dbe>Document</span><strong data-v-80d31dbe>${ssrInterpolate(fileName.value)}</strong></div><div data-v-80d31dbe><span class="summary-label" data-v-80d31dbe>Length</span><strong data-v-80d31dbe>${ssrInterpolate(wordCount.value.toLocaleString())} words</strong></div><div data-v-80d31dbe><span class="summary-label" data-v-80d31dbe>Reading time</span><strong data-v-80d31dbe>${ssrInterpolate(estimatedTime.value)} at 300 WPM</strong></div><button type="button" class="clear-button" data-v-80d31dbe>Clear document</button></div>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</section>`);
+      if (content.value) {
+        _push(ssrRenderComponent(BlogRSVP, {
+          ref_key: "rsvp",
+          ref: rsvp,
+          content: content.value,
+          onPlaybackState: handlePlaybackState,
+          onPositionChange: handlePositionChange
+        }, null, _parent));
+      } else {
+        _push(`<!---->`);
+      }
+      if (content.value) {
+        _push(ssrRenderComponent(ContextTextNavigator, {
+          style: !isPlaying2.value ? null : { display: "none" },
+          ref_key: "contextNavigator",
+          ref: contextNavigator,
+          content: content.value,
+          "current-index": currentWordIndex.value,
+          active: !isPlaying2.value,
+          onSeek: seekFromContext
+        }, null, _parent));
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</div>`);
+    };
+  }
+};
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/features/short-form/pages/ShortFormFeedPage.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/Reader.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const ShortFormFeedPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-c8ca8d54"]]);
+const Reader = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-80d31dbe"]]);
 const homeDescription = "Discover Quortol essays, podcasts, short-form posts, and interactive data storytelling.";
 const blogDescription = "Read Quortol essays on technology, work, policy, and social futures.";
 const podcastDescription = "Listen to Quortol podcast episodes adapted from essays and original conversations.";
@@ -3312,7 +3575,7 @@ const routes = [
   {
     path: "/agent/login",
     name: "agent-login",
-    component: _sfc_main$7,
+    component: _sfc_main$9,
     meta: {
       requiresAuth: false,
       seo: buildStaticPageSEOPayload({
@@ -3326,7 +3589,7 @@ const routes = [
   {
     path: "/agent/dashboard",
     name: "agent-dashboard",
-    component: _sfc_main$6,
+    component: _sfc_main$8,
     meta: {
       requiresAuth: true,
       seo: buildStaticPageSEOPayload({
@@ -3340,7 +3603,7 @@ const routes = [
   {
     path: "/agent/agents/:agentId/capabilities",
     name: "agent-capabilities",
-    component: _sfc_main$5,
+    component: _sfc_main$7,
     meta: {
       requiresAuth: true,
       seo: buildStaticPageSEOPayload({
@@ -3382,6 +3645,26 @@ const routes = [
         description: "Interactive dashboard detail view on Quortol.",
         path: "/data-storytelling",
         robots: "noindex,follow"
+      })
+    }
+  },
+  {
+    path: "/reader",
+    name: "reader",
+    component: Reader,
+    meta: {
+      requiresAuth: false,
+      seo: buildStaticPageSEOPayload({
+        title: "Rapid Reader | Quortol",
+        description: "Read a local plain-text document one word at a time with a private RSVP speed reader.",
+        path: "/reader",
+        structuredData: [
+          buildWebPageStructuredData({
+            title: "Rapid Reader | Quortol",
+            description: "Read a local plain-text document one word at a time with a private RSVP speed reader.",
+            path: "/reader"
+          })
+        ]
       })
     }
   },
@@ -3440,7 +3723,7 @@ const createAppRouter = (history = createWebHistory()) => {
 };
 const bootstrap_min = "";
 const createQuortolApp = ({ url = "/", ssr = false, prerenderPayload = null } = {}) => {
-  const app = createSSRApp(_sfc_main$f);
+  const app = createSSRApp(_sfc_main$h);
   const pinia = createPinia();
   const history = ssr ? createMemoryHistory() : createWebHistory();
   const router = createAppRouter(history);

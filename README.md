@@ -73,6 +73,24 @@ Windows launcher:
 
 ## Batch Blog-to-Podcast
 
+## CPIDR-Inspired Blog Evaluation
+
+Measure the propositional idea density of one English Markdown (`.md`) or plain
+text (`.txt`) document, or recursively evaluate a whole directory. The score is
+diagnostic and does not pass or fail a post.
+
+```bash
+pip install -r backend/requirements.txt
+python -m spacy download en_core_web_sm
+python scripts/evaluate_blog_cpidr.py backend/blogs/additive-arithmetic.md
+python scripts/evaluate_blog_cpidr.py "C:\Users\you\Downloads\book.txt"
+python scripts/evaluate_blog_cpidr.py backend/blogs --format json --output cpidr-report.json
+```
+
+The report includes word and proposition counts, idea density, POS-category
+counts, and applied adjustment counts. This is a modern approximation based on
+Brown et al. (2008), not an exact reproduction of CPIDR 3 or CPIDR 5.
+
 This repo also includes an offline batch generator that:
 
 - reads blog markdown from `backend/blogs`
