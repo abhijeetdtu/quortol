@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run seo:generate-manifest && npm run seo:generate-sitemap && npm run build:client && npm run build:ssr && npm run seo:prerender",
+    "build": "npm run seo:generate-manifest && npm run seo:generate-sitemap && npm run build:client && npm run build:ssr && npm run seo:prerender && npm run offline:generate",
     "build:client": "node ./scripts/build-client.mjs",
     "build:ssr": "node ./scripts/build-ssr.mjs",
     "preview": "vite preview",
@@ -14,8 +14,9 @@
     "seo:generate-manifest": "node ./scripts/generate-public-content-manifest.mjs",
     "seo:generate-sitemap": "node ./scripts/generate-sitemap.mjs",
     "seo:prerender": "node ./scripts/prerender-public-routes.mjs",
+    "offline:generate": "node ./scripts/generate-service-worker.mjs",
     "test:blog": "vitest run src/utils/__tests__/blogContent.spec.js src/components/blog/BlogTTS.spec.js src/components/blog/BlogRSVP.spec.js src/views/blog/__tests__/BlogDetail.spec.js",
-    "test:reader": "vitest run src/components/blog/BlogRSVP.spec.js src/components/reader/ContextTextNavigator.spec.js src/views/__tests__/Reader.spec.js src/router/__tests__/index.spec.js",
+    "test:reader": "vitest run src/services/readerStorage.spec.js src/components/blog/BlogRSVP.spec.js src/components/reader/ContextTextNavigator.spec.js src/views/__tests__/Reader.spec.js src/router/__tests__/index.spec.js",
     "test:short-form": "vitest run src/features/short-form/__tests__",
     "test:podcasts": "vitest run src/views/podcasts/__tests__"
   },

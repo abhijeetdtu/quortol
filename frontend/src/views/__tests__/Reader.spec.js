@@ -3,6 +3,21 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import Reader from '../Reader.vue'
 
+const readerStore = vi.hoisted(() => ({ document: null }))
+
+vi.mock('../../services/readerStorage', () => ({
+  loadDocument: vi.fn(async () => readerStore.document),
+  saveDocument: vi.fn(async (document) => {
+    readerStore.document = { ...document, version: 1, savedAt: new Date().toISOString() }
+  }),
+  updatePosition: vi.fn(async (wordIndex) => {
+    if (!readerStore.document) return false
+    readerStore.document = { ...readerStore.document, wordIndex, savedAt: new Date().toISOString() }
+    return true
+  }),
+  clearDocument: vi.fn(async () => { readerStore.document = null }),
+}))
+
 const RSVPStub = {
   name: 'BlogRSVP',
   props: ['content'],
@@ -25,6 +40,7 @@ const dropFile = async (wrapper, file) => {
 describe('Reader', () => {
   beforeEach(() => {
     localStorage.clear()
+    readerStore.document = null
   })
 
   afterEach(() => {
@@ -126,7 +142,7 @@ describe('Reader', () => {
     expect(wrapper.get('[aria-current="true"]').text()).toBe('three')
   })
 
-  it('stores filename and position and restores them when the same file is selected again', async () => {
+  it('stores the document and position and restores them automatically after remount', async () => {
     const file = new File(['one two three four'], 'resume.txt', { type: 'text/plain' })
     const first = mount(Reader)
     await dropFile(first, file)
@@ -136,14 +152,15 @@ describe('Reader', () => {
       fileName: 'resume.txt',
       wordIndex: 2,
     })
+    await new Promise((resolve) => setTimeout(resolve, 350))
     first.unmount()
 
     const restored = mount(Reader)
-    await restored.vm.$nextTick()
-    expect(restored.text()).toContain('Re-select resume.txt to resume at word 3')
-    await dropFile(restored, file)
+    await settleFileRead()
     await restored.vm.$nextTick()
 
+    expect(restored.text()).toContain('Restored from this device')
+    expect(restored.text()).toContain('resume.txt')
     expect(restored.get('.word').text()).toBe('three')
     expect(restored.get('[aria-current="true"]').text()).toBe('three')
 

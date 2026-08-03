@@ -1678,12 +1678,13 @@ _sfc_main$e.setup = (props, ctx) => {
   return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
 const BlogTTS = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-b2b30eee"]]);
-const BlogRSVP_vue_vue_type_style_index_0_scoped_fc7c8579_lang = "";
+const BlogRSVP_vue_vue_type_style_index_0_scoped_3eaea300_lang = "";
 const STORAGE_KEY = "quortol-rsvp-wpm";
 const DEFAULT_WPM = 300;
 const MIN_WPM = 100;
 const MAX_WPM = 1e3;
 const WPM_STEP = 50;
+const MAX_LETTERS_PER_UNIT = 18;
 const _sfc_main$d = {
   __name: "BlogRSVP",
   __ssrInlineRender: true,
@@ -1697,9 +1698,81 @@ const _sfc_main$d = {
   setup(__props, { expose: __expose, emit: __emit }) {
     const props = __props;
     const emit = __emit;
-    const tokenize = (content) => (content || "").trim().split(/\s+/).filter(Boolean);
-    const words = computed(() => tokenize(props.content));
-    const wordIndex = ref(0);
+    const WORD_CHARACTER_PATTERN = /[\p{L}\p{N}]/u;
+    const CLAUSE_PUNCTUATION_PATTERN = /[,;:][\p{Pe}\p{Pf}'"]*$/u;
+    const SENTENCE_PUNCTUATION_PATTERN = /[.!?][\p{Pe}\p{Pf}'"]*$/u;
+    const tokenize = (content) => {
+      const value = content || "";
+      const matches = [...value.matchAll(/\S+/gu)];
+      return matches.map((match, index) => {
+        var _a;
+        const nextStart = ((_a = matches[index + 1]) == null ? void 0 : _a.index) ?? value.length;
+        const separator = value.slice(match.index + match[0].length, nextStart);
+        return {
+          text: match[0],
+          paragraphEnd: /\r?\n\s*\r?\n/.test(separator)
+        };
+      });
+    };
+    const countLetters = (value) => [...value].filter((character) => WORD_CHARACTER_PATTERN.test(character)).length;
+    const splitLongToken = (token) => {
+      if (countLetters(token) <= MAX_LETTERS_PER_UNIT)
+        return [token];
+      const characters = [...token];
+      const fragments = [];
+      let start = 0;
+      while (countLetters(characters.slice(start).join("")) > MAX_LETTERS_PER_UNIT) {
+        let letterCount = 0;
+        let limit = start;
+        let preferredBreak = -1;
+        while (limit < characters.length && letterCount < MAX_LETTERS_PER_UNIT) {
+          if (WORD_CHARACTER_PATTERN.test(characters[limit]))
+            letterCount += 1;
+          limit += 1;
+          if (characters[limit - 1] === "-" && letterCount > 0)
+            preferredBreak = limit;
+        }
+        const end = preferredBreak > start ? preferredBreak : limit;
+        fragments.push(characters.slice(start, end).join(""));
+        start = end;
+      }
+      fragments.push(characters.slice(start).join(""));
+      return fragments.filter(Boolean);
+    };
+    const lengthMultiplier = (letterCount) => {
+      if (letterCount <= 6)
+        return 1;
+      if (letterCount <= 8)
+        return 1.125;
+      if (letterCount <= 10)
+        return 1.25;
+      if (letterCount <= 13)
+        return 1.375;
+      return 1.5;
+    };
+    const punctuationMultiplier = (text, paragraphEnd) => {
+      if (paragraphEnd || SENTENCE_PUNCTUATION_PATTERN.test(text))
+        return 1;
+      if (CLAUSE_PUNCTUATION_PATTERN.test(text))
+        return 0.5;
+      return 0;
+    };
+    const buildDisplayUnits = (content) => tokenize(content).flatMap((token, sourceWordIndex) => {
+      const fragments = splitLongToken(token.text);
+      return fragments.map((text, fragmentIndex) => {
+        const isLastFragment = fragmentIndex === fragments.length - 1;
+        const letterCount = countLetters(text);
+        return {
+          text,
+          letterCount,
+          sourceWordIndex,
+          timingMultiplier: lengthMultiplier(letterCount) + (isLastFragment ? punctuationMultiplier(text, token.paragraphEnd) : 0)
+        };
+      });
+    });
+    const words = computed(() => tokenize(props.content).map((token) => token.text));
+    const displayUnits = computed(() => buildDisplayUnits(props.content));
+    const unitIndex = ref(0);
     const isPlaying2 = ref(false);
     const hasFinished = ref(false);
     const wpm = ref(DEFAULT_WPM);
@@ -1708,9 +1781,17 @@ const _sfc_main$d = {
       (_, index) => MIN_WPM + index * WPM_STEP
     );
     const lastIndex = computed(() => Math.max(0, words.value.length - 1));
-    const currentWord = computed(() => words.value[wordIndex.value] || "Ready");
-    const focusIndex = (word) => {
-      const length = word.length;
+    computed(() => Math.max(0, displayUnits.value.length - 1));
+    const currentUnit = computed(() => displayUnits.value[unitIndex.value]);
+    const wordIndex = computed(() => {
+      var _a;
+      return ((_a = currentUnit.value) == null ? void 0 : _a.sourceWordIndex) || 0;
+    });
+    const currentWord = computed(() => {
+      var _a;
+      return ((_a = currentUnit.value) == null ? void 0 : _a.text) || "Ready";
+    });
+    const focusLetterPosition = (length) => {
       if (length <= 1)
         return 0;
       if (length <= 5)
@@ -1722,17 +1803,26 @@ const _sfc_main$d = {
       return 4;
     };
     const wordParts = computed(() => {
+      var _a;
       const word = currentWord.value;
-      const index = Math.min(focusIndex(word), Math.max(0, word.length - 1));
+      const targetLetter = focusLetterPosition(((_a = currentUnit.value) == null ? void 0 : _a.letterCount) || countLetters(word));
+      const characters = [...word];
+      const letterIndexes = characters.reduce((indexes, character, index2) => {
+        if (WORD_CHARACTER_PATTERN.test(character))
+          indexes.push(index2);
+        return indexes;
+      }, []);
+      const index = letterIndexes[Math.min(targetLetter, Math.max(0, letterIndexes.length - 1))] || 0;
       return {
-        prefix: word.slice(0, index),
-        focus: word.charAt(index),
-        suffix: word.slice(index + 1)
+        prefix: characters.slice(0, index).join(""),
+        focus: characters[index] || "",
+        suffix: characters.slice(index + 1).join("")
       };
     });
     const positionLabel = computed(() => words.value.length ? `Word ${wordIndex.value + 1} of ${words.value.length}` : "No words available");
-    const elapsedSeconds = computed(() => wordIndex.value * 60 / wpm.value);
-    const totalSeconds = computed(() => words.value.length * 60 / wpm.value);
+    const unitDuration = (unit) => 6e4 / wpm.value * unit.timingMultiplier;
+    const elapsedSeconds = computed(() => displayUnits.value.slice(0, unitIndex.value).reduce((total, unit) => total + unitDuration(unit), 0) / 1e3);
+    const totalSeconds = computed(() => displayUnits.value.reduce((total, unit) => total + unitDuration(unit), 0) / 1e3);
     const formatTime = (seconds) => {
       const safeSeconds = Math.max(0, Math.round(seconds));
       const minutes = Math.floor(safeSeconds / 60);
@@ -1754,7 +1844,8 @@ const _sfc_main$d = {
       if (!Number.isFinite(nextIndex))
         return;
       pause();
-      wordIndex.value = Math.max(0, Math.min(lastIndex.value, Math.trunc(nextIndex)));
+      const sourceWordIndex = Math.max(0, Math.min(lastIndex.value, Math.trunc(nextIndex)));
+      unitIndex.value = Math.max(0, displayUnits.value.findIndex((unit) => unit.sourceWordIndex === sourceWordIndex));
       hasFinished.value = false;
     };
     const restoreSpeed = () => {
@@ -1777,10 +1868,12 @@ const _sfc_main$d = {
     };
     watch(() => props.content, () => {
       pause();
-      wordIndex.value = 0;
+      unitIndex.value = 0;
       hasFinished.value = false;
     });
-    watch(wordIndex, (index) => {
+    watch(wordIndex, (index, previousIndex) => {
+      if (index === previousIndex)
+        return;
       emit("position-change", index);
     });
     watch(isPlaying2, (playing) => {
@@ -1804,15 +1897,15 @@ const _sfc_main$d = {
       _push(`<section${ssrRenderAttrs(mergeProps({
         class: ["blog-rsvp", { "is-focus-mode": isPlaying2.value }],
         "aria-labelledby": "rsvp-heading"
-      }, _attrs))} data-v-fc7c8579><div class="rsvp-heading-row" data-v-fc7c8579><div data-v-fc7c8579><p class="rsvp-kicker" data-v-fc7c8579>Speed reader</p><h2 id="rsvp-heading" data-v-fc7c8579>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-fc7c8579>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-fc7c8579><span class="word"${ssrRenderAttr("aria-label", currentWord.value)} data-v-fc7c8579><span class="word-prefix" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(wordParts.value.prefix)}</span><span class="word-focus" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(wordParts.value.focus)}</span><span class="word-suffix" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(wordParts.value.suffix)}</span></span></div>`);
+      }, _attrs))} data-v-3eaea300><div class="rsvp-heading-row" data-v-3eaea300><div data-v-3eaea300><p class="rsvp-kicker" data-v-3eaea300>Speed reader</p><h2 id="rsvp-heading" data-v-3eaea300>Rapid Serial Visual Presentation</h2></div><span class="rsvp-time" data-v-3eaea300>${ssrInterpolate(elapsedDisplay.value)} / ${ssrInterpolate(totalDisplay.value)}</span></div><div class="word-stage" aria-live="off" aria-label="RSVP word display" data-v-3eaea300><span class="word"${ssrRenderAttr("aria-label", currentWord.value)} data-v-3eaea300><span class="word-prefix" aria-hidden="true" data-v-3eaea300>${ssrInterpolate(wordParts.value.prefix)}</span><span class="word-focus" aria-hidden="true" data-v-3eaea300>${ssrInterpolate(wordParts.value.focus)}</span><span class="word-suffix" aria-hidden="true" data-v-3eaea300>${ssrInterpolate(wordParts.value.suffix)}</span></span></div>`);
       if (isPlaying2.value) {
-        _push(`<button type="button" class="focus-exit" aria-label="Pause RSVP and exit focus mode" data-v-fc7c8579> Pause </button>`);
+        _push(`<button type="button" class="focus-exit" aria-label="Pause RSVP and exit focus mode" data-v-3eaea300> Pause </button>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<label class="sr-only" for="rsvp-position" data-v-fc7c8579>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-fc7c8579><div class="position-label" aria-hidden="true" data-v-fc7c8579>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-fc7c8579><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-fc7c8579>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-fc7c8579>Restart</button><label for="rsvp-speed" data-v-fc7c8579>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-fc7c8579><!--[-->`);
+      _push(`<label class="sr-only" for="rsvp-position" data-v-3eaea300>Reading position</label><input id="rsvp-position" class="position-slider" type="range" min="0"${ssrRenderAttr("max", lastIndex.value)}${ssrRenderAttr("value", wordIndex.value)}${ssrRenderAttr("aria-valuetext", positionLabel.value)} data-v-3eaea300><div class="position-label" aria-hidden="true" data-v-3eaea300>${ssrInterpolate(positionLabel.value)}</div><div class="rsvp-controls" data-v-3eaea300><button type="button" class="rsvp-play"${ssrIncludeBooleanAttr(!words.value.length) ? " disabled" : ""} data-v-3eaea300>${ssrInterpolate(isPlaying2.value ? "Pause" : hasFinished.value ? "Read again" : "Start RSVP")}</button><button type="button"${ssrIncludeBooleanAttr(!words.value.length || wordIndex.value === 0) ? " disabled" : ""} data-v-3eaea300>Restart</button><label for="rsvp-speed" data-v-3eaea300>Speed</label><select id="rsvp-speed"${ssrRenderAttr("value", wpm.value)} data-v-3eaea300><!--[-->`);
       ssrRenderList(unref(speeds), (speed) => {
-        _push(`<option${ssrRenderAttr("value", speed)} data-v-fc7c8579>${ssrInterpolate(speed)} WPM</option>`);
+        _push(`<option${ssrRenderAttr("value", speed)} data-v-3eaea300>${ssrInterpolate(speed)} WPM</option>`);
       });
       _push(`<!--]--></select></div></section>`);
     };
@@ -1824,7 +1917,7 @@ _sfc_main$d.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/components/blog/BlogRSVP.vue");
   return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-fc7c8579"]]);
+const BlogRSVP = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-3eaea300"]]);
 const BlogDetail_vue_vue_type_style_index_0_scoped_a6533fe0_lang = "";
 const _sfc_main$c = {
   __name: "BlogDetail",
@@ -3328,7 +3421,72 @@ _sfc_main$1.setup = (props, ctx) => {
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const ContextTextNavigator = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-79395a2b"]]);
-const Reader_vue_vue_type_style_index_0_scoped_80d31dbe_lang = "";
+const DATABASE_NAME = "quortol-reader";
+const DATABASE_VERSION = 1;
+const STORE_NAME = "documents";
+const DOCUMENT_KEY = "latest";
+const READER_DOCUMENT_VERSION = 1;
+const openDatabase = () => new Promise((resolve, reject) => {
+  if (typeof indexedDB === "undefined") {
+    reject(new Error("IndexedDB is unavailable."));
+    return;
+  }
+  const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
+  request.onupgradeneeded = () => {
+    if (!request.result.objectStoreNames.contains(STORE_NAME)) {
+      request.result.createObjectStore(STORE_NAME);
+    }
+  };
+  request.onsuccess = () => resolve(request.result);
+  request.onerror = () => reject(request.error || new Error("Could not open reader storage."));
+  request.onblocked = () => reject(new Error("Reader storage is blocked."));
+});
+const runRequest = async (mode, operation) => {
+  const database = await openDatabase();
+  try {
+    return await new Promise((resolve, reject) => {
+      const transaction = database.transaction(STORE_NAME, mode);
+      const request = operation(transaction.objectStore(STORE_NAME));
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error || new Error("Reader storage operation failed."));
+      transaction.onabort = () => reject(transaction.error || new Error("Reader storage transaction was aborted."));
+    });
+  } finally {
+    database.close();
+  }
+};
+const isValidDocument = (value) => Boolean(
+  value && value.version === READER_DOCUMENT_VERSION && typeof value.content === "string" && value.content.trim() && typeof value.fileName === "string" && value.fileName && Number.isInteger(value.wordIndex) && value.wordIndex >= 0 && typeof value.savedAt === "string"
+);
+const clearDocument = () => runRequest("readwrite", (store) => store.delete(DOCUMENT_KEY));
+const loadDocument = async () => {
+  const value = await runRequest("readonly", (store) => store.get(DOCUMENT_KEY));
+  if (value == null)
+    return null;
+  if (!isValidDocument(value)) {
+    await clearDocument();
+    return null;
+  }
+  return value;
+};
+const saveDocument = ({ content, fileName, wordIndex = 0 }) => {
+  const document2 = {
+    version: READER_DOCUMENT_VERSION,
+    content,
+    fileName,
+    wordIndex,
+    savedAt: (/* @__PURE__ */ new Date()).toISOString()
+  };
+  return runRequest("readwrite", (store) => store.put(document2, DOCUMENT_KEY));
+};
+const updatePosition = async (wordIndex) => {
+  const document2 = await loadDocument();
+  if (!document2)
+    return false;
+  await saveDocument({ ...document2, wordIndex });
+  return true;
+};
+const Reader_vue_vue_type_style_index_0_scoped_a11f3f5c_lang = "";
 const ESTIMATE_WPM = 300;
 const READER_PROGRESS_KEY = "quortol-reader-progress";
 const _sfc_main = {
@@ -3346,6 +3504,9 @@ const _sfc_main = {
     const contextNavigator = ref(null);
     const savedFileName = ref("");
     const savedWordIndex = ref(0);
+    const storageStatus = ref("");
+    const storageWarning = ref(false);
+    let positionSaveTimer = null;
     const wordCount = computed(() => content.value.trim().split(/\s+/).filter(Boolean).length);
     const estimatedTime = computed(() => {
       const seconds = Math.ceil(wordCount.value * 60 / ESTIMATE_WPM);
@@ -3382,6 +3543,30 @@ const _sfc_main = {
         savedWordIndex.value = 0;
       }
     };
+    const showStorageWarning = () => {
+      storageWarning.value = true;
+      storageStatus.value = "Offline refresh recovery is unavailable in this browser. Reading still works in this tab.";
+    };
+    const restoreDocument = async () => {
+      var _a, _b;
+      try {
+        const stored = await loadDocument();
+        if (!stored)
+          return;
+        const nextWordCount = stored.content.trim().split(/\s+/).filter(Boolean).length;
+        const restoredIndex = Math.min(stored.wordIndex, Math.max(0, nextWordCount - 1));
+        content.value = stored.content;
+        fileName.value = stored.fileName;
+        currentWordIndex.value = restoredIndex;
+        savedFileName.value = stored.fileName;
+        savedWordIndex.value = restoredIndex;
+        storageStatus.value = "Restored from this device. Available offline.";
+        await nextTick();
+        (_b = (_a = rsvp.value) == null ? void 0 : _a.seekTo) == null ? void 0 : _b.call(_a, restoredIndex);
+      } catch {
+        showStorageWarning();
+      }
+    };
     const handlePlaybackState = (playing) => {
       isPlaying2.value = playing;
       if (!playing) {
@@ -3396,6 +3581,15 @@ const _sfc_main = {
     const handlePositionChange = (index) => {
       currentWordIndex.value = index;
       saveProgress();
+      if (positionSaveTimer)
+        window.clearTimeout(positionSaveTimer);
+      positionSaveTimer = window.setTimeout(async () => {
+        try {
+          await updatePosition(index);
+        } catch {
+          showStorageWarning();
+        }
+      }, 300);
     };
     const seekFromContext = (index) => {
       var _a;
@@ -3403,22 +3597,35 @@ const _sfc_main = {
       currentWordIndex.value = index;
       saveProgress();
     };
-    onMounted(restoreProgress);
+    onMounted(async () => {
+      restoreProgress();
+      await restoreDocument();
+    });
+    onBeforeUnmount(() => {
+      if (positionSaveTimer)
+        window.clearTimeout(positionSaveTimer);
+    });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "reader-page" }, _attrs))} data-v-80d31dbe><header class="reader-hero" data-v-80d31dbe><p class="eyebrow" data-v-80d31dbe>Rapid reader</p><h1 data-v-80d31dbe>Read at the speed of thought.</h1><p data-v-80d31dbe> Choose a plain-text file and read it one word at a time with Rapid Serial Visual Presentation. Your document stays in this browser tab and is never uploaded. </p></header><section class="reader-workspace" aria-labelledby="upload-heading" data-v-80d31dbe><div class="${ssrRenderClass([{ "is-dragging": isDragging.value }, "drop-zone"])}" data-v-80d31dbe><div data-v-80d31dbe><p class="eyebrow" data-v-80d31dbe>Private by design</p><h2 id="upload-heading" data-v-80d31dbe>${ssrInterpolate(fileName.value ? "Choose another document" : "Choose a text document")}</h2><p data-v-80d31dbe>Drop one UTF-8 .txt file here, or browse your device. Maximum size: 5 MB.</p>`);
-      if (!fileName.value && savedFileName.value) {
-        _push(`<p class="resume-hint" data-v-80d31dbe> Re-select <strong data-v-80d31dbe>${ssrInterpolate(savedFileName.value)}</strong> to resume at word ${ssrInterpolate(savedWordIndex.value + 1)}. </p>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "reader-page" }, _attrs))} data-v-a11f3f5c><header class="reader-hero" data-v-a11f3f5c><p class="eyebrow" data-v-a11f3f5c>Rapid reader</p><h1 data-v-a11f3f5c>Read at the speed of thought.</h1><p data-v-a11f3f5c> Choose a plain-text file and read it one word at a time with Rapid Serial Visual Presentation. Your document stays in this browser, is never uploaded, and remains available until you clear it. </p>`);
+      if (storageStatus.value) {
+        _push(`<p class="${ssrRenderClass([{ "is-warning": storageWarning.value }, "reader-status"])}" role="status" data-v-a11f3f5c>${ssrInterpolate(storageStatus.value)}</p>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`</div><label class="file-button" for="reader-file" data-v-80d31dbe>${ssrInterpolate(fileName.value ? "Replace file" : "Choose .txt file")}</label><input id="reader-file" class="visually-hidden" type="file" accept=".txt,text/plain" data-v-80d31dbe></div>`);
+      _push(`</header><section class="reader-workspace" aria-labelledby="upload-heading" data-v-a11f3f5c><div class="${ssrRenderClass([{ "is-dragging": isDragging.value }, "drop-zone"])}" data-v-a11f3f5c><div data-v-a11f3f5c><p class="eyebrow" data-v-a11f3f5c>Private by design</p><h2 id="upload-heading" data-v-a11f3f5c>${ssrInterpolate(fileName.value ? "Choose another document" : "Choose a text document")}</h2><p data-v-a11f3f5c>Drop one UTF-8 .txt file here, or browse your device. Maximum size: 5 MB.</p>`);
+      if (!fileName.value && savedFileName.value) {
+        _push(`<p class="resume-hint" data-v-a11f3f5c> Re-select <strong data-v-a11f3f5c>${ssrInterpolate(savedFileName.value)}</strong> to resume at word ${ssrInterpolate(savedWordIndex.value + 1)}. </p>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</div><label class="file-button" for="reader-file" data-v-a11f3f5c>${ssrInterpolate(fileName.value ? "Replace file" : "Choose .txt file")}</label><input id="reader-file" class="visually-hidden" type="file" accept=".txt,text/plain" data-v-a11f3f5c></div>`);
       if (errorMessage.value) {
-        _push(`<p class="reader-error" role="alert" data-v-80d31dbe>${ssrInterpolate(errorMessage.value)}</p>`);
+        _push(`<p class="reader-error" role="alert" data-v-a11f3f5c>${ssrInterpolate(errorMessage.value)}</p>`);
       } else {
         _push(`<!---->`);
       }
       if (fileName.value) {
-        _push(`<div class="document-summary" aria-live="polite" data-v-80d31dbe><div data-v-80d31dbe><span class="summary-label" data-v-80d31dbe>Document</span><strong data-v-80d31dbe>${ssrInterpolate(fileName.value)}</strong></div><div data-v-80d31dbe><span class="summary-label" data-v-80d31dbe>Length</span><strong data-v-80d31dbe>${ssrInterpolate(wordCount.value.toLocaleString())} words</strong></div><div data-v-80d31dbe><span class="summary-label" data-v-80d31dbe>Reading time</span><strong data-v-80d31dbe>${ssrInterpolate(estimatedTime.value)} at 300 WPM</strong></div><button type="button" class="clear-button" data-v-80d31dbe>Clear document</button></div>`);
+        _push(`<div class="document-summary" aria-live="polite" data-v-a11f3f5c><div data-v-a11f3f5c><span class="summary-label" data-v-a11f3f5c>Document</span><strong data-v-a11f3f5c>${ssrInterpolate(fileName.value)}</strong></div><div data-v-a11f3f5c><span class="summary-label" data-v-a11f3f5c>Length</span><strong data-v-a11f3f5c>${ssrInterpolate(wordCount.value.toLocaleString())} words</strong></div><div data-v-a11f3f5c><span class="summary-label" data-v-a11f3f5c>Reading time</span><strong data-v-a11f3f5c>${ssrInterpolate(estimatedTime.value)} at 300 WPM</strong></div><button type="button" class="clear-button" data-v-a11f3f5c>Clear document</button></div>`);
       } else {
         _push(`<!---->`);
       }
@@ -3457,7 +3664,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("src/views/Reader.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const Reader = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-80d31dbe"]]);
+const Reader = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-a11f3f5c"]]);
 const homeDescription = "Discover Quortol essays, podcasts, short-form posts, and interactive data storytelling.";
 const blogDescription = "Read Quortol essays on technology, work, policy, and social futures.";
 const podcastDescription = "Listen to Quortol podcast episodes adapted from essays and original conversations.";
