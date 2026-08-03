@@ -5,7 +5,11 @@
       <h1>Read at the speed of thought.</h1>
       <p>
         Choose a plain-text file and read it one word at a time with Rapid Serial Visual
-        Presentation. Your document stays in this browser tab and is never uploaded.
+        Presentation. Your document stays in this browser, is never uploaded, and remains
+        available until you clear it.
+      </p>
+      <p v-if="storageStatus" class="reader-status" :class="{ 'is-warning': storageWarning }" role="status">
+        {{ storageStatus }}
       </p>
     </header>
 
@@ -78,10 +82,16 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import BlogRSVP from '../components/blog/BlogRSVP.vue'
 import ContextTextNavigator from '../components/reader/ContextTextNavigator.vue'
+import {
+  clearDocument as clearStoredDocument,
+  loadDocument as loadStoredDocument,
+  saveDocument as saveStoredDocument,
+  updatePosition as updateStoredPosition,
+} from '../services/readerStorage'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 const ESTIMATE_WPM = 300
@@ -98,6 +108,9 @@ const isPlaying = ref(false)
 const contextNavigator = ref(null)
 const savedFileName = ref('')
 const savedWordIndex = ref(0)
+const storageStatus = ref('')
+const storageWarning = ref(false)
+let positionSaveTimer = null
 
 const wordCount = computed(() => content.value.trim().split(/\s+/).filter(Boolean).length)
 const estimatedTime = computed(() => {
@@ -143,6 +156,30 @@ const restoreProgress = () => {
   }
 }
 
+const showStorageWarning = () => {
+  storageWarning.value = true
+  storageStatus.value = 'Offline refresh recovery is unavailable in this browser. Reading still works in this tab.'
+}
+
+const restoreDocument = async () => {
+  try {
+    const stored = await loadStoredDocument()
+    if (!stored) return
+    const nextWordCount = stored.content.trim().split(/\s+/).filter(Boolean).length
+    const restoredIndex = Math.min(stored.wordIndex, Math.max(0, nextWordCount - 1))
+    content.value = stored.content
+    fileName.value = stored.fileName
+    currentWordIndex.value = restoredIndex
+    savedFileName.value = stored.fileName
+    savedWordIndex.value = restoredIndex
+    storageStatus.value = 'Restored from this device. Available offline.'
+    await nextTick()
+    rsvp.value?.seekTo?.(restoredIndex)
+  } catch {
+    showStorageWarning()
+  }
+}
+
 const validateFile = (file) => {
   if (!file || !file.name.toLowerCase().endsWith('.txt')) {
     return 'Choose a plain-text file with a .txt extension.'
@@ -161,12 +198,13 @@ const loadFile = (file) => {
   }
 
   const reader = new FileReader()
-  reader.onload = () => {
+  reader.onload = async () => {
     const nextContent = normalizeText(String(reader.result ?? ''))
     if (!nextContent.trim()) {
       errorMessage.value = 'That file is empty. Choose a file containing readable text.'
       return
     }
+    if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
     rsvp.value?.stop()
     content.value = nextContent
     fileName.value = file.name
@@ -178,10 +216,20 @@ const loadFile = (file) => {
     isPlaying.value = false
     errorMessage.value = ''
     if (fileInput.value) fileInput.value.value = ''
-    nextTick(() => {
-      rsvp.value?.seekTo?.(resumeIndex)
-      saveProgress()
-    })
+    await nextTick()
+    rsvp.value?.seekTo?.(resumeIndex)
+    saveProgress()
+    try {
+      await saveStoredDocument({
+        content: nextContent,
+        fileName: file.name,
+        wordIndex: resumeIndex,
+      })
+      storageWarning.value = false
+      storageStatus.value = 'Saved on this device. Available offline.'
+    } catch {
+      showStorageWarning()
+    }
   }
   reader.onerror = () => {
     errorMessage.value = 'The file could not be read. Try another plain-text file.'
@@ -204,7 +252,7 @@ const handleDrop = (event) => {
   loadFile(files[0])
 }
 
-const clearDocument = () => {
+const clearDocument = async () => {
   rsvp.value?.stop()
   content.value = ''
   fileName.value = ''
@@ -221,6 +269,14 @@ const clearDocument = () => {
     }
   }
   if (fileInput.value) fileInput.value.value = ''
+  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+  try {
+    await clearStoredDocument()
+    storageWarning.value = false
+    storageStatus.value = 'Document removed from this device.'
+  } catch {
+    showStorageWarning()
+  }
 }
 
 const handlePlaybackState = (playing) => {
@@ -235,6 +291,14 @@ const handlePlaybackState = (playing) => {
 const handlePositionChange = (index) => {
   currentWordIndex.value = index
   saveProgress()
+  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+  positionSaveTimer = window.setTimeout(async () => {
+    try {
+      await updateStoredPosition(index)
+    } catch {
+      showStorageWarning()
+    }
+  }, 300)
 }
 
 const seekFromContext = (index) => {
@@ -243,7 +307,14 @@ const seekFromContext = (index) => {
   saveProgress()
 }
 
-onMounted(restoreProgress)
+onMounted(async () => {
+  restoreProgress()
+  await restoreDocument()
+})
+
+onBeforeUnmount(() => {
+  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+})
 </script>
 
 <style scoped>
@@ -266,6 +337,16 @@ onMounted(restoreProgress)
 .reader-hero p:last-child,
 .drop-zone p {
   color: var(--ink-muted);
+}
+
+.reader-status {
+  margin-top: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.reader-status.is-warning {
+  color: #9d1c16;
 }
 
 .eyebrow,

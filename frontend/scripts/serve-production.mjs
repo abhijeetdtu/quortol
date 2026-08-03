@@ -100,9 +100,10 @@ const proxyRequest = (request, response, { targetOrigin, stripPrefix = '' }) => 
 
 const serveFile = (request, response, filePath) => {
   const extension = path.extname(filePath).toLowerCase()
+  const isServiceWorker = path.basename(filePath) === 'sw.js'
   const headers = {
     'Content-Type': contentTypes.get(extension) || 'application/octet-stream',
-    'Cache-Control': extension === '.html' ? 'no-cache' : 'public, max-age=3600',
+    'Cache-Control': extension === '.html' || isServiceWorker ? 'no-cache' : 'public, max-age=3600',
   }
 
   response.writeHead(200, headers)
