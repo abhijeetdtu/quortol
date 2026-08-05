@@ -20,3 +20,8 @@ scipy>=1.11.0
 
 # CPIDR-inspired English blog evaluation (model installed separately; see README)
 spacy>=3.7,<4
+
+# Local llama.cpp writing autocomplete
+langchain>=0.3,<2
+langchain-openai>=0.3,<2
+langgraph>=0.2,<2

@@ -14,6 +14,7 @@ import { useRoute } from 'vue-router'
 import { useAuthStore } from './stores/auth.js'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import { checkWriterAvailability } from './features/writer/availability'
 
 const authStore = useAuthStore()
 const route = useRoute()
@@ -21,6 +22,7 @@ const hideShell = computed(() => Boolean(route.meta?.hideShell))
 
 onMounted(() => {
   authStore.checkAuth()
+  checkWriterAvailability()
 })
 </script>
 

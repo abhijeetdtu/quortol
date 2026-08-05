@@ -6,7 +6,7 @@
       <p>
         Choose a plain-text file and read it one word at a time with Rapid Serial Visual
         Presentation. Your document stays in this browser, is never uploaded, and remains
-        available until you clear it.
+        available until you remove it.
       </p>
       <p v-if="storageStatus" class="reader-status" :class="{ 'is-warning': storageWarning }" role="status">
         {{ storageStatus }}
@@ -14,6 +14,14 @@
     </header>
 
     <section class="reader-workspace" aria-labelledby="upload-heading">
+      <div v-if="documents.length" class="book-library">
+        <label for="reader-book">Your books</label>
+        <select id="reader-book" :value="activeBookId" @change="switchDocument($event.target.value)">
+          <option v-for="document in documents" :key="document.id" :value="document.id">
+            {{ document.fileName }}
+          </option>
+        </select>
+      </div>
       <div
         class="drop-zone"
         :class="{ 'is-dragging': isDragging }"
@@ -24,14 +32,11 @@
       >
         <div>
           <p class="eyebrow">Private by design</p>
-          <h2 id="upload-heading">{{ fileName ? 'Choose another document' : 'Choose a text document' }}</h2>
+          <h2 id="upload-heading">{{ documents.length ? 'Add another book' : 'Choose a text document' }}</h2>
           <p>Drop one UTF-8 .txt file here, or browse your device. Maximum size: 5 MB.</p>
-          <p v-if="!fileName && savedFileName" class="resume-hint">
-            Re-select <strong>{{ savedFileName }}</strong> to resume at word {{ savedWordIndex + 1 }}.
-          </p>
         </div>
         <label class="file-button" for="reader-file">
-          {{ fileName ? 'Replace file' : 'Choose .txt file' }}
+          {{ documents.length ? 'Add .txt file' : 'Choose .txt file' }}
         </label>
         <input
           id="reader-file"
@@ -58,7 +63,7 @@
           <span class="summary-label">Reading time</span>
           <strong>{{ estimatedTime }} at 300 WPM</strong>
         </div>
-        <button type="button" class="clear-button" @click="clearDocument">Clear document</button>
+        <button type="button" class="clear-button" @click="removeDocument">Remove book</button>
       </div>
     </section>
 
@@ -87,7 +92,8 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import BlogRSVP from '../components/blog/BlogRSVP.vue'
 import ContextTextNavigator from '../components/reader/ContextTextNavigator.vue'
 import {
-  clearDocument as clearStoredDocument,
+  deleteDocument as deleteStoredDocument,
+  listDocuments as listStoredDocuments,
   loadDocument as loadStoredDocument,
   saveDocument as saveStoredDocument,
   updatePosition as updateStoredPosition,
@@ -95,7 +101,7 @@ import {
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 const ESTIMATE_WPM = 300
-const READER_PROGRESS_KEY = 'quortol-reader-progress'
+const ACTIVE_BOOK_KEY = 'quortol-reader-active-book'
 
 const content = ref('')
 const fileName = ref('')
@@ -106,8 +112,8 @@ const rsvp = ref(null)
 const currentWordIndex = ref(0)
 const isPlaying = ref(false)
 const contextNavigator = ref(null)
-const savedFileName = ref('')
-const savedWordIndex = ref(0)
+const documents = ref([])
+const activeBookId = ref('')
 const storageStatus = ref('')
 const storageWarning = ref(false)
 let positionSaveTimer = null
@@ -122,37 +128,22 @@ const estimatedTime = computed(() => {
 
 const normalizeText = (value) => value.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n')
 
-const saveProgress = () => {
-  if (!fileName.value || typeof window === 'undefined') return
-  const progress = {
-    fileName: fileName.value,
-    wordIndex: currentWordIndex.value,
-  }
-  savedFileName.value = progress.fileName
-  savedWordIndex.value = progress.wordIndex
+const saveActiveBook = () => {
+  if (typeof window === 'undefined') return
   try {
-    window.localStorage.setItem(READER_PROGRESS_KEY, JSON.stringify(progress))
+    if (activeBookId.value) window.localStorage.setItem(ACTIVE_BOOK_KEY, activeBookId.value)
+    else window.localStorage.removeItem(ACTIVE_BOOK_KEY)
   } catch {
     // Reading remains available when browser storage is blocked.
   }
 }
 
-const restoreProgress = () => {
-  if (typeof window === 'undefined') return
+const readActiveBook = () => {
+  if (typeof window === 'undefined') return ''
   try {
-    const progress = JSON.parse(window.localStorage.getItem(READER_PROGRESS_KEY) || 'null')
-    if (
-      progress
-      && typeof progress.fileName === 'string'
-      && Number.isInteger(progress.wordIndex)
-      && progress.wordIndex >= 0
-    ) {
-      savedFileName.value = progress.fileName
-      savedWordIndex.value = progress.wordIndex
-    }
+    return window.localStorage.getItem(ACTIVE_BOOK_KEY) || ''
   } catch {
-    savedFileName.value = ''
-    savedWordIndex.value = 0
+    return ''
   }
 }
 
@@ -161,20 +152,49 @@ const showStorageWarning = () => {
   storageStatus.value = 'Offline refresh recovery is unavailable in this browser. Reading still works in this tab.'
 }
 
-const restoreDocument = async () => {
+const applyDocument = async (stored) => {
+  const nextWordCount = stored.content.trim().split(/\s+/).filter(Boolean).length
+  const restoredIndex = Math.min(stored.wordIndex, Math.max(0, nextWordCount - 1))
+  content.value = stored.content
+  fileName.value = stored.fileName
+  activeBookId.value = stored.id
+  currentWordIndex.value = restoredIndex
+  isPlaying.value = false
+  saveActiveBook()
+  await nextTick()
+  rsvp.value?.seekTo?.(restoredIndex)
+}
+
+const restoreLibrary = async () => {
   try {
-    const stored = await loadStoredDocument()
+    documents.value = await listStoredDocuments()
+    if (!documents.value.length) return
+    const preferredId = readActiveBook()
+    const selected = documents.value.find((document) => document.id === preferredId) || documents.value[0]
+    const stored = await loadStoredDocument(selected.id)
     if (!stored) return
-    const nextWordCount = stored.content.trim().split(/\s+/).filter(Boolean).length
-    const restoredIndex = Math.min(stored.wordIndex, Math.max(0, nextWordCount - 1))
-    content.value = stored.content
-    fileName.value = stored.fileName
-    currentWordIndex.value = restoredIndex
-    savedFileName.value = stored.fileName
-    savedWordIndex.value = restoredIndex
+    await applyDocument(stored)
     storageStatus.value = 'Restored from this device. Available offline.'
-    await nextTick()
-    rsvp.value?.seekTo?.(restoredIndex)
+  } catch {
+    showStorageWarning()
+  }
+}
+
+const cancelPendingPositionSave = () => {
+  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+  positionSaveTimer = null
+}
+
+const switchDocument = async (id) => {
+  if (!id || id === activeBookId.value) return
+  cancelPendingPositionSave()
+  rsvp.value?.stop()
+  try {
+    const stored = await loadStoredDocument(id)
+    if (!stored) return
+    await applyDocument(stored)
+    errorMessage.value = ''
+    storageStatus.value = 'Book opened from this device.'
   } catch {
     showStorageWarning()
   }
@@ -204,27 +224,27 @@ const loadFile = (file) => {
       errorMessage.value = 'That file is empty. Choose a file containing readable text.'
       return
     }
-    if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+    cancelPendingPositionSave()
     rsvp.value?.stop()
     content.value = nextContent
     fileName.value = file.name
-    const nextWordCount = nextContent.trim().split(/\s+/).filter(Boolean).length
-    const resumeIndex = savedFileName.value === file.name
-      ? Math.min(savedWordIndex.value, Math.max(0, nextWordCount - 1))
-      : 0
+    activeBookId.value = ''
+    const resumeIndex = 0
     currentWordIndex.value = resumeIndex
     isPlaying.value = false
     errorMessage.value = ''
     if (fileInput.value) fileInput.value.value = ''
     await nextTick()
     rsvp.value?.seekTo?.(resumeIndex)
-    saveProgress()
     try {
-      await saveStoredDocument({
+      const stored = await saveStoredDocument({
         content: nextContent,
         fileName: file.name,
         wordIndex: resumeIndex,
       })
+      activeBookId.value = stored.id
+      documents.value = [stored, ...documents.value]
+      saveActiveBook()
       storageWarning.value = false
       storageStatus.value = 'Saved on this device. Available offline.'
     } catch {
@@ -252,30 +272,31 @@ const handleDrop = (event) => {
   loadFile(files[0])
 }
 
-const clearDocument = async () => {
+const removeDocument = async () => {
+  const removedId = activeBookId.value
+  if (!removedId) return
   rsvp.value?.stop()
+  cancelPendingPositionSave()
+  try {
+    await deleteStoredDocument(removedId)
+    documents.value = documents.value.filter((document) => document.id !== removedId)
+  } catch {
+    showStorageWarning()
+    return
+  }
   content.value = ''
   fileName.value = ''
   errorMessage.value = ''
   currentWordIndex.value = 0
   isPlaying.value = false
-  savedFileName.value = ''
-  savedWordIndex.value = 0
-  if (typeof window !== 'undefined') {
-    try {
-      window.localStorage.removeItem(READER_PROGRESS_KEY)
-    } catch {
-      // The in-memory document is still cleared when storage is blocked.
-    }
-  }
+  activeBookId.value = ''
+  saveActiveBook()
   if (fileInput.value) fileInput.value.value = ''
-  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
-  try {
-    await clearStoredDocument()
+  if (documents.value.length) {
+    await switchDocument(documents.value[0].id)
+  } else {
     storageWarning.value = false
-    storageStatus.value = 'Document removed from this device.'
-  } catch {
-    showStorageWarning()
+    storageStatus.value = 'Book removed from this device.'
   }
 }
 
@@ -290,11 +311,12 @@ const handlePlaybackState = (playing) => {
 
 const handlePositionChange = (index) => {
   currentWordIndex.value = index
-  saveProgress()
-  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+  cancelPendingPositionSave()
+  const bookId = activeBookId.value
   positionSaveTimer = window.setTimeout(async () => {
+    if (!bookId || bookId !== activeBookId.value) return
     try {
-      await updateStoredPosition(index)
+      await updateStoredPosition(bookId, index)
     } catch {
       showStorageWarning()
     }
@@ -304,16 +326,14 @@ const handlePositionChange = (index) => {
 const seekFromContext = (index) => {
   rsvp.value?.seekTo(index)
   currentWordIndex.value = index
-  saveProgress()
 }
 
 onMounted(async () => {
-  restoreProgress()
-  await restoreDocument()
+  await restoreLibrary()
 })
 
 onBeforeUnmount(() => {
-  if (positionSaveTimer) window.clearTimeout(positionSaveTimer)
+  cancelPendingPositionSave()
 })
 </script>
 
@@ -362,6 +382,32 @@ onBeforeUnmount(() => {
 .reader-workspace {
   max-width: 900px;
   margin: 0 auto;
+}
+
+.book-library {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.book-library label {
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.book-library select {
+  min-width: 0;
+  min-height: 2.6rem;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface-raised);
+  color: inherit;
 }
 
 .drop-zone {

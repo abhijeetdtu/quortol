@@ -39,6 +39,9 @@ def create_app(config_class=None, enable_dash=True):
     podcast_api_bp, podcast_public_bp = create_podcast_blueprints()
     app.register_blueprint(podcast_api_bp)
     app.register_blueprint(podcast_public_bp)
+
+    from .features.writer import create_writer_blueprint
+    app.register_blueprint(create_writer_blueprint())
     
     app.register_blueprint(blog_bp, url_prefix='/api/blog')
     app.register_blueprint(agent_bp, url_prefix='/api/agents')

@@ -2,13 +2,14 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import {
   READER_DOCUMENT_VERSION,
-  clearDocument,
+  deleteDocument,
+  listDocuments,
   loadDocument,
   saveDocument,
   updatePosition,
 } from './readerStorage'
 
-const createIndexedDB = () => {
+const createIndexedDB = ({ oldVersion = 2 } = {}) => {
   const values = new Map()
   let failWrites = false
 
@@ -33,6 +34,7 @@ const createIndexedDB = () => {
     transaction: () => ({
       objectStore: () => ({
         get: (key) => makeRequest(() => values.get(key)),
+        getAll: () => makeRequest(() => Array.from(values.values())),
         put: (value, key) => makeRequest(() => {
           if (failWrites) throw new DOMException('Quota exceeded', 'QuotaExceededError')
           values.set(key, value)
@@ -48,7 +50,11 @@ const createIndexedDB = () => {
     setFailWrites: (value) => { failWrites = value },
     open: () => {
       const request = { result: database }
-      queueMicrotask(() => request.onsuccess?.())
+      request.transaction = database.transaction()
+      queueMicrotask(() => {
+        request.onupgradeneeded?.({ oldVersion })
+        queueMicrotask(() => request.onsuccess?.())
+      })
       return request
     },
   }
@@ -62,25 +68,46 @@ describe('readerStorage', () => {
     globalThis.indexedDB = database
   })
 
-  it('saves, loads, updates, and clears the latest document', async () => {
-    await saveDocument({ content: 'one two three', fileName: 'notes.txt', wordIndex: 0 })
-    expect(await loadDocument()).toMatchObject({
+  it('saves, lists, loads, updates, and deletes documents by id', async () => {
+    const saved = await saveDocument({ content: 'one two three', fileName: 'notes.txt', wordIndex: 0 })
+    expect(await loadDocument(saved.id)).toMatchObject({
+      id: saved.id,
       version: READER_DOCUMENT_VERSION,
       content: 'one two three',
       fileName: 'notes.txt',
       wordIndex: 0,
     })
 
-    expect(await updatePosition(2)).toBe(true)
-    expect((await loadDocument()).wordIndex).toBe(2)
+    expect(await listDocuments()).toHaveLength(1)
+    expect(await updatePosition(saved.id, 2)).toBe(true)
+    expect((await loadDocument(saved.id)).wordIndex).toBe(2)
 
-    await clearDocument()
-    expect(await loadDocument()).toBeNull()
+    await deleteDocument(saved.id)
+    expect(await loadDocument(saved.id)).toBeNull()
   })
 
-  it('removes malformed or unsupported records', async () => {
-    database.values.set('latest', { version: 999, content: 'old' })
-    expect(await loadDocument()).toBeNull()
+  it('ignores malformed records without affecting valid documents', async () => {
+    const saved = await saveDocument({ content: 'valid', fileName: 'valid.txt' })
+    database.values.set('malformed', { version: 999, content: 'old' })
+    expect(await listDocuments()).toEqual([saved])
+    expect(database.values.has('malformed')).toBe(true)
+  })
+
+  it('migrates the legacy latest document into the multi-book library', async () => {
+    database = createIndexedDB({ oldVersion: 1 })
+    database.values.set('latest', {
+      version: READER_DOCUMENT_VERSION,
+      content: 'legacy content',
+      fileName: 'legacy.txt',
+      wordIndex: 3,
+      savedAt: '2026-01-01T00:00:00.000Z',
+    })
+    globalThis.indexedDB = database
+
+    const documents = await listDocuments()
+    expect(documents).toHaveLength(1)
+    expect(documents[0]).toMatchObject({ fileName: 'legacy.txt', wordIndex: 3 })
+    expect(documents[0].id).toBeTruthy()
     expect(database.values.has('latest')).toBe(false)
   })
 
@@ -91,6 +118,6 @@ describe('readerStorage', () => {
     })
 
     delete globalThis.indexedDB
-    await expect(loadDocument()).rejects.toThrow('IndexedDB is unavailable')
+    await expect(listDocuments()).rejects.toThrow('IndexedDB is unavailable')
   })
 })

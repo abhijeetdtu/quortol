@@ -8,6 +8,7 @@ import AgentDashboard from '../views/agents/AgentDashboard.vue'
 import AgentCapabilities from '../views/agents/AgentCapabilities.vue'
 import ShortFormFeedPage from '../features/short-form/pages/ShortFormFeedPage.vue'
 import Reader from '../views/Reader.vue'
+import WriterAvailabilityGate from '../features/writer/WriterAvailabilityGate.vue'
 import {
   buildCollectionPageStructuredData,
   buildPodcastSeriesStructuredData,
@@ -226,6 +227,20 @@ export const routes = [
             path: '/reader',
           }),
         ],
+      }),
+    },
+  },
+  {
+    path: '/writer',
+    name: 'writer',
+    component: WriterAvailabilityGate,
+    meta: {
+      requiresAuth: false,
+      seo: buildStaticPageSEOPayload({
+        title: 'Writing Assistant | Quortol',
+        description: 'A private-by-default local drafting surface with AI autocomplete.',
+        path: '/writer',
+        robots: 'noindex,nofollow',
       }),
     },
   },

@@ -28,6 +28,9 @@
           <li class="nav-item">
             <router-link to="/reader" class="nav-link">Reader</router-link>
           </li>
+          <li v-if="writerAvailability === 'available'" class="nav-item">
+            <router-link to="/writer" class="nav-link">Writer</router-link>
+          </li>
           <li class="nav-item">
             <router-link to="/podcasts" class="nav-link">Podcasts</router-link>
           </li>
@@ -53,6 +56,7 @@
 <script setup>
 import { useAuthStore } from '../stores/auth'
 import { auth } from '../services/api'
+import { writerAvailability } from '../features/writer/availability'
 
 const authStore = useAuthStore()
 

@@ -39,3 +39,19 @@ class Config:
 
     # Auth behavior
     REGISTRATION_ENABLED = _env_bool('REGISTRATION_ENABLED', default=False)
+
+    # Public writing autocomplete (llama.cpp OpenAI-compatible server)
+    LLAMA_CPP_BASE_URL = os.environ.get('LLAMA_CPP_BASE_URL', 'http://192.168.0.4:8080/v1')
+    LLAMA_CPP_MODEL = os.environ.get('LLAMA_CPP_MODEL', 'local-model')
+    LLAMA_CPP_API_KEY = os.environ.get('LLAMA_CPP_API_KEY', 'sk-no-key-required')
+    WRITER_TIMEOUT_SECONDS = float(os.environ.get('WRITER_TIMEOUT_SECONDS', 30))
+    WRITER_MAX_CONTEXT_CHARS = int(os.environ.get('WRITER_MAX_CONTEXT_CHARS', 12000))
+    WRITER_MAX_OUTPUT_TOKENS = int(os.environ.get('WRITER_MAX_OUTPUT_TOKENS', 128))
+    WRITER_RATE_LIMIT_PER_MINUTE = int(os.environ.get('WRITER_RATE_LIMIT_PER_MINUTE', 20))
+    WRITER_MAX_CONCURRENT = int(os.environ.get('WRITER_MAX_CONCURRENT', 2))
+    WRITER_ANALYSIS_MAX_CHARS = int(os.environ.get('WRITER_ANALYSIS_MAX_CHARS', 50000))
+    WRITER_ANALYSIS_MAX_OUTPUT_TOKENS = int(os.environ.get('WRITER_ANALYSIS_MAX_OUTPUT_TOKENS', 2048))
+    WRITER_ANALYSIS_TIMEOUT_SECONDS = float(os.environ.get('WRITER_ANALYSIS_TIMEOUT_SECONDS', 90))
+    WRITER_ANALYSIS_RATE_LIMIT_PER_MINUTE = int(
+        os.environ.get('WRITER_ANALYSIS_RATE_LIMIT_PER_MINUTE', 5)
+    )

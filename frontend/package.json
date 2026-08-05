@@ -17,6 +17,7 @@
     "offline:generate": "node ./scripts/generate-service-worker.mjs",
     "test:blog": "vitest run src/utils/__tests__/blogContent.spec.js src/components/blog/BlogTTS.spec.js src/components/blog/BlogRSVP.spec.js src/views/blog/__tests__/BlogDetail.spec.js",
     "test:reader": "vitest run src/services/readerStorage.spec.js src/components/blog/BlogRSVP.spec.js src/components/reader/ContextTextNavigator.spec.js src/views/__tests__/Reader.spec.js src/router/__tests__/index.spec.js",
+    "test:writer": "vitest run src/views/__tests__/Writer.spec.js src/features/writer/analysisStream.spec.js",
     "test:short-form": "vitest run src/features/short-form/__tests__",
     "test:podcasts": "vitest run src/views/podcasts/__tests__"
   },

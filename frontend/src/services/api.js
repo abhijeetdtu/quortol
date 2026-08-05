@@ -58,6 +58,11 @@ export const dataStorytelling = {
   getDashboards: () => api.get('/data-storytelling/dashboards'),
 }
 
+export const writer = {
+  status: () => api.get('/writer/status'),
+  autocomplete: (data, signal) => api.post('/writer/autocomplete', data, { signal }),
+}
+
 export const agents = {
   getAgents: () => api.get('/agents/'),
   getAgent: (id) => api.get(`/agents/${id}`),

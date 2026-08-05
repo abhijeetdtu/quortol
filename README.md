@@ -352,7 +352,8 @@ llama-server `
 --cache-type-v q8_0 `
 --ctx-size 240000 `
 --cache-ram 2048 `
---no-mmap
+--no-mmap `
+--host 0.0.0.0
 ```
 
 ```bash
